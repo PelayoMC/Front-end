@@ -15,6 +15,7 @@ import { RegisterComponent } from './login/register.component';
 // Servicios
 import { SharedService } from './service/shared.service';
 import { SidebarService } from './service/sidebar.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SidebarService } from './service/sidebar.service';
   imports: [
     BrowserModule,
     APP_ROUTING,
-    PageModule
+    PageModule,
+    RouterModule
   ],
   providers: [SharedService, SidebarService],
   bootstrap: [AppComponent]
