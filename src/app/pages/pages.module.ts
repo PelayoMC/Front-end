@@ -8,13 +8,15 @@ import { PAGE_ROUTES } from './pages-routing.module';
 import { MainComponent } from './main/main.component';
 import { ProgressComponent } from './progress/progress.component';
 import { PagesComponent } from './pages.component';
+import { RecipesComponent } from './recipes/recipes.component';
 
 
 @NgModule({
     declarations: [
         PagesComponent,
         MainComponent,
-        ProgressComponent
+        ProgressComponent,
+        RecipesComponent
       ],
       exports:[
         MainComponent,
