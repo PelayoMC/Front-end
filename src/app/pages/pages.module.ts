@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { ProgressComponent } from './progress/progress.component';
 import { PagesComponent } from './pages.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { RecipeComponent } from './recipe/recipe.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RecipesComponent } from './recipes/recipes.component';
         PagesComponent,
         MainComponent,
         ProgressComponent,
-        RecipesComponent
+        RecipesComponent,
+        RecipeComponent
       ],
       exports:[
         MainComponent,
