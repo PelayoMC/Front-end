@@ -8,7 +8,103 @@ export class RecipesService {
 
 constructor(private ingredient_service: IngredientsService) { }
 
-recipes: Recipe[] = [
+private recipes: Recipe[] = [
+    {
+      nombre : 'Comida',
+      descripcion : 'Descripción pappapapa',
+      ingredientes : [
+        {
+          nombre: 'Ingrediente',
+          cantidad: 2,
+          unidades: UNIDADES.g
+        }
+      ],
+      imagen: 'assets/images/recipes/1.jpg',
+      pasos: [
+        'Calentar agua',
+        'Enfriarla otra vez'
+      ]
+    },
+    {
+      nombre : 'Comida',
+      descripcion : 'Descripción pappapapa',
+      ingredientes : [
+        {
+          nombre: 'Ingrediente',
+          cantidad: 2,
+          unidades: UNIDADES.g
+        }
+      ],
+      imagen: 'assets/images/recipes/1.jpg',
+      pasos: [
+        'Calentar agua',
+        'Enfriarla otra vez'
+      ]
+    },
+    {
+      nombre : 'Comida',
+      descripcion : 'Descripción pappapapa',
+      ingredientes : [
+        {
+          nombre: 'Ingrediente',
+          cantidad: 2,
+          unidades: UNIDADES.g
+        }
+      ],
+      imagen: 'assets/images/recipes/1.jpg',
+      pasos: [
+        'Calentar agua',
+        'Enfriarla otra vez'
+      ]
+    },
+    {
+      nombre : 'Comida',
+      descripcion : 'Descripción pappapapa',
+      ingredientes : [
+        {
+          nombre: 'Ingrediente',
+          cantidad: 2,
+          unidades: UNIDADES.g
+        }
+      ],
+      imagen: 'assets/images/recipes/1.jpg',
+      pasos: [
+        'Calentar agua',
+        'Enfriarla otra vez'
+      ]
+    },
+    {
+      nombre : 'Comida',
+      descripcion : 'Descripción pappapapa',
+      ingredientes : [
+        {
+          nombre: 'Ingrediente',
+          cantidad: 2,
+          unidades: UNIDADES.g
+        }
+      ],
+      imagen: 'assets/images/recipes/1.jpg',
+      pasos: [
+        'Calentar agua',
+        'Enfriarla otra vez'
+      ]
+    },
+    {
+      nombre : 'Comida',
+      descripcion : 'Descripción pappapapa',
+      ingredientes : [
+        {
+          nombre: 'Ingrediente',
+          cantidad: 2,
+          unidades: UNIDADES.g
+        }
+      ],
+      imagen: 'assets/images/recipes/1.jpg',
+      pasos: [
+        'Calentar agua',
+        'Enfriarla otra vez'
+      ]
+    },
     {
       nombre : 'Comida',
       descripcion : 'Descripción pappapapa',
@@ -26,6 +122,14 @@ recipes: Recipe[] = [
       ]
     }
   ];
+
+  getRecipes(): Recipe[] {
+    return this.recipes;
+  }
+
+  getRecipe(idx: string): Recipe {
+    return this.recipes[idx];
+  }
 }
 
 export interface Recipe {

@@ -10,6 +10,8 @@ import { ProgressComponent } from './progress/progress.component';
 import { PagesComponent } from './pages.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeComponent } from './recipe/recipe.component';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { RecipeComponent } from './recipe/recipe.component';
         MainComponent,
         ProgressComponent,
         RecipesComponent,
-        RecipeComponent
+        RecipeComponent,
+        RecipeCardComponent
       ],
       exports:[
         MainComponent,
@@ -26,7 +29,8 @@ import { RecipeComponent } from './recipe/recipe.component';
       ],
       imports: [
         SharedModule,
-        PAGE_ROUTES
+        PAGE_ROUTES,
+        BrowserModule
       ]
 })
 export class PageModule {}

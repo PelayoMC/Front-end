@@ -1,0 +1,16 @@
+<h1>{{ receta.nombre | uppercase }}</h1>
+<hr>
+<div class="row">
+    <div class="col-md-4">
+        <img [src]="receta.imagen" class="img-fluid" alt="heroe.nombre">
+        <br><br>
+        <a href="#/recipes" class="btn btn-outline-danger btn-block"> Regresar </a>
+    </div>
+    <div class="col-md-8">
+        <h3>{{ receta.nombre }}</h3>
+        <hr>
+        <p>
+            {{ receta.descripcion }}
+        </p>
+    </div>
+</div>

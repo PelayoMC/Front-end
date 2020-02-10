@@ -1,6 +1,6 @@
 <div class="row page-titles">
     <h3 class="text-themecolor-title">Recetas</h3>
-    <div class="input-group mb-3">
+    <div class="input-group mb-4">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ordenar por</button>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Nombre</a>
@@ -12,6 +12,6 @@
         </div>
     </div>
 </div>
-<div class="card-deck" routerLinkActive="active" *ngFor="let recipe of recipes">
-
+<div class="row">
+    <app-recipe-card (recetaSeleccionada)=verReceta($event) [receta]=receta [id]=i *ngFor="let receta of recetas; let i=index"></app-recipe-card>
 </div>

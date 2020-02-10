@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Recipe, RecipesService } from 'src/app/service/recipes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipesComponent implements OnInit {
 
-  constructor() { }
+  recetas: Recipe[] = [];
+
+  constructor(private recipes_service: RecipesService, private router: Router ) { }
 
   ngOnInit() {
+    this.recetas = this.recipes_service.getRecipes();
   }
 
+  verReceta(idx: number){
+    this.router.navigate(['/recipe', idx]);
+  }
 }

@@ -16,6 +16,7 @@ import { RegisterComponent } from './login/register.component';
 import { SharedService } from './service/shared.service';
 import { SidebarService } from './service/sidebar.service';
 import { RouterModule } from '@angular/router';
+import { RecipeComponent } from './pages/recipe/recipe.component';
 
 @NgModule({
   declarations: [
