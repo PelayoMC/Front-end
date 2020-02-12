@@ -2,15 +2,52 @@
 <hr>
 <div class="row">
     <div class="col-md-4">
-        <img [src]="receta.imagen" class="img-fluid" alt="heroe.nombre">
+        <img [src]="receta.imagen" class="img-fluid" alt="receta-imagen">
         <br><br>
-        <a href="#/recipes" class="btn btn-outline-danger btn-block"> Regresar </a>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Calorias</h4>
+                <hr>
+                <p>
+                    {{ receta.calorias.cantidad }} {{ receta.calorias.unidades }}
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h4>Dificultad</h4>
+                <hr>
+                <p>
+                    {{ receta.nivel | uppercase }}
+                </p>
+            </div>
+        </div>
+        <a href="#/recipes" class="btn btn-outline-danger btn-block"> Regresar a recetas</a>
+        <br><br>
     </div>
     <div class="col-md-8">
-        <h3>{{ receta.nombre }}</h3>
+        <h3>Descripción de la receta</h3>
         <hr>
         <p>
             {{ receta.descripcion }}
         </p>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Ingredientes</h4>
+                <hr>
+                <ul>
+                    <li *ngFor="let ingrediente of receta.ingredientes">
+                        <b>{{ ingrediente.nombre }}</b> <i class="mdi mdi-arrow-right-bold"> </i> {{ ingrediente.cantidad }} {{ ingrediente.unidades }}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <h4>Pasos a seguir</h4>
+                <hr>
+                <ol>
+                    <li *ngFor="let paso of receta.pasos">
+                        {{ paso }}
+                    </li>
+                </ol>
+            </div>
+        </div>
     </div>
 </div>
