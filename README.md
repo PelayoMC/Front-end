@@ -1,4 +1,4 @@
-# ProyectoTFG
+# ProyectoTFG - Aplicación web para la planificación y evaluación de dietas
 
 Proyecto generado con [Angular CLI](https://github.com/angular/angular-cli) versión 8.3.23.
 
