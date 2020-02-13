@@ -286,13 +286,13 @@ export interface Recipe {
   nivel: NIVEL;
 }
 
-export interface Ingredient {
+interface Ingredient {
   nombre: string;
   cantidad: number;
   unidades: UNIDADES;
 }
 
-export interface Calorias {
+interface Calorias {
   cantidad: number;
   unidades: UNIDADES;
 }
