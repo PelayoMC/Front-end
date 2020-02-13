@@ -33,11 +33,16 @@
             <div class="col-md-4">
                 <h4>Ingredientes</h4>
                 <hr>
-                <ul>
-                    <li *ngFor="let ingrediente of receta.ingredientes">
-                        <b>{{ ingrediente.nombre }}</b> <i class="mdi mdi-arrow-right-bold"> </i> {{ ingrediente.cantidad }} {{ ingrediente.unidades }}
-                    </li>
-                </ul>
+                <table>
+                    <tr>
+                        <th><b>Ingrediente</b></th>
+                        <th><b>Cantidad</b></th>
+                    </tr>
+                    <tr *ngFor="let ingrediente of receta.ingredientes">
+                        <td><b>{{ ingrediente.nombre }}</b></td>
+                        <td><b>{{ ingrediente.cantidad }} {{ ingrediente.unidades }}</b></td>
+                    </tr>
+                </table>>
             </div>
             <div class="col-md-8">
                 <h4>Pasos a seguir</h4>
