@@ -39,6 +39,12 @@ File: scss
     font-weight: bold;
 }
 
+.logo-title-login {
+    color: mediumblue;
+    font-weight: bold;
+    font-size: larger;
+}
+
 .topbar {
     background: #56c0d8;
 }
@@ -104,8 +110,7 @@ a.link:focus {
 
 .text-themecolor-title {
     color: #56c0d8 !important;
-    size: 200%;
-    margin-left: 0%;
+    font-size: 200%;
     font-weight: bold;
 }
 
