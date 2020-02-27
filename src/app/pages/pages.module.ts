@@ -6,11 +6,10 @@ import { PAGE_ROUTES } from './pages-routing.module';
 
 // Componentes
 import { MainComponent } from './main/main.component';
-import { ProgressComponent } from './progress/progress.component';
 import { PagesComponent } from './pages.component';
 import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeComponent } from './recipe/recipe.component';
-import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+import { RecipeComponent } from './recipes/recipe/recipe.component';
+import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
 import { BrowserModule } from '@angular/platform-browser';
 
 
@@ -18,14 +17,12 @@ import { BrowserModule } from '@angular/platform-browser';
     declarations: [
         PagesComponent,
         MainComponent,
-        ProgressComponent,
         RecipesComponent,
         RecipeComponent,
         RecipeCardComponent
       ],
       exports:[
-        MainComponent,
-        ProgressComponent
+        MainComponent
       ],
       imports: [
         SharedModule,
