@@ -1,9 +1,9 @@
-<div class="col-sm-6 col-lg-12">
-    <div class="card border border-primary" style="max-width: 18rem;" (click)="verReceta()">
+<div class="col-12">
+    <div class="card border border-primary" (click)="verReceta()">
         <img class="card-img-top" [src]='receta.imagen' alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{ receta.nombre }}</h5>
-            <p class="card-text">{{ receta.descripcion | slice: 0:60}} ...</p>
+            <p class="card-text"><b>DIFICULTAD:</b> {{ receta.nivel | uppercase }}</p>
         </div>
     </div>
 </div>

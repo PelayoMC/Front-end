@@ -13,5 +13,5 @@
     </div>
 </div>
 <div class="row">
-    <app-recipe-card (recetaSeleccionada)=verReceta($event) [receta]=receta [id]=i *ngFor="let receta of recetas; let i=index"></app-recipe-card>
+    <app-recipe-card class="col-sm-12 col-lg-4" (recetaSeleccionada)=verReceta($event) [receta]=receta [id]=i *ngFor="let receta of recetas; let i=index"></app-recipe-card>
 </div>
