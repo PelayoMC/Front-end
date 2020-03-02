@@ -6,6 +6,8 @@ import { APP_ROUTING } from './app-routing.module';
 
 // Modulos
 import { PageModule } from './pages/pages.module';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -15,8 +17,7 @@ import { RegisterComponent } from './login/register.component';
 // Servicios
 import { SharedService } from './service/shared.service';
 import { SidebarService } from './service/sidebar.service';
-import { RouterModule } from '@angular/router';
-import { RecipeComponent } from './pages/recipes/recipe/recipe.component';
+import { UsersService } from './service/users.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,11 @@ import { RecipeComponent } from './pages/recipes/recipe/recipe.component';
     BrowserModule,
     APP_ROUTING,
     PageModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [SharedService, SidebarService],
+  providers: [SharedService, SidebarService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
