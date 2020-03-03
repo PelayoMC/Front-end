@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsersService } from '../service/users/users.service';
+import { UsersService } from '../service/service.index';
 import { Usuario } from '../models/usuario.model';
 import { Router } from '@angular/router';
-
-
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -18,7 +16,7 @@ export class RegisterComponent implements OnInit {
   forma: FormGroup;
 
 
-  constructor(private userService: UsersService, public router: Router) { }
+  constructor(public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
     this.forma = new FormGroup({
@@ -36,7 +34,7 @@ export class RegisterComponent implements OnInit {
     }
 
     if (!this.forma.value.condiciones) {
-      swal('Importante', 'Debe aceptar las condiciones', 'warning');
+      Swal.fire('Importante', 'Debe aceptar las condiciones', 'warning');
       return;
     }
 

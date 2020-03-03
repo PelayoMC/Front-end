@@ -18,7 +18,7 @@
         <div class="login-box card">
             <div class="card-body">
                 <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()" class="form-horizontal form-material" id="loginform" action="index.html">
-                    <a href="/home" class="text-center db">
+                    <a routerLink="/home" class="text-center db">
                         <b>
                         <i class="mdi mdi-pine-tree"></i>
                     </b>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="form-group m-b-0 ">
                         <div class="col-sm-12 text-center ">
-                            <p>¿Ya tienes cuenta?<a href="/#/login " class="text-info m-l-5 "><b>Inicia sesión</b></a></p>
+                            <p>¿Ya tienes cuenta?<a routerLink="/login" class="text-info m-l-5 "><b>Inicia sesión</b></a></p>
                         </div>
                     </div>
                 </form>
