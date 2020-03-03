@@ -15,9 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 
 // Servicios
-import { SharedService } from './service/shared.service';
-import { SidebarService } from './service/sidebar.service';
-import { UsersService } from './service/users.service';
+import { ServiceModule } from './service/service.module';
 
 @NgModule({
   declarations: [
@@ -31,9 +29,10 @@ import { UsersService } from './service/users.service';
     PageModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceModule
   ],
-  providers: [SharedService, SidebarService, UsersService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
