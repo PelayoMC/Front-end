@@ -4,6 +4,10 @@ import { UsersService } from '../service/service.index';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
 
+declare function init_plugins();
+// Libreria google
+declare const gapi: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,11 +15,39 @@ import { Usuario } from '../models/usuario.model';
 })
 export class LoginComponent implements OnInit {
 
+  email: string;
   recuerdame: boolean = false;
+
+  auth2: any;
 
   constructor(public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
+    init_plugins();
+    this.googleInit();
+    this.email = localStorage.getItem('email') || '';
+    if (this.email.length > 0){
+      this.recuerdame = true;
+    }
+  }
+
+  googleInit(){
+    gapi.load('auth2', () => {
+      this.auth2 = gapi.auth2.init({
+        client_id: '72467451062-1uu3j42qch0fl30i53881sf6r6ejljsk.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        scope: 'profile email'
+      });
+      this.attachSignin(document.getElementById('btnGoogle'));
+    });
+  }
+
+  attachSignin(element){
+    this.auth2.attachClickHandler(element, {}, (googleUser) => {
+      // let profile = googleUser.getBasicProfile();
+      let token = googleUser.getAuthResponse().id_token;
+      console.log(token);
+    })
   }
 
   ingresar(forma: NgForm) {
@@ -24,9 +56,7 @@ export class LoginComponent implements OnInit {
     }
     let usuario = new Usuario (null, forma.value.email, forma.value.contraseña);
     this.userService.login(usuario, forma.value.recuerdame)
-      .subscribe(resp => {
-        console.log(resp);
-      });
+      .subscribe(resp => this.router.navigate(['/home']));
   }
 
 }

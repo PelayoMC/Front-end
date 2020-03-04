@@ -15,8 +15,22 @@ export class UsersService {
   constructor(public http: HttpClient) { }
 
   login (user: Usuario, recuerdame: boolean) {
+
+    if( recuerdame ){
+      localStorage.setItem('email', user.email);
+    }else {
+      localStorage.removeItem('email');
+    }
+
     let url = URL_SERVICIOS + '/login';
-    return this.http.post(url, user);
+    return this.http.post(url, user).pipe(map(
+      (resp: any) => {
+        localStorage.setItem('id', resp.id);
+        localStorage.setItem('token', resp.token);
+        localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+        return true;
+      }
+    ));
   }
 
   crearUsuario(usuario: Usuario) {

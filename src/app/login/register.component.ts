@@ -5,7 +5,7 @@ import { Usuario } from '../models/usuario.model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
-
+declare function init_plugins();
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   constructor(public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
+    init_plugins();
     this.forma = new FormGroup({
       nombre: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
