@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    let usuario = new Usuario(
+    const usuario = new Usuario(
       this.forma.value.nombre,
       this.forma.value.email,
       this.forma.value.contraseña
