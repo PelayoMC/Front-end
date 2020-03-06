@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 
 // Modulos
 import { SharedModule } from '../shared/shared.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { PipeModule } from '../pipes/pipe.module';
+
+// Rutas
 import { PAGE_ROUTES } from './pages-routing.module';
 import { PAGE_ROUTES_PRIVATE } from './pages-routing-private.module';
 
@@ -11,7 +15,6 @@ import { PagesComponent } from './pages.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 
@@ -33,7 +36,8 @@ import { UserComponent } from './users/user/user.component';
         SharedModule,
         PAGE_ROUTES,
         PAGE_ROUTES_PRIVATE,
-        BrowserModule
+        BrowserModule,
+        PipeModule
       ]
 })
 export class PageModule {}

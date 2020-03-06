@@ -4,6 +4,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NoFoundComponent } from '../no-found/no-found.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { PipeModule } from '../pipes/pipe.module';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
       ],
       imports: [
         RouterModule,
-        CommonModule
+        CommonModule,
+        PipeModule
       ],
       exports: [
         HeaderComponent,
