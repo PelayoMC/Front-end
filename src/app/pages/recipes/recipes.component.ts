@@ -11,13 +11,13 @@ export class RecipesComponent implements OnInit {
 
   recetas: Recipe[] = [];
 
-  constructor(private recipes_service: RecipesService, private router: Router ) { }
+  constructor(private recipesService: RecipesService, private router: Router ) { }
 
   ngOnInit() {
-    this.recetas = this.recipes_service.getRecipes();
+    this.recetas = this.recipesService.getRecipes();
   }
 
-  verReceta(idx: number){
+  verReceta(idx: number) {
     this.router.navigate(['/recipe', idx]);
   }
 }
