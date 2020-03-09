@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
   form: FormGroup;
   usuario: Usuario;
   modificando: string;
+  imgUpload: any;
 
   constructor(public userService: UsersService, public router: Router) { }
 
@@ -22,6 +23,19 @@ export class UserComponent implements OnInit {
       nombre: new FormControl({value: this.usuario.nombre, disabled: true}, Validators.required),
       email: new FormControl({value: this.usuario.email, disabled: true}, [Validators.required, Validators.email])
     });
+  }
+
+  chooseImage(archivo) {
+    if (!archivo) {
+      this.imgUpload = null;
+      return;
+    } else {
+      this.imgUpload = archivo;
+    }
+  }
+
+  changeImage() {
+    this.userService.cambiarImagen(this.imgUpload, this.usuario._id);
   }
 
   swapForm() {

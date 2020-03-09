@@ -19,10 +19,10 @@
                         </div>
                     </div>
                     <div *ngIf="modificando">
-                        <button (click)="(modificando = !modificando); swapForm()" class="btn btn-success waves-effect waves-light m-r-10">Modificar</button>
+                        <button (click)="(modificando = !modificando); swapForm()" class="btn btn-info waves-effect waves-light">Modificar</button>
                     </div>
                     <div *ngIf="!modificando">
-                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Aceptar</button>
+                        <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Aceptar</button>
                         <button (click)="(modificando = !modificando); swapForm()" class="btn btn-inverse waves-effect waves-light">Cancelar</button>
                     </div>
                 </form>
@@ -36,10 +36,11 @@
                 <h4 class="card-title">Fotografia</h4>
                 <h6 class="card-subtitle">Nombre de usuario: {{ usuario.nombre }} </h6>
                 <img src="">
-                <input type="file">
+                <!-- Con el event seleccionamos la imagen cuando cambia el input -->
+                <input (change)="chooseImage($event.target.files[0])" type="file">
                 <br>
                 <br>
-                <button type="button" class="btn btn-success waves-effect waves-light m-r-10">Actualizar imagen</button>
+                <button (click)="changeImage()" [disabled]="!imgUpload" type="button" class="btn btn-info">Actualizar imagen</button>
             </div>
         </div>
     </div>

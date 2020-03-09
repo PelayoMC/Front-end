@@ -6,6 +6,7 @@ import { URL_SERVICIOS } from '../../config/config';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { UploadImageService } from '../upload/upload-image.service';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export class UsersService {
   usuario: Usuario;
   token: string;
 
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService) {
     this.cargarStorage();
   }
 
@@ -97,6 +98,17 @@ export class UsersService {
         return resp.usuario;
       })
     );
+  }
+
+  cambiarImagen(file: File, id: string) {
+    this.uploadService.subirArchivo(file, 'usuarios', id).then( (resp: any) => {
+      this.usuario.imagen = JSON.parse(resp).usuario.imagen;
+      this.guardarStorage(id, this.token, this.usuario);
+      Swal.fire('Imagen actualizada', this.usuario.email, 'success');
+    }).catch( err => {
+      console.log(err);
+      Swal.fire('Imagen no actualizada', this.usuario.email, 'error');
+    });
   }
 
   equalPasswords(pass1: string, pass2: string) {
