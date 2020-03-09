@@ -45,7 +45,6 @@ export class UsersService {
   }
 
   login(user: Usuario, recuerdame: boolean) {
-
     if ( recuerdame ) {
       localStorage.setItem('email', user.email);
     } else {
@@ -83,6 +82,18 @@ export class UsersService {
     return this.http.post(url, usuario).pipe(
       map( (resp: any) => {
         Swal.fire('Usuario creado', usuario.email, 'success');
+        return resp.usuario;
+      })
+    );
+  }
+
+  modificarUsuario(usuario: Usuario) {
+    let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+    url += '?token=' + this.token;
+    return this.http.put(url, usuario).pipe(
+      map( (resp: any) => {
+        this.guardarStorage(resp.usuario._id, this.token, resp.usuario);
+        Swal.fire('Usuario modificado', '<p>Nombre: ' + usuario.nombre + '</p><p>Email: ' + usuario.email + '</p>', 'success');
         return resp.usuario;
       })
     );

@@ -5,7 +5,8 @@ import {
   RecipesService,
   SharedService,
   SidebarService,
-  LoginGuardGuard
+  LoginGuardGuard,
+  UploadImageService
 } from './service.index';
 
 
@@ -20,6 +21,7 @@ import {
     RecipesService,
     SharedService,
     SidebarService,
+    UploadImageService,
     LoginGuardGuard
   ]
 })

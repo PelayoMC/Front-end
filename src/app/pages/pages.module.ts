@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { PipeModule } from '../pipes/pipe.module';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Rutas
 import { PAGE_ROUTES } from './pages-routing.module';
@@ -33,6 +35,8 @@ import { UserComponent } from './users/user/user.component';
         MainComponent
       ],
       imports: [
+        CommonModule,
+        ReactiveFormsModule,
         SharedModule,
         PAGE_ROUTES,
         PAGE_ROUTES_PRIVATE,
