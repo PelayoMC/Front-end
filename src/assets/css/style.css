@@ -124,6 +124,11 @@ a.link:focus {
     border-radius: 4px;
 }
 
+.img-profile {
+    width: 350px;
+    height: 350px;
+}
+
 html body .mdi:before,
 html body .mdi-set {
     line-height: initial;
@@ -1490,6 +1495,7 @@ File: scss
 }
 
 .topbar ul.dropdown-user li .dw-user-box {
+    margin: auto;
     padding: 10px 15px;
 }
 

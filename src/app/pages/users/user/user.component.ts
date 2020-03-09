@@ -3,6 +3,7 @@ import { UsersService } from '../../../service/service.index';
 import { Usuario } from '../../../models/usuario.model';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user',
@@ -13,6 +14,7 @@ export class UserComponent implements OnInit {
   usuario: Usuario;
   modificando: string;
   imgUpload: any;
+  imgTemp: string;
 
   constructor(public userService: UsersService, public router: Router) { }
 
@@ -29,13 +31,22 @@ export class UserComponent implements OnInit {
     if (!archivo) {
       this.imgUpload = null;
       return;
-    } else {
-      this.imgUpload = archivo;
     }
+    if (archivo.type.indexOf('image') < 0) {
+      Swal.fire('Error', 'El archivo seleccionado no es una imagen', 'error');
+      this.imgUpload = null;
+      return;
+    }
+    this.imgUpload = archivo;
+
+    let reader = new FileReader();
+    let url = reader.readAsDataURL(archivo);
+    reader.onloadend = () => this.imgTemp = reader.result.toString();
   }
 
   changeImage() {
     this.userService.cambiarImagen(this.imgUpload, this.usuario._id);
+    this.imgTemp = '';
   }
 
   swapForm() {

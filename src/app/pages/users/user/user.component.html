@@ -33,9 +33,12 @@
     <div class="col-lg-5">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Fotografia</h4>
-                <h6 class="card-subtitle">Nombre de usuario: {{ usuario.nombre }} </h6>
-                <img src="">
+                <h4 class="card-title">Imagen de usuario</h4>
+                <img *ngIf="!imgTemp" [src]="usuario.imagen | image" class="img-profile">
+                <h6 *ngIf="imgTemp">Vista previa</h6>
+                <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile">
+                <br>
+                <br>
                 <!-- Con el event seleccionamos la imagen cuando cambia el input -->
                 <input (change)="chooseImage($event.target.files[0])" type="file">
                 <br>
