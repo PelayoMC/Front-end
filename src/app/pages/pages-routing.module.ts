@@ -3,6 +3,7 @@ import { PagesComponent } from './pages.component';
 import { MainComponent } from './main/main.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
+import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
           { path: 'home', component: MainComponent },
           { path: 'recipes', component: RecipesComponent },
           { path: 'recipe/:id', component: RecipeComponent },
+          { path: 'addRecipe', component: CreateRecipeComponent },
           { path: '', pathMatch: 'full', redirectTo: '/home'}
         ]
     }

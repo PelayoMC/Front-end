@@ -19,6 +19,7 @@ import { RecipeComponent } from './recipes/recipe/recipe.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
+import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { UserComponent } from './users/user/user.component';
         RecipesComponent,
         RecipeComponent,
         RecipeCardComponent,
+        CreateRecipeComponent,
         UsersComponent,
         UserComponent
       ],

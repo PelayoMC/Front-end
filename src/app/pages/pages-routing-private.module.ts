@@ -1,8 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
+import { LoginGuardGuard } from '../service/service.index';
 import { PagesComponent } from './pages.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
-import { LoginGuardGuard } from '../service/service.index';
+import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
 
 
 const routes: Routes = [
