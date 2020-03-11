@@ -15,18 +15,32 @@ export class CreateRecipeComponent implements OnInit {
       nombre: [null, Validators.required],
       descripcion: [null, Validators.required],
       ingredientes: this.fb.array([]),
-      pasos: this.fb.array([
-        []
-      ]),
+      pasos: this.fb.array([]),
     });
+  }
+
+  ingredientes(): FormArray {
+    return this.form.get('ingredientes') as FormArray;
+  }
+
+  nuevoIngrediente(): FormGroup {
+    return this.fb.group({
+      nombre: '',
+      cantidad: '',
+      unidades: ''
+    });
+  }
+
+  addIngrediente() {
+    this.ingredientes().push(this.nuevoIngrediente());
+  }
+
+  eliminarIngrediente(i: number) {
+    this.ingredientes().removeAt(i);
   }
 
   pasos(): FormArray {
     return this.form.get('pasos') as FormArray;
-  }
-
-  crearReceta() {
-
   }
 
   nuevoPaso(): FormControl {
@@ -44,5 +58,4 @@ export class CreateRecipeComponent implements OnInit {
   onSubmit() {
     console.log(this.form.value);
   }
-
 }
