@@ -1,21 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 
+
 @Component({
   selector: 'app-create-recipe',
   templateUrl: './create-recipe.component.html'
 })
 export class CreateRecipeComponent implements OnInit {
 
+  imgTemp: any;
   form: FormGroup;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.imgTemp = null;
     this.form = this.fb.group({
       nombre: [null, Validators.required],
       descripcion: [null, Validators.required],
-      ingredientes: this.fb.array([]),
-      pasos: this.fb.array([]),
+      ingredientes: this.fb.array([
+        this.fb.group({
+          nombre: [null, Validators.required],
+          cantidad: [0, Validators.required],
+          unidades: [null, Validators.required]
+        })
+      ]),
+      pasos: this.fb.array([
+        [null, Validators.required]
+      ]),
     });
   }
 
@@ -25,9 +36,9 @@ export class CreateRecipeComponent implements OnInit {
 
   nuevoIngrediente(): FormGroup {
     return this.fb.group({
-      nombre: '',
-      cantidad: '',
-      unidades: ''
+      nombre: [null, Validators.required],
+      cantidad: [0, Validators.required],
+      unidades: [null, Validators.required]
     });
   }
 
@@ -44,7 +55,7 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   nuevoPaso(): FormControl {
-    return this.fb.control('');
+    return this.fb.control('', Validators.required);
   }
 
   addPaso() {
@@ -56,6 +67,11 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    if (this.form.invalid) {
+      console.log('FORMULARIO INVÁLIDO TUU');
+    } else {
+      console.log('FORMULARIO VALIDO');
+      console.log(this.form.value);
+    }
   }
 }

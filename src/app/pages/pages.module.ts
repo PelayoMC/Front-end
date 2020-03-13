@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { PipeModule } from '../pipes/pipe.module';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, ControlContainer } from '@angular/forms';
 
 // Rutas
 import { PAGE_ROUTES } from './pages-routing.module';

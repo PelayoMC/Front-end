@@ -129,6 +129,11 @@ a.link:focus {
     height: 350px;
 }
 
+.img-profile-small {
+    width: 145px;
+    height: 145px;
+}
+
 html body .mdi:before,
 html body .mdi-set {
     line-height: initial;

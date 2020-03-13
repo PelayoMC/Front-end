@@ -4,17 +4,32 @@
             <div class="card-body">
                 <h2>Crear receta</h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <div class="input-group">
-                            <input formControlName="nombre" type="text" name="nombre" class="form-control" autocomplete="off" placeholder="Nombre receta">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <div class="input-group">
+                                    <input formControlName="nombre" type="text" name="nombre" class="form-control" autocomplete="off" placeholder="Nombre receta">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Descripcion</label>
+                                <div class="input-group">
+                                    <textarea formControlName="descripcion" name="descripcion" class="form-control" rows="3" placeholder="Descripcion de la receta"></textarea>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label>Descripcion</label>
-                        <div class="input-group">
-                            <textarea formControlName="descripcion" name="descripcion" class="form-control" rows="3"></textarea>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <h4>Imagen</h4>
+                                <img *ngIf="!imgTemp" src="/assets/images/no-img.jpg" class="img-profile-small">
+                                <h6 *ngIf="imgTemp">Vista previa</h6>
+                                <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile-small">
+                                <br>
+                                <br>
+                                <input (change)="chooseImage($event.target.files[0])" type="file">
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -34,15 +49,14 @@
                                 <tr *ngFor="let ingrediente of ingredientes().controls; let i=index" [formGroupName]="i">
                                     <td>{{ i + 1 }}</td>
                                     <td>
-                                        <input class="form-control" type="text" formControlName="nombre">
+                                        <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre ingrediente">
                                     </td>
                                     <td>
-                                        <input class="vertical-spin" type="text" formControlName="cantidad" value="" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline" name="vertical-spin">
+                                        <input class="form-control" type="number" formControlName="cantidad" placeholder="Cantidad">
                                     </td>
                                     <td>
-                                        <select class="select2 form-control custom-select" formControlName="unidades">
+                                        <select class="form-control" formControlName="unidades" placeholder="Unidades">
                                             <optgroup label="Generales">
-                                                <option value="">Sin unidades</option>
                                                 <option value="gusto">Al gusto</option>
                                                 <option value="chita">Cucharadita/s</option>
                                                 <option value="chada">Cucharada/s</option>
@@ -60,8 +74,6 @@
                                                 <option value="ml">Mililitro/s</option>
                                                 <option value="l">Litro/s</option>
                                             </optgroup>
-                                            
-                                            
                                         </select>
                                     </td>
                                     <td class="text-nowrap">
@@ -69,13 +81,13 @@
                                     </td>
                                 </tr>
                             </tbody>
-
                         </table>
-                        <button class="btn btn-info waves-effect waves-light m-r-10" (click)="addIngrediente()">Agregar</button>
+                        <button type="button" class="btn btn-info waves-effect waves-light m-r-10" (click)="addIngrediente()">Agregar ingrediente</button>
                     </div>
+
                     <br>
                     <div class="form-group">
-                        <label>Pasos</label>
+                        <label>Pasos a seguir de la receta</label>
                         <table class="table table-primary">
                             <thead>
                                 <tr>
@@ -88,7 +100,7 @@
                                 <tr *ngFor="let paso of pasos().controls; let i=index">
                                     <td>{{ i + 1 }}</td>
                                     <td>
-                                        <input class="form-control" type="text" [formControlName]="i">
+                                        <input class="form-control" type="text" [formControlName]="i" ngValue>
                                     </td>
                                     <td class="text-nowrap">
                                         <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarPaso(i)">Eliminar</button>
@@ -97,27 +109,20 @@
                             </tbody>
 
                         </table>
-                        <button class="btn btn-info waves-effect waves-light m-r-10" (click)="addPaso()">Agregar</button>
+                        <button type="button" class="btn btn-info waves-effect waves-light m-r-10" (click)="addPaso()">Agregar paso</button>
                     </div>
                     <br><br>
-                    <div>
-                        <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Aceptar</button>
-                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+
+                            </div>
+                            <div class="col-6">
+
+                            </div>
+                        </div>
                 </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    $("input[name='vertical-spin']").TouchSpin({
-        verticalbuttons: true,
-        verticalupclass: 'glyphicon glyphicon-plus',
-        verticaldownclass: 'glyphicon glyphicon-minus'
-    });
-    var vspinTrue = $(".vertical-spin").TouchSpin({
-        verticalbuttons: true
-    });
-    if (vspinTrue) {
-        $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove();
-    }
-</script>
