@@ -5,7 +5,7 @@
                 <h2>Crear receta</h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-9">
                             <div class="form-group">
                                 <label>Nombre</label>
                                 <div class="input-group">
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <div class="form-group">
                                 <h4>Imagen</h4>
                                 <img *ngIf="!imgTemp" src="/assets/images/no-img.jpg" class="img-profile-small">
@@ -42,6 +42,7 @@
                                     <th>Ingrediente</th>
                                     <th>Cantidad</th>
                                     <th>Unidades</th>
+                                    <th>Tipo</th>
                                     <th class="text-nowrap">Acciones</th>
                                 </tr>
                             </thead>
@@ -55,8 +56,9 @@
                                         <input class="form-control" type="number" formControlName="cantidad" placeholder="Cantidad">
                                     </td>
                                     <td>
-                                        <select class="form-control" formControlName="unidades" placeholder="Unidades">
+                                        <select class="form-control" formControlName="unidades">
                                             <optgroup label="Generales">
+                                                <option value="no">Sin unidades</option>
                                                 <option value="gusto">Al gusto</option>
                                                 <option value="chita">Cucharadita/s</option>
                                                 <option value="chada">Cucharada/s</option>
@@ -74,6 +76,12 @@
                                                 <option value="ml">Mililitro/s</option>
                                                 <option value="l">Litro/s</option>
                                             </optgroup>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" formControlName="tipo" placeholder="Tipo" data-toggle="tooltip" data-placement="bottom" data-original-title="El tipo establece si un ingrediente es esencial para la receta o puede ser sustituido">
+                                            <option value="principal">Principal</option>
+                                            <option value="secundario">Secundario</option>
                                         </select>
                                     </td>
                                     <td class="text-nowrap">
@@ -100,7 +108,7 @@
                                 <tr *ngFor="let paso of pasos().controls; let i=index">
                                     <td>{{ i + 1 }}</td>
                                     <td>
-                                        <input class="form-control" type="text" [formControlName]="i" ngValue>
+                                        <input class="form-control" type="text" [formControlName]="i" ngValue placeholder="Explicación del paso a seguir">
                                     </td>
                                     <td class="text-nowrap">
                                         <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarPaso(i)">Eliminar</button>
@@ -114,15 +122,39 @@
                     <br><br>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-6">
-
+                            <div class="col-3">
+                                <label>Dificultad de la receta</label>
+                                <select class="form-control" formControlName="dificultad" placeholder="dificultad">
+                                    <option value="facil">Fácil</option>
+                                    <option value="medio">Medio</option>
+                                    <option value="dificil">Dificil</option>
+                                </select>
                             </div>
+                            <div class="col-3"></div>
                             <div class="col-6">
-
+                                <div class="form-group" formGroupName="calorias">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label>Calorias de la receta</label>
+                                            <div class="input-group">
+                                                <input formControlName="ccantidad" type="number" name="ccantidad" class="form-control" autocomplete="off" placeholder="Número de calorias">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label>Unidades</label>
+                                            <select class="form-control" formControlName="cunidades" placeholder="cunidades">
+                                                    <option value="cal">Caloria/s</option>
+                                                    <option value="kcal">Kilocaloria/s</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Crear receta</button>
                 </form>
-                </div>
             </div>
         </div>
     </div>
+</div>

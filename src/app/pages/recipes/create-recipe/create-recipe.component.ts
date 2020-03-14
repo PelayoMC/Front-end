@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
+declare var $: any;
 
 
 @Component({
@@ -7,8 +9,8 @@ import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@ang
   templateUrl: './create-recipe.component.html'
 })
 export class CreateRecipeComponent implements OnInit {
-
-  imgTemp: any;
+  imgUpload: any;
+  imgTemp: string;
   form: FormGroup;
   constructor(private fb: FormBuilder) { }
 
@@ -21,12 +23,18 @@ export class CreateRecipeComponent implements OnInit {
         this.fb.group({
           nombre: [null, Validators.required],
           cantidad: [0, Validators.required],
-          unidades: [null, Validators.required]
+          unidades: [null, Validators.required],
+          tipo: [null, Validators.required]
         })
       ]),
       pasos: this.fb.array([
         [null, Validators.required]
       ]),
+      dificultad: [null, Validators.required],
+      calorias: this.fb.group({
+        ccantidad: [0, Validators.required],
+        cunidades: [null, Validators.required],
+      })
     });
   }
 
@@ -38,7 +46,8 @@ export class CreateRecipeComponent implements OnInit {
     return this.fb.group({
       nombre: [null, Validators.required],
       cantidad: [0, Validators.required],
-      unidades: [null, Validators.required]
+      unidades: [null, Validators.required],
+      tipo: [null, Validators.required]
     });
   }
 
@@ -66,9 +75,27 @@ export class CreateRecipeComponent implements OnInit {
     this.pasos().removeAt(i);
   }
 
+  chooseImage(archivo) {
+    if (!archivo) {
+      this.imgUpload = null;
+      return;
+    }
+    if (archivo.type.indexOf('image') < 0) {
+      Swal.fire('Error', 'El archivo seleccionado no es una imagen', 'error');
+      this.imgUpload = null;
+      return;
+    }
+    this.imgUpload = archivo;
+
+    let reader = new FileReader();
+    let url = reader.readAsDataURL(archivo);
+    reader.onloadend = () => this.imgTemp = reader.result.toString();
+  }
+
   onSubmit() {
+    console.log(this.form.value);
     if (this.form.invalid) {
-      console.log('FORMULARIO INVÁLIDO TUU');
+      Swal.fire('Error', 'Complete el formulario para crear la receta', 'error');
     } else {
       console.log('FORMULARIO VALIDO');
       console.log(this.form.value);

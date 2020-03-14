@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { URL_SERVICIOS } from '../../config/config';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
