@@ -5,7 +5,7 @@
                 <h2>Crear receta</h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-lg-8 col-sm-12">
                             <div class="form-group">
                                 <label>Nombre</label>
                                 <div class="input-group">
@@ -20,11 +20,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-4 col-sm-12">
                             <div class="form-group">
-                                <h4>Imagen</h4>
+                                <h4>Imagen <span class="text-warning" *ngIf="imgTemp"> - Vista previa</span></h4>
                                 <img *ngIf="!imgTemp" src="/assets/images/no-img.jpg" class="img-profile-small">
-                                <h6 *ngIf="imgTemp">Vista previa</h6>
                                 <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile-small">
                                 <br>
                                 <br>
@@ -35,116 +34,97 @@
                     <br>
                     <div class="form-group">
                         <label>Ingredientes</label>
-                        <table class="table table-primary">
-                            <thead>
-                                <tr>
-                                    <th>Numero</th>
-                                    <th>Ingrediente</th>
-                                    <th>Cantidad</th>
-                                    <th>Unidades</th>
-                                    <th>Tipo</th>
-                                    <th class="text-nowrap">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody formArrayName="ingredientes">
-                                <tr *ngFor="let ingrediente of ingredientes().controls; let i=index" [formGroupName]="i">
-                                    <td>{{ i + 1 }}</td>
-                                    <td>
-                                        <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre ingrediente">
-                                    </td>
-                                    <td>
-                                        <input class="form-control" type="number" formControlName="cantidad" placeholder="Cantidad">
-                                    </td>
-                                    <td>
-                                        <select class="form-control" formControlName="unidades">
-                                            <optgroup label="Generales">
-                                                <option value="no">Sin unidades</option>
-                                                <option value="gusto">Al gusto</option>
-                                                <option value="chita">Cucharadita/s</option>
-                                                <option value="chada">Cucharada/s</option>
-                                                <option value="tza">Taza/s</option>
-                                            </optgroup>
-                                            <optgroup label="Nutrición">
-                                                <option value="cal">Caloria/s</option>
-                                                <option value="kcal">Kilocaloria/s</option>
-                                            </optgroup>
-                                            <optgroup label="Peso">
-                                                <option value="g">Gramo/s</option>
-                                                <option value="kg">Kilogramo/s</option>
-                                            </optgroup>
-                                            <optgroup label="Volumen">
-                                                <option value="ml">Mililitro/s</option>
-                                                <option value="l">Litro/s</option>
-                                            </optgroup>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="form-control" formControlName="tipo" placeholder="Tipo" data-toggle="tooltip" data-placement="bottom" data-original-title="El tipo establece si un ingrediente es esencial para la receta o puede ser sustituido">
-                                            <option value="principal">Principal</option>
-                                            <option value="secundario">Secundario</option>
-                                        </select>
-                                    </td>
-                                    <td class="text-nowrap">
-                                        <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarIngrediente(i)">Eliminar</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div style="overflow-x:auto;">
+                            <table class="table table-primary">
+                                <thead>
+                                    <tr>
+                                        <th>Numero</th>
+                                        <th>Ingrediente</th>
+                                        <th>Cantidad</th>
+                                        <th>Unidades</th>
+                                        <th>Tipo</th>
+                                        <th class="text-nowrap">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody formArrayName="ingredientes">
+                                    <tr *ngFor="let ingrediente of ingredientes().controls; let i=index" [formGroupName]="i">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>
+                                            <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre ingrediente">
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="number" formControlName="cantidad" placeholder="Cantidad">
+                                        </td>
+                                        <td>
+                                            <select class="form-control" formControlName="unidades">
+                                                <optgroup *ngFor="let group of uds" [label]="group.label">
+                                                    <option *ngFor="let opt of group.opciones" [value]="opt.nombre">{{ opt.nombre }}</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control" formControlName="tipo" placeholder="Tipo" data-toggle="tooltip" data-placement="bottom" data-original-title="El tipo establece si un ingrediente es esencial para la receta o puede ser sustituido">
+                                                <option *ngFor="let tipo of tipos" [value]="tipo.nombre">{{ tipo.nombre }}</option>
+                                            </select>
+                                        </td>
+                                        <td class="text-nowrap">
+                                            <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarIngrediente(i)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <button type="button" class="btn btn-info waves-effect waves-light m-r-10" (click)="addIngrediente()">Agregar ingrediente</button>
                     </div>
-
                     <br>
                     <div class="form-group">
                         <label>Pasos a seguir de la receta</label>
-                        <table class="table table-primary">
-                            <thead>
-                                <tr>
-                                    <th>Numero</th>
-                                    <th>Información del paso</th>
-                                    <th class="text-nowrap">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody formArrayName="pasos">
-                                <tr *ngFor="let paso of pasos().controls; let i=index">
-                                    <td>{{ i + 1 }}</td>
-                                    <td>
-                                        <input class="form-control" type="text" [formControlName]="i" ngValue placeholder="Explicación del paso a seguir">
-                                    </td>
-                                    <td class="text-nowrap">
-                                        <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarPaso(i)">Eliminar</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                        </table>
+                        <div style="overflow-x:auto;">
+                            <table class="table table-primary">
+                                <thead>
+                                    <tr>
+                                        <th>Numero</th>
+                                        <th>Información del paso</th>
+                                        <th class="text-nowrap">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody formArrayName="pasos">
+                                    <tr *ngFor="let paso of pasos().controls; let i=index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>
+                                            <input class="form-control" type="text" [formControlName]="i" ngValue placeholder="Explicación del paso a seguir">
+                                        </td>
+                                        <td class="text-nowrap">
+                                            <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarPaso(i)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <button type="button" class="btn btn-info waves-effect waves-light m-r-10" (click)="addPaso()">Agregar paso</button>
                     </div>
                     <br><br>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-lg-3 col-sm-12">
                                 <label>Dificultad de la receta</label>
                                 <select class="form-control" formControlName="dificultad" placeholder="dificultad">
-                                    <option value="facil">Fácil</option>
-                                    <option value="medio">Medio</option>
-                                    <option value="dificil">Dificil</option>
+                                    <option *ngFor="let dif of dificultades" [value]="dif.nombre">{{ dif.nombre }}</option>
                                 </select>
                             </div>
-                            <div class="col-3"></div>
-                            <div class="col-6">
+                            <div class="col-lg-3 col-sm-0"></div>
+                            <div class="col-lg-6 col-sm-12">
                                 <div class="form-group" formGroupName="calorias">
                                     <div class="row">
                                         <div class="col-6">
-                                            <label>Calorias de la receta</label>
+                                            <label>Calorias (receta)</label>
                                             <div class="input-group">
-                                                <input formControlName="ccantidad" type="number" name="ccantidad" class="form-control" autocomplete="off" placeholder="Número de calorias">
+                                                <input formControlName="cantidad" type="number" name="cantidad" class="form-control" autocomplete="off" placeholder="Número de calorias">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <label>Unidades</label>
-                                            <select class="form-control" formControlName="cunidades" placeholder="cunidades">
-                                                    <option value="cal">Caloria/s</option>
-                                                    <option value="kcal">Kilocaloria/s</option>
+                                            <select class="form-control" formControlName="unidades" placeholder="unidades">
+                                                <option *ngFor="let ud of uds[1].opciones" [value]="ud.nombre">{{ ud.nombre }}</option>
                                                 </select>
                                         </div>
                                     </div>

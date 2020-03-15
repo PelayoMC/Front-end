@@ -1,21 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { Recipe } from 'src/app/models/recipe.model';
+import { RecipesService } from '../../../service/recipes/recipes.service';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
-declare var $: any;
-
+import * as opt from './select-options';
+import { iniciarDrops } from './select-options';
 
 @Component({
   selector: 'app-create-recipe',
   templateUrl: './create-recipe.component.html'
 })
 export class CreateRecipeComponent implements OnInit {
+  recipe: Recipe;
+
   imgUpload: any;
   imgTemp: string;
   form: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  uds: any;
+  tipos: any;
+  dificultades: any;
+
+  constructor(private fb: FormBuilder, public recipeService: RecipesService) { }
 
   ngOnInit() {
-    this.imgTemp = null;
+    this.uds = opt.uds;
+    this.tipos = opt.tipos;
+    this.dificultades = opt.dificultades;
     this.form = this.fb.group({
       nombre: [null, Validators.required],
       descripcion: [null, Validators.required],
@@ -32,10 +42,11 @@ export class CreateRecipeComponent implements OnInit {
       ]),
       dificultad: [null, Validators.required],
       calorias: this.fb.group({
-        ccantidad: [0, Validators.required],
-        cunidades: [null, Validators.required],
+        cantidad: [0, Validators.required],
+        unidades: [null, Validators.required],
       })
     });
+    iniciarDrops(this.form);
   }
 
   ingredientes(): FormArray {
@@ -92,13 +103,17 @@ export class CreateRecipeComponent implements OnInit {
     reader.onloadend = () => this.imgTemp = reader.result.toString();
   }
 
+  crearReceta() {
+    
+  }
+
   onSubmit() {
-    console.log(this.form.value);
-    if (this.form.invalid) {
+    this.form.value.imagen = this.imgUpload;    
+    if (this.form.invalid || this.imgUpload == null) {
       Swal.fire('Error', 'Complete el formulario para crear la receta', 'error');
     } else {
-      console.log('FORMULARIO VALIDO');
-      console.log(this.form.value);
+      console.log(typeof this.form.value)
+      
     }
-  }
+ }
 }
