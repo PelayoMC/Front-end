@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
 import { RecipesService } from '../../../service/recipes/recipes.service';
-import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
+import { IngredientsService } from '../../../service/ingredients/ingredients.service';
 import Swal from 'sweetalert2';
 import * as opt from './select-options';
 import { iniciarDrops } from './select-options';
@@ -16,16 +18,12 @@ export class CreateRecipeComponent implements OnInit {
   imgUpload: any;
   imgTemp: string;
   form: FormGroup;
-  uds: any;
-  tipos: any;
-  dificultades: any;
+  opt: any;
 
-  constructor(private fb: FormBuilder, public recipeService: RecipesService) { }
+  constructor(private fb: FormBuilder, public router: Router, public recipeService: RecipesService, public ingredientService: IngredientsService) { }
 
   ngOnInit() {
-    this.uds = opt.uds;
-    this.tipos = opt.tipos;
-    this.dificultades = opt.dificultades;
+    this.opt = opt;
     this.form = this.fb.group({
       nombre: [null, Validators.required],
       descripcion: [null, Validators.required],
@@ -40,7 +38,7 @@ export class CreateRecipeComponent implements OnInit {
       pasos: this.fb.array([
         [null, Validators.required]
       ]),
-      dificultad: [null, Validators.required],
+      nivel: [null, Validators.required],
       calorias: this.fb.group({
         cantidad: [0, Validators.required],
         unidades: [null, Validators.required],
@@ -82,7 +80,7 @@ export class CreateRecipeComponent implements OnInit {
     this.pasos().push(this.nuevoPaso());
   }
 
-  eliminarPaso(i: number){
+  eliminarPaso(i: number) {
     this.pasos().removeAt(i);
   }
 
@@ -98,22 +96,25 @@ export class CreateRecipeComponent implements OnInit {
     }
     this.imgUpload = archivo;
 
-    let reader = new FileReader();
-    let url = reader.readAsDataURL(archivo);
+    const reader = new FileReader();
+    const url = reader.readAsDataURL(archivo);
     reader.onloadend = () => this.imgTemp = reader.result.toString();
   }
 
-  crearReceta() {
-    
-  }
-
   onSubmit() {
-    this.form.value.imagen = this.imgUpload;    
-    if (this.form.invalid || this.imgUpload == null) {
-      Swal.fire('Error', 'Complete el formulario para crear la receta', 'error');
-    } else {
-      console.log(typeof this.form.value)
-      
-    }
+    this.form.value.imagen = this.imgUpload;
+    this.crearReceta();
  }
+
+ crearReceta() {
+  this.recipe = new Recipe();
+  Object.assign(this.recipe, this.form.value);
+  this.ingredientService.obtenerIngs(this.recipe.ingredientes).subscribe(resp => {
+    this.recipe.ingredientes = resp;
+    console.log(this.recipe.ingredientes);
+  });
+  this.recipeService.crearReceta(this.recipe).subscribe(resp => {
+    this.router.navigate(['/addRecipe']);
+  });
+}
 }

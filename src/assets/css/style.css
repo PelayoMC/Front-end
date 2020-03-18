@@ -2300,6 +2300,14 @@ ul.list-inline li {
 Table td vertical middle
 *******************/
 
+td.medium-td {
+    min-width: 150px;
+}
+
+td.long-td {
+    min-width: 200px;
+}
+
 .vm.table td,
 .vm.table th {
     vertical-align: middle;

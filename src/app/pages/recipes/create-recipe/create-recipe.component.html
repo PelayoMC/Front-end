@@ -49,21 +49,21 @@
                                 <tbody formArrayName="ingredientes">
                                     <tr *ngFor="let ingrediente of ingredientes().controls; let i=index" [formGroupName]="i">
                                         <td>{{ i + 1 }}</td>
-                                        <td>
+                                        <td class="long-td">
                                             <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre ingrediente">
                                         </td>
                                         <td>
                                             <input class="form-control" type="number" formControlName="cantidad" placeholder="Cantidad">
                                         </td>
-                                        <td>
+                                        <td class="long-td">
                                             <select class="form-control" formControlName="unidades">
-                                                <optgroup *ngFor="let group of uds" [label]="group.label">
+                                                <optgroup *ngFor="let group of opt.uds" [label]="group.label">
                                                     <option *ngFor="let opt of group.opciones" [value]="opt.nombre">{{ opt.nombre }}</option>
                                             </select>
                                         </td>
-                                        <td>
+                                        <td class="medium-td">
                                             <select class="form-control" formControlName="tipo" placeholder="Tipo" data-toggle="tooltip" data-placement="bottom" data-original-title="El tipo establece si un ingrediente es esencial para la receta o puede ser sustituido">
-                                                <option *ngFor="let tipo of tipos" [value]="tipo.nombre">{{ tipo.nombre }}</option>
+                                                <option *ngFor="let tipo of opt.tipos" [value]="tipo.nombre">{{ tipo.nombre }}</option>
                                             </select>
                                         </td>
                                         <td class="text-nowrap">
@@ -90,7 +90,7 @@
                                 <tbody formArrayName="pasos">
                                     <tr *ngFor="let paso of pasos().controls; let i=index">
                                         <td>{{ i + 1 }}</td>
-                                        <td>
+                                        <td class="long-td">
                                             <input class="form-control" type="text" [formControlName]="i" ngValue placeholder="Explicación del paso a seguir">
                                         </td>
                                         <td class="text-nowrap">
@@ -107,8 +107,8 @@
                         <div class="row">
                             <div class="col-lg-3 col-sm-12">
                                 <label>Dificultad de la receta</label>
-                                <select class="form-control" formControlName="dificultad" placeholder="dificultad">
-                                    <option *ngFor="let dif of dificultades" [value]="dif.nombre">{{ dif.nombre }}</option>
+                                <select class="form-control" formControlName="nivel" placeholder="dificultad">
+                                    <option *ngFor="let dif of opt.dificultades" [value]="dif.nombre">{{ dif.nombre }}</option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-sm-0"></div>
@@ -124,7 +124,7 @@
                                         <div class="col-6">
                                             <label>Unidades</label>
                                             <select class="form-control" formControlName="unidades" placeholder="unidades">
-                                                <option *ngFor="let ud of uds[1].opciones" [value]="ud.nombre">{{ ud.nombre }}</option>
+                                                <option *ngFor="let ud of opt.uds[1].opciones" [value]="ud.nombre">{{ ud.nombre }}</option>
                                                 </select>
                                         </div>
                                     </div>

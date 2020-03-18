@@ -46,8 +46,8 @@ export const dificultades = [
       ];
 
 export function iniciarDrops(form: FormGroup) {
-        (((form.get('ingredientes') as FormArray).controls[0] as FormGroup).controls['unidades'] as FormControl).setValue(uds[0].opciones[0].nombre);
-        (((form.get('ingredientes') as FormArray).controls[0] as FormGroup).controls['tipo'] as FormControl).setValue(tipos[0].nombre);
-        (form.get('dificultad') as FormControl).setValue(dificultades[0].nombre);
-        ((form.get('calorias') as FormGroup).controls['unidades'] as FormControl).setValue(uds[1].opciones[0].nombre);
+  (((form.get('ingredientes') as FormArray).controls[0] as FormGroup).controls['unidades'] as FormControl).setValue(uds[0].opciones[0].nombre);
+  (((form.get('ingredientes') as FormArray).controls[0] as FormGroup).controls['tipo'] as FormControl).setValue(tipos[0].nombre);
+  (form.get('nivel') as FormControl).setValue(dificultades[0].nombre);
+  ((form.get('calorias') as FormGroup).controls['unidades'] as FormControl).setValue(uds[1].opciones[0].nombre);
 }
