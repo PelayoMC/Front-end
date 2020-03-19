@@ -11,8 +11,25 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class RecipesService {
+  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService) { }
 
-constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService) { }
+  getRecipe(idx: string){
+    let url = URL_SERVICIOS + '/receta/' + idx;
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp.receta;
+      })
+    );
+  }
+
+  getRecipes() {
+    let url = URL_SERVICIOS + '/receta/';
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp.recetas;
+      })
+    );
+  }
 
   crearReceta(receta: Recipe) {
     let url = URL_SERVICIOS + '/receta/';
@@ -23,5 +40,14 @@ constructor(public http: HttpClient, public router: Router, public uploadService
         return resp.receta;
       })
     );
+  }
+
+ cambiarImagen(receta: Recipe, file: File) {
+    this.uploadService.subirArchivo(file, 'recetas', receta._id).then( (resp: any) => {
+      receta.imagen = JSON.parse(resp).receta.imagen;
+      this.router.navigate(['/recipes']);
+    }).catch( err => {
+      console.log(err);
+    });
   }
 }

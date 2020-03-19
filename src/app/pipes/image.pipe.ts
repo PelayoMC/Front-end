@@ -9,7 +9,7 @@ export class ImagePipe implements PipeTransform {
   transform(img: string, tipo: string = 'usuario'): any {
     let url = URL_SERVICIOS + '/imagen';
     if (!img) {
-      return url + '/usuario/xxx';
+      return url + '/usuarios/xxx';
     }
     // La imagen es una url de por sí
     if (img.indexOf('https') >= 0) {
@@ -24,9 +24,7 @@ export class ImagePipe implements PipeTransform {
         url += '/recetas/' + img;
         break;
       default:
-        console.log('Tipo de la imagen no existe');
-        console.log('Tipos válidos: [usuario, receta]');
-        url += '/usuario/xxx';
+        url += '/usuarios/xxx';
         break;
     }
     return url;

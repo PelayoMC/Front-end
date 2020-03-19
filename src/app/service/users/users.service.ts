@@ -69,6 +69,14 @@ export class UsersService {
     this.router.navigate(['/login']);
   }
 
+  recordar(recuerdame: boolean) {
+    if (recuerdame) {
+      localStorage.setItem('remember', 'true');
+    } else {
+      localStorage.setItem('remember', 'false');
+    }
+  }
+
   guardarStorage(id: string, token: string, usuario: Usuario) {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);

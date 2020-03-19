@@ -15,7 +15,11 @@ export class RecipesComponent implements OnInit {
   constructor(private recipesService: RecipesService, private router: Router ) { }
 
   ngOnInit() {
-    //this.recetas = this.recipesService.getRecipes();
+    this.recipesService.getRecipes().subscribe((resp) => {
+      this.recetas = resp.map(el =>
+        new Recipe(el.nombre, el.descripcion, el.nivel, el.imagen, el.ingredientes, el.calorias, el.pasos, el._id)
+      );
+    });
   }
 
   verReceta(idx: number) {

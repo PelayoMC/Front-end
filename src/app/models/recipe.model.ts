@@ -17,6 +17,7 @@ export class Recipe {
 
 export interface IngredientRecipe {
     id: string;
+    nombre: string;
     cantidad: number;
     unidades: string;
     tipo: string;

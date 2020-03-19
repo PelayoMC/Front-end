@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'proyectoTFG';
+
+  constructor() {
+    const val = localStorage.getItem('remember');
+    if ( val !== 'true' ) {
+      localStorage.clear();
+    }
+  }
 }

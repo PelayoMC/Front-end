@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 export class RecipeCardComponent implements OnInit {
 
   @Input() receta: any = {};
-  @Input() id: number;
 
   @Output() recetaSeleccionada: EventEmitter<number>;
 
@@ -21,7 +20,7 @@ export class RecipeCardComponent implements OnInit {
   }
 
   verReceta(){
-    this.recetaSeleccionada.emit(this.id);
+    this.recetaSeleccionada.emit(this.receta._id);
   }
 
 

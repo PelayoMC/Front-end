@@ -59,7 +59,10 @@ export class LoginComponent implements OnInit {
     }
     const usuario = new Usuario (null, forma.value.email, forma.value.contraseña);
     this.userService.login(usuario, forma.value.recuerdame)
-      .subscribe(resp => this.router.navigate(['/user/' + resp]));
+      .subscribe(resp => {
+        this.userService.recordar(this.recuerdame);
+        this.router.navigate(['/user/' + resp])
+      });
   }
 
 }

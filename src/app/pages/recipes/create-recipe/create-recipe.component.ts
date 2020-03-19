@@ -24,6 +24,10 @@ export class CreateRecipeComponent implements OnInit {
 
   ngOnInit() {
     this.opt = opt;
+    this.initialyze();
+  }
+
+  initialyze() {
     this.form = this.fb.group({
       nombre: [null, Validators.required],
       descripcion: [null, Validators.required],
@@ -33,8 +37,8 @@ export class CreateRecipeComponent implements OnInit {
           cantidad: [0, Validators.required],
           unidades: [null, Validators.required],
           tipo: [null, Validators.required]
-        })
-      ]),
+        }, Validators.required)
+      ], Validators.required),
       pasos: this.fb.array([
         [null, Validators.required]
       ]),
@@ -53,10 +57,10 @@ export class CreateRecipeComponent implements OnInit {
 
   nuevoIngrediente(): FormGroup {
     return this.fb.group({
-      nombre: [null, Validators.required],
+      nombre: ['', Validators.required],
       cantidad: [0, Validators.required],
-      unidades: [null, Validators.required],
-      tipo: [null, Validators.required]
+      unidades: ['Sin unidades', Validators.required],
+      tipo: ['Principal', Validators.required]
     });
   }
 
@@ -87,11 +91,13 @@ export class CreateRecipeComponent implements OnInit {
   chooseImage(archivo) {
     if (!archivo) {
       this.imgUpload = null;
+      this.imgTemp = null;
       return;
     }
     if (archivo.type.indexOf('image') < 0) {
       Swal.fire('Error', 'El archivo seleccionado no es una imagen', 'error');
       this.imgUpload = null;
+      this.imgTemp = null;
       return;
     }
     this.imgUpload = archivo;
@@ -102,19 +108,25 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.form.value.imagen = this.imgUpload;
+    if (this.form.invalid || (this.imgUpload.name == null)) {
+      Swal.fire('Complete el formulario', 'Rellene todos los campos del formulario para crear la receta', 'warning');
+      return;
+    }
     this.crearReceta();
- }
+  }
 
- crearReceta() {
-  this.recipe = new Recipe();
-  Object.assign(this.recipe, this.form.value);
-  this.ingredientService.obtenerIngs(this.recipe.ingredientes).subscribe(resp => {
-    this.recipe.ingredientes = resp;
-    console.log(this.recipe.ingredientes);
-  });
-  this.recipeService.crearReceta(this.recipe).subscribe(resp => {
-    this.router.navigate(['/addRecipe']);
-  });
-}
+  crearReceta() {
+    this.recipe = new Recipe();
+    Object.assign(this.recipe, this.form.value);
+    this.ingredientService.obtenerIngs(this.recipe.ingredientes).subscribe(resp => {
+      this.recipe.ingredientes = resp;
+      this.recipeService.crearReceta(this.recipe).subscribe(resp => {
+        this.recipe._id = resp._id;
+        this.form.value.imagen = this.imgUpload;
+        this.recipeService.cambiarImagen(this.recipe, this.form.value.imagen);
+      });
+    });
+  }
+
+  
 }
