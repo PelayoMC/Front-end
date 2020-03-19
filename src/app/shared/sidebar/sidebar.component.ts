@@ -12,10 +12,4 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {}
 
-  showMenu() {
-    for (let m of this.sidebarService.menu) {
-      console.log(m);
-    }
-  }
-
 }

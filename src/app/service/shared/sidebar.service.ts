@@ -79,7 +79,7 @@ export class SidebarService {
       icono: 'mdi mdi-account-circle',
       auth: false,
       submenu : [
-        { titulo: 'Lista de usuarios', auth: false, url: '/' },
+        { titulo: 'Lista de usuarios', auth: false, url: '/users' },
         { titulo: 'Gestión de usuarios', auth: false, url: '/' }
       ]
     }

@@ -12,8 +12,9 @@ const routes: Routes = [
         component: PagesComponent,
         canActivate: [LoginGuardGuard],
         children: [
-          { path: 'users', component: UsersComponent },
-          { path: 'user/:id', component: UserComponent }
+          // { path: 'addRecipe', component: CreateRecipeComponent },
+          // { path: 'users', component: UsersComponent },
+          // { path: 'user/:id', component: UserComponent }
         ]
     }
 ];

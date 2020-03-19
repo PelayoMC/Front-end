@@ -2511,6 +2511,32 @@ Pagination
 Pagination
 ******************/
 
+.outer {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url(../../assets/images/background/error-bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    text-align: center;
+}
+
 .pagination-circle li.active a {
     background: #06d79c;
 }
