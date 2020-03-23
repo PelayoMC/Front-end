@@ -13,8 +13,8 @@ const routes: Routes = [
         canActivate: [LoginGuardGuard],
         children: [
           // { path: 'addRecipe', component: CreateRecipeComponent },
-          // { path: 'users', component: UsersComponent },
-          // { path: 'user/:id', component: UserComponent }
+          { path: 'users', component: UsersComponent },
+          { path: 'user/:id', component: UserComponent }
         ]
     }
 ];

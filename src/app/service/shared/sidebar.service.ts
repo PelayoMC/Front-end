@@ -9,10 +9,10 @@ export class SidebarService {
     {
       titulo: 'Dieta',
       icono: 'mdi mdi-heart-half-outline',
-      auth: false,
+      auth: true,
       submenu : [
-        { titulo: 'Planificación de dieta', auth: false, url: '/' },
-        { titulo: 'Seguimiento de dieta', auth: false, url: '/' }
+        { titulo: 'Planificación de dieta', auth: true, url: '/' },
+        { titulo: 'Seguimiento de dieta', auth: true, url: '/' }
       ]
     },
     {
@@ -31,12 +31,12 @@ export class SidebarService {
             },
             {
               titulo: 'Añadir receta',
-              auth: false,
+              auth: true,
               url: '/addRecipe'
             },
             {
               titulo: 'Gestionar recetas',
-              auth: false,
+              auth: true,
               url: '/'
             }
           ]
@@ -52,7 +52,7 @@ export class SidebarService {
             },
             {
               titulo: 'Gestionar ingredientes',
-              auth: false,
+              auth: true,
               url: '/'
             }
           ]
@@ -68,7 +68,7 @@ export class SidebarService {
             },
             {
               titulo: 'Gestionar intolerancias',
-              auth: false,
+              auth: true,
               url: '/'
             }
           ]
@@ -77,10 +77,10 @@ export class SidebarService {
     }, {
       titulo: 'Usuarios',
       icono: 'mdi mdi-account-circle',
-      auth: false,
+      auth: true,
       submenu : [
-        { titulo: 'Lista de usuarios', auth: false, url: '/users' },
-        { titulo: 'Gestión de usuarios', auth: false, url: '/' }
+        { titulo: 'Lista de usuarios', auth: true, url: '/users' },
+        { titulo: 'Gestión de usuarios', auth: true, url: '/' }
       ]
     }
   ];

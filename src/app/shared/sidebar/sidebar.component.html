@@ -3,7 +3,8 @@
     <div class="scroll-sidebar">
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
-            <ul id="sidebarnav" routerLinkActive="active">
+            <!-- Not admin-->
+            <ul *ngIf="!usuario" id="sidebarnav" routerLinkActive="active">
                 <li> <a class="waves-effect waves-dark" [routerLink]="[ '/home' ]"><i class="mdi mdi-home"></i><span class="hide-menu">Inicio </span></a>
                 </li>
                 <li class="nav-devider"></li>
@@ -12,6 +13,22 @@
                         <li *ngFor="let submenu of menu.submenu">
                             <a *ngIf="(submenu.url) && (!submenu.auth)" [routerLink]="submenu.url">{{ submenu.titulo }}</a>
                             <a *ngIf="(!submenu.url) && (!submenu.auth)" class="has-arrow waves-effect waves-dark" aria-expanded="false">{{ submenu.titulo }}</a>
+                            <ul *ngIf="submenu.submenu" aria-expanded="false" class="collapse">
+                                <li *ngFor="let sub of submenu.submenu"><a *ngIf="!sub.auth" aria-expanded="false" [routerLink]="sub.url">{{ sub.titulo }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul *ngIf="usuario" id="sidebarnav" routerLinkActive="active">
+                <li> <a class="waves-effect waves-dark" [routerLink]="[ '/home' ]"><i class="mdi mdi-home"></i><span class="hide-menu">Inicio </span></a>
+                </li>
+                <li class="nav-devider"></li>
+                <li *ngFor="let menu of this.sidebarService.menu"><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu">{{ menu.titulo }}</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li *ngFor="let submenu of menu.submenu">
+                            <a *ngIf="(submenu.url)" [routerLink]="submenu.url">{{ submenu.titulo }}</a>
+                            <a *ngIf="(!submenu.url)" class="has-arrow waves-effect waves-dark" aria-expanded="false">{{ submenu.titulo }}</a>
                             <ul *ngIf="submenu.submenu" aria-expanded="false" class="collapse">
                                 <li *ngFor="let sub of submenu.submenu"><a *ngIf="!sub.auth" aria-expanded="false" [routerLink]="sub.url">{{ sub.titulo }}</a></li>
                             </ul>

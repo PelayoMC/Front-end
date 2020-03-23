@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { UsersService } from '../service/service.index';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 declare function init_plugins();
 // Libreria google
@@ -61,7 +63,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(usuario, forma.value.recuerdame)
       .subscribe(resp => {
         this.userService.recordar(this.recuerdame);
-        this.router.navigate(['/user/' + resp])
+        this.router.navigate(['/user/' + resp]);
       });
   }
 

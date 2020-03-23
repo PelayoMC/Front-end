@@ -3,9 +3,10 @@ import { Recipe, IngredientRecipe } from 'src/app/models/recipe.model';
 import { UploadImageService } from '../upload/upload-image.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { URL_SERVICIOS } from 'src/app/config/config';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class RecipesService {
     return this.http.get(url).pipe(
       map( (resp: any) => {
         return resp.receta;
+      }),
+      catchError( err => {
+        console.log();
+        return throwError(err.message);
       })
     );
   }

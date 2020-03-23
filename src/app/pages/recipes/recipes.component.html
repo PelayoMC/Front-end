@@ -13,5 +13,12 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-12" *ngIf="!cargado">
+        <div class="alert alert-warning text-center">
+            <strong> No se han podido cargar los archivos </strong>
+            <br>
+            <i class="fa fa-exclamation-circle fa-4x"></i>
+        </div>
+    </div>
     <app-recipe-card class="col-sm-6 col-lg-4" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
 </div>

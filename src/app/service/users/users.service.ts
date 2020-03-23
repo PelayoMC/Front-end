@@ -3,10 +3,12 @@ import { FormGroup } from '@angular/forms';
 import { Usuario } from '../../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
-import { map } from 'rxjs/operators';
-import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { UploadImageService } from '../upload/upload-image.service';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import Swal from 'sweetalert2';
+import { of } from 'rxjs';
 
 
 @Injectable({
@@ -57,8 +59,12 @@ export class UsersService {
       (resp: any) => {
         this.guardarStorage(resp.id, resp.token, resp.usuario);
         return resp.id;
-      }
-    ));
+      }),
+      catchError( err => {
+        Swal.fire('Error al iniciar sesión', err.error.mensaje, 'error');
+        return throwError(err);
+      })
+    );
   }
 
   logout() {
@@ -90,8 +96,12 @@ export class UsersService {
     const url = URL_SERVICIOS + '/usuario';
     return this.http.post(url, usuario).pipe(
       map( (resp: any) => {
-        Swal.fire('Usuario creado', usuario.email, 'success');
+        Swal.fire('Usuario creado', 'Inicie sesión en la aplicación', 'success');
         return resp.usuario;
+      }),
+      catchError( err => {
+        Swal.fire(err.error.mensaje, 'Utilice un email distinto', 'error');
+        return throwError(err => of([]));
       })
     );
   }
@@ -104,6 +114,20 @@ export class UsersService {
         this.guardarStorage(resp.usuario._id, this.token, resp.usuario);
         Swal.fire('Usuario modificado', '<p>Nombre: ' + usuario.nombre + '</p><p>Email: ' + usuario.email + '</p>', 'success');
         return resp.usuario;
+      })
+    );
+  }
+
+  cargarUsuarios(from: number = 0) {
+    let url = URL_SERVICIOS + '/usuario?from=' + from;
+    return this.http.get(url);
+  }
+
+  buscarUsuarios(termino: string) {
+    let url = URL_SERVICIOS + '/busqueda/usuario/' + termino;
+    return this.http.get(url).pipe(
+      map(  (resp: any) => {
+        return resp.coleccion;
       })
     );
   }

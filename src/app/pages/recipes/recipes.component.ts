@@ -11,6 +11,7 @@ import { Recipe } from 'src/app/models/recipe.model';
 export class RecipesComponent implements OnInit {
 
   recetas: Recipe[] = [];
+  cargado: string = 'true';
 
   constructor(private recipesService: RecipesService, private router: Router ) { }
 

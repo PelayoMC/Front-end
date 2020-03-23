@@ -17,8 +17,8 @@ const routes: Routes = [
           { path: 'recipes', component: RecipesComponent },
           { path: 'recipe/:id', component: RecipeComponent },
           { path: 'addRecipe', component: CreateRecipeComponent },
-          { path: 'users', component: UsersComponent },
-          { path: 'user/:id', component: UserComponent },
+          // { path: 'users', component: UsersComponent },
+          // { path: 'user/:id', component: UserComponent },
           { path: '', pathMatch: 'full', redirectTo: '/home'}
         ]
     }
