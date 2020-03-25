@@ -17,7 +17,6 @@ export class UploadImageService {
       xhr.onreadystatechange = () => {
         if ( xhr.readyState === 4 ) {
           if ( xhr.status === 200 ) {
-            console.log('IMAGEN SUBIDA');
             resolve( xhr.response );
           } else {
             console.log('FALLO DE SUBIDA DE IMAGEN');

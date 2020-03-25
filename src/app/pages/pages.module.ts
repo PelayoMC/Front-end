@@ -5,7 +5,9 @@ import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { PipeModule } from '../pipes/pipe.module';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, ControlContainer } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 
 // Rutas
 import { PAGE_ROUTES } from './pages-routing.module';
@@ -20,6 +22,8 @@ import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+import { ModalCreateUserComponent } from '../components/modal-create-user/modal-create-user.component';
 
 
 @NgModule({
@@ -31,7 +35,9 @@ import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.com
         RecipeCardComponent,
         CreateRecipeComponent,
         UsersComponent,
-        UserComponent
+        UserComponent,
+        ModalUploadComponent,
+        ModalCreateUserComponent
       ],
       exports:[
         MainComponent
@@ -39,11 +45,14 @@ import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.com
       imports: [
         CommonModule,
         ReactiveFormsModule,
+        FormsModule,
         SharedModule,
         PAGE_ROUTES,
         PAGE_ROUTES_PRIVATE,
         BrowserModule,
-        PipeModule
+        PipeModule,
+        MatTooltipModule,
+        MatSelectModule
       ]
 })
 export class PageModule {}

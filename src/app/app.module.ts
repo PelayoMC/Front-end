@@ -8,6 +8,7 @@ import { APP_ROUTING } from './app-routing.module';
 import { PageModule } from './pages/pages.module';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -24,13 +25,15 @@ import { ServiceModule } from './service/service.module';
     RegisterComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     APP_ROUTING,
     PageModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    ServiceModule
+    ServiceModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

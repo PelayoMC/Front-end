@@ -5,70 +5,138 @@ import { Injectable } from '@angular/core';
 })
 export class SidebarService {
 
-  menu: any = [
-    {
-      titulo: 'Dieta',
-      icono: 'mdi mdi-heart-half-outline',
-      auth: true,
-      submenu : [
-        { titulo: 'Planificación de dieta', auth: true, url: '/' },
-        { titulo: 'Seguimiento de dieta', auth: true, url: '/' }
-      ]
-    },
+  menuNR: any = [
     {
       titulo: 'Alimentos',
       icono: 'mdi mdi-food',
-      auth: false,
       submenu : [
         {
           titulo: 'Recetas',
-          auth: false,
           submenu : [
             {
               titulo: 'Lista de recetas',
-              auth: false,
               url: '/recipes'
-            },
-            {
-              titulo: 'Añadir receta',
-              auth: true,
-              url: '/addRecipe'
-            },
-            {
-              titulo: 'Gestionar recetas',
-              auth: true,
-              url: '/'
             }
           ]
         },
         {
           titulo: 'Ingredientes',
-          auth: false,
           submenu : [
             {
               titulo: 'Lista de ingredientes',
-              auth: false,
-              url: '/'
-            },
-            {
-              titulo: 'Gestionar ingredientes',
-              auth: true,
               url: '/'
             }
           ]
         },
         {
           titulo: 'Intolerancias',
-          auth: false,
           submenu : [
             {
               titulo: 'Lista de intolerancias',
-              auth: false,
+              url: '/'
+            }
+          ]
+        }
+      ]
+    }
+  ];
+
+  menuU: any = [
+    {
+      titulo: 'Dieta',
+      icono: 'mdi mdi-heart-half-outline',
+      submenu : [
+        { titulo: 'Planificación de dieta', url: '/' },
+        { titulo: 'Seguimiento de dieta', url: '/' }
+      ]
+    },
+    {
+      titulo: 'Alimentos',
+      icono: 'mdi mdi-food',
+      submenu : [
+        {
+          titulo: 'Recetas',
+          submenu : [
+            {
+              titulo: 'Lista de recetas',
+              url: '/recipes'
+            }
+          ]
+        },
+        {
+          titulo: 'Ingredientes',
+          submenu : [
+            {
+              titulo: 'Lista de ingredientes',
+              url: '/'
+            }
+          ]
+        },
+        {
+          titulo: 'Intolerancias',
+          submenu : [
+            {
+              titulo: 'Lista de intolerancias',
+              url: '/'
+            }
+          ]
+        }
+      ]
+    }
+  ];
+
+  menuA: any = [
+    {
+      titulo: 'Dieta',
+      icono: 'mdi mdi-heart-half-outline',
+      submenu : [
+        { titulo: 'Planificación de dieta', url: '/' },
+        { titulo: 'Seguimiento de dieta', url: '/' }
+      ]
+    },
+    {
+      titulo: 'Alimentos',
+      icono: 'mdi mdi-food',
+      submenu : [
+        {
+          titulo: 'Recetas',
+          submenu : [
+            {
+              titulo: 'Lista de recetas',
+              url: '/recipes'
+            },
+            {
+              titulo: 'Añadir receta',
+              url: '/addRecipe'
+            },
+            {
+              titulo: 'Gestionar recetas',
+              url: '/'
+            }
+          ]
+        },
+        {
+          titulo: 'Ingredientes',
+          submenu : [
+            {
+              titulo: 'Lista de ingredientes',
+              url: '/'
+            },
+            {
+              titulo: 'Gestionar ingredientes',
+              url: '/'
+            }
+          ]
+        },
+        {
+          titulo: 'Intolerancias',
+          submenu : [
+            {
+              titulo: 'Lista de intolerancias',
               url: '/'
             },
             {
               titulo: 'Gestionar intolerancias',
-              auth: true,
               url: '/'
             }
           ]
@@ -77,10 +145,9 @@ export class SidebarService {
     }, {
       titulo: 'Usuarios',
       icono: 'mdi mdi-account-circle',
-      auth: true,
       submenu : [
-        { titulo: 'Lista de usuarios', auth: true, url: '/users' },
-        { titulo: 'Gestión de usuarios', auth: true, url: '/' }
+        { titulo: 'Lista de usuarios', url: '/users' },
+        { titulo: 'Gestión de usuarios', url: '/' }
       ]
     }
   ];

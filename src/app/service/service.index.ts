@@ -1,7 +1,10 @@
-import { IngredientsService } from './ingredients/ingredients.service';
+export { ModalCreateUserService } from './modal-upload/modal-create-user.service';
+export { ModalUploadService } from './modal-upload/modal-upload.service';
+export { GeneralServiceService } from './general-service.service';
 export { LoginGuardGuard } from './guards/login-guard.guard';
 export { UsersService } from './users/users.service';
 export { RecipesService } from './recipes/recipes.service';
+export { IngredientsService } from './ingredients/ingredients.service';
 export { SharedService } from './shared/shared.service';
 export { SidebarService } from './shared/sidebar.service';
 export { UploadImageService } from './upload/upload-image.service';

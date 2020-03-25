@@ -58,6 +58,8 @@ export class UsersService {
     return this.http.post(url, user).pipe(map(
       (resp: any) => {
         this.guardarStorage(resp.id, resp.token, resp.usuario);
+        localStorage.setItem('timer', new Date().getTime().toString());
+        console.log(localStorage.getItem('timer'));
         return resp.id;
       }),
       catchError( err => {
@@ -111,8 +113,10 @@ export class UsersService {
     url += '?token=' + this.token;
     return this.http.put(url, usuario).pipe(
       map( (resp: any) => {
-        this.guardarStorage(resp.usuario._id, this.token, resp.usuario);
-        Swal.fire('Usuario modificado', '<p>Nombre: ' + usuario.nombre + '</p><p>Email: ' + usuario.email + '</p>', 'success');
+        if (usuario._id === this.usuario._id) {
+          this.guardarStorage(resp.usuario._id, this.token, resp.usuario);
+        }
+        Swal.fire('Usuario modificado', usuario.email, 'success');
         return resp.usuario;
       })
     );
@@ -128,6 +132,15 @@ export class UsersService {
     return this.http.get(url).pipe(
       map(  (resp: any) => {
         return resp.coleccion;
+      })
+    );
+  }
+
+  borrarUsuario(id: string) {
+    let url = URL_SERVICIOS + '/usuario/' + id + '?token=' + this.token;
+    return this.http.delete(url).pipe(
+      map(  (resp: any) => {
+        return resp.usuario;
       })
     );
   }

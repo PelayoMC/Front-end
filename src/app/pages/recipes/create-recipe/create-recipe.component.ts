@@ -3,10 +3,9 @@ import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@ang
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
 import { RecipesService } from '../../../service/recipes/recipes.service';
-import { IngredientsService } from '../../../service/ingredients/ingredients.service';
+import { IngredientsService } from '../../../service/service.index';
 import Swal from 'sweetalert2';
 import * as opt from './select-options';
-import { iniciarDrops } from './select-options';
 
 @Component({
   selector: 'app-create-recipe',
@@ -19,6 +18,11 @@ export class CreateRecipeComponent implements OnInit {
   imgTemp: string;
   form: FormGroup;
   opt: any;
+
+  selectedUnidadesIng: string;
+  selectedTipo: string;
+  selectedDif: string;
+  selectedUnidades: string;
 
   constructor(private fb: FormBuilder, public router: Router, public recipeService: RecipesService, public ingredientService: IngredientsService) { }
 
@@ -48,7 +52,14 @@ export class CreateRecipeComponent implements OnInit {
         unidades: [null, Validators.required],
       })
     });
-    iniciarDrops(this.form);
+    this.iniciarDrops();
+  }
+
+  iniciarDrops() {
+    this.selectedUnidadesIng = 'Sin unidades';
+    this.selectedTipo = 'Principal';
+    this.selectedDif = 'Facil';
+    this.selectedUnidades = 'Caloria/s';
   }
 
   ingredientes(): FormArray {
