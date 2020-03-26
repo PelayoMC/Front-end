@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Usuario } from '../../models/usuario.model';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
-import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 import { UploadImageService } from '../upload/upload-image.service';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import Swal from 'sweetalert2';
-import { of } from 'rxjs';
 
 
 @Injectable({
@@ -19,7 +19,7 @@ export class UsersService {
   usuario: Usuario;
   token: string;
 
-  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService) {
+  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService, public auth: AuthService) {
     this.cargarStorage();
   }
 
@@ -43,7 +43,12 @@ export class UsersService {
       (resp: any) => {
         this.guardarStorage(resp.id, resp.token, resp.usuario);
         return resp.id;
-      }
+      }, catchError(err => {
+        if (!this.auth.checkTokenGoogle(err)) {
+          this.logout();
+        }
+        return throwError(err);
+      })
     ));
   }
 
@@ -63,7 +68,11 @@ export class UsersService {
         return resp.id;
       }),
       catchError( err => {
-        Swal.fire('Error al iniciar sesión', err.error.mensaje, 'error');
+        if (this.auth.checkToken(err)) {
+          Swal.fire('Error al iniciar sesión', err.error.mensaje, 'error');
+        } else {
+          this.logout();
+        }
         return throwError(err);
       })
     );
@@ -98,12 +107,15 @@ export class UsersService {
     const url = URL_SERVICIOS + '/usuario';
     return this.http.post(url, usuario).pipe(
       map( (resp: any) => {
-        Swal.fire('Usuario creado', 'Inicie sesión en la aplicación', 'success');
         return resp.usuario;
       }),
       catchError( err => {
-        Swal.fire(err.error.mensaje, 'Utilice un email distinto', 'error');
-        return throwError(err => of([]));
+        if (this.auth.checkToken(err)) {
+          Swal.fire(err.error.mensaje, 'Utilice un email distinto', 'error');
+        } else {
+          this.logout();
+        }
+        return throwError(err);
       })
     );
   }
@@ -118,6 +130,12 @@ export class UsersService {
         }
         Swal.fire('Usuario modificado', usuario.email, 'success');
         return resp.usuario;
+      }),
+      catchError( err => {
+        if (!this.auth.checkToken(err)) {
+          this.logout();
+        }
+        return throwError(err);
       })
     );
   }
@@ -141,6 +159,12 @@ export class UsersService {
     return this.http.delete(url).pipe(
       map(  (resp: any) => {
         return resp.usuario;
+      }),
+      catchError( err => {
+        if (!this.auth.checkToken(err)) {
+          this.logout();
+        }
+        return throwError(err);
       })
     );
   }

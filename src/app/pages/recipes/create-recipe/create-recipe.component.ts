@@ -39,17 +39,17 @@ export class CreateRecipeComponent implements OnInit {
         this.fb.group({
           nombre: [null, Validators.required],
           cantidad: [0, Validators.required],
-          unidades: [null, Validators.required],
-          tipo: [null, Validators.required]
+          unidades: ['Sin unidades', Validators.required],
+          tipo: ['Principal', Validators.required]
         }, Validators.required)
       ], Validators.required),
       pasos: this.fb.array([
         [null, Validators.required]
       ]),
-      nivel: [null, Validators.required],
+      nivel: ['Facil', Validators.required],
       calorias: this.fb.group({
         cantidad: [0, Validators.required],
-        unidades: [null, Validators.required],
+        unidades: ['Caloria/s', Validators.required],
       })
     });
     this.iniciarDrops();
@@ -119,6 +119,8 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.form);
+    console.log(this.form.valid);
     if (this.form.invalid || (this.imgUpload.name == null)) {
       Swal.fire('Complete el formulario', 'Rellene todos los campos del formulario para crear la receta', 'warning');
       return;
@@ -131,13 +133,14 @@ export class CreateRecipeComponent implements OnInit {
     Object.assign(this.recipe, this.form.value);
     this.ingredientService.obtenerIngs(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
+      console.log(this.recipe.ingredientes);
+      console.log(this.recipe);
       this.recipeService.crearReceta(this.recipe).subscribe(resp => {
         this.recipe._id = resp._id;
         this.form.value.imagen = this.imgUpload;
         this.recipeService.cambiarImagen(this.recipe, this.form.value.imagen);
+        this.router.navigate(['/addIngsRecipe/', this.recipe._id]);
       });
     });
   }
-
-  
 }

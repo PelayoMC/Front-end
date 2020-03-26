@@ -12,13 +12,6 @@ export const uds = [
           ]
         },
         {
-          label: 'Nutrición',
-          opciones: [
-            { nombre: 'Caloria/s' },
-            { nombre: 'Kilocaloria/s' }
-          ]
-        },
-        {
           label: 'Peso',
           opciones: [
             { nombre: 'Gramo/s' },
@@ -44,4 +37,10 @@ export const dificultades = [
         { nombre: 'Medio' },
         { nombre: 'Difícil' }
       ];
+
+export const nutricion = [
+    { nombre: 'Caloria/s' },
+    { nombre: 'Kilocaloria/s' }
+];
+
 

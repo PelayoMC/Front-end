@@ -12,30 +12,34 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input class="form-control" type="text" ngModel #nombre="ngModel" name="nombre" [class.is-invalid]="nombre.invalid && nombre.touched" autocomplete="off" placeholder="Nombre del usuario" required minlength="3">
+                            <input class="form-control" type="text" ngModel #nombre="ngModel" name="nombre" [class.is-valid]="nombre.valid && nombre.touched" [class.is-invalid]="nombre.invalid && nombre.touched" autocomplete="off" placeholder="Nombre del usuario" required minlength="3">
                             <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">El nombre ha de tener más de 3 letras</small>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input class="form-control" type="email" ngModel #email="ngModel" name="email" [class.is-invalid]="email.invalid && email.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email del usuario" required>
+                            <input class="form-control" type="email" ngModel #email="ngModel" name="email" [class.is-valid]="email.valid && email.touched" [class.is-invalid]="email.invalid && email.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email del usuario"
+                                required>
                             <small *ngIf="email.invalid && email.touched" class="form-text text-danger">El email ha de tener un formato correcto</small>
                         </div>
                         <div class="form-group">
                             <label for="contraseña">Contraseña</label>
-                            <input class="form-control" type="password" ngModel #password="ngModel" [class.is-invalid]="password.invalid && password.touched" name="password" placeholder="Contraseña" required minlength="3">
+                            <input (keyup)="checkPass(form)" class="form-control" type="password" ngModel #password="ngModel" [class.is-valid]="password.valid && password.touched" [class.is-invalid]="password.invalid && password.touched" name="password" placeholder="Contraseña"
+                                required minlength="3">
                             <small *ngIf="password.invalid && password.touched" class="form-text text-danger">La contraseña ha de tener más de 3 letras</small>
                         </div>
                         <div class="form-group">
                             <label for="contraseña2">RepetirContraseña</label>
-                            <input class="form-control" type="password" ngModel #password2="ngModel" [class.is-invalid]="password2.invalid && password2.touched" name="password2" placeholder="Contraseña" required minlength="3">
+                            <input (keyup)="checkPass(form)" class="form-control" type="password" ngModel #password2="ngModel" [class.is-valid]="password2.valid && password2.touched" [class.is-invalid]="password2.invalid && password2.touched" name="password2" placeholder="Contraseña"
+                                required minlength="3">
                             <small *ngIf="password2.invalid && password2.touched" class="form-text text-danger">La contraseña ha de tener más de 3 letras</small>
+                            <small *ngIf="!passEqual" class="form-text text-danger">Las contraseñas no son iguales</small>
                         </div>
                         <div class="form-group">
                             <label for="rol">Rol</label>
                             <select class="form-control" #rol [(ngModel)]="selected" name="rol" required>
                                         <option value="ADMIN">Administrador</option>
                                         <option value="USER">Usuario</option>
-                                </select>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">

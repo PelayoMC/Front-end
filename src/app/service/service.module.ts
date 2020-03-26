@@ -10,7 +10,8 @@ import {
   UploadImageService,
   IngredientsService,
   ModalUploadService,
-  ModalCreateUserService
+  ModalCreateUserService,
+  AuthService
 } from './service.index';
 
 
@@ -30,7 +31,8 @@ import {
     UploadImageService,
     ModalUploadService,
     ModalCreateUserService,
-    LoginGuardGuard
+    LoginGuardGuard,
+    AuthService
   ]
 })
 export class ServiceModule { }

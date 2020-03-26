@@ -7,12 +7,14 @@ import { URL_SERVICIOS } from 'src/app/config/config';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import Swal from 'sweetalert2';
+import { AuthService } from '../auth/auth.service';
+import { UsersService } from '../users/users.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesService {
-  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService) { }
+  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService, public auth: AuthService, public userService: UsersService) { }
 
   getRecipe(idx: string){
     let url = URL_SERVICIOS + '/receta/' + idx;
@@ -21,7 +23,6 @@ export class RecipesService {
         return resp.receta;
       }),
       catchError( err => {
-        console.log();
         return throwError(err.message);
       })
     );
@@ -43,6 +44,12 @@ export class RecipesService {
       map( (resp: any) => {
         Swal.fire('Receta creada', '<p>Nombre: ' + receta.nombre + '</p>', 'success');
         return resp.receta;
+      }),
+      catchError( err => {
+        if (!this.auth.checkToken(err)) {
+          this.userService.logout();
+        }
+        return throwError(err);
       })
     );
   }
@@ -52,7 +59,9 @@ export class RecipesService {
       receta.imagen = JSON.parse(resp).receta.imagen;
       this.router.navigate(['/recipes']);
     }).catch( err => {
-      console.log(err);
+      if (!this.auth.checkToken(err)) {
+        this.userService.logout();
+      }
     });
   }
 }

@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit {
     );
 
     this.userService.crearUsuario(usuario).subscribe(resp => {
+      Swal.fire('Usuario creado', 'Inicie sesión en la aplicación', 'success');
       this.router.navigate(['/login']);
     });
   }

@@ -1,3 +1,4 @@
+export { AuthService } from './auth/auth.service';
 export { ModalCreateUserService } from './modal-upload/modal-create-user.service';
 export { ModalUploadService } from './modal-upload/modal-upload.service';
 export { GeneralServiceService } from './general-service.service';

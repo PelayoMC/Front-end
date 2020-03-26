@@ -24,6 +24,7 @@ import { UserComponent } from './users/user/user.component';
 import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { ModalCreateUserComponent } from '../components/modal-create-user/modal-create-user.component';
+import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ModalCreateUserComponent } from '../components/modal-create-user/modal-
         RecipeComponent,
         RecipeCardComponent,
         CreateRecipeComponent,
+        CreateIngsRecipeComponent,
         UsersComponent,
         UserComponent,
         ModalUploadComponent,

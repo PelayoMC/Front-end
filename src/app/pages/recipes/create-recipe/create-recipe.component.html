@@ -124,7 +124,7 @@
                                         <div class="col-6">
                                             <label>Unidades</label>
                                             <select class="form-control" [(value)]="selectedUnidades" formControlName="unidades" placeholder="unidades">
-                                                <option *ngFor="let ud of opt.uds[1].opciones" [value]="ud.nombre">{{ ud.nombre }}</option>
+                                                <option *ngFor="let ud of opt.nutricion" [value]="ud.nombre">{{ ud.nombre }}</option>
                                                 </select>
                                         </div>
                                     </div>
