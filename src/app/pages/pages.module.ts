@@ -7,7 +7,8 @@ import { PipeModule } from '../pipes/pipe.module';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 // Rutas
 import { PAGE_ROUTES } from './pages-routing.module';
@@ -39,9 +40,9 @@ import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-r
         UsersComponent,
         UserComponent,
         ModalUploadComponent,
-        ModalCreateUserComponent
+        ModalCreateUserComponent,
       ],
-      exports:[
+      exports: [
         MainComponent
       ],
       imports: [
@@ -54,7 +55,8 @@ import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-r
         BrowserModule,
         PipeModule,
         MatTooltipModule,
-        MatSelectModule
+        MatExpansionModule,
+        MatFormFieldModule
       ]
 })
 export class PageModule {}

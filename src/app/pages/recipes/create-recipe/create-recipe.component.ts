@@ -118,11 +118,32 @@ export class CreateRecipeComponent implements OnInit {
     reader.onloadend = () => this.imgTemp = reader.result.toString();
   }
 
+  encontrarControlesInvalidos() {
+    const invalid = [];
+    const controls = this.form.controls;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+          invalid.push(name);
+      }
+    }
+    return invalid;
+  }
+
+  errorDeForma() {
+    let st = '<br>';
+    let arr = this.encontrarControlesInvalidos();
+    if (this.imgUpload == null) {
+        st += 'IMAGEN' + '<br>';
+      }
+    for (let i = 0; i < arr.length; i++){
+        st += arr[i].toUpperCase() + '<br>';
+      }
+    Swal.fire('Complete el formulario', 'Rellene los campos: ' + st, 'warning');
+  }
+
   onSubmit() {
-    console.log(this.form);
-    console.log(this.form.valid);
-    if (this.form.invalid || (this.imgUpload.name == null)) {
-      Swal.fire('Complete el formulario', 'Rellene todos los campos del formulario para crear la receta', 'warning');
+    if (this.form.invalid || (this.imgUpload == null)) {
+      this.errorDeForma();
       return;
     }
     this.crearReceta();
@@ -133,8 +154,6 @@ export class CreateRecipeComponent implements OnInit {
     Object.assign(this.recipe, this.form.value);
     this.ingredientService.obtenerIngs(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
-      console.log(this.recipe.ingredientes);
-      console.log(this.recipe);
       this.recipeService.crearReceta(this.recipe).subscribe(resp => {
         this.recipe._id = resp._id;
         this.form.value.imagen = this.imgUpload;

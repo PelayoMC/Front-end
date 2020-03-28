@@ -57,7 +57,6 @@ export class RecipesService {
  cambiarImagen(receta: Recipe, file: File) {
     this.uploadService.subirArchivo(file, 'recetas', receta._id).then( (resp: any) => {
       receta.imagen = JSON.parse(resp).receta.imagen;
-      this.router.navigate(['/recipes']);
     }).catch( err => {
       if (!this.auth.checkToken(err)) {
         this.userService.logout();
