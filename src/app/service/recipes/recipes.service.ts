@@ -28,11 +28,42 @@ export class RecipesService {
     );
   }
 
-  getRecipes() {
-    let url = URL_SERVICIOS + '/receta/';
+  getRecipes(from: number) {
+    let url = URL_SERVICIOS + '/receta?from=' + from;
     return this.http.get(url).pipe(
       map( (resp: any) => {
         return resp.recetas;
+      })
+    );
+  }
+
+  getIngredients(idReceta: string) {
+    return this.getRecipe(idReceta).pipe(
+      map( (resp: any) => {
+        return resp[0].ingredientes;
+      })
+    );
+  }
+
+  guardarIngredientes(idReceta: string, ingredients: IngredientRecipe[]) {
+    const ings = {
+      ingredients
+    };
+    let url = URL_SERVICIOS + '/receta/addIngs/' + idReceta;
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, ings).pipe(
+      map( (resp: any) => {
+        console.log('Retornando receta');
+        return resp.receta;
+      })
+    );
+  }
+
+  buscarRecetas(termino: string) {
+    let url = URL_SERVICIOS + '/busqueda/receta/' + termino;
+    return this.http.get(url).pipe(
+      map(  (resp: any) => {
+        return resp.coleccion;
       })
     );
   }

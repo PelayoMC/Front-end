@@ -1,24 +1,31 @@
-<div class="row page-titles pl-4 pr-4">
-    <h3 class="text-themecolor-title">Recetas</h3>
-    <div class="input-group mb-4">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ordenar por</button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Nombre</a>
-            <a class="dropdown-item" href="#">Tipo</a>
-        </div>
-        <input type="text" class="form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-info" type="button" id="button-addon2"><i class="mdi mdi-search-web"></i></button>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input #input (keyup)="buscarRecetas(input.value)" type="text" class="form-control" placeholder="Buscar receta">
+            </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-12" *ngIf="!cargado">
+<div class="row animated fadeIn" *ngIf="cargando">
+    <div class="col-12">
         <div class="alert alert-warning text-center">
-            <strong> No se han podido cargar los archivos </strong>
+            <strong> CARGANDO </strong>
             <br>
-            <i class="fa fa-exclamation-circle fa-4x"></i>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
         </div>
     </div>
-    <app-recipe-card class="col-sm-6 col-lg-4" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
+</div>
+<div class="row" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <app-recipe-card class="col-sm-6 col-lg-4" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -15,16 +15,15 @@ export class Recipe {
     }
 }
 
-export interface IngredientRecipe {
-    id: string;
-    nombre: string;
+export interface IngredientRecipe extends Ingredient {
     cantidad: number;
     unidades: string;
     tipo: string;
+    ingredienteSustituible: string;
 }
 
 interface Calorias {
-        cantidad: number;
-        unidades: string;
+    cantidad: number;
+    unidades: string;
 }
 
