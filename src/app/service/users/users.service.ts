@@ -23,6 +23,22 @@ export class UsersService {
     this.cargarStorage();
   }
 
+  renuevaToken() {
+    let url = URL_SERVICIOS + '/login/renuevatoken';
+    url += '?token=' + this.token;
+    return this.http.get(url).pipe(map(
+      (resp: any) => {
+        this.token = resp.token;
+        localStorage.setItem('token', this.token);
+        return true;
+      }
+    ), catchError(err => {
+      this.router.navigate(['/login']);
+      Swal.fire('No se pudo renovar token', 'No se ha podido renovar el token de sesión de usuario', 'error');
+      return throwError(err);
+    }));
+  }
+
   estaLogueado() {
     return ( this.token.length > 5 ) ? true : false;
   }
@@ -63,8 +79,6 @@ export class UsersService {
     return this.http.post(url, user).pipe(map(
       (resp: any) => {
         this.guardarStorage(resp.id, resp.token, resp.usuario);
-        localStorage.setItem('timer', new Date().getTime().toString());
-        console.log(localStorage.getItem('timer'));
         return resp.id;
       }),
       catchError( err => {

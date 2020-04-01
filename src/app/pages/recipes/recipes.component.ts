@@ -28,7 +28,6 @@ export class RecipesComponent implements OnInit {
   cargarRecetas() {
     this.cargando = true;
     this.recipesService.getRecipes(this.from).subscribe((resp: any) => {
-      console.log(resp);
       this.recetas = resp.map(el =>
         new Recipe(el.nombre, el.descripcion, el.nivel, el.imagen, el.ingredientes, el.calorias, el.pasos, el._id)
       );

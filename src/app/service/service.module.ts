@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {
-  GeneralServiceService,
-  UsersService,
-  RecipesService,
-  SharedService,
-  SidebarService,
+  AuthService,
   LoginGuardGuard,
-  UploadImageService,
+  VerifyTokenGuardGuard,
   IngredientsService,
-  ModalUploadService,
   ModalCreateUserService,
-  AuthService
+  ModalUploadService,
+  RecipesService,
+  SidebarService,
+  SharedService,
+  UploadImageService,
+  UsersService,
+  GeneralServiceService
 } from './service.index';
 
 
@@ -22,17 +23,18 @@ import {
     HttpClientModule
   ],
   providers: [
-    GeneralServiceService,
-    UsersService,
-    RecipesService,
-    IngredientsService,
-    SharedService,
-    SidebarService,
-    UploadImageService,
-    ModalUploadService,
-    ModalCreateUserService,
+    AuthService,
     LoginGuardGuard,
-    AuthService
+    VerifyTokenGuardGuard,
+    IngredientsService,
+    ModalCreateUserService,
+    ModalUploadService,
+    RecipesService,
+    SidebarService,
+    SharedService,
+    UploadImageService,
+    UsersService,
+    GeneralServiceService
   ]
 })
 export class ServiceModule { }

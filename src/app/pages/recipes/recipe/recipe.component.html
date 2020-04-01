@@ -13,7 +13,7 @@
                                 <h4>Calorias</h4>
                                 <hr>
                                 <p>
-                                    {{ receta?.calorias.cantidad }} {{ receta?.calorias.unidades }}
+                                    {{ receta?.calorias?.cantidad }} {{ receta?.calorias?.unidades }}
                                 </p>
                             </div>
                             <div class="col-md-6">
@@ -38,29 +38,57 @@
                                 <h4>Ingredientes</h4>
                                 <hr>
                                 <mat-accordion>
-                                    <mat-expansion-panel *ngFor="let ing of receta?.ingredientes">
+                                    <mat-expansion-panel *ngFor="let ing of receta?.ingredientes; let i = index">
                                         <mat-expansion-panel-header>
                                             <mat-panel-title>
-                                                <label *ngIf="ing.tipo === 'Principal'" class="label label-danger">Principal</label>
-                                                <label *ngIf="ing.tipo === 'Secundario'" class="label label-info">Secundario</label> &nbsp;
-                                                <b>Ingrediente: {{ ing.nombre }}</b>
+                                                <b [ngClass]="color(ing)">{{ ing.nombre }}</b>
                                             </mat-panel-title>
                                             <mat-panel-description>
-                                                {{ ing.cantidad }} {{ ing.unidades }}
+                                                <label *ngIf="ing.tipo == 'Principal'" class="label label-danger">Principal</label> &nbsp;
+                                                <label *ngIf="ing.tipo == 'Secundario'" class="label label-info">Secundario</label>
                                             </mat-panel-description>
                                         </mat-expansion-panel-header>
-                                        <p>I'm visible because I am open</p>
+                                        <div class="row">
+                                            <div class="col">
+                                                <b>Cantidad: </b>
+                                            </div>
+                                            <div class="col-7">
+                                                {{ ing.cantidad }} {{ ing.unidades }}
+                                            </div>
+                                        </div>
+                                        <div *ngIf="sustituibles.length != 0">
+                                            <hr>
+                                            <mat-expansion-panel>
+                                                <mat-expansion-panel-header>
+                                                    <mat-panel-title>
+                                                        <b class="text-warning">{{ sustituibles[i] }}</b>
+                                                    </mat-panel-title>
+                                                    <mat-panel-description>
+                                                        <label class="label label-warning">Sustituible</label>
+                                                    </mat-panel-description>
+                                                </mat-expansion-panel-header>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <b>Cantidad: </b>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        {{ ing.cantidad }} {{ ing.unidades }}
+                                                    </div>
+                                                </div>
+                                            </mat-expansion-panel>
+                                        </div>
                                     </mat-expansion-panel>
                                 </mat-accordion>
+                                <br>
                             </div>
                             <div class="col-md-6">
                                 <h4>Pasos a seguir</h4>
                                 <hr>
-                                <ol>
-                                    <li *ngFor="let paso of receta?.pasos">
-                                        {{ paso }}
+                                <ul class="list-group">
+                                    <li class="list-group-item" *ngFor="let paso of receta?.pasos; let i = index">
+                                        {{ i + 1 }} - {{ paso }}
                                     </li>
-                                </ol>
+                                </ul>
                             </div>
                         </div>
                     </div>

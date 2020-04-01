@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { UsersService } from '../../service/service.index';
 import Swal from 'sweetalert2';
-import { ModalUploadService } from '../../service/modal-upload/modal-upload.service';
-import { ModalCreateUserService } from '../../service/modal-upload/modal-create-user.service';
+import { ModalUploadService } from '../../service/modals/modal-upload.service';
+import { ModalCreateUserService } from '../../service/modals/modal-create-user.service';
 
 @Component({
   selector: 'app-users',

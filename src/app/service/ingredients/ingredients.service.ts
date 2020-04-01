@@ -36,4 +36,13 @@ export class IngredientsService {
       })
     );
   }
+
+  getSustituibles(nombres: string[]) {
+    let url = URL_SERVICIOS + '/ingrediente/sust';
+    return this.http.post(url, nombres).pipe(
+      map( (resp: any) => {
+        return resp.ingredientes;
+      })
+    );
+  }
 }

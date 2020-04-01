@@ -13,10 +13,10 @@ const routes: Routes = [
         component: PagesComponent,
         canActivate: [LoginGuardGuard],
         children: [
-          { path: 'addRecipe', component: CreateRecipeComponent },
-          { path: 'addIngsRecipe/:id', component: CreateIngsRecipeComponent },
-          { path: 'users', component: UsersComponent },
-          { path: 'user/:id', component: UserComponent }
+          { path: 'addRecipe', component: CreateRecipeComponent, data: { titulo: 'Añadir receta' } },
+          { path: 'addIngsRecipe/:id', component: CreateIngsRecipeComponent, data: { titulo: 'Añadir sustituibles' } },
+          { path: 'users', component: UsersComponent, data: { titulo: 'Usuarios' } },
+          { path: 'user/:id', component: UserComponent, data: { titulo: 'Usuario' } }
         ]
     }
 ];
