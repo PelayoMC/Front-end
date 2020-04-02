@@ -37,12 +37,12 @@
                     <tbody>
                         <tr *ngFor="let usuario of usuarios">
                             <td>
-                                <img (click)="mostrarModal(usuario._id,'upload')" [src]="usuario.imagen | image" class="img-users-small img-circle">
+                                <img (click)="mostrarModal(usuario._id,'upload', usuario.imagen)" [src]="usuario.imagen | image" class="img-users-small img-circle">
                             </td>
                             <td> {{ usuario.email }} </td>
                             <td> {{ usuario.nombre }} </td>
                             <td class="medium-td">
-                                <select [(ngModel)]="usuario.rol" name="rol" class="form-control">
+                                <select [(ngModel)]="usuario.rol" [disabled]="usuario.email === usuariosService.usuario.email" name="rol" class="form-control">
                                     <option value="ADMIN">Administrador</option>
                                     <option value="USER">Usuario</option>
                                 </select>

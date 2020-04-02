@@ -36,7 +36,7 @@ export class CreateIngsRecipeComponent implements OnInit {
   cargarIngredientes() {
     for (const ing of this.ingredients) {
       (this.form.get('ingredientes') as FormArray).push(
-        this.fb.control('', Validators.required)
+        this.fb.control('', [Validators.required, Validators.minLength(3)])
       );
     }
   }
@@ -46,6 +46,10 @@ export class CreateIngsRecipeComponent implements OnInit {
   }
 
   addIngs() {
+    if ( this.form.invalid ) {
+      Swal.fire('Error', 'Rellene los campos correspondientes', 'error');
+      return;
+    }
     this.ingsService.crearIngredientes(this.form.value.ingredientes).subscribe((resp: Ingredient[]) => {
       for (let i = 0; i < resp.length; i++) {
         this.ingredients[i].ingredienteSustituible = resp[i]._id;

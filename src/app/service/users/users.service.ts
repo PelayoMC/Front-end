@@ -59,12 +59,7 @@ export class UsersService {
       (resp: any) => {
         this.guardarStorage(resp.id, resp.token, resp.usuario);
         return resp.id;
-      }, catchError(err => {
-        if (!this.auth.checkTokenGoogle(err)) {
-          this.logout();
-        }
-        return throwError(err);
-      })
+      }
     ));
   }
 
@@ -93,6 +88,7 @@ export class UsersService {
   }
 
   logout() {
+    console.log('CERRANDO');
     this.token = '';
     this.usuario = null;
     localStorage.removeItem('token');
@@ -144,12 +140,6 @@ export class UsersService {
         }
         Swal.fire('Usuario modificado', usuario.email, 'success');
         return resp.usuario;
-      }),
-      catchError( err => {
-        if (!this.auth.checkToken(err)) {
-          this.logout();
-        }
-        return throwError(err);
       })
     );
   }
@@ -173,12 +163,6 @@ export class UsersService {
     return this.http.delete(url).pipe(
       map(  (resp: any) => {
         return resp.usuario;
-      }),
-      catchError( err => {
-        if (!this.auth.checkToken(err)) {
-          this.logout();
-        }
-        return throwError(err);
       })
     );
   }

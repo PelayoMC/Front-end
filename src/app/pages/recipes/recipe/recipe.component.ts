@@ -19,8 +19,13 @@ export class RecipeComponent implements OnInit {
       this.recipesService.getRecipe(params['id']).subscribe((resp) => {
         Object.assign(this.receta, resp[0]);
         this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
-          this.sustituibles = resp.map(el => el.nombre);
-          console.log(this.sustituibles);
+          this.sustituibles = resp.map(el => {
+            if (el != null) {
+              return el.nombre;
+            } else {
+              return null;
+            }
+          });
         });
       });
     });

@@ -9,15 +9,15 @@
                         </button>
                 </div>
                 <div class="modal-body text-center">
-                    <img *ngIf="!imgTemp" [src]="'xxx' | image" class="img-profile-small">
-                    <h6 *ngIf="imgTemp">Vista previa</h6>
-                    <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile">
+                    <img *ngIf="!modalService.img" [src]="'xxx' | image" class="img-profile-small">
+                    <h6 *ngIf="modalService.img">Vista previa</h6>
+                    <img *ngIf="modalService.img" [src]="modalService.img" class="img-profile">
                     <br>
                     <br>
                     <input (change)="chooseImage($event.target.files[0])" type="file">
                 </div>
                 <div class="modal-footer">
-                    <button (click)="upload()" [disabled]="!imgTemp" type="button" class="btn btn-info">Guardar</button>
+                    <button (click)="upload()" [disabled]="!modalService.img" type="button" class="btn btn-info">Guardar</button>
                     <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Cerrar</button>
                 </div>
             </div>

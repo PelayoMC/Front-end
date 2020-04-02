@@ -161,6 +161,10 @@ a.link:focus {
     z-index: 9999;
 }
 
+.carta {
+    cursor: pointer;
+}
+
 html body .mdi:before,
 html body .mdi-set {
     line-height: initial;

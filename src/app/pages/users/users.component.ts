@@ -23,9 +23,9 @@ export class UsersComponent implements OnInit {
     this.modalService.notificacion.subscribe(resp => { this.cargarUsuarios(); });
   }
 
-  mostrarModal(id: string, tipo: string) {
+  mostrarModal(id: string, tipo: string, img: string) {
     if (tipo === 'upload') {
-      this.modalService.mostrarModal('usuarios', id);
+      this.modalService.mostrarModal('usuarios', id, img);
     } else if (tipo === 'user') {
       this.modalUser.mostrarModal();
     }
@@ -100,6 +100,10 @@ export class UsersComponent implements OnInit {
   }
 
   actualizarUsuario(usuario: Usuario) {
+    if (usuario._id === this.usuariosService.usuario._id) {
+      Swal.fire('No se puede actualizar el usuario', 'Esta acción no está permitida para el usuario', 'error');
+      return;
+    }
     this.usuariosService.modificarUsuario(usuario).subscribe();
   }
 

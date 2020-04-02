@@ -75,12 +75,6 @@ export class RecipesService {
       map( (resp: any) => {
         Swal.fire('Receta creada', '<p>Nombre: ' + receta.nombre + '</p>', 'success');
         return resp.receta;
-      }),
-      catchError( err => {
-        if (!this.auth.checkToken(err)) {
-          this.userService.logout();
-        }
-        return throwError(err);
       })
     );
   }
@@ -88,10 +82,6 @@ export class RecipesService {
  cambiarImagen(receta: Recipe, file: File) {
     this.uploadService.subirArchivo(file, 'recetas', receta._id).then( (resp: any) => {
       receta.imagen = JSON.parse(resp).receta.imagen;
-    }).catch( err => {
-      if (!this.auth.checkToken(err)) {
-        this.userService.logout();
-      }
     });
   }
 }

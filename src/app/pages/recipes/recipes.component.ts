@@ -33,6 +33,7 @@ export class RecipesComponent implements OnInit {
       );
       this.total = resp.total;
       this.cargando = false;
+      console.log(this.recetas);
     });
   }
 

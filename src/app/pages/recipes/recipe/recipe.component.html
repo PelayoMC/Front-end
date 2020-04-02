@@ -41,11 +41,12 @@
                                     <mat-expansion-panel *ngFor="let ing of receta?.ingredientes; let i = index">
                                         <mat-expansion-panel-header>
                                             <mat-panel-title>
-                                                <b [ngClass]="color(ing)">{{ ing.nombre }}</b>
+                                                <label *ngIf="ing.tipo == 'Principal'" class="label label-danger">Principal</label>
+                                                <label *ngIf="ing.tipo == 'Secundario'" class="label label-info">Secundario</label>
                                             </mat-panel-title>
                                             <mat-panel-description>
-                                                <label *ngIf="ing.tipo == 'Principal'" class="label label-danger">Principal</label> &nbsp;
-                                                <label *ngIf="ing.tipo == 'Secundario'" class="label label-info">Secundario</label>
+
+                                                <b [ngClass]="color(ing)">{{ ing.nombre }}</b>
                                             </mat-panel-description>
                                         </mat-expansion-panel-header>
                                         <div class="row">
@@ -56,15 +57,15 @@
                                                 {{ ing.cantidad }} {{ ing.unidades }}
                                             </div>
                                         </div>
-                                        <div *ngIf="sustituibles.length != 0">
+                                        <div *ngIf="(sustituibles.length != 0) && (sustituibles[i] != null)">
                                             <hr>
                                             <mat-expansion-panel>
                                                 <mat-expansion-panel-header>
                                                     <mat-panel-title>
-                                                        <b class="text-warning">{{ sustituibles[i] }}</b>
+                                                        <label class="label label-warning">Sustituible</label>
                                                     </mat-panel-title>
                                                     <mat-panel-description>
-                                                        <label class="label label-warning">Sustituible</label>
+                                                        <b class="text-warning">{{ sustituibles[i] }}</b>
                                                     </mat-panel-description>
                                                 </mat-expansion-panel-header>
                                                 <div class="row">
