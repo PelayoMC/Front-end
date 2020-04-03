@@ -28,11 +28,11 @@ export class RecipesService {
     );
   }
 
-  getRecipes(from: number) {
-    let url = URL_SERVICIOS + '/receta?from=' + from;
+  getRecipes(from: number, limit: number) {
+    let url = URL_SERVICIOS + '/receta?from=' + from + '&limit=' + limit;
     return this.http.get(url).pipe(
       map( (resp: any) => {
-        return resp.recetas;
+        return resp;
       })
     );
   }
@@ -53,17 +53,16 @@ export class RecipesService {
     url += '?token=' + localStorage.token;
     return this.http.put(url, ings).pipe(
       map( (resp: any) => {
-        console.log('Retornando receta');
         return resp.receta;
       })
     );
   }
 
-  buscarRecetas(termino: string) {
-    let url = URL_SERVICIOS + '/busqueda/receta/' + termino;
+  buscarRecetas(termino: string, from: number, limit: number) {
+    let url = URL_SERVICIOS + '/busqueda/receta/' + termino + '?from=' + from + '&limit=' + limit;
     return this.http.get(url).pipe(
       map(  (resp: any) => {
-        return resp.coleccion;
+        return resp;
       })
     );
   }

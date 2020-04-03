@@ -26,7 +26,6 @@ export class RecipeCardComponent implements OnInit {
   // card border border-primary
 
   border() {
-    console.log(this.receta.nivel);
     switch (this.receta.nivel) {
       case 'FACIL': return 'card border border-success';
       case 'MEDIO': return 'card border border-warning';

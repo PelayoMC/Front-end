@@ -88,7 +88,6 @@ export class UsersService {
   }
 
   logout() {
-    console.log('CERRANDO');
     this.token = '';
     this.usuario = null;
     localStorage.removeItem('token');
@@ -173,7 +172,6 @@ export class UsersService {
       this.guardarStorage(id, this.token, this.usuario);
       Swal.fire('Imagen actualizada', this.usuario.email, 'success');
     }).catch( err => {
-      console.log(err);
       Swal.fire('Imagen no actualizada', this.usuario.email, 'error');
     });
   }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Ingredient } from '../../../models/ingredient.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { RecipesService } from '../../../service/recipes/recipes.service';
-import { IngredientsService } from '../../../service/ingredients/ingredients.service';
 import { IngredientRecipe } from '../../../models/recipe.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RecipesService, IngredientsService, SustValidatorService } from '../../../service/service.index';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,14 +16,15 @@ export class CreateIngsRecipeComponent implements OnInit {
   form: FormGroup;
   ingredients: IngredientRecipe[] = [];
 
-  constructor(private fb: FormBuilder, private activated_route: ActivatedRoute, public recipesService: RecipesService, public ingsService: IngredientsService, public router: Router) {
-  }
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
+              public recipesService: RecipesService, public ingsService: IngredientsService,
+              public router: Router, public validador: SustValidatorService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
       ingredientes: this.fb.array([])
     });
-    this.activated_route.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
       this.idReceta = params['id'];
       this.recipesService.getIngredients(this.idReceta).subscribe((resp: IngredientRecipe[]) => {
         this.ingredients = resp;
@@ -36,7 +36,7 @@ export class CreateIngsRecipeComponent implements OnInit {
   cargarIngredientes() {
     for (const ing of this.ingredients) {
       (this.form.get('ingredientes') as FormArray).push(
-        this.fb.control('', [Validators.required, Validators.minLength(3)])
+        this.fb.control('', [this.validador.sustValid])
       );
     }
   }
@@ -51,8 +51,11 @@ export class CreateIngsRecipeComponent implements OnInit {
       return;
     }
     this.ingsService.crearIngredientes(this.form.value.ingredientes).subscribe((resp: Ingredient[]) => {
-      for (let i = 0; i < resp.length; i++) {
-        this.ingredients[i].ingredienteSustituible = resp[i]._id;
+      let a = 0;
+      for (let i = 0; i < this.ingredients.length; i++) {
+        if (this.form.value.ingredientes[i] !== '') {
+          this.ingredients[i].ingredienteSustituible = resp[a++]._id;
+        }
       }
       this.modReceta();
     });
@@ -63,5 +66,9 @@ export class CreateIngsRecipeComponent implements OnInit {
       Swal.fire('Ingredientes añadidos', 'Los ingredientes sustituibles se han añadido a los existentes de la receta correctamente', 'success');
       this.router.navigate(['/recipes']);
     });
+  }
+
+  ingredienteInvalido(i: number) {
+    return (this.form.get('ingredientes') as FormArray).controls[i].invalid;
   }
 }

@@ -41,7 +41,7 @@ export class UserComponent implements OnInit {
 
     let reader = new FileReader();
     let url = reader.readAsDataURL(archivo);
-    reader.onloadend = () => {this.imgTemp = reader.result.toString(); console.log(reader.result.toString());}
+    reader.onloadend = () => this.imgTemp = reader.result.toString();
   }
 
   changeImage() {

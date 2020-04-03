@@ -9,4 +9,5 @@ export { SidebarService } from './shared/sidebar.service';
 export { SharedService } from './shared/shared.service';
 export { UploadImageService } from './upload/upload-image.service';
 export { UsersService } from './users/users.service';
+export { SustValidatorService } from './validators/sust-validator.service';
 export { GeneralServiceService } from './general-service.service';

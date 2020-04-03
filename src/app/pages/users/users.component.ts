@@ -23,9 +23,13 @@ export class UsersComponent implements OnInit {
     this.modalService.notificacion.subscribe(resp => { this.cargarUsuarios(); });
   }
 
-  mostrarModal(id: string, tipo: string, img: string) {
+  mostrarModal(id: string, tipo: string, img: string, usuario: Usuario) {
     if (tipo === 'upload') {
-      this.modalService.mostrarModal('usuarios', id, img);
+      if (usuario.email === this.usuariosService.usuario.email) {
+        Swal.fire('Error', 'Cambie su imagen desde su perfil de usuario', 'error');
+      } else {
+        this.modalService.mostrarModal('usuarios', id, img);
+      }
     } else if (tipo === 'user') {
       this.modalUser.mostrarModal();
     }
@@ -42,7 +46,6 @@ export class UsersComponent implements OnInit {
 
   cambiarDesde(valor: number) {
     let value = this.from + valor;
-    console.log(value);
     if (value >= this.total || value < 0) {
       return;
     }

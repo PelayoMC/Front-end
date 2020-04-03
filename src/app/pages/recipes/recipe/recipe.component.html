@@ -59,24 +59,15 @@
                                         </div>
                                         <div *ngIf="(sustituibles.length != 0) && (sustituibles[i] != null)">
                                             <hr>
-                                            <mat-expansion-panel>
-                                                <mat-expansion-panel-header>
-                                                    <mat-panel-title>
-                                                        <label class="label label-warning">Sustituible</label>
-                                                    </mat-panel-title>
-                                                    <mat-panel-description>
-                                                        <b class="text-warning">{{ sustituibles[i] }}</b>
-                                                    </mat-panel-description>
-                                                </mat-expansion-panel-header>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <b>Cantidad: </b>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        {{ ing.cantidad }} {{ ing.unidades }}
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label class="label label-warning">Sustituible</label>
                                                 </div>
-                                            </mat-expansion-panel>
+                                                <div class="col-7">
+                                                    <b class="text-warning">{{ sustituibles[i] }}</b>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </mat-expansion-panel>
                                 </mat-accordion>

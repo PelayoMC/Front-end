@@ -3,20 +3,22 @@ import { PagesComponent } from './pages.component';
 import { MainComponent } from './main/main.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
-import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
-import { UsersComponent } from './users/users.component';
-import { UserComponent } from './users/user/user.component';
 import { VerifyTokenGuardGuard } from '../service/guards/verify-token-guard.guard';
+import { IngredientsComponent } from './ingredients/ingredients.component';
+import { IntolerancesComponent } from './intolerances/intolerances.component';
 
 
 const routes: Routes = [
     {
         path: '',
         component: PagesComponent,
+        canActivate: [VerifyTokenGuardGuard],
         children: [
-          { path: 'home', component: MainComponent, canActivate: [VerifyTokenGuardGuard], data: { titulo: 'Inicio' } },
+          { path: 'home', component: MainComponent, data: { titulo: 'Inicio' } },
           { path: 'recipes', component: RecipesComponent, data: { titulo: 'Recetas' } },
           { path: 'recipe/:id', component: RecipeComponent, data: { titulo: 'Receta' } },
+          { path: 'ingredients', component: IngredientsComponent, data: { titulo: 'Ingredientes' } },
+          { path: 'intolerances', component: IntolerancesComponent, data: { titulo: 'Intolerancias' } },
           { path: '', pathMatch: 'full', redirectTo: '/home'}
         ]
     }

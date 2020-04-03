@@ -22,7 +22,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-x:auto;">
-                <h3 class="card-title">Usuarios registrados (<small>{{ total }}</small>) &nbsp; <button (click)="mostrarModal('','user')" matTooltip="Añadir usuario" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
+                <h3 class="card-title">Usuarios registrados (<small>{{ total }}</small>) &nbsp; <button (click)="mostrarModal('','user', '', null)" matTooltip="Añadir usuario" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -37,7 +37,7 @@
                     <tbody>
                         <tr *ngFor="let usuario of usuarios">
                             <td>
-                                <img (click)="mostrarModal(usuario._id,'upload', usuario.imagen)" [src]="usuario.imagen | image" class="img-users-small img-circle">
+                                <img (click)="mostrarModal(usuario._id,'upload', usuario.imagen, usuario)" [src]="usuario.imagen | image" class="img-users-small img-circle">
                             </td>
                             <td> {{ usuario.email }} </td>
                             <td> {{ usuario.nombre }} </td>

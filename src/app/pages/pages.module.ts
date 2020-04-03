@@ -9,6 +9,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Rutas
 import { PAGE_ROUTES } from './pages-routing.module';
@@ -26,6 +27,8 @@ import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.com
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { ModalCreateUserComponent } from '../components/modal-create-user/modal-create-user.component';
 import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
+import { IntolerancesComponent } from './intolerances/intolerances.component';
 
 
 @NgModule({
@@ -37,6 +40,8 @@ import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-r
         RecipeCardComponent,
         CreateRecipeComponent,
         CreateIngsRecipeComponent,
+        IngredientsComponent,
+        IntolerancesComponent,
         UsersComponent,
         UserComponent,
         ModalUploadComponent,
@@ -56,7 +61,8 @@ import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-r
         PipeModule,
         MatTooltipModule,
         MatExpansionModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        NgbPaginationModule
       ]
 })
 export class PageModule {}

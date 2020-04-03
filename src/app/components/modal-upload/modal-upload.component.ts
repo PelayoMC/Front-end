@@ -11,7 +11,6 @@ import { UsersService } from '../../service/users/users.service';
 })
 export class ModalUploadComponent implements OnInit {
   imgUpload: any;
-  imgTemp: string;
 
   constructor(public carga: UploadImageService, public modalService: ModalUploadService, public userService: UsersService) { }
 
@@ -21,15 +20,11 @@ export class ModalUploadComponent implements OnInit {
   upload() {
     this.carga.subirArchivo(this.imgUpload, this.modalService.tipo, this.modalService.id)
     .then( (resp: any) => {
-      if (this.modalService.tipo === 'usuarios') {
-        this.userService.usuario.imagen = JSON.parse(resp).usuario.imagen;
-        this.userService.guardarStorage(this.modalService.id, this.userService.token, this.userService.usuario);
-        Swal.fire('Imagen actualizada', this.userService.usuario.email, 'success');
-      }
+      Swal.fire('Imagen actualizada', 'La imagen se ha actualizado con éxito', 'success');
       this.modalService.notificacion.emit(resp);
       this.cerrarModal();
     }).catch( err => {
-      console.log('ERROR');
+      Swal.fire('Imagen no actualizada', 'Error al actualizar la imagen', 'error');
     });
   }
 

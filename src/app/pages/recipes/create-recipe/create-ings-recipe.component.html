@@ -17,11 +17,12 @@
                                         <span *ngIf="!ing.ingredienteSustituible">Haga click para añadir un ingrediente de sustitución</span>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
-                                <div class="form-group">
+                                <div #inputGroup class="form-group">
                                     <label for="input">Nombre del ingrediente sustituible</label>
                                     <div class="input-group">
-                                        <input [formControlName]="i" #input class="form-control" type="text">
+                                        <input [formControlName]="i" class="form-control" [class.is-invalid]="ingredienteInvalido(i)" type="text">
                                     </div>
+                                    <small *ngIf="ingredienteInvalido(i)" class="text-danger">El nombre ha de tener más de 3 letras</small>
                                 </div>
                             </mat-expansion-panel>
                         </mat-accordion>
@@ -36,3 +37,10 @@
         </div>
     </div>
 </div>
+<!--
+<pre>
+    estado: {{ form.valid }}
+    <br>
+    {{ form.value | json }}
+    </pre>
+-->

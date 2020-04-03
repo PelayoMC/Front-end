@@ -5,13 +5,14 @@ import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
 import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
+import { VerifyTokenGuardGuard } from '../service/guards/verify-token-guard.guard';
 
 
 const routes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        canActivate: [LoginGuardGuard],
+        canActivate: [LoginGuardGuard, VerifyTokenGuardGuard],
         children: [
           { path: 'addRecipe', component: CreateRecipeComponent, data: { titulo: 'Añadir receta' } },
           { path: 'addIngsRecipe/:id', component: CreateIngsRecipeComponent, data: { titulo: 'Añadir sustituibles' } },

@@ -1,6 +1,6 @@
 <div class="col-12">
-    <div class="card border border-primary carta" (click)="verReceta()">
-        <img class="card-img-top hoverable" [src]='receta.imagen | image: "receta"' alt="Card image cap">
+    <div class="card border border-primary pointer" (click)="verReceta()">
+        <img class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{ receta.nombre }}</h5>
             <p class="card-text"><b>Dificultad:</b> &nbsp;

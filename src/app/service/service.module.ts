@@ -12,7 +12,8 @@ import {
   SharedService,
   UploadImageService,
   UsersService,
-  GeneralServiceService
+  GeneralServiceService,
+  SustValidatorService
 } from './service.index';
 
 
@@ -34,7 +35,8 @@ import {
     SharedService,
     UploadImageService,
     UsersService,
-    GeneralServiceService
+    GeneralServiceService,
+    SustValidatorService
   ]
 })
 export class ServiceModule { }
