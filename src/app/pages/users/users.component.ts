@@ -104,10 +104,12 @@ export class UsersComponent implements OnInit {
 
   actualizarUsuario(usuario: Usuario) {
     if (usuario._id === this.usuariosService.usuario._id) {
-      Swal.fire('No se puede actualizar el usuario', 'Esta acción no está permitida para el usuario', 'error');
+      Swal.fire('No se puede actualizar el usuario', 'Esta acción no está permitida para sí mismo', 'error');
       return;
     }
-    this.usuariosService.modificarUsuario(usuario).subscribe();
+    this.usuariosService.modificarUsuario(usuario).subscribe(resp => {
+      this.cargarUsuarios();
+    });
   }
 
 }

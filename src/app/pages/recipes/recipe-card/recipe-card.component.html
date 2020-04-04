@@ -3,7 +3,7 @@
         <img class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{ receta.nombre }}</h5>
-            <p class="card-text"><b>Dificultad:</b> &nbsp;
+            <p class="card-text">
                 <label *ngIf="receta.nivel == 'Facil'" class="label label-success">Facil</label>
                 <label *ngIf="receta.nivel == 'Medio'" class="label label-warning">Medio</label>
                 <label *ngIf="receta.nivel == 'Dificil'" class="label label-danger">Dificil</label></p>

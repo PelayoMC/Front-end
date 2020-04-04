@@ -39,8 +39,8 @@
                             <td>
                                 <img (click)="mostrarModal(usuario._id,'upload', usuario.imagen, usuario)" [src]="usuario.imagen | image" class="img-users-small img-circle">
                             </td>
-                            <td> {{ usuario.email }} </td>
-                            <td> {{ usuario.nombre }} </td>
+                            <td class="long-td"> <input [disabled]="usuario.email === usuariosService.usuario.email" class="form-control" type="text" [(ngModel)]="usuario.email"> </td>
+                            <td class="medium-td"> <input [disabled]="usuario.email === usuariosService.usuario.email" class="form-control" type="text" [(ngModel)]="usuario.nombre"></td>
                             <td class="medium-td">
                                 <select [(ngModel)]="usuario.rol" [disabled]="usuario.email === usuariosService.usuario.email" name="rol" class="form-control">
                                     <option value="ADMIN">Administrador</option>

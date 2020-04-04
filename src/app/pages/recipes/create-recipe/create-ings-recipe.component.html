@@ -10,11 +10,11 @@
                             <mat-expansion-panel *ngFor="let ing of ingredients; let i = index" [disabled]="ing.ingredienteSustituible">
                                 <mat-expansion-panel-header>
                                     <mat-panel-title>
-                                        <b>Ingrediente: {{ ing.nombre }}</b>
+                                        <b>{{ ing.nombre }}</b>
                                     </mat-panel-title>
                                     <mat-panel-description>
-                                        <span *ngIf="ing.ingredienteSustituible" class="text-danger">El ingrediente ya posee un ingrediente sustituible</span>
-                                        <span *ngIf="!ing.ingredienteSustituible">Haga click para añadir un ingrediente de sustitución</span>
+                                        <span *ngIf="ing.ingredienteSustituible" class="text-danger">Ya existe un ingrediente sustituible</span>
+                                        <span *ngIf="!ing.ingredienteSustituible">Añadir un ingrediente de sustitución</span>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
                                 <div #inputGroup class="form-group">
@@ -39,8 +39,8 @@
 </div>
 <!--
 <pre>
-    estado: {{ form.valid }}
-    <br>
-    {{ form.value | json }}
-    </pre>
+estado: {{ form.valid }}
+<br>
+{{ form.value | json }}
+</pre>
 -->

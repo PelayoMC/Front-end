@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input #input (keyup)="buscarRecetas(input.value, from)" type="text" class="form-control" placeholder="Buscar receta">
+                <input #input (keyup)="buscarRecetas(input.value, 0)" type="text" class="form-control" placeholder="Buscar receta">
             </div>
         </div>
     </div>
@@ -29,4 +29,4 @@
         </div>
     </div>
 </div>
-<ngb-pagination class="d-flex justify-content-center" (pageChange)="cambiarPag($event)" [pageSize]="tam" [collectionSize]="5" [(page)]="from" [boundaryLinks]="true"></ngb-pagination>
+<ngb-pagination class="d-flex justify-content-center" (pageChange)="cambiarPag($event)" [pageSize]="tam" [collectionSize]="total" [(page)]="from" [boundaryLinks]="true"></ngb-pagination>

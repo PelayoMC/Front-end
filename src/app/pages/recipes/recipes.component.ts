@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RecipesService } from 'src/app/service/recipes/recipes.service';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
@@ -10,10 +10,10 @@ import { Recipe } from 'src/app/models/recipe.model';
 })
 export class RecipesComponent implements OnInit {
 
-  @ViewChild('input', { static: true }) busqueda: HTMLInputElement;
+  @ViewChild('input', { static: true }) busqueda: ElementRef;
   recetas: Recipe[] = [];
   from: number = 1;
-  tam: number = 12;
+  tam: number = 1;
   total: number;
   cargando: boolean = true;
 
@@ -45,7 +45,7 @@ export class RecipesComponent implements OnInit {
       return;
     }
     this.cargando = true;
-    this.recipesService.buscarRecetas(termino, --valor, this.tam).subscribe(
+    this.recipesService.buscarRecetas(termino, valor, this.tam).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;
         this.recetas = recetas;
@@ -56,13 +56,9 @@ export class RecipesComponent implements OnInit {
   }
 
   cambiarPag(event: any) {
-    console.log(this.busqueda.value);
-    console.log(this.busqueda.value != null);
-    if (this.busqueda.value != null) {
-      console.log('BUSCO');
-      this.buscarRecetas(this.busqueda.value, event);
+    if (this.busqueda.nativeElement.value != null) {
+      this.buscarRecetas(this.busqueda.nativeElement.value, --event * this.tam);
     } else {
-      console.log('NO BUSCO');
       this.cargarRecetas(--event * this.tam);
     }
   }

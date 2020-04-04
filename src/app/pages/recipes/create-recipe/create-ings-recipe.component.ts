@@ -25,7 +25,7 @@ export class CreateIngsRecipeComponent implements OnInit {
       ingredientes: this.fb.array([])
     });
     this.activatedRoute.params.subscribe(params => {
-      this.idReceta = params['id'];
+      this.idReceta = params.id;
       this.recipesService.getIngredients(this.idReceta).subscribe((resp: IngredientRecipe[]) => {
         this.ingredients = resp;
         this.cargarIngredientes();
@@ -50,6 +50,10 @@ export class CreateIngsRecipeComponent implements OnInit {
       Swal.fire('Error', 'Rellene los campos correspondientes', 'error');
       return;
     }
+    if (this.findDuplicates(this.form.value.ingredientes).length > 0) {
+      Swal.fire('Error', 'No se permite añadir ingredientes duplicados', 'error');
+      return;
+    }
     this.ingsService.crearIngredientes(this.form.value.ingredientes).subscribe((resp: Ingredient[]) => {
       let a = 0;
       for (let i = 0; i < this.ingredients.length; i++) {
@@ -70,5 +74,16 @@ export class CreateIngsRecipeComponent implements OnInit {
 
   ingredienteInvalido(i: number) {
     return (this.form.get('ingredientes') as FormArray).controls[i].invalid;
+  }
+
+  findDuplicates(arr) {
+    let sorted_arr = arr.slice().sort();
+    const results = [];
+    for (let i = 0; i < sorted_arr.length - 1; i++) {
+      if (sorted_arr[i + 1] === sorted_arr[i] && sorted_arr[i] !== '') {
+        results.push(sorted_arr[i]);
+      }
+    }
+    return results;
   }
 }
