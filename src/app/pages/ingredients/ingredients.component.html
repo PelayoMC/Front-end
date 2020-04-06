@@ -1,1 +1,52 @@
-<p>ingredients works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input #input (keyup)="buscarIngredientes(input.value)" type="text" class="form-control" placeholder="Buscar ingredientes">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row animated fadeIn" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            <strong> CARGANDO </strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body" style="overflow-x:auto;">
+                <h3 class="card-title">Ingredientes registrados (<small>{{ total }}</small>) &nbsp; <button matTooltip="Añadir ingredientes" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ing of ingredientes">
+                            <td>
+                                <input *ngIf="ing.modificando" class="form-control" [value]="ing.ingrediente.nombre">
+                                <span *ngIf="!ing.modificando"> {{ing.ingrediente.nombre}} </span>
+                            </td>
+                            <td class="text-nowrap small-td">
+                                <button (click)="ing.modificando = !ing.modificando" class="btn btn-primary" matTooltip="Modificar ingrediente"><i class="fa fa-wrench"></i></button> &nbsp;
+                                <button [disabled]="!ing.modificando" class="btn btn-info" matTooltip="Guardar ingrediente"><i class="fa fa-save"></i></button> &nbsp;
+                                <button class="btn btn-danger" matTooltip="Borrar ingrediente"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button [disabled]="(from - 7) >= total || (from - 7) < 0" (click)="cambiarDesde(-7)" class="btn btn-secondary">Anteriores</button> &nbsp;
+                <button [disabled]="(from + 7) >= total || (from + 7) < 0" (click)="cambiarDesde(7)" class="btn btn-secondary">Siguientes</button>
+            </div>
+        </div>
+    </div>
+</div>

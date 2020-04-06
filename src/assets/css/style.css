@@ -2334,6 +2334,10 @@ ul.list-inline li {
 Table td vertical middle
 *******************/
 
+td.small-td {
+    width: 20px;
+}
+
 td.medium-td {
     min-width: 150px;
 }

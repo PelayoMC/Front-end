@@ -152,7 +152,7 @@ export class CreateRecipeComponent implements OnInit {
   crearReceta() {
     this.recipe = new Recipe();
     Object.assign(this.recipe, this.form.value);
-    this.ingredientService.obtenerIngs(this.recipe.ingredientes).subscribe(resp => {
+    this.ingredientService.obtenerIngsRecipe(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
       this.recipeService.crearReceta(this.recipe).subscribe(resp => {
         this.recipe._id = resp._id;

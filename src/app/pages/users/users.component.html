@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input #input (keyup)="buscarUsuarios(input.value)" type="text" class="form-control" placeholder="Buscar usuario">
+                <input #input (keyup)="buscarUsuarios(input.value)" type="search" class="form-control" placeholder="Buscar usuario">
             </div>
         </div>
     </div>
@@ -37,29 +37,36 @@
                     <tbody>
                         <tr *ngFor="let usuario of usuarios">
                             <td>
-                                <img (click)="mostrarModal(usuario._id,'upload', usuario.imagen, usuario)" [src]="usuario.imagen | image" class="img-users-small img-circle">
+                                <img (click)="mostrarModal(usuario.usuario._id,'upload', usuario.usuario.imagen, usuario.usuario)" [src]="usuario.usuario.imagen | image" class="img-users-small img-circle">
                             </td>
-                            <td class="long-td"> <input [disabled]="usuario.email === usuariosService.usuario.email" class="form-control" type="text" [(ngModel)]="usuario.email"> </td>
-                            <td class="medium-td"> <input [disabled]="usuario.email === usuariosService.usuario.email" class="form-control" type="text" [(ngModel)]="usuario.nombre"></td>
+                            <td class="long-td">
+                                <input *ngIf="usuario.modificando" [disabled]="usuario.usuario.email === usuariosService.usuario.email" class="form-control" type="text" [(ngModel)]="usuario.usuario.nombre">
+                                <span *ngIf="!usuario.modificando"> {{ usuario.usuario.nombre }} </span>
+                            </td>
                             <td class="medium-td">
-                                <select [(ngModel)]="usuario.rol" [disabled]="usuario.email === usuariosService.usuario.email" name="rol" class="form-control">
+                                <input *ngIf="usuario.modificando" [disabled]="usuario.usuario.email === usuariosService.usuario.email" class="form-control" type="text" [(ngModel)]="usuario.usuario.email">
+                                <span *ngIf="!usuario.modificando"> {{ usuario.usuario.email }} </span>
+                            </td>
+                            <td class="medium-td">
+                                <select [(ngModel)]="usuario.usuario.rol" [disabled]="usuario.usuario.email === usuariosService.usuario.email || !usuario.modificando" name="rol" class="form-control">
                                     <option value="ADMIN">Administrador</option>
                                     <option value="USER">Usuario</option>
                                 </select>
                             </td>
                             <td>
-                                <label *ngIf="usuario.google" class="label label-danger">Google</label>
-                                <label *ngIf="!usuario.google" class="label label-info">Normal</label>
+                                <label *ngIf="usuario.usuario.google" class="label label-danger">Google</label>
+                                <label *ngIf="!usuario.usuario.google" class="label label-info">Normal</label>
                             </td>
                             <td class="text-nowrap">
-                                <button (click)="actualizarUsuario(usuario)" class="btn btn-info"><i class="fa fa-save"></i></button> &nbsp;
-                                <button (click)="borrarUsuario(usuario)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                <button [disabled]="usuario.usuario.email === usuariosService.usuario.email" (click)="usuario.modificando = !usuario.modificando" class="btn btn-primary" matTooltip="Modificar ingrediente"><i class="fa fa-wrench"></i></button>                                &nbsp;
+                                <button [disabled]="!usuario.modificando" (click)="actualizarUsuario(usuario.usuario)" class="btn btn-info" matTooltip="Guardar usuario"><i class="fa fa-save"></i></button> &nbsp;
+                                <button [disabled]="usuario.usuario.email === usuariosService.usuario.email" (click)="borrarUsuario(usuario.usuario)" class="btn btn-danger" matTooltip="Borrar usuario"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <button (click)="cambiarDesde(-7)" class="btn btn-secondary">Anteriores</button> &nbsp;
-                <button (click)="cambiarDesde(7)" class="btn btn-secondary">Siguientes</button>
+                <button [disabled]="(from - 7) >= total || (from - 7) < 0" (click)="cambiarDesde(-7)" class="btn btn-secondary">Anteriores</button> &nbsp;
+                <button [disabled]="(from + 7) >= total || (from + 7) < 0" (click)="cambiarDesde(7)" class="btn btn-secondary">Siguientes</button>
             </div>
         </div>
     </div>

@@ -60,7 +60,11 @@ export class UsersService {
         this.guardarStorage(resp.id, resp.token, resp.usuario);
         return resp.id;
       }
-    ));
+    ),
+    catchError( err => {
+      Swal.fire('Error', 'Error usar el login de google', 'error');
+      return throwError(err);
+    }));
   }
 
   login(user: Usuario, recuerdame: boolean) {
@@ -139,20 +143,33 @@ export class UsersService {
         }
         Swal.fire('Usuario modificado', usuario.email, 'success');
         return resp.usuario;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al modificar al usuario', 'error');
+        return throwError(err);
       })
     );
   }
 
   cargarUsuarios(from: number = 0) {
     let url = URL_SERVICIOS + '/usuario?from=' + from;
-    return this.http.get(url);
-  }
-
-  buscarUsuarios(termino: string) {
-    let url = URL_SERVICIOS + '/busqueda/usuario/' + termino;
     return this.http.get(url).pipe(
       map(  (resp: any) => {
-        return resp.coleccion;
+        console.log(resp);
+        return resp;
+      })
+    );
+  }
+
+  buscarUsuarios(termino: string, from: number) {
+    let url = URL_SERVICIOS + '/busqueda/usuario/' + termino + '?from=' + from;
+    return this.http.get(url).pipe(
+      map(  (resp: any) => {
+        return resp;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al buscar los usuarios', 'error');
+        return throwError(err);
       })
     );
   }
@@ -162,6 +179,10 @@ export class UsersService {
     return this.http.delete(url).pipe(
       map(  (resp: any) => {
         return resp.usuario;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al borrar al usuario', 'error');
+        return throwError(err);
       })
     );
   }

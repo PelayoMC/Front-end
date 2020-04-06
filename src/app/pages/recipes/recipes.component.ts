@@ -13,7 +13,7 @@ export class RecipesComponent implements OnInit {
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   recetas: Recipe[] = [];
   from: number = 1;
-  tam: number = 1;
+  tam: number = 9;
   total: number;
   cargando: boolean = true;
 
