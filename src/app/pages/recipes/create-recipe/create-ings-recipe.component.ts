@@ -67,7 +67,8 @@ export class CreateIngsRecipeComponent implements OnInit {
 
   modReceta() {
     this.recipesService.guardarIngredientes(this.idReceta, this.ingredients).subscribe((resp: Ingredient[]) => {
-      Swal.fire('Ingredientes añadidos', 'Los ingredientes sustituibles se han añadido a los existentes de la receta correctamente', 'success');
+      Swal.fire({icon: 'success',
+      title: 'Ingredientes añadidos'});
       this.router.navigate(['/recipes']);
     });
   }

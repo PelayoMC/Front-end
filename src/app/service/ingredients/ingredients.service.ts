@@ -48,6 +48,47 @@ export class IngredientsService {
     );
   }
 
+  modificarIngrediente(ingredient: Ingredient) {
+    let url = URL_SERVICIOS + '/ingrediente/' + ingredient._id;
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, ingredient).pipe(
+      map( (resp: any) => {
+        Swal.fire('Ingrediente modificado', ingredient.nombre, 'success');
+        return resp.ingrediente;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al modificar el ingrediente', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  borrarIngrediente(id: string) {
+    let url = URL_SERVICIOS + '/ingrediente/' + id + '?token=' + localStorage.token;
+    return this.http.delete(url).pipe(
+      map(  (resp: any) => {
+        return resp.ingrediente;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al borrar el ingrediente', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  obtenerRecetas(ings: any) {
+    let url = URL_SERVICIOS + '/ingrediente/recetas';
+    return this.http.post(url, ings).pipe(
+      map(  (resp: any) => {
+        return resp.resp;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al cargar las recetas', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
   crearIngredientes(nombres: string[]) {
     const names = {
       nombres

@@ -57,7 +57,7 @@
                                 <label *ngIf="usuario.usuario.google" class="label label-danger">Google</label>
                                 <label *ngIf="!usuario.usuario.google" class="label label-info">Normal</label>
                             </td>
-                            <td class="text-nowrap">
+                            <td class="text-nowrap small-td">
                                 <button [disabled]="usuario.usuario.email === usuariosService.usuario.email" (click)="usuario.modificando = !usuario.modificando" class="btn btn-primary" matTooltip="Modificar ingrediente"><i class="fa fa-wrench"></i></button>                                &nbsp;
                                 <button [disabled]="!usuario.modificando" (click)="actualizarUsuario(usuario.usuario)" class="btn btn-info" matTooltip="Guardar usuario"><i class="fa fa-save"></i></button> &nbsp;
                                 <button [disabled]="usuario.usuario.email === usuariosService.usuario.email" (click)="borrarUsuario(usuario.usuario)" class="btn btn-danger" matTooltip="Borrar usuario"><i class="fa fa-trash-o"></i></button>

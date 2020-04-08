@@ -33,18 +33,18 @@ export class CreateRecipeComponent implements OnInit {
 
   initialyze() {
     this.form = this.fb.group({
-      nombre: [null, Validators.required],
-      descripcion: [null, Validators.required],
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
       ingredientes: this.fb.array([
         this.fb.group({
-          nombre: [null, Validators.required],
+          nombre: ['', Validators.required],
           cantidad: [0, Validators.required],
           unidades: ['Sin unidades', Validators.required],
           tipo: ['Principal', Validators.required]
         }, Validators.required)
       ], Validators.required),
       pasos: this.fb.array([
-        [null, Validators.required]
+        ['', Validators.required]
       ]),
       nivel: ['Facil', Validators.required],
       calorias: this.fb.group({

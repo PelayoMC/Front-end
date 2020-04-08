@@ -43,6 +43,12 @@ export class UsersService {
     return ( this.token.length > 5 ) ? true : false;
   }
 
+  esAdmin() {
+    if (localStorage.getItem('usuario')) {
+      return this.usuario.rol === 'ADMIN';
+    }
+  }
+
   cargarStorage() {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');

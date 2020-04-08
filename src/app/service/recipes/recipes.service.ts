@@ -23,6 +23,7 @@ export class RecipesService {
         return resp.receta;
       }),
       catchError( err => {
+        Swal.fire('Error', 'Error al cargar la receta', 'error');
         return throwError(err.message);
       })
     );
