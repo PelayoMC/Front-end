@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
   constructor(public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
-    this.usuario = this.userService.usuario;
+    this.usuario = this.userService.usuario.value;
     this.modificando = 'false';
     this.form = new FormGroup({
       nombre: new FormControl({value: this.usuario.nombre, disabled: true}, Validators.required),

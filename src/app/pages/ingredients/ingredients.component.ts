@@ -5,6 +5,8 @@ import { IngredienteDecorator } from 'src/app/models/decorators/ingredient-decor
 import { Ingredient } from '../../models/ingredient.model';
 import Swal from 'sweetalert2';
 import { Recipe } from '../../models/recipe.model';
+import { Router } from '@angular/router';
+import { RecipesService } from '../../service/recipes/recipes.service';
 
 @Component({
   selector: 'app-ingredients',
@@ -20,7 +22,7 @@ export class IngredientsComponent implements OnInit {
   limit = 7;
   total = 0;
 
-  constructor(public ingredientesService: IngredientsService, public userService: UsersService) { }
+  constructor(public ingredientesService: IngredientsService, public recetasService: RecipesService, public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
     this.cargar();
@@ -87,10 +89,10 @@ export class IngredientsComponent implements OnInit {
     );
   }
 
-  borrarIngrediente(ingrediente: Ingredient) {
+  borrarIngrediente(ingrediente: Ingredient, recetas: any[]) {
    Swal.fire({
       title: '¿Borrar ingrediente?',
-      text: 'Está a punto de borrar el usuario ' + ingrediente.nombre,
+      text: 'Está a punto de borrar el ingrediente ' + ingrediente.nombre,
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
@@ -98,30 +100,45 @@ export class IngredientsComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        this.ingredientesService.borrarIngrediente(ingrediente._id).subscribe((resp: any) => {
-          if (resp.nombre === ingrediente.nombre) {
-            Swal.fire(
-              'Ingrediente borrado',
-              'El ingrediente ha sido borrado correctamente',
-              'success'
-            );
+        if (recetas.length > 0) {
+          Swal.fire({
+            title: '¿Borrar ingrediente?',
+            text: 'Si borra el ingrediente se borrarán las recetas a las que pertenece',
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Borrar',
+            reverseButtons: true
+          }).then((res) => {
+            if (res.value) {
+              this.ingredientesService.borrarIngrediente(ingrediente).subscribe((resp: any) => {
+                this.recetasService.borrarRecetas(recetas).subscribe(resp => {
+                  this.cargar();
+                });
+              });
+            }
+          });
+        } else {
+          this.ingredientesService.borrarIngrediente(ingrediente).subscribe((resp: any) => {
             this.cargar();
-          } else {
-            Swal.fire(
-              'Ingrediente no borrado',
-              'El ingrediente no se ha podido borrar correctamente',
-              'error'
-            );
-          }
-        });
+          });
+        }
       }
     });
+  }
+
+  mostrarIntro(valor) {
+    console.log(valor);
   }
 
   actualizarIngrediente(ingredient: Ingredient) {
     this.ingredientesService.modificarIngrediente(ingredient).subscribe(resp => {
       this.cargar();
     });
+  }
+
+  mostrarReceta(receta: Recipe) {
+    this.router.navigate(['/recipe', receta._id]);
   }
 
 }

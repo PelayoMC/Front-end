@@ -79,9 +79,34 @@ export class RecipesService {
     );
   }
 
- cambiarImagen(receta: Recipe, file: File) {
+  cambiarImagen(receta: Recipe, file: File) {
     this.uploadService.subirArchivo(file, 'recetas', receta._id).then( (resp: any) => {
       receta.imagen = JSON.parse(resp).receta.imagen;
     });
+  }
+
+  borrarReceta(id: string) {
+    let url = URL_SERVICIOS + '/receta/' + id;
+    url += '?token=' + localStorage.token;
+    return this.http.delete(url).pipe(
+      map( (resp: any) => {
+        return resp.receta;
+      })
+    );
+  }
+
+  borrarRecetas(recetas: any) {
+    let url = URL_SERVICIOS + '/receta?ids=';
+    for (let i = 0; i < (recetas.length - 1); i++) {
+      url += recetas[i]._id + '&ids=';
+    }
+    url += recetas[recetas.length - 1]._id + '&token=' + localStorage.token;
+    console.log('Enviamos');
+    console.log(url);
+    return this.http.delete(url).pipe(
+      map( (resp: any) => {
+        return resp.recetas;
+      })
+    );
   }
 }

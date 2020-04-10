@@ -63,10 +63,16 @@ export class IngredientsService {
     );
   }
 
-  borrarIngrediente(id: string) {
+  borrarIngrediente(ingrediente: any) {
+    const id = ingrediente._id;
     let url = URL_SERVICIOS + '/ingrediente/' + id + '?token=' + localStorage.token;
     return this.http.delete(url).pipe(
       map(  (resp: any) => {
+        if (resp.ingrediente.nombre === ingrediente.nombre) {
+          Swal.fire('Ingrediente borrado', 'El ingrediente ha sido borrado correctamente', 'success');
+        } else {
+          Swal.fire('Ingrediente no borrado', 'El ingrediente no se ha podido borrar correctamente', 'error');
+        }
         return resp.ingrediente;
       }),
       catchError( err => {

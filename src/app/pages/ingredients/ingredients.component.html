@@ -2,28 +2,37 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input #input (keyup)="buscarIngredientes(input.value)" type="search" class="form-control" placeholder="Buscar ingredientes">
+                <mat-form-field class="input-group mb-3">
+                    <mat-label>Buscar ingredientes</mat-label>
+                    <input matInput #input type="text" (keyup.enter)="buscarIngredientes(input.value)" autocomplete="off">
+                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIngredientes('')">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIngredientes(input.value)">
+                      <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
             </div>
         </div>
     </div>
 </div>
-<div class="row animated fadeIn" *ngIf="cargando">
-    <div class="col-12">
-        <div class="alert alert-warning text-center">
+<div class="row animated fadeIn " *ngIf="cargando ">
+    <div class="col-12 ">
+        <div class="alert alert-warning text-center ">
             <strong> CARGANDO </strong>
             <br>
-            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <i class="fa fa-refresh fa-spin fa-2x "></i>
             <br>
             <span>Espere por favor</span>
         </div>
     </div>
 </div>
-<div class="row" *ngIf="!cargando">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body" style="overflow-x:auto;">
-                <h3 class="card-title">Ingredientes registrados (<small>{{ total }}</small>)</h3>
-                <table class="table table-hover">
+<div class="row " *ngIf="!cargando && ingredientes.length > 0">
+    <div class="col-12 ">
+        <div class="card ">
+            <div class="card-body " style="overflow-x:auto; ">
+                <h3 class="card-title ">Ingredientes registrados (<small>{{ total }}</small>)</h3>
+                <table class="table table-hover ">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -35,14 +44,14 @@
                     <tbody>
                         <tr *ngFor="let ing of ingredientes; let i = index">
                             <td>
-                                <input *ngIf="ing.modificando" class="form-control" [(ngModel)]="ing.ingrediente.nombre">
-                                <span *ngIf="!ing.modificando"> {{ ing.ingrediente.nombre }} </span>
-                                <i *ngIf="!(extra[i].recetas.length > 0) && !(extra[i].sustituibles.length > 0)" matTooltip="Debería ser borrado dado que no está presente en ninguna receta" class="fa fa-info-circle"></i>
+                                <input *ngIf="ing.modificando " class="form-control " [(ngModel)]="ing.ingrediente.nombre ">
+                                <span *ngIf="!ing.modificando "> {{ ing.ingrediente.nombre }} </span>
+                                <i *ngIf="userService.esAdmin() && !(extra[i].recetas.length> 0) && !(extra[i].sustituibles.length > 0)" matTooltip="Debería ser borrado dado que no está presente en ninguna receta" class="fa fa-info-circle"></i>
                             </td>
                             <td>
                                 <div *ngIf="extra[i].recetas.length > 0" class="row">
-                                    <div *ngFor="let receta of extra[i].recetas">
-                                        <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" matTooltip="Mostrar receta" style="color:#ffffff;"></i></button> &nbsp;
+                                    <div *ngFor="let receta of extra[i].recetas" class="col-1">
+                                        <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" matTooltip="Mostrar receta" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
                                     </div>
                                 </div>
                                 <span *ngIf="!(extra[i].recetas.length > 0)"><small>No está presente en ninguna receta </small></span>
@@ -50,14 +59,14 @@
                             <td>
                                 <div *ngIf="extra[i].sustituibles.length > 0" class="row">
                                     <div *ngFor="let receta of extra[i].sustituibles">
-                                        <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" matTooltip="Mostrar receta" style="color:#ffffff;"></i></button> &nbsp;
+                                        <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" matTooltip="Mostrar receta" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
                                     </div>
                                 </div>
                             </td>
                             <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
                                 <button (click)="ing.modificando = !ing.modificando" class="btn btn-primary" matTooltip="Modificar ingrediente"><i class="fa fa-wrench"></i></button> &nbsp;
                                 <button [disabled]="!ing.modificando" (click)="actualizarIngrediente(ing.ingrediente)" class="btn btn-info" matTooltip="Guardar ingrediente"><i class="fa fa-save"></i></button> &nbsp;
-                                <button class="btn btn-danger" (click)="borrarIngrediente(ing.ingrediente)" matTooltip="Borrar ingrediente"><i class="fa fa-trash-o"></i></button>
+                                <button class="btn btn-danger" (click)="borrarIngrediente(ing.ingrediente, extra[i].recetas)" matTooltip="Borrar ingrediente"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -65,6 +74,16 @@
                 <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
                 <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="row " *ngIf="!cargando && ingredientes.length == 0">
+    <div class="col-12 ">
+        <div class="alert alert-warning text-center ">
+            <strong> No se han encontrado resultados </strong>
+            <br>
+            <i class="fa fa-question-circle"></i>
         </div>
     </div>
 </div>

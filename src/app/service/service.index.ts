@@ -2,6 +2,7 @@ export { AuthService } from './auth/auth.service';
 export { LoginGuardGuard } from './guards/login-guard.guard';
 export { VerifyTokenGuardGuard } from './guards/verify-token-guard.guard';
 export { IngredientsService } from './ingredients/ingredients.service';
+export { IntolerancesService } from './intolerances/intolerances.service';
 export { ModalCreateUserService } from './modals/modal-create-user.service';
 export { ModalUploadService } from './modals/modal-upload.service';
 export { RecipesService } from './recipes/recipes.service';

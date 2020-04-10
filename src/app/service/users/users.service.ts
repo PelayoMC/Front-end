@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 import { AuthService } from '../auth/auth.service';
 import { UploadImageService } from '../upload/upload-image.service';
+import { BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import Swal from 'sweetalert2';
@@ -16,11 +17,15 @@ import Swal from 'sweetalert2';
 })
 export class UsersService {
 
-  usuario: Usuario;
+  usuario: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(new Usuario());
   token: string;
 
   constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService, public auth: AuthService) {
     this.cargarStorage();
+  }
+
+  setUser(usuario: Usuario) {
+    this.usuario.next(usuario);
   }
 
   renuevaToken() {
@@ -45,17 +50,17 @@ export class UsersService {
 
   esAdmin() {
     if (localStorage.getItem('usuario')) {
-      return this.usuario.rol === 'ADMIN';
+      return this.usuario.value.rol === 'ADMIN';
     }
   }
 
   cargarStorage() {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
-      this.usuario = JSON.parse(localStorage.getItem('usuario'));
+      this.setUser(JSON.parse(localStorage.getItem('usuario')));
     } else {
       this.token = '';
-      this.usuario = null;
+      this.setUser(null);
     }
   }
 
@@ -90,19 +95,20 @@ export class UsersService {
         if (this.auth.checkToken(err)) {
           Swal.fire('Error al iniciar sesión', err.error.mensaje, 'error');
         } else {
-          this.logout();
+          this.logout('login');
         }
         return throwError(err);
       })
     );
   }
 
-  logout() {
+  logout(redireccion) {
+    redireccion = '/' + redireccion;
     this.token = '';
-    this.usuario = null;
+    this.setUser(null);
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
-    this.router.navigate(['/login']);
+    this.router.navigate([redireccion]);
   }
 
   recordar(recuerdame: boolean) {
@@ -118,7 +124,7 @@ export class UsersService {
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
 
-    this.usuario = usuario;
+    this.setUser(usuario);
     this.token = token;
   }
 
@@ -132,7 +138,7 @@ export class UsersService {
         if (this.auth.checkToken(err)) {
           Swal.fire(err.error.mensaje, 'Utilice un email distinto', 'error');
         } else {
-          this.logout();
+          this.logout('login');
         }
         return throwError(err);
       })
@@ -144,7 +150,7 @@ export class UsersService {
     url += '?token=' + this.token;
     return this.http.put(url, usuario).pipe(
       map( (resp: any) => {
-        if (usuario._id === this.usuario._id) {
+        if (usuario._id === this.usuario.value._id) {
           this.guardarStorage(resp.usuario._id, this.token, resp.usuario);
         }
         Swal.fire('Usuario modificado', usuario.email, 'success');
@@ -195,11 +201,11 @@ export class UsersService {
 
   cambiarImagen(file: File, id: string) {
     this.uploadService.subirArchivo(file, 'usuarios', id).then( (resp: any) => {
-      this.usuario.imagen = JSON.parse(resp).usuario.imagen;
-      this.guardarStorage(id, this.token, this.usuario);
-      Swal.fire('Imagen actualizada', this.usuario.email, 'success');
+      this.usuario.value.imagen = JSON.parse(resp).usuario.imagen;
+      this.guardarStorage(id, this.token, this.usuario.value);
+      Swal.fire('Imagen actualizada', this.usuario.value.email, 'success');
     }).catch( err => {
-      Swal.fire('Imagen no actualizada', this.usuario.email, 'error');
+      Swal.fire('Imagen no actualizada', this.usuario.value.email, 'error');
     });
   }
 

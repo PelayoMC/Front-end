@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../../service/service.index';
 import { UsersService } from '../../service/users/users.service';
-import { Usuario } from '../../models/usuario.model';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -14,13 +14,18 @@ export class SidebarComponent implements OnInit {
   constructor(public sidebarService: SidebarService, public userService: UsersService) { }
 
   ngOnInit() {
-    if (!this.userService.usuario) {
+    this.userService.usuario.subscribe(resp => {
+      this.ponerMenu();
+    });
+  }
+
+  ponerMenu() {
+    if (!this.userService.usuario.value) {
       this.menu = this.sidebarService.menuNR;
-    } else if (this.userService.usuario && this.userService.usuario.rol === 'ADMIN') {
+    } else if (this.userService.usuario.value && this.userService.usuario.value.rol === 'ADMIN') {
       this.menu = this.sidebarService.menuA;
     } else {
       this.menu = this.sidebarService.menuU;
     }
   }
-
 }

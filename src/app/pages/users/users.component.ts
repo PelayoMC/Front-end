@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
 
   mostrarModal(id: string, tipo: string, img: string, usuario: Usuario) {
     if (tipo === 'upload') {
-      if (usuario.email === this.usuariosService.usuario.email) {
+      if (usuario.email === this.usuariosService.usuario.value.email) {
         Swal.fire('Error', 'Cambie su imagen desde su perfil de usuario', 'error');
       } else {
         this.modalService.mostrarModal('usuarios', id, img);
@@ -83,11 +83,11 @@ export class UsersComponent implements OnInit {
   }
 
   usuarioPropio(us: Usuario) {
-    return 'us.email === usuariosService.usuario.email';
+    return 'us.email === usuariosService.usuario.value.email';
   }
 
   borrarUsuario(usuario: Usuario) {
-    if (usuario._id === this.usuariosService.usuario._id) {
+    if (usuario._id === this.usuariosService.usuario.value._id) {
       Swal.fire('No se puede borrar el usuario', 'No puede borrarse a sí mismo', 'error');
       return;
     }
@@ -122,7 +122,7 @@ export class UsersComponent implements OnInit {
   }
 
   actualizarUsuario(usuario: Usuario) {
-    if (usuario._id === this.usuariosService.usuario._id) {
+    if (usuario._id === this.usuariosService.usuario.value._id) {
       Swal.fire('No se puede actualizar el usuario', 'Esta acción no está permitida para sí mismo', 'error');
       return;
     }

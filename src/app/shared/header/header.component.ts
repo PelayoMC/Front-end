@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
-    this.usuario = this.userService.usuario;
+    this.usuario = this.userService.usuario.value;
   }
 
 }

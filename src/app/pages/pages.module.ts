@@ -9,6 +9,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Rutas
@@ -62,6 +65,9 @@ import { IntolerancesComponent } from './intolerances/intolerances.component';
         MatTooltipModule,
         MatExpansionModule,
         MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
         NgbPaginationModule
       ]
 })

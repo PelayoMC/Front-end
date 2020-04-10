@@ -21,7 +21,7 @@ export class ModalCreateUserComponent implements OnInit {
   constructor(public modalCreateUser: ModalCreateUserService, public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
-    this.usuario = this.userService.usuario;
+    this.usuario = this.userService.usuario.value;
     this.selected = 'USER';
   }
 
