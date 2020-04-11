@@ -4,11 +4,11 @@
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
                     <mat-label>Buscar ingredientes</mat-label>
-                    <input matInput #input type="text" (keyup.enter)="buscarIngredientes(input.value)" autocomplete="off">
-                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIngredientes('')">
+                    <input matInput #input type="text" (keyup.enter)="buscarIntolerancias(input.value)" autocomplete="off">
+                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIntolerancias('')">
                           <mat-icon>close</mat-icon>
                         </button>
-                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIngredientes(input.value)">
+                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIntolerancias(input.value)">
                           <mat-icon>search</mat-icon>
                         </button>
                 </mat-form-field>
@@ -32,7 +32,7 @@
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
                 <h3 class="card-title ">Intolerancias registradas (<small>{{ total }}</small>)</h3>
-                <table class="table table-hover ">
+                <table class="table table-hover incidencias">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -41,8 +41,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let int of intolerancias; let i = index">
-                            <td>
+                        <tr *ngFor="let int of intolerancias; let i = index" (click)="mostrarIntolerancia(int.intolerancia)">
+                            <td style="width: 100%;">
                                 <input *ngIf="int.modificando " class="form-control " [(ngModel)]="int.intolerancia.nombre ">
                                 <span *ngIf="!int.modificando "> {{ int.intolerancia.nombre }} </span>
                             </td>

@@ -23,14 +23,14 @@
                         </div>
                         <div class="form-group">
                             <label for="contraseña">Contraseña</label>
-                            <input (keyup)="checkPass(form)" class="form-control" type="password" ngModel #password="ngModel" [class.is-valid]="password.valid && password.touched" [class.is-invalid]="password.invalid && password.touched" name="password" placeholder="Contraseña"
-                                required minlength="3">
+                            <input (keyup)="checkPass(form)" class="form-control" type="password" ngModel #password="ngModel" [class.is-valid]="password.valid && password.touched && passEqual" [class.is-invalid]="password.invalid && password.touched || !passEqual" name="password"
+                                placeholder="Contraseña" required minlength="3">
                             <small *ngIf="password.invalid && password.touched" class="form-text text-danger">La contraseña ha de tener más de 3 letras</small>
                         </div>
                         <div class="form-group">
                             <label for="contraseña2">RepetirContraseña</label>
-                            <input (keyup)="checkPass(form)" class="form-control" type="password" ngModel #password2="ngModel" [class.is-valid]="password2.valid && password2.touched" [class.is-invalid]="password2.invalid && password2.touched" name="password2" placeholder="Contraseña"
-                                required minlength="3">
+                            <input (keyup)="checkPass(form)" class="form-control" type="password" ngModel #password2="ngModel" [class.is-valid]="password2.valid && password2.touched && passEqual" [class.is-invalid]="password2.invalid && password2.touched || !passEqual" name="password2"
+                                placeholder="Contraseña" required minlength="3">
                             <small *ngIf="password2.invalid && password2.touched" class="form-text text-danger">La contraseña ha de tener más de 3 letras</small>
                             <small *ngIf="!passEqual" class="form-text text-danger">Las contraseñas no son iguales</small>
                         </div>

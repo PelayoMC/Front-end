@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Rutas
@@ -32,6 +33,8 @@ import { ModalCreateUserComponent } from '../components/modal-create-user/modal-
 import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { IntolerancesComponent } from './intolerances/intolerances.component';
+import { IntoleranceComponent } from './intolerances/intolerance/intolerance.component';
+import { CreateIntoleranceComponent } from './intolerances/create-intolerance/create-intolerance.component';
 
 
 @NgModule({
@@ -45,6 +48,8 @@ import { IntolerancesComponent } from './intolerances/intolerances.component';
         CreateIngsRecipeComponent,
         IngredientsComponent,
         IntolerancesComponent,
+        IntoleranceComponent,
+        CreateIntoleranceComponent,
         UsersComponent,
         UserComponent,
         ModalUploadComponent,
@@ -68,6 +73,7 @@ import { IntolerancesComponent } from './intolerances/intolerances.component';
         MatInputModule,
         MatIconModule,
         MatButtonModule,
+        MatListModule,
         NgbPaginationModule
       ]
 })

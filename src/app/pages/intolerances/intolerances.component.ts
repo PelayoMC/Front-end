@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { IntolerancesService } from '../../service/service.index';
+import { IntolerancesService, UsersService } from '../../service/service.index';
 import { IntoleranceDecorator } from '../../models/decorators/intolerance-decorator.model';
-import { UsersService } from '../../service/users/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intolerances',
@@ -16,7 +16,7 @@ export class IntolerancesComponent implements OnInit {
   limit = 4;
   total: number;
 
-  constructor(public intolerancesService: IntolerancesService, public userService: UsersService) { }
+  constructor(public intolerancesService: IntolerancesService, public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
     this.cargando = true;
@@ -27,17 +27,22 @@ export class IntolerancesComponent implements OnInit {
     }
   }
 
+  mostrarIntolerancia(int: any) {
+    console.log(int);
+    console.log('id: ' + int._id);
+    this.router.navigate(['/intolerance', int._id]);
+  }
+
   cargarIntolerancias() {
     this.cargando = true;
     this.intolerancias = [];
     this.intolerancesService.obtenerInto(this.from, this.limit).subscribe((resp: any) => {
-      console.log(resp);
       const ar: IntoleranceDecorator[] = [];
       for (let i = 0; i < resp.intolerancias.length; i++) {
         ar[i] = new IntoleranceDecorator(resp.intolerancias[i], false);
       }
-      console.log(ar);
       this.intolerancias = ar;
+      console.log(this.intolerancias);
       this.total = resp.total;
       this.cargando = false;
     });
@@ -53,7 +58,11 @@ export class IntolerancesComponent implements OnInit {
     this.intolerancesService.buscarIntolerancias(termino, this.from, this.limit).subscribe(
       (resp: any) => {
         console.log(resp);
-        this.intolerancias = resp.coleccion;
+        const ar: IntoleranceDecorator[] = [];
+        for (let i = 0; i < resp.coleccion.length; i++) {
+          ar[i] = new IntoleranceDecorator(resp.coleccion[i], false);
+        }
+        this.intolerancias = ar;
         this.total = resp.total;
         this.cargando = false;
       }

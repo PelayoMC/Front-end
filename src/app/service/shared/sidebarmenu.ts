@@ -119,6 +119,10 @@ export const menuA: any = [
                 {
                   titulo: 'Lista de intolerancias',
                   url: '/intolerances'
+                },
+                {
+                  titulo: 'Crear intolerancia',
+                  url: '/addIntolerance'
                 }
               ]
             }

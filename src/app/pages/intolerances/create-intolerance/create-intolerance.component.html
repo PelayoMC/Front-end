@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h2>Crear intolerancia</h2>
+                <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="form-group">
+                                <h4>Imagen <span class="text-warning" *ngIf="imgTemp"> - Vista previa</span></h4>
+                                <img *ngIf="!imgTemp" src="/assets/images/no-img.jpg" class="img-profile-small">
+                                <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile-small">
+                                <br>
+                                <br>
+                                <input (change)="chooseImage($event.target.files[0])" type="file">
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-sm-12">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <div class="input-group">
+                                    <input formControlName="nombre" type="text" name="nombre" class="form-control" autocomplete="off" placeholder="Nombre receta">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Descripcion</label>
+                                <div class="input-group">
+                                    <textarea formControlName="descripcion" name="descripcion" class="form-control" rows="3" placeholder="Descripcion de la receta"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Crear receta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
