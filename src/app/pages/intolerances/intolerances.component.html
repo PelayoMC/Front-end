@@ -41,15 +41,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let int of intolerancias; let i = index" (click)="mostrarIntolerancia(int.intolerancia)">
-                            <td style="width: 100%;">
-                                <input *ngIf="int.modificando " class="form-control " [(ngModel)]="int.intolerancia.nombre ">
-                                <span *ngIf="!int.modificando "> {{ int.intolerancia.nombre }} </span>
+                        <tr *ngFor="let int of intolerancias; let i = index">
+                            <td style="width: 100%;" (click)="mostrarIntolerancia(int)">
+                                <span> {{ int.nombre }} </span>
                             </td>
                             <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
-                                <button (click)="int.modificando = !int.modificando" class="btn btn-primary" matTooltip="Modificar intolerancia"><i class="fa fa-wrench"></i></button> &nbsp;
-                                <button [disabled]="!int.modificando" (click)="actualizarIntolerancia(int.intolerancia)" class="btn btn-info" matTooltip="Guardar intolerancia"><i class="fa fa-save"></i></button> &nbsp;
-                                <button class="btn btn-danger" (click)="borrarIntolerancia(int.intolerancia)" matTooltip="Borrar intolerancia"><i class="fa fa-trash-o"></i></button>
+                                <button (click)="actualizarIntolerancia(int)" class="btn btn-primary" matTooltip="Modificar intolerancia"><i class="fa fa-wrench"></i></button> &nbsp;
+                                <button class="btn btn-danger" (click)="borrarIntolerancia(int)" matTooltip="Borrar intolerancia"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </tbody>

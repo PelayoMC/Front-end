@@ -55,6 +55,34 @@ export class IntolerancesService {
     );
   }
 
+  modificarIntolerancia(int: any) {
+    let url = URL_SERVICIOS + '/intolerancia';
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, int).pipe(
+      map( (resp: any) => {
+        return resp.intolerancia;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al modificar la intolerancia', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  borrarIntolerancia(int: any) {
+    let url = URL_SERVICIOS + '/intolerancia/' + int._id;
+    url += '?token=' + localStorage.token;
+    return this.http.delete(url).pipe(
+      map( (resp: any) => {
+        return resp.intolerancia;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al borrar la intolerancia', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
   cambiarImagen(intolerancia: Intolerance, file: File) {
     this.uploadService.subirArchivo(file, 'intolerancias', intolerancia._id).then( (resp: any) => {
       intolerancia.imagen = JSON.parse(resp).intolerancia.imagen;

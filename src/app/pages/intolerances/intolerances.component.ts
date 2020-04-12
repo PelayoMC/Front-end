@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IntolerancesService, UsersService } from '../../service/service.index';
-import { IntoleranceDecorator } from '../../models/decorators/intolerance-decorator.model';
 import { Router } from '@angular/router';
+import { Intolerance } from 'src/app/models/intolerance.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-intolerances',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class IntolerancesComponent implements OnInit {
 
   @ViewChild('input', { static: true }) busqueda: ElementRef;
-  intolerancias: IntoleranceDecorator[] = [];
+  intolerancias: Intolerance[] = [];
   cargando = true;
   from = 0;
   limit = 4;
@@ -28,8 +29,6 @@ export class IntolerancesComponent implements OnInit {
   }
 
   mostrarIntolerancia(int: any) {
-    console.log(int);
-    console.log('id: ' + int._id);
     this.router.navigate(['/intolerance', int._id]);
   }
 
@@ -37,12 +36,7 @@ export class IntolerancesComponent implements OnInit {
     this.cargando = true;
     this.intolerancias = [];
     this.intolerancesService.obtenerInto(this.from, this.limit).subscribe((resp: any) => {
-      const ar: IntoleranceDecorator[] = [];
-      for (let i = 0; i < resp.intolerancias.length; i++) {
-        ar[i] = new IntoleranceDecorator(resp.intolerancias[i], false);
-      }
-      this.intolerancias = ar;
-      console.log(this.intolerancias);
+      this.intolerancias = resp.intolerancias;
       this.total = resp.total;
       this.cargando = false;
     });
@@ -58,12 +52,7 @@ export class IntolerancesComponent implements OnInit {
     this.intolerancias = [];
     this.intolerancesService.buscarIntolerancias(termino, this.from, this.limit).subscribe(
       (resp: any) => {
-        console.log(resp);
-        const ar: IntoleranceDecorator[] = [];
-        for (let i = 0; i < resp.coleccion.length; i++) {
-          ar[i] = new IntoleranceDecorator(resp.coleccion[i], false);
-        }
-        this.intolerancias = ar;
+        this.intolerancias = resp.coleccion;
         this.total = resp.total;
         this.cargando = false;
         this.busqueda.nativeElement.select();
@@ -76,7 +65,34 @@ export class IntolerancesComponent implements OnInit {
   }
 
   borrarIntolerancia(intolerancia: any) {
-
+    Swal.fire({
+      title: '¿Borrar intolerancia?',
+      text: 'Está a punto de borrar la intolerancia ' + intolerancia.nombre,
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Borrar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this.intolerancesService.borrarIntolerancia(intolerancia).subscribe(resp => {
+          if (resp.nombre === intolerancia.nombre) {
+            Swal.fire(
+              'Intolerancia borrada',
+              'La intolerancia ha sido borrada correctamente',
+              'success'
+            );
+            this.cargarIntolerancias();
+          } else {
+            Swal.fire(
+              'Intolerancia no borrada',
+              'La intolerancia no se ha podido borrar correctamente',
+              'error'
+            );
+          }
+        })
+      }
+    });
   }
 
   cambiarDesde(valor: number) {
