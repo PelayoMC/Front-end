@@ -6,7 +6,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-4">
-                        <img class="img-fluid">
+                        <img [src]="intolerancia?.imagen | image: 'intolerancia'" class="img-intolerance">
                         <br><br>
                         <a [routerLink]="['/intolerances']" class="btn btn-outline-info btn-block"> Regresar a intolerancias</a>
                     </div>
@@ -20,12 +20,11 @@
                             <div class="col-md-6">
                                 <h4>Etiquetas</h4>
                                 <hr>
-                                <mat-list role="list">
-                                    <mat-list-item *ngFor="let et of intolerancia?.noApto" role="listitem">
-                                        <div mat-line> <b>{{ et }}</b></div>
-                                        <div mat-line> <label class="label label-info"></label></div>
-                                    </mat-list-item>
-                                </mat-list>
+                                <mat-chip-list #list aria-label="tag selection">
+                                    <mat-chip *ngFor="let et of intolerancia?.noApto" [selectable]="false" [removable]="false">
+                                        {{ et }}
+                                    </mat-chip>
+                                </mat-chip-list>
                             </div>
                         </div>
                     </div>

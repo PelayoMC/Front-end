@@ -23,6 +23,9 @@ export class ImagePipe implements PipeTransform {
       case 'receta':
         url += '/recetas/' + img;
         break;
+      case 'intolerancia':
+        url += '/intolerancias/' + img;
+        break;
       default:
         url += '/usuarios/xxx';
         break;

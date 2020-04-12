@@ -49,6 +49,7 @@ export class UsersComponent implements OnInit {
         this.usuarios = arr2;
         this.total = resp.total;
         this.cargando = false;
+        this.busqueda.nativeElement.select();
       });
     } else {
       this.buscarUsuarios(this.busqueda.nativeElement.value);
@@ -67,6 +68,7 @@ export class UsersComponent implements OnInit {
       return;
     }
     this.cargando = true;
+    this.from = 0;
     this.usuariosService.buscarUsuarios(termino, this.from).subscribe(
       (resp: any) => {
         const arr: Usuario[] = resp.coleccion;

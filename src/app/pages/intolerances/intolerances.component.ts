@@ -54,6 +54,7 @@ export class IntolerancesComponent implements OnInit {
       return;
     }
     this.cargando = true;
+    this.from = 0;
     this.intolerancias = [];
     this.intolerancesService.buscarIntolerancias(termino, this.from, this.limit).subscribe(
       (resp: any) => {
@@ -65,6 +66,7 @@ export class IntolerancesComponent implements OnInit {
         this.intolerancias = ar;
         this.total = resp.total;
         this.cargando = false;
+        this.busqueda.nativeElement.select();
       }
     );
   }

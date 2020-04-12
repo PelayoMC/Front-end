@@ -14,8 +14,6 @@ export class IntoleranceComponent implements OnInit {
   constructor(public activatedRoute: ActivatedRoute, public intoleranceService: IntolerancesService) { 
     this.activatedRoute.params.subscribe(params => {
       this.intoleranceService.getInto(params['id']).subscribe((resp) => {
-        console.log(resp[0]);
-        console.log(this.intolerancia);
         Object.assign(this.intolerancia, resp[0]);
         console.log(this.intolerancia);
       });

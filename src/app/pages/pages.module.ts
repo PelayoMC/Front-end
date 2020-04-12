@@ -13,6 +13,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Rutas
@@ -74,6 +77,9 @@ import { CreateIntoleranceComponent } from './intolerances/create-intolerance/cr
         MatIconModule,
         MatButtonModule,
         MatListModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatSelectModule,
         NgbPaginationModule
       ]
 })

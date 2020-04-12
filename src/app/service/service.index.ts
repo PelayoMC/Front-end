@@ -8,6 +8,7 @@ export { ModalUploadService } from './modals/modal-upload.service';
 export { RecipesService } from './recipes/recipes.service';
 export { SidebarService } from './shared/sidebar.service';
 export { SharedService } from './shared/shared.service';
+export { TagsServiceService } from './tags/tags-service.service';
 export { UploadImageService } from './upload/upload-image.service';
 export { UsersService } from './users/users.service';
 export { SustValidatorService } from './validators/sust-validator.service';

@@ -1,7 +1,6 @@
-export class Ingredient {
+export class Etiqueta {
         constructor(
             public nombre: string = '',
-            public noApto: string[],
             public _id?: string
         ) {
 

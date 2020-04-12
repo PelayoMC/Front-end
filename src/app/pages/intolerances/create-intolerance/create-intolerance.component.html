@@ -5,6 +5,44 @@
                 <h2>Crear intolerancia</h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
                     <div class="row">
+                        <div class="col-lg-8 col-sm-12">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <div class="input-group">
+                                    <input formControlName="nombre" type="text" name="nombre" class="form-control" [class.is-invalid]="nombreNoValido()" autocomplete="off" placeholder="Nombre de la intolerancia">
+
+                                </div>
+                                <small *ngIf="nombreNoValido()" class="form-text text-danger">El nombre es obligatorio</small>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Descripcion</label>
+                                <div class="input-group">
+                                    <textarea formControlName="descripcion" name="descripcion" class="form-control" [class.is-invalid]="descripcionNoValida()" rows="3" placeholder="Descripcion de la intolerancia"></textarea>
+                                </div>
+                                <small *ngIf="descripcionNoValida()" class="form-text text-danger">La descripcion es obligatoria</small>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Etiquetas</label>
+                                <mat-form-field style="width: 100%;">
+                                    <mat-chip-list #list [class.is-invalid]="aptoNoValido()" aria-label="tag selection">
+                                        <mat-chip formArrayName="noApto" *ngFor="let tag of tags; let i = index" [selectable]="true" [removable]="true" (removed)="remove(tag.nombre)">
+                                            {{ tag.nombre }}
+                                            <mat-icon matChipRemove>cancel</mat-icon>
+                                        </mat-chip>
+                                        <input placeholder="Para añadir una etiqueta use , o intro" #input [class.is-invalid]="aptoNoValido()" [matAutocomplete]="auto" [matChipInputFor]="list" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+
+                                    </mat-chip-list>
+                                    <small *ngIf="aptoNoValido()" class="form-text text-danger">La intolerancia debe tener al menos una etiqueta</small>
+                                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                                        <mat-option *ngFor="let tag of copy" [value]="tag.nombre">
+                                            {{ tag.nombre }}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                        </div>
                         <div class="col-lg-4 col-sm-12">
                             <div class="form-group">
                                 <h4>Imagen <span class="text-warning" *ngIf="imgTemp"> - Vista previa</span></h4>
@@ -13,25 +51,6 @@
                                 <br>
                                 <br>
                                 <input (change)="chooseImage($event.target.files[0])" type="file">
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-sm-12">
-                            <div class="form-group">
-                                <label>Nombre</label>
-                                <div class="input-group">
-                                    <input formControlName="nombre" type="text" name="nombre" class="form-control" autocomplete="off" placeholder="Nombre receta">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label>Descripcion</label>
-                                <div class="input-group">
-                                    <textarea formControlName="descripcion" name="descripcion" class="form-control" rows="3" placeholder="Descripcion de la receta"></textarea>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group">
-
                             </div>
                         </div>
                     </div>

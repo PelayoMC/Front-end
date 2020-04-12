@@ -82,6 +82,8 @@ export class RecipesService {
   cambiarImagen(receta: Recipe, file: File) {
     this.uploadService.subirArchivo(file, 'recetas', receta._id).then( (resp: any) => {
       receta.imagen = JSON.parse(resp).receta.imagen;
+    }).catch(err => {
+      Swal.fire('Error', 'Error al cambiar la imagen a la receta', 'error');
     });
   }
 

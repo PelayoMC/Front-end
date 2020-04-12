@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Buscar ingredientes</mat-label>
+                    <mat-label>Buscar intolerancias</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarIntolerancias(input.value)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIntolerancias('')">
                           <mat-icon>close</mat-icon>
@@ -47,9 +47,9 @@
                                 <span *ngIf="!int.modificando "> {{ int.intolerancia.nombre }} </span>
                             </td>
                             <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
-                                <button (click)="int.modificando = !int.modificando" class="btn btn-primary" matTooltip="Modificar ingrediente"><i class="fa fa-wrench"></i></button> &nbsp;
-                                <button [disabled]="!int.modificando" (click)="actualizarIntolerancia(int.intolerancia)" class="btn btn-info" matTooltip="Guardar ingrediente"><i class="fa fa-save"></i></button> &nbsp;
-                                <button class="btn btn-danger" (click)="borrarIntolerancia(int.intolerancia)" matTooltip="Borrar ingrediente"><i class="fa fa-trash-o"></i></button>
+                                <button (click)="int.modificando = !int.modificando" class="btn btn-primary" matTooltip="Modificar intolerancia"><i class="fa fa-wrench"></i></button> &nbsp;
+                                <button [disabled]="!int.modificando" (click)="actualizarIntolerancia(int.intolerancia)" class="btn btn-info" matTooltip="Guardar intolerancia"><i class="fa fa-save"></i></button> &nbsp;
+                                <button class="btn btn-danger" (click)="borrarIntolerancia(int.intolerancia)" matTooltip="Borrar intolerancia"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </tbody>

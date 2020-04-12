@@ -73,6 +73,11 @@ a.link:focus {
     height: 35px;
 }
 
+.img-intolerance {
+    width: 100%;
+    height: 80%;
+}
+
 .modal-dialog {
     transform: translate(0, -50%);
     top: 50%;
