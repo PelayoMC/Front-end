@@ -2,27 +2,38 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h2>Crear receta</h2>
+                <h2>Crear receta <small class="h6 text text-warning">(Los campos marcados con * son obligatorios)</small></h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="col-lg-8 col-sm-12">
                             <div class="form-group">
-                                <label>Nombre</label>
+                                <label>Nombre *</label>
                                 <div class="input-group">
-                                    <input formControlName="nombre" type="text" name="nombre" class="form-control" autocomplete="off" placeholder="Nombre receta">
+                                    <input formControlName="nombre" [class.is-invalid]="nombreNoValido()" type="text" name="nombre" class="form-control" autocomplete="off" placeholder="Nombre de la receta">
                                 </div>
+                                <small *ngIf="nombreNoValido()" class="form-text text-danger">El nombre es obligatorio</small>
                             </div>
                             <br>
                             <div class="form-group">
-                                <label>Descripcion</label>
+                                <label>Descripcion *</label>
                                 <div class="input-group">
-                                    <textarea formControlName="descripcion" name="descripcion" class="form-control" rows="3" placeholder="Descripcion de la receta"></textarea>
+                                    <textarea formControlName="descripcion" [class.is-invalid]="descripcionNoValida()" name="descripcion" class="form-control" rows="3" placeholder="Descripcion de la receta"></textarea>
+                                </div>
+                                <small *ngIf="descripcionNoValida()" class="form-text text-danger">La descripcion es obligatoria</small>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <div class="input-group">
+                                    <select class="form-control" [(value)]="selectedTipo" formControlName="tipoRe" placeholder="tipo">
+                                        <option *ngFor="let ud of opt.tipo" [value]="ud.nombre">{{ ud.nombre }}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-sm-12">
                             <div class="form-group">
-                                <h4>Imagen <span class="text-warning" *ngIf="imgTemp"> - Vista previa</span></h4>
+                                <h4>Imagen *<span class="text-warning" *ngIf="imgTemp">Vista previa</span></h4>
                                 <img *ngIf="!imgTemp" src="/assets/images/no-img.jpg" class="img-profile-small">
                                 <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile-small">
                                 <br>
@@ -33,7 +44,7 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <label>Ingredientes</label>
+                        <label>Ingredientes *</label>
                         <div style="overflow-x:auto;">
                             <table class="table table-primary">
                                 <thead>
@@ -50,20 +61,21 @@
                                     <tr *ngFor="let ingrediente of ingredientes().controls; let i=index" [formGroupName]="i">
                                         <td>{{ i + 1 }}</td>
                                         <td class="long-td">
-                                            <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre ingrediente">
+                                            <input class="form-control" [class.is-invalid]="ingredienteNoValido(ingrediente)" type="text" formControlName="nombre" placeholder="Nombre ingrediente">
+                                            <small *ngIf="ingredienteNoValido(ingrediente)" class="form-text text-danger">El nombre es obligatorio</small>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" formControlName="cantidad" placeholder="Cantidad">
+                                            <input #cantidad class="form-control" type="number" formControlName="cantidad" placeholder="Cantidad">
                                         </td>
                                         <td class="long-td">
-                                            <select class="form-control" [(value)]="selectedUnidadesIng" formControlName="unidades">
+                                            <select class="form-control" (change)="onChange(ingrediente, cantidad)" [(value)]="selectedUnidadesIng" formControlName="unidades">
                                                 <optgroup *ngFor="let group of opt.uds" [label]="group.label">
                                                     <option *ngFor="let opt of group.opciones" [value]="opt.nombre">{{ opt.nombre }}</option>
                                             </select>
                                         </td>
                                         <td class="medium-td">
-                                            <select class="form-control" [(value)]="selectedTipo" formControlName="tipo" placeholder="Tipo" matTooltip="El tipo establece si un ingrediente es esencial para la receta o puede ser sustituido">
-                                                <option *ngFor="let tipo of opt.tipos" [value]="tipo.nombre">{{ tipo.nombre }}</option>
+                                            <select class="form-control" [(value)]="selectedTipoUnidades" formControlName="tipo" placeholder="Tipo">
+                                                <option *ngFor="let tipo of opt.tipoUnidades" [value]="tipo.nombre">{{ tipo.nombre }}</option>
                                             </select>
                                         </td>
                                         <td class="text-nowrap">
@@ -77,7 +89,7 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <label>Pasos a seguir de la receta</label>
+                        <label>Pasos a seguir de la receta *</label>
                         <div style="overflow-x:auto;">
                             <table class="table table-primary">
                                 <thead>
@@ -91,7 +103,8 @@
                                     <tr *ngFor="let paso of pasos().controls; let i=index">
                                         <td>{{ i + 1 }}</td>
                                         <td class="long-td">
-                                            <input class="form-control" type="text" [formControlName]="i" ngValue placeholder="Explicación del paso a seguir">
+                                            <input class="form-control" type="text" [class.is-invalid]="pasoNoValido(paso)" [formControlName]="i" ngValue placeholder="Explicación del paso a seguir">
+                                            <small *ngIf="pasoNoValido(paso)" class="form-text text-danger">El nombre es obligatorio</small>
                                         </td>
                                         <td class="text-nowrap">
                                             <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarPaso(i)">Eliminar</button>
@@ -125,7 +138,7 @@
                                             <label>Unidades</label>
                                             <select class="form-control" [(value)]="selectedUnidades" formControlName="unidades" placeholder="unidades">
                                                 <option *ngFor="let ud of opt.nutricion" [value]="ud.nombre">{{ ud.nombre }}</option>
-                                                </select>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

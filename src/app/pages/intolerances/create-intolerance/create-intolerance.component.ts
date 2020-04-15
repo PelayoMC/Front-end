@@ -1,14 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {COMMA, ENTER } from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Intolerance } from 'src/app/models/intolerance.model';
 import { Etiqueta } from '../../../models/etiqueta.model';
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { TagsServiceService } from '../../../service/service.index';
+import { TagsServiceService, IntolerancesService } from '../../../service/service.index';
 import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
 import Swal from 'sweetalert2';
-import { filter } from 'rxjs/operators';
-import { IntolerancesService } from '../../../service/intolerances/intolerances.service';
-import { Router } from '@angular/router';
+import { URL_SERVICIOS } from '../../../config/config';
 
 @Component({
   selector: 'app-create-intolerance',
@@ -17,6 +16,9 @@ import { Router } from '@angular/router';
 export class CreateIntoleranceComponent implements OnInit {
 
   intolerancia: Intolerance;
+  modificando = false;
+  cargando = true;
+
   tags: Etiqueta[];
   copy: Etiqueta[] = [];
 
@@ -26,7 +28,7 @@ export class CreateIntoleranceComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   @ViewChild('input', {static: false}) input: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
-  constructor(private fb: FormBuilder, public tagsService: TagsServiceService, public intoleranceService: IntolerancesService, public router: Router) { }
+  constructor(private fb: FormBuilder, public route: ActivatedRoute,  public tagsService: TagsServiceService, public intoleranceService: IntolerancesService, public router: Router) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -48,7 +50,25 @@ export class CreateIntoleranceComponent implements OnInit {
       for (const tag of this.tags) {
         this.addNoApto(tag.nombre);
       }
+      this.route.queryParams.subscribe(params => {
+        if (params.nombre) {
+          this.intolerancia._id = params._id;
+          this.form.get('nombre').setValue(params.nombre);
+          this.form.get('descripcion').setValue(params.descripcion);
+          this.imgTemp = URL_SERVICIOS + '/imagen/intolerancias/' + params.imagen;
+          this.eliminarEtiquetas(params.noApto);
+          this.modificando = true;
+        }
+      });
+      this.cargando = false;
     });
+  }
+
+  eliminarEtiquetas(array: string[]) {
+    const ar = this.tags.map(el => el.nombre).filter(el2 => !array.includes(el2));
+    for (const st of ar) {
+      this.remove(st);
+    }
   }
 
   noAptos(): FormArray {
@@ -96,7 +116,11 @@ export class CreateIntoleranceComponent implements OnInit {
       Swal.fire('Error', 'Complete todos los campos', 'error');
       return;
     }
-    const ar = this.añadirIntolerancia(this.form.value);
+    if (!this.modificando) {
+      this.añadirIntolerancia(this.form.value);
+    } else {
+      this.modificarIntolerancia(this.form.value);
+    }
   }
 
   add(event: MatChipInputEvent): void {
@@ -105,7 +129,6 @@ export class CreateIntoleranceComponent implements OnInit {
 
     if ((value || '').trim()) {
       this.tags.push(new Etiqueta(value.trim()));
-      this.copy.splice(this.copy.findIndex(el => el.nombre === value.trim()), 1);
       this.addNoApto(value.trim());
     }
 
@@ -129,6 +152,7 @@ export class CreateIntoleranceComponent implements OnInit {
     this.tags.push(new Etiqueta(event.option.viewValue));
     this.copy.splice(this.copy.findIndex(el => el.nombre === event.option.viewValue), 1);
     this.addNoApto(event.option.viewValue);
+    this.input.nativeElement.blur();
     this.input.nativeElement.value = '';
   }
 
@@ -156,22 +180,45 @@ export class CreateIntoleranceComponent implements OnInit {
       const ar2 = resp.etiquetas.map(el => el.nombre);
       const ar = ar1.filter(el => !ar2.includes(el));
       if (ar.length > 0) {
-        console.log('Añadimos tags');
         this.tagsService.añadirTag(ar).subscribe(resp => {
           this.addInto();
         });
       } else {
-        console.log('No añadimos tags');
         this.addInto();
       }
     });
   }
 
-  addInto(){
+  modificarIntolerancia(str: any) {
+    this.tagsService.obtenerTags().subscribe((resp: any) => {
+      const ar1 = str.noApto;
+      const ar2 = resp.etiquetas.map(el => el.nombre);
+      const ar = ar1.filter(el => !ar2.includes(el));
+      if (ar.length > 0) {
+        this.tagsService.añadirTag(ar).subscribe(resp => {
+          this.modInto();
+        });
+      } else {
+        this.modInto();
+      }
+    });
+  }
+
+  addInto() {
     this.añadirCamposIntolerancia();
     this.intoleranceService.añadirIntolerancia(this.intolerancia).subscribe((resp: any) => {
       this.intolerancia._id = resp._id;
       this.intoleranceService.cambiarImagen(this.intolerancia, this.imgUpload);
+      Swal.fire('Intolerancia añadida', 'La intolerancia se ha añadido correctamente', 'success');
+      this.router.navigate(['/intolerances']);
+    });
+  }
+
+  modInto() {
+    this.añadirCamposIntolerancia();
+    this.intoleranceService.modificarIntolerancia(this.intolerancia).subscribe((resp: any) => {
+      this.intoleranceService.cambiarImagen(this.intolerancia, this.imgUpload);
+      Swal.fire('Intolerancia modificada', 'La intolerancia se ha modificado correctamente', 'success');
       this.router.navigate(['/intolerances']);
     });
   }

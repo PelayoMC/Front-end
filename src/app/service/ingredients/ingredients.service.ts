@@ -11,6 +11,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class IngredientsService {
+  
   constructor(public http: HttpClient) { }
 
   obtenerIngsRecipe(ingredientes: IngredientRecipe[]) {
@@ -102,6 +103,38 @@ export class IngredientsService {
     let url = URL_SERVICIOS + '/ingrediente/';
     url += '?token=' + localStorage.token;
     return this.http.post(url, names).pipe(
+      map( (resp: any) => {
+        return resp.ingredientes;
+      })
+    );
+  }
+
+  obtainTags(ings: string[]) {
+    const ids = {
+      ings
+    };
+    let url = URL_SERVICIOS + '/ingrediente/obtenerTags';
+    return this.http.post(url, ids).pipe(
+      map(  (resp: any) => {
+        return resp.etiquetas;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al cargar las etiquetas', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  añadirEtiquetas(nombres: any, tags: any) {
+    console.log(nombres);
+    console.log(tags);
+    const ingredientes = {
+      nombres,
+      tags
+    };
+    let url = URL_SERVICIOS + '/ingrediente/addTags';
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, ingredientes).pipe(
       map( (resp: any) => {
         return resp.ingredientes;
       })

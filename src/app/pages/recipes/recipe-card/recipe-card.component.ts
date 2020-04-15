@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from '../../../service/users/users.service';
 
 @Component({
   selector: 'app-recipe-card',
@@ -12,7 +13,7 @@ export class RecipeCardComponent implements OnInit {
 
   @Output() recetaSeleccionada: EventEmitter<number>;
 
-  constructor( private router: Router ) {
+  constructor( private router: Router, public userService: UsersService) {
     this.recetaSeleccionada = new EventEmitter();
    }
 

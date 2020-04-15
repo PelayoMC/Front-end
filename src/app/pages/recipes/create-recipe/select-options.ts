@@ -27,7 +27,14 @@ export const uds = [
         }
       ];
 
-export const tipos = [
+export const tipo = [
+  { nombre: 'Desayuno' },
+  { nombre: 'Comida' },
+  { nombre: 'Merienda' },
+  { nombre: 'Cena' }
+];
+
+export const tipoUnidades = [
         { nombre: 'Principal' },
         { nombre: 'Secundario' }
       ];

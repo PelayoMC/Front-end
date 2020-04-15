@@ -2,7 +2,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h2>Crear intolerancia</h2>
+                <h2 *ngIf="!modificando">Crear intolerancia</h2>
+                <h2 *ngIf="modificando">Modificar intolerancia</h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="col-lg-8 col-sm-12">
@@ -10,7 +11,6 @@
                                 <label>Nombre</label>
                                 <div class="input-group">
                                     <input formControlName="nombre" type="text" name="nombre" class="form-control" [class.is-invalid]="nombreNoValido()" autocomplete="off" placeholder="Nombre de la intolerancia">
-
                                 </div>
                                 <small *ngIf="nombreNoValido()" class="form-text text-danger">El nombre es obligatorio</small>
                             </div>
@@ -32,7 +32,6 @@
                                             <mat-icon matChipRemove>cancel</mat-icon>
                                         </mat-chip>
                                         <input placeholder="Para añadir una etiqueta use , o intro" #input [class.is-invalid]="aptoNoValido()" [matAutocomplete]="auto" [matChipInputFor]="list" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
-
                                     </mat-chip-list>
                                     <small *ngIf="aptoNoValido()" class="form-text text-danger">La intolerancia debe tener al menos una etiqueta</small>
                                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
@@ -54,9 +53,21 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Crear receta</button>
+                    <button *ngIf="!modificando" type="submit" class="btn btn-info waves-effect waves-light m-r-10">Crear intolerancia</button>
+                    <button *ngIf="modificando" type="submit" class="btn btn-info waves-effect waves-light m-r-10">Modificar intolerancia</button>
                 </form>
             </div>
+        </div>
+    </div>
+</div>
+<div class="row animated fadeIn " *ngIf="cargando ">
+    <div class="col-12 ">
+        <div class="alert alert-warning text-center ">
+            <strong> CARGANDO </strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x "></i>
+            <br>
+            <span>Espere por favor</span>
         </div>
     </div>
 </div>

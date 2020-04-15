@@ -56,7 +56,8 @@ export class IntolerancesService {
   }
 
   modificarIntolerancia(int: any) {
-    let url = URL_SERVICIOS + '/intolerancia';
+    let url = URL_SERVICIOS + '/intolerancia/' + int._id;
+    console.log(int._id);
     url += '?token=' + localStorage.token;
     return this.http.put(url, int).pipe(
       map( (resp: any) => {

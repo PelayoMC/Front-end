@@ -1,8 +1,42 @@
-<div class="row">
+<div class="row" *ngIf="!cargando">
     <div class="col-12">
         <div class="card">
             <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
                 <div class="card-body">
+                    <h2>Añadir etiquetas</h2>
+                    <br>
+                    <div class="form-group" formArrayName="noApto">
+                        <mat-accordion>
+                            <mat-expansion-panel *ngFor="let ing of ingredients; let j = index">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <b>{{ ing.nombre }}</b>
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        Añadir etiquetas<span class="text-warning"> &nbsp; (Opcional)</span>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <div #inputGroup class="form-group">
+                                    <label>Etiquetas</label>
+                                    <mat-form-field style="width: 100%;">
+                                        <mat-chip-list #list [class.is-invalid]="aptoNoValido()" aria-label="tag selection">
+                                            <mat-chip *ngFor="let i = index; let tag of tags[j]" [selectable]="true" [removable]="true" (removed)="remove(tag.nombre, j)">
+                                                {{ tag.nombre }}
+                                                <mat-icon matChipRemove>cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="Para añadir una etiqueta use , o intro" #input [matAutocomplete]="auto" [matChipInputFor]="list" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event, j)">
+                                        </mat-chip-list>
+                                        <small *ngIf="aptoRepetido(j)" class="form-text text-danger">El ingrediente no puede etiquetas repetidas</small>
+                                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, j, input)">
+                                            <mat-option *ngFor="let tag of copy" [value]="tag.nombre">
+                                                {{ tag.nombre }}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
                     <h2>Añadir ingredientes sustituibles</h2>
                     <br>
                     <div class="form-group" formArrayName="ingredientes">
@@ -13,13 +47,13 @@
                                         <b>{{ ing.nombre }}</b>
                                     </mat-panel-title>
                                     <mat-panel-description>
-                                        <span *ngIf="ing.tipo == 'Principal'" class="text-warning">Solo se pueden añadir ingredientes sustituibles a ingredientes secundarios</span>
+                                        <span *ngIf="ing.tipo == 'Principal'" class="text-danger">No es un ingrediente principal</span>
                                         <span *ngIf="ing.tipo != 'Principal' && ing.ingredienteSustituible" class="text-danger">Ya existe un ingrediente sustituible</span>
-                                        <span *ngIf="ing.tipo != 'Principal' && !ing.ingredienteSustituible">Añadir un ingrediente de sustitución</span>
+                                        <span *ngIf="ing.tipo != 'Principal' && !ing.ingredienteSustituible">Añadir ingrediente de sustitución <span class="text-warning">&nbsp;(Opcional)</span></span>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
                                 <div #inputGroup class="form-group">
-                                    <label for="input">Nombre del ingrediente sustituible</label>
+                                    <label>Nombre del ingrediente sustituible</label>
                                     <div class="input-group">
                                         <input [formControlName]="i" class="form-control" [class.is-invalid]="ingredienteInvalido(i)" type="text">
                                     </div>
@@ -28,8 +62,6 @@
                             </mat-expansion-panel>
                         </mat-accordion>
                     </div>
-
-
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-info" type="submit"><i class="fa fa-save"></i> Guardar ingredientes</button>
@@ -38,10 +70,14 @@
         </div>
     </div>
 </div>
-<!--
-<pre>
-estado: {{ form.valid }}
-<br>
-{{ form.value | json }}
-</pre>
--->
+<div class="row animated fadeIn" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            <strong> CARGANDO </strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>

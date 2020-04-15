@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IntolerancesService, UsersService } from '../../service/service.index';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { Intolerance } from 'src/app/models/intolerance.model';
 import Swal from 'sweetalert2';
 
@@ -61,7 +61,16 @@ export class IntolerancesComponent implements OnInit {
   }
 
   actualizarIntolerancia(intolerancia: any) {
-
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        _id: intolerancia._id,
+        nombre: intolerancia.nombre,
+        descripcion: intolerancia.descripcion,
+        noApto: intolerancia.noApto,
+        imagen: intolerancia.imagen
+      }
+    };
+    this.router.navigate(['/addIntolerance'], navigationExtras);
   }
 
   borrarIntolerancia(intolerancia: any) {

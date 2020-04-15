@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
-import { RecipesService } from '../../../service/recipes/recipes.service';
-import { IngredientsService } from '../../../service/service.index';
+import { IngredientsService, RecipesService } from '../../../service/service.index';
 import Swal from 'sweetalert2';
 import * as opt from './select-options';
 
@@ -21,10 +20,11 @@ export class CreateRecipeComponent implements OnInit {
 
   selectedUnidadesIng: string;
   selectedTipo: string;
+  selectedTipoUnidades: string;
   selectedDif: string;
   selectedUnidades: string;
 
-  constructor(private fb: FormBuilder, public router: Router, public recipeService: RecipesService, public ingredientService: IngredientsService) { }
+  constructor(private fb: FormBuilder, public router: Router, public route: ActivatedRoute, public recipeService: RecipesService, public ingredientService: IngredientsService) { }
 
   ngOnInit() {
     this.opt = opt;
@@ -35,6 +35,7 @@ export class CreateRecipeComponent implements OnInit {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
+      tipoRe: ['Desayuno', Validators.required],
       ingredientes: this.fb.array([
         this.fb.group({
           nombre: ['', Validators.required],
@@ -57,7 +58,8 @@ export class CreateRecipeComponent implements OnInit {
 
   iniciarDrops() {
     this.selectedUnidadesIng = 'Sin unidades';
-    this.selectedTipo = 'Principal';
+    this.selectedTipo = 'Desayuno';
+    this.selectedTipoUnidades = 'Principal';
     this.selectedDif = 'Facil';
     this.selectedUnidades = 'Caloria/s';
   }
@@ -99,6 +101,30 @@ export class CreateRecipeComponent implements OnInit {
     this.pasos().removeAt(i);
   }
 
+  nombreNoValido() {
+    return this.form.get('nombre').invalid && this.form.get('nombre').touched;
+  }
+
+  descripcionNoValida() {
+    return this.form.get('descripcion').invalid && this.form.get('descripcion').touched;
+  }
+
+  ingredienteNoValido(ingrediente: any) {
+    return ingrediente.get('nombre').invalid && ingrediente.get('nombre').touched;
+  }
+
+  pasoNoValido(paso: any) {
+    return paso.invalid && paso.touched;
+  }
+
+  onChange(input: any, select: any) {
+    if (input.controls.unidades.value === 'Al gusto') {
+      select.disabled = true;
+    } else {
+      select.disabled = false;
+    }
+  }
+
   chooseImage(archivo) {
     if (!archivo) {
       this.imgUpload = null;
@@ -118,32 +144,13 @@ export class CreateRecipeComponent implements OnInit {
     reader.onloadend = () => this.imgTemp = reader.result.toString();
   }
 
-  encontrarControlesInvalidos() {
-    const invalid = [];
-    const controls = this.form.controls;
-    for (const name in controls) {
-      if (controls[name].invalid) {
-          invalid.push(name);
-      }
-    }
-    return invalid;
-  }
-
-  errorDeForma() {
-    let st = '<br>';
-    let arr = this.encontrarControlesInvalidos();
-    if (this.imgUpload == null) {
-        st += 'IMAGEN' + '<br>';
-      }
-    for (let i = 0; i < arr.length; i++){
-        st += arr[i].toUpperCase() + '<br>';
-      }
-    Swal.fire('Complete el formulario', 'Rellene los campos: ' + st, 'warning');
-  }
-
   onSubmit() {
-    if (this.form.invalid || (this.imgUpload == null)) {
-      this.errorDeForma();
+    if (this.form.invalid) {
+      Swal.fire('Complete el formulario', 'Rellene los campos obligatorios', 'warning');
+      return;
+    }
+    if (this.imgUpload == null) {
+      Swal.fire('Complete el formulario', 'Elija una imagen', 'warning');
       return;
     }
     this.crearReceta();
