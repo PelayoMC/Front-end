@@ -127,6 +127,42 @@ export class IngredientsComponent implements OnInit {
     });
   }
 
+  borrarIngredientesSinReceta() {
+    Swal.fire({
+      title: '¿Borrar ingrediente?',
+      text: '¿Desea borrar todos los ingredientes sin receta?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Borrar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire({
+          title: '¿Borrar ingrediente?',
+          text: 'Si borra el ingrediente se borrarán las recetas a las que pertenece',
+          icon: 'warning',
+          showCancelButton: true,
+          cancelButtonText: 'Cancelar',
+          confirmButtonText: 'Borrar',
+          reverseButtons: true
+        }).then((res) => {
+          if (res.value) {
+            this.cargando = true;
+            this.ingredientesService.obtenerIngs(0, 500).subscribe((resp: any) => {
+              this.ingredientesService.obtenerRecetas(resp).subscribe(resp => {
+                this.ingredientesService.borrarIngredientesSinReceta(resp).subscribe(resp => {
+                  this.cargando = false;
+                  this.cargar();
+                });
+              });
+            });
+          }
+        });
+      }
+    });
+  }
+
   mostrarIntro(valor) {
     console.log(valor);
   }

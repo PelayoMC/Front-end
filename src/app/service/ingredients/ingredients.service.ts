@@ -11,7 +11,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class IngredientsService {
-  
+
   constructor(public http: HttpClient) { }
 
   obtenerIngsRecipe(ingredientes: IngredientRecipe[]) {
@@ -83,6 +83,20 @@ export class IngredientsService {
     );
   }
 
+  borrarIngredientesSinReceta(ingredientes: any) {
+    let url = URL_SERVICIOS + '/ingrediente/sinReceta' + '?token=' + localStorage.token;
+    return this.http.post(url, ingredientes).pipe(
+      map(  (resp: any) => {
+        Swal.fire('Ingredientes borrados', 'Los ingredientes han sido borrados correctamente', 'success');
+        return resp.ingredientes;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al borrar los ingredientes', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
   obtenerRecetas(ings: any) {
     let url = URL_SERVICIOS + '/ingrediente/recetas';
     return this.http.post(url, ings).pipe(
@@ -126,8 +140,6 @@ export class IngredientsService {
   }
 
   añadirEtiquetas(nombres: any, tags: any) {
-    console.log(nombres);
-    console.log(tags);
     const ingredientes = {
       nombres,
       tags

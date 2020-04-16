@@ -164,6 +164,7 @@ export class CreateIngsRecipeComponent implements OnInit {
   }
 
   onSubmit() {
+    this.cargando = true;
     this.addIngs();
   }
 
@@ -178,7 +179,6 @@ export class CreateIngsRecipeComponent implements OnInit {
     }
     if (this.news.length > 0) {
       this.tagsService.añadirTag(this.news.map(el => el.nombre)).subscribe((resp: any) => {
-        console.log(resp);
         this.ingsService.añadirEtiquetas(this.ingredients, this.tags).subscribe(resp => {
           this.crearReceta();
         });
@@ -192,12 +192,12 @@ export class CreateIngsRecipeComponent implements OnInit {
 
   crearReceta() {
     this.ingsService.crearIngredientes(this.form.value.ingredientes).subscribe((resp: Ingredient[]) => {
-      console.log(resp);
       let a = 0;
       for (let i = 0; i < this.ingredients.length; i++) {
-        console.log(this.form.value.ingredientes[i]);
         if (this.form.value.ingredientes[i] !== '') {
           this.ingredients[i].ingredienteSustituible = resp[a++]._id;
+        } else {
+          this.ingredients[i].ingredienteSustituible = null;
         }
       }
       this.modReceta();
@@ -206,8 +206,9 @@ export class CreateIngsRecipeComponent implements OnInit {
 
   modReceta() {
     this.recipesService.guardarIngredientes(this.idReceta, this.ingredients).subscribe((resp: Ingredient[]) => {
+      this.cargando = false;
       Swal.fire({icon: 'success',
-      title: 'Ingredientes y etiquetas añadidos'});
+      title: 'Ingredientes y etiquetas añadidos a la receta'});
       this.router.navigate(['/recipes']);
     });
   }

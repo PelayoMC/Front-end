@@ -23,9 +23,7 @@ export class RecipeComponent implements OnInit {
           this.router.navigate(['recipes']);
         } else {
         Object.assign(this.receta, resp[0]);
-        console.log(this.receta.ingredientes.map(el => el.ingredienteSustituible));
         this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
-          console.log(resp);
           this.sustituibles = resp.map(el => {
             if (el != null) {
               return el.nombre;

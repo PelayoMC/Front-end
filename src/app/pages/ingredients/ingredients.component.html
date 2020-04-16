@@ -74,7 +74,7 @@
                 <div>
                     <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
                     <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
-                    <button class="btn btn-danger button-end">Borrar ingredientes sin receta</button>
+                    <button class="btn btn-danger button-end" (click)="borrarIngredientesSinReceta()">Borrar ingredientes sin receta</button>
                 </div>
             </div>
         </div>

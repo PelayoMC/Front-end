@@ -24,8 +24,6 @@ export class RecipesComponent implements OnInit {
   }
 
   verReceta(idx: number) {
-    console.log(this.recetas);
-    console.log(idx);
     this.router.navigate(['/recipe', idx]);
   }
 
@@ -34,7 +32,6 @@ export class RecipesComponent implements OnInit {
     this.recipesService.getRecipes(from, this.tam).subscribe((resp: any) => {
       this.total = resp.total;
       resp = resp.recetas;
-      console.log(resp);
       this.recetas = resp.map(el =>
         new Recipe(el.nombre, el.descripcion, el.tipoRe, el.imagen, el.ingredientes, el.pasos, el.nivel, el.calorias, el._id)
       );

@@ -24,7 +24,6 @@ export class RecipeCardComponent implements OnInit {
   }
 
   verReceta() {
-    console.log(this.receta);
     this.recetaSeleccionada.emit(this.receta._id);
   }
 

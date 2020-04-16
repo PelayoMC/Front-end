@@ -55,6 +55,10 @@ export class RecipesService {
     return this.http.put(url, ings).pipe(
       map( (resp: any) => {
         return resp.receta;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al guardar los ingrediente', 'error');
+        return throwError(err);
       })
     );
   }
@@ -73,8 +77,15 @@ export class RecipesService {
     url += '?token=' + localStorage.token;
     return this.http.post(url, receta).pipe(
       map( (resp: any) => {
-        Swal.fire('Receta creada', '<p>Nombre: ' + receta.nombre + '</p>', 'success');
+        Swal.fire('Receta creada',
+        '<p>Nombre: ' + receta.nombre + '</p>' +
+        '<p>Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes</p>',
+        'success');
         return resp.receta;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al crear la receta', 'error');
+        return throwError(err);
       })
     );
   }
@@ -84,8 +95,15 @@ export class RecipesService {
     url += '?token=' + localStorage.token;
     return this.http.put(url, receta).pipe(
       map( (resp: any) => {
-        Swal.fire('Receta modificada', '<p>Nombre: ' + receta.nombre + '</p>', 'success');
+        Swal.fire('Receta modificada',
+        '<p>Nombre: ' + receta.nombre + '</p>'+
+        '<p>Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes</p>',
+        'success');
         return resp.receta;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al modificar la receta', 'error');
+        return throwError(err);
       })
     );
   }
@@ -104,6 +122,10 @@ export class RecipesService {
     return this.http.delete(url).pipe(
       map( (resp: any) => {
         return resp.receta;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al borrar la receta', 'error');
+        return throwError(err);
       })
     );
   }
@@ -119,6 +141,10 @@ export class RecipesService {
     return this.http.delete(url).pipe(
       map( (resp: any) => {
         return resp.recetas;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al borrar las recetas', 'error');
+        return throwError(err);
       })
     );
   }

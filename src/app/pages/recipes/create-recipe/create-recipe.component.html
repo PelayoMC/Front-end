@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label>Tipo</label>
                                 <div class="input-group">
-                                    <select class="form-control" [(value)]="selectedTipo" formControlName="tipoRe" placeholder="tipo">
+                                    <select class="form-control" formControlName="tipoRe" placeholder="tipo">
                                         <option *ngFor="let ud of opt.tipo" [value]="ud.nombre">{{ ud.nombre }}</option>
                                     </select>
                                 </div>
@@ -77,7 +77,7 @@
                                             <small *ngIf="ingredienteNoValido(ingrediente)" class="form-text text-danger">El nombre es obligatorio</small>
                                         </td>
                                         <td>
-                                            <input #cantidad class="form-control" type="number" formControlName="cantidad" placeholder="Cantidad">
+                                            <input #cantidad class="form-control" type="number" formControlName="cantidad" (load)="onChange(ingrediente, cantidad)" placeholder="Cantidad" disabled>
                                         </td>
                                         <td class="long-td">
                                             <select class="form-control" (change)="onChange(ingrediente, cantidad)" formControlName="unidades">
@@ -132,7 +132,7 @@
                         <div class="row">
                             <div class="col-lg-3 col-sm-12">
                                 <label>Dificultad de la receta</label>
-                                <select class="form-control" [(value)]="selectedDif" formControlName="nivel" placeholder="dificultad">
+                                <select class="form-control" formControlName="nivel" placeholder="dificultad">
                                     <option *ngFor="let dif of opt.dificultades" [value]="dif.nombre">{{ dif.nombre }}</option>
                                 </select>
                             </div>
@@ -148,7 +148,7 @@
                                         </div>
                                         <div class="col-6">
                                             <label>Unidades</label>
-                                            <select class="form-control" [(value)]="selectedUnidades" formControlName="unidades" placeholder="unidades">
+                                            <select class="form-control" formControlName="unidades" placeholder="unidades">
                                                 <option *ngFor="let ud of opt.nutricion" [value]="ud.nombre">{{ ud.nombre }}</option>
                                             </select>
                                         </div>

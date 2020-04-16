@@ -42,7 +42,7 @@ export const tipoUnidades = [
 export const dificultades = [
         { nombre: 'Facil' },
         { nombre: 'Medio' },
-        { nombre: 'Difícil' }
+        { nombre: 'Dificil' }
       ];
 
 export const nutricion = [

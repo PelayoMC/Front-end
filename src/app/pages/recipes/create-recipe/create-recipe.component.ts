@@ -21,12 +21,6 @@ export class CreateRecipeComponent implements OnInit {
   form: FormGroup;
   opt: any;
 
-  selectedUnidadesIng: string;
-  selectedTipo: string;
-  selectedTipoUnidades: string;
-  selectedDif: string;
-  selectedUnidades: string;
-
   constructor(private fb: FormBuilder, public router: Router, public route: ActivatedRoute, public recipeService: RecipesService, public ingredientService: IngredientsService) { }
 
   ngOnInit() {
@@ -57,21 +51,11 @@ export class CreateRecipeComponent implements OnInit {
       })
     });
     this.recipe = new Recipe();
-    this.iniciarDrops('Sin unidades', 'Desayuno', 'Principal', 'Facil', 'Caloria/s');
     this.cargarReceta();
-  }
-
-  iniciarDrops(udsI: string, tipo: string, tipoU: string, dif: string, uds: string) {
-    this.selectedUnidadesIng = udsI;
-    this.selectedTipo = tipo;
-    this.selectedTipoUnidades = tipoU;
-    this.selectedDif = dif;
-    this.selectedUnidades = uds;
   }
 
   cargarReceta() {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       if (params._id) {
         this.modificando = true;
         this.recipeService.getRecipe(params._id).subscribe(resp => {
@@ -99,7 +83,6 @@ export class CreateRecipeComponent implements OnInit {
   vaciarCampos(rec: any) {
     this.eliminarIngrediente(0);
     this.eliminarPaso(0);
-    this.iniciarDrops('', rec.tipoRe, '', rec.nivel, rec.calorias.unidades);
   }
 
   ingredientes(): FormArray {
@@ -107,7 +90,6 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   nuevoIngrediente(nombre: string, cantidad: number, unidades: string, tipo: string): FormGroup {
-    console.log(unidades, tipo);
     return this.fb.group({
       nombre: [nombre, Validators.required],
       cantidad: [cantidad, Validators.required],
@@ -157,6 +139,7 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   onChange(input: any, select: any) {
+    console.log('CAMBIA');
     if (input.controls.unidades.value === 'Al gusto' || input.controls.unidades.value === 'Sin unidades') {
       select.disabled = true;
     } else {
@@ -183,9 +166,22 @@ export class CreateRecipeComponent implements OnInit {
     reader.onloadend = () => this.imgTemp = reader.result.toString();
   }
 
+  comprobarPrincipal() {
+    for (const ing of this.form.value.ingredientes) {
+      if (ing.tipo === 'Principal') {
+        return false;
+      }
+    }
+    return true;
+  }
+
   onSubmit() {
     if (this.form.invalid) {
       Swal.fire('Complete el formulario', 'Rellene los campos obligatorios', 'warning');
+      return;
+    }
+    if (this.comprobarPrincipal()) {
+      Swal.fire('Error de receta', 'La receta debe tener al menos un ingrediente principal', 'warning');
       return;
     }
     if (this.imgUpload == null && !this.modificando) {
@@ -200,6 +196,7 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   crearReceta() {
+    this.cargando = true;
     Object.assign(this.recipe, this.form.value);
     this.ingredientService.obtenerIngsRecipe(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
@@ -207,14 +204,15 @@ export class CreateRecipeComponent implements OnInit {
         this.recipe._id = resp._id;
         this.form.value.imagen = this.imgUpload;
         this.recipeService.cambiarImagen(this.recipe, this.form.value.imagen);
+        this.cargando = false;
         this.router.navigate(['/addIngsRecipe/', this.recipe._id]);
       });
     });
   }
 
   modificarReceta() {
+    this.cargando = true;
     Object.assign(this.recipe, this.form.value);
-    console.log(this.recipe);
     this.ingredientService.obtenerIngsRecipe(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
       this.recipeService.modificarReceta(this.recipe).subscribe(resp => {
@@ -222,6 +220,7 @@ export class CreateRecipeComponent implements OnInit {
           this.form.value.imagen = this.imgUpload;
           this.recipeService.cambiarImagen(this.recipe, this.form.value.imagen);
         }
+        this.cargando = false;
         this.router.navigate(['/addIngsRecipe/', this.recipe._id]);
       });
     });
