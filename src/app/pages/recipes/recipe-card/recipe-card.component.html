@@ -1,6 +1,6 @@
 <div class="col-12">
-    <mat-card class="pointer" (click)="verReceta()">
-        <mat-card-header>
+    <mat-card class="pointer">
+        <mat-card-header (click)="verReceta()">
             <mat-card-title>{{ receta.nombre }}</mat-card-title>
             <mat-card-subtitle>
                 <label *ngIf="receta.nivel == 'Facil'" class="label label-success">Facil</label>
@@ -8,10 +8,10 @@
                 <label *ngIf="receta.nivel == 'Dificil'" class="label label-danger">Dificil</label>
             </mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image">
+        <img (click)="verReceta()" mat-card-image class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image">
         <mat-card-actions align="end" *ngIf="userService.esAdmin()">
-            <button mat-button class="btn btn-outline-warning">MODIFICAR</button>
-            <button mat-button class="btn btn-outline-danger">BORRAR</button>
+            <button mat-button class="btn btn-outline-warning" (click)="actualizarReceta(receta)">MODIFICAR</button>
+            <button mat-button class="btn btn-outline-danger" (click)="borrarReceta(receta)">BORRAR</button>
         </mat-card-actions>
     </mat-card>
 </div>

@@ -47,7 +47,7 @@
                                         <b>{{ ing.nombre }}</b>
                                     </mat-panel-title>
                                     <mat-panel-description>
-                                        <span *ngIf="ing.tipo == 'Principal'" class="text-danger">No es un ingrediente principal</span>
+                                        <span *ngIf="ing.tipo == 'Principal'" class="text-danger">No es un ingrediente secundario</span>
                                         <span *ngIf="ing.tipo != 'Principal' && ing.ingredienteSustituible" class="text-danger">Ya existe un ingrediente sustituible</span>
                                         <span *ngIf="ing.tipo != 'Principal' && !ing.ingredienteSustituible">Añadir ingrediente de sustitución <span class="text-warning">&nbsp;(Opcional)</span></span>
                                     </mat-panel-description>

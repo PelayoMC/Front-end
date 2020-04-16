@@ -23,7 +23,9 @@ export class RecipeComponent implements OnInit {
           this.router.navigate(['recipes']);
         } else {
         Object.assign(this.receta, resp[0]);
+        console.log(this.receta.ingredientes.map(el => el.ingredienteSustituible));
         this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
+          console.log(resp);
           this.sustituibles = resp.map(el => {
             if (el != null) {
               return el.nombre;
@@ -45,6 +47,26 @@ export class RecipeComponent implements OnInit {
       return 'text-danger';
     }
     return 'text-info';
+  }
+
+  noUnidades(ing: any) {
+    if (ing && (ing.unidades === 'Al gusto' || ing.unidades === 'Sin unidades')) {
+      return true;
+    }
+    return false;
+  }
+
+  classTipo(receta: any) {
+    switch (receta.tipoRe) {
+      case 'Desayuno' :
+        return 'label label-warning';
+      case 'Desayuno' :
+        return 'label label-success';
+      case 'Desayuno' :
+        return 'label label-info';
+      case 'Desayuno' :
+        return 'label label-danger';
+    }
   }
 
 }

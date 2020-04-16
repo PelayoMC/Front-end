@@ -2,11 +2,11 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body" routerLinkActive="active">
-                <h1>{{ receta?.nombre | uppercase }}</h1>
+                <h1>{{ receta?.nombre | uppercase }}<small class="text text-muted">  {{ receta?.tipoRe }}</small></h1>
                 <hr>
                 <div class="row">
                     <div class="col-md-4">
-                        <img *ngIf="receta?.imagen" [src]='receta?.imagen | image: "receta"' class="img-fluid" alt="receta-imagen">
+                        <img *ngIf="receta?.imagen" [src]='receta?.imagen | image: "receta"' class="img-responsive" alt="receta-imagen">
                         <br><br>
                         <div class="row">
                             <div class="col-md-6">
@@ -54,7 +54,8 @@
                                                 <b>Cantidad: </b>
                                             </div>
                                             <div class="col-7">
-                                                {{ ing.cantidad }} {{ ing.unidades }}
+                                                <span *ngIf="noUnidades(ing)">{{ ing.unidades }}</span>
+                                                <span *ngIf="!noUnidades(ing)">{{ ing.cantidad }} {{ ing.unidades }}</span>
                                             </div>
                                         </div>
                                         <div *ngIf="(sustituibles.length != 0) && (sustituibles[i] != null)">

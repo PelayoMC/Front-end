@@ -79,6 +79,17 @@ export class RecipesService {
     );
   }
 
+  modificarReceta(receta: Recipe) {
+    let url = URL_SERVICIOS + '/receta/' + receta._id;
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, receta).pipe(
+      map( (resp: any) => {
+        Swal.fire('Receta modificada', '<p>Nombre: ' + receta.nombre + '</p>', 'success');
+        return resp.receta;
+      })
+    );
+  }
+
   cambiarImagen(receta: Recipe, file: File) {
     this.uploadService.subirArchivo(file, 'recetas', receta._id).then( (resp: any) => {
       receta.imagen = JSON.parse(resp).receta.imagen;

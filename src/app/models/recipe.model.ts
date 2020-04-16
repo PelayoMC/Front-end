@@ -5,11 +5,12 @@ export class Recipe {
     constructor(
         public nombre: string = '',
         public descripcion: string = '',
-        public nivel: string = '',
+        public tipoRe: string = '',
         public imagen: string = '',
         public ingredientes: IngredientRecipe[] = [],
-        public calorias: Calorias = null,
         public pasos: string[] = [],
+        public nivel: string = '',
+        public calorias: Calorias = null,
         public _id?: string
     ) {
     }

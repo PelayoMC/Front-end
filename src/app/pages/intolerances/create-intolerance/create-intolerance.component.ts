@@ -50,17 +50,21 @@ export class CreateIntoleranceComponent implements OnInit {
       for (const tag of this.tags) {
         this.addNoApto(tag.nombre);
       }
-      this.route.queryParams.subscribe(params => {
-        if (params.nombre) {
-          this.intolerancia._id = params._id;
-          this.form.get('nombre').setValue(params.nombre);
-          this.form.get('descripcion').setValue(params.descripcion);
-          this.imgTemp = URL_SERVICIOS + '/imagen/intolerancias/' + params.imagen;
-          this.eliminarEtiquetas(params.noApto);
-          this.modificando = true;
-        }
-      });
+      this.cargarIntolerancia();
       this.cargando = false;
+    });
+  }
+
+  cargarIntolerancia() {
+    this.route.queryParams.subscribe(params => {
+      if (params.nombre) {
+        this.intolerancia._id = params._id;
+        this.form.get('nombre').setValue(params.nombre);
+        this.form.get('descripcion').setValue(params.descripcion);
+        this.imgTemp = URL_SERVICIOS + '/imagen/intolerancias/' + params.imagen;
+        this.eliminarEtiquetas(params.noApto);
+        this.modificando = true;
+      }
     });
   }
 

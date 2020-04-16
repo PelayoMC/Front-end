@@ -49,7 +49,7 @@ a.link:focus {
 }
 
 .img-responsive {
-    width: 100%;
+    width: auto;
     height: auto;
     display: inline-block;
 }
@@ -2595,6 +2595,11 @@ File: scss
 /*******************
 Buttons
 ******************/
+
+.button-end {
+    position: absolute;
+    right: 20px;
+}
 
 .btn {
     padding: 7px 12px;

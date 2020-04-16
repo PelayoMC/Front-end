@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-import { UsersService } from '../../../service/users/users.service';
+import { Router, NavigationExtras } from '@angular/router';
+import { UsersService, RecipesService } from '../../../service/service.index';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-recipe-card',
@@ -12,26 +13,47 @@ export class RecipeCardComponent implements OnInit {
   @Input() receta: any = {};
 
   @Output() recetaSeleccionada: EventEmitter<number>;
+  @Output() recetaBorrada: EventEmitter<number>;
 
-  constructor( private router: Router, public userService: UsersService) {
+  constructor( private router: Router, public userService: UsersService, public recipesService: RecipesService) {
     this.recetaSeleccionada = new EventEmitter();
+    this.recetaBorrada = new EventEmitter();
    }
 
   ngOnInit() {
   }
 
   verReceta() {
+    console.log(this.receta);
     this.recetaSeleccionada.emit(this.receta._id);
   }
 
-  // card border border-primary
+  actualizarReceta(receta: any) {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        _id: receta._id
+      }
+    };
+    this.router.navigate(['/addRecipe'], navigationExtras);
+  }
 
-  border() {
-    switch (this.receta.nivel) {
-      case 'FACIL': return 'card border border-success';
-      case 'MEDIO': return 'card border border-warning';
-      case 'DIFICIL': return 'card border border-danger';
-    }
+  borrarReceta(receta: any) {
+    Swal.fire({
+      title: '¿Borrar receta?',
+      text: 'Está a punto de borrar la receta ' + receta.nombre,
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Borrar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this.recipesService.borrarReceta(receta._id).subscribe(resp => {
+          Swal.fire('Receta borrada', 'Receta borrada correctamente', 'success');
+          this.recetaBorrada.emit(this.receta._id);
+        });
+      }
+    });
   }
 
 

@@ -23,7 +23,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <app-recipe-card class="col-sm-6 col-lg-4" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
+                    <app-recipe-card class="col-sm-6 col-lg-4" (recetaBorrada)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
                 </div>
             </div>
         </div>

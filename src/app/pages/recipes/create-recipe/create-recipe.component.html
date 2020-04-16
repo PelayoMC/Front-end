@@ -1,13 +1,25 @@
-<div class="row">
+<div class="row animated fadeIn" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            <strong> CARGANDO </strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!cargando">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h2>Crear receta <small class="h6 text text-warning">(Los campos marcados con * son obligatorios)</small></h2>
+                <h2 *ngIf="!modificando">Crear receta</h2>
+                <h2 *ngIf="modificando">Modificar receta</h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="col-lg-8 col-sm-12">
                             <div class="form-group">
-                                <label>Nombre *</label>
+                                <label>Nombre</label>
                                 <div class="input-group">
                                     <input formControlName="nombre" [class.is-invalid]="nombreNoValido()" type="text" name="nombre" class="form-control" autocomplete="off" placeholder="Nombre de la receta">
                                 </div>
@@ -15,7 +27,7 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <label>Descripcion *</label>
+                                <label>Descripcion</label>
                                 <div class="input-group">
                                     <textarea formControlName="descripcion" [class.is-invalid]="descripcionNoValida()" name="descripcion" class="form-control" rows="3" placeholder="Descripcion de la receta"></textarea>
                                 </div>
@@ -33,9 +45,9 @@
                         </div>
                         <div class="col-lg-4 col-sm-12">
                             <div class="form-group">
-                                <h4>Imagen *<span class="text-warning" *ngIf="imgTemp">Vista previa</span></h4>
-                                <img *ngIf="!imgTemp" src="/assets/images/no-img.jpg" class="img-profile-small">
-                                <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile-small">
+                                <h4>Imagen<span class="text-warning" *ngIf="imgTemp">Vista previa</span></h4>
+                                <img *ngIf="!imgTemp" src="/assets/images/no-img.jpg" class="img-profile">
+                                <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile">
                                 <br>
                                 <br>
                                 <input (change)="chooseImage($event.target.files[0])" type="file">
@@ -44,7 +56,7 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <label>Ingredientes *</label>
+                        <label>Ingredientes</label>
                         <div style="overflow-x:auto;">
                             <table class="table table-primary">
                                 <thead>
@@ -68,13 +80,13 @@
                                             <input #cantidad class="form-control" type="number" formControlName="cantidad" placeholder="Cantidad">
                                         </td>
                                         <td class="long-td">
-                                            <select class="form-control" (change)="onChange(ingrediente, cantidad)" [(value)]="selectedUnidadesIng" formControlName="unidades">
+                                            <select class="form-control" (change)="onChange(ingrediente, cantidad)" formControlName="unidades">
                                                 <optgroup *ngFor="let group of opt.uds" [label]="group.label">
                                                     <option *ngFor="let opt of group.opciones" [value]="opt.nombre">{{ opt.nombre }}</option>
                                             </select>
                                         </td>
                                         <td class="medium-td">
-                                            <select class="form-control" [(value)]="selectedTipoUnidades" formControlName="tipo" placeholder="Tipo">
+                                            <select class="form-control" formControlName="tipo" placeholder="Tipo">
                                                 <option *ngFor="let tipo of opt.tipoUnidades" [value]="tipo.nombre">{{ tipo.nombre }}</option>
                                             </select>
                                         </td>
@@ -89,7 +101,7 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <label>Pasos a seguir de la receta *</label>
+                        <label>Pasos a seguir de la receta</label>
                         <div style="overflow-x:auto;">
                             <table class="table table-primary">
                                 <thead>
@@ -145,7 +157,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Crear receta</button>
+                    <button *ngIf="!modificando" type="submit" class="btn btn-info waves-effect waves-light m-r-10">Crear receta</button>
+                    <button *ngIf="modificando" type="submit" class="btn btn-info waves-effect waves-light m-r-10">Modificar receta</button>
                 </form>
             </div>
         </div>
