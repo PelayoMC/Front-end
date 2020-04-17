@@ -54,7 +54,7 @@
                                         <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" matTooltip="Mostrar receta" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
                                     </div>
                                 </div>
-                                <span *ngIf="!(extra[i].recetas.length > 0)"><small>No está presente en ninguna receta </small></span>
+                                <span *ngIf="!(extra[i].recetas.length > 0)"><small class="text text-muted">No está presente en ninguna receta </small></span>
                             </td>
                             <td>
                                 <div *ngIf="extra[i].sustituibles.length > 0" class="row">
@@ -62,6 +62,7 @@
                                         <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" matTooltip="Mostrar receta" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
                                     </div>
                                 </div>
+                                <span *ngIf="!(extra[i].sustituibles.length > 0)"><small class="text text-muted">No está presente en ninguna receta </small></span>
                             </td>
                             <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
                                 <button (click)="ing.modificando = !ing.modificando" class="btn btn-primary" matTooltip="Modificar ingrediente"><i class="fa fa-wrench"></i></button> &nbsp;

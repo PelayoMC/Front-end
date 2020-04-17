@@ -7,6 +7,7 @@ import { VerifyTokenGuardGuard } from '../service/guards/verify-token-guard.guar
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { IntolerancesComponent } from './intolerances/intolerances.component';
 import { IntoleranceComponent } from './intolerances/intolerance/intolerance.component';
+import { TagsComponent } from './tags/tags.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
           { path: 'ingredients', component: IngredientsComponent, data: { titulo: 'Ingredientes' } },
           { path: 'intolerances', component: IntolerancesComponent, data: { titulo: 'Intolerancias' } },
           { path: 'intolerance/:id', component: IntoleranceComponent, data: { titulo: 'Intolerancia' } },
+          { path: 'tags', component: TagsComponent, data: { titulo: 'Etiquetas' } },
           { path: '', pathMatch: 'full', redirectTo: '/home'}
         ]
     }

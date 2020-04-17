@@ -24,12 +24,12 @@
                                                 {{ tag.nombre }}
                                                 <mat-icon matChipRemove>cancel</mat-icon>
                                             </mat-chip>
-                                            <input placeholder="Para añadir una etiqueta use , o intro" #input [matAutocomplete]="auto" [matChipInputFor]="list" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event, j)">
+                                            <input placeholder="Añadir etiquetas" #input (keyup)="filtrar(input)" [matAutocomplete]="auto" [matChipInputFor]="list">
                                         </mat-chip-list>
                                         <small *ngIf="aptoRepetido(j)" class="form-text text-danger">El ingrediente no puede etiquetas repetidas</small>
                                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, j, input)">
-                                            <mat-option *ngFor="let tag of copy" [value]="tag.nombre">
-                                                {{ tag.nombre }}
+                                            <mat-option *ngFor="let tag of filteredTags" [value]="tag">
+                                                {{ tag }}
                                             </mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>

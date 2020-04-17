@@ -54,6 +54,10 @@ export class UsersService {
     }
   }
 
+  esUser() {
+    return this.estaLogueado() && !this.esAdmin();
+  }
+
   cargarStorage() {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +12,57 @@ export class TagsServiceService {
 
   constructor(public http: HttpClient) { }
 
-  obtenerTags() {
+  obtenerEtiquetas() {
     const url = URL_SERVICIOS + '/etiqueta';
     return this.http.get(url).pipe(
       map( (resp: any) => {
         return resp;
+      })
+    );
+  }
+
+  obtenerTagsFT(from: number, limit: number) {
+    const url = URL_SERVICIOS + '/etiqueta' + '?from=' + from + '&limit=' + limit;
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp;
+      })
+    );
+  }
+
+  buscarEtiquetas(termino: string, from: number, limit: number) {
+    let url = URL_SERVICIOS + '/busqueda/etiqueta/' + termino + '?from=' + from + '&limit=' + limit;
+    return this.http.get(url).pipe(
+      map(  (resp: any) => {
+        return resp;
+      })
+    );
+  }
+
+  modificarEtiqueta(et: any) {
+    let url = URL_SERVICIOS + '/etiqueta/' + et._id;
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, et).pipe(
+      map( (resp: any) => {
+        return resp.etiqueta;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al modificar la intolerancia', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  borrarEtiqueta(et: any) {
+    let url = URL_SERVICIOS + '/etiqueta/' + et._id;
+    url += '?token=' + localStorage.token;
+    return this.http.delete(url).pipe(
+      map( (resp: any) => {
+        return resp.etiqueta;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al borrar la intolerancia', 'error');
+        return throwError(err);
       })
     );
   }

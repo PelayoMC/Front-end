@@ -41,7 +41,7 @@ export class CreateIntoleranceComponent implements OnInit {
   }
 
   cargarEtiquetas() {
-    this.tagsService.obtenerTags().subscribe((resp: any) => {
+    this.tagsService.obtenerEtiquetas().subscribe((resp: any) => {
       const ar: Etiqueta[] = [];
       for (let i = 0; i < resp.etiquetas.length; i++) {
         ar[i] = new Etiqueta(resp.etiquetas[i].nombre, resp.etiquetas[i]._id);
@@ -179,7 +179,7 @@ export class CreateIntoleranceComponent implements OnInit {
   }
 
   añadirIntolerancia(str: any) {
-    this.tagsService.obtenerTags().subscribe((resp: any) => {
+    this.tagsService.obtenerEtiquetas().subscribe((resp: any) => {
       const ar1 = str.noApto;
       const ar2 = resp.etiquetas.map(el => el.nombre);
       const ar = ar1.filter(el => !ar2.includes(el));
@@ -194,7 +194,7 @@ export class CreateIntoleranceComponent implements OnInit {
   }
 
   modificarIntolerancia(str: any) {
-    this.tagsService.obtenerTags().subscribe((resp: any) => {
+    this.tagsService.obtenerEtiquetas().subscribe((resp: any) => {
       const ar1 = str.noApto;
       const ar2 = resp.etiquetas.map(el => el.nombre);
       const ar = ar1.filter(el => !ar2.includes(el));

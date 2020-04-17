@@ -1,6 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Ingredient } from '../../../models/ingredient.model';
 import { IngredientRecipe } from '../../../models/recipe.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,6 +7,7 @@ import { RecipesService, IngredientsService, SustValidatorService, TagsServiceSe
 import Swal from 'sweetalert2';
 import { Etiqueta } from 'src/app/models/etiqueta.model';
 import { MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-ings-recipe',
@@ -20,16 +20,17 @@ export class CreateIngsRecipeComponent implements OnInit {
   ingredients: IngredientRecipe[] = [];
   tags: [Etiqueta[]] = [[]];
   copy: Etiqueta[] = [];
-  news: Etiqueta[] = [];
-
-  separatorKeysCodes: number[] = [ENTER, COMMA];
+  filteredTags: string[];
 
   cargando = true;
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
               public recipesService: RecipesService, public ingsService: IngredientsService,
               public router: Router, public validador: SustValidatorService,
-              public tagsService: TagsServiceService) {}
+              public tagsService: TagsServiceService)
+  {
+
+  }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -55,18 +56,19 @@ export class CreateIngsRecipeComponent implements OnInit {
   }
 
   cargarEtiquetas() {
-    this.tagsService.obtenerTags().subscribe((resp: any) => {
+    this.tagsService.obtenerEtiquetas().subscribe((resp: any) => {
       const ar: Etiqueta[] = [];
       for (let i = 0; i < resp.etiquetas.length; i++) {
         ar[i] = new Etiqueta(resp.etiquetas[i].nombre, resp.etiquetas[i]._id);
       }
       this.copy = ar;
+      this.filteredTags = this.copy.map(el => el.nombre).slice();
       for (const ing of this.ingredients) {
         (this.form.get('noApto') as FormArray).push(
           this.fb.array([])
         );
       }
-      this.ingsService.obtainTags(this.ingredients.map(el => el._id)).subscribe(resp => {
+      this.ingsService.obtenerEtiquetas(this.ingredients.map(el => el._id)).subscribe(resp => {
         for (let i = 0; i < resp.length; i++) {
           const ar: Etiqueta[] = [];
           for (let j = 0; j < resp[i].length; j++) {
@@ -117,21 +119,10 @@ export class CreateIngsRecipeComponent implements OnInit {
         valuesSoFar[value] = true;
     }
     return false;
-}
+  }
 
-  add(event: MatChipInputEvent, i: number): void {
-    const input = event.input;
-    const value = event.value;
-
-    if ((value || '').trim()) {
-      this.tags[i].push(new Etiqueta(value.trim()));
-      this.addNoApto(value.trim(), i);
-      this.news.push(new Etiqueta(value.trim()));
-    }
-
-    if (input) {
-      input.value = '';
-    }
+  filtrar(input: any) {
+    this.filteredTags = this.copy.map(el => el.nombre).filter(el => el.includes(input.value));
   }
 
   remove(tag: string, j: number): void {
@@ -139,10 +130,6 @@ export class CreateIngsRecipeComponent implements OnInit {
     const index = ar.indexOf(tag);
 
     if (index >= 0) {
-      const i = this.checkNew(tag);
-      if (i != null) {
-        this.news.splice(i, 1);
-      }
       this.tags[j].splice(index, 1);
       this.eliminarNoApto(j, index);
     }
@@ -151,16 +138,9 @@ export class CreateIngsRecipeComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent, i: number, input: any): void {
     this.tags[i].push(new Etiqueta(event.option.viewValue));
     this.addNoApto(event.option.viewValue, i);
+    this.filteredTags = this.copy.map(el => el.nombre);
     input.blur();
     input.value = '';
-  }
-
-  checkNew(tag: string) {
-    for (let i = 0; i < this.news.length; i++) {
-      if (this.news[i].nombre === tag) {
-        return i;
-      }
-    }
   }
 
   onSubmit() {
@@ -177,17 +157,9 @@ export class CreateIngsRecipeComponent implements OnInit {
       Swal.fire('Error', 'No se permite añadir ingredientes duplicados', 'error');
       return;
     }
-    if (this.news.length > 0) {
-      this.tagsService.añadirTag(this.news.map(el => el.nombre)).subscribe((resp: any) => {
-        this.ingsService.añadirEtiquetas(this.ingredients, this.tags).subscribe(resp => {
-          this.crearReceta();
-        });
-      });
-    } else {
-      this.ingsService.añadirEtiquetas(this.ingredients, this.tags).subscribe(resp => {
-        this.crearReceta();
-      });
-    }
+    this.ingsService.añadirEtiquetas(this.ingredients, this.tags).subscribe(resp => {
+      this.crearReceta();
+    });
   }
 
   crearReceta() {

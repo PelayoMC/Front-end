@@ -45,7 +45,6 @@ export class RecipesComponent implements OnInit {
       return;
     }
     this.cargando = true;
-    this.from = 0;
     this.recipesService.buscarRecetas(termino, valor, this.tam).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;

@@ -9,9 +9,23 @@
             </mat-card-subtitle>
         </mat-card-header>
         <img (click)="verReceta()" mat-card-image class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image">
+        <mat-card-actions align="end" *ngIf="userService.esUser()">
+            <button mat-button class="btn btn-outline-danger"><i class="fa fa-2x fa-heart"></i></button>
+        </mat-card-actions>
         <mat-card-actions align="end" *ngIf="userService.esAdmin()">
-            <button mat-button class="btn btn-outline-warning" (click)="actualizarReceta(receta)">MODIFICAR</button>
-            <button mat-button class="btn btn-outline-danger" (click)="borrarReceta(receta)">BORRAR</button>
+            <button mat-icon-button aria-label="Opciones" [matMenuTriggerFor]="appMenu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #appMenu="matMenu">
+                <button mat-menu-item (click)="actualizarReceta(receta)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Editar receta</span>
+                </button>
+                <button mat-menu-item (click)="borrarReceta(receta)" style="background-color: red; color: white;">
+                    <mat-icon>delete</mat-icon>
+                    <span>Borrar receta</span>
+                </button>
+            </mat-menu>
         </mat-card-actions>
     </mat-card>
 </div>

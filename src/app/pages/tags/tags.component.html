@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <mat-form-field class="input-group mb-3">
+                    <mat-label>Buscar etiquetas</mat-label>
+                    <input matInput #input type="text" (keyup.enter)="buscarEtiquetas(input.value)" autocomplete="off">
+                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarEtiquetas('')">
+                              <mat-icon>close</mat-icon>
+                            </button>
+                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarEtiquetas(input.value)">
+                              <mat-icon>search</mat-icon>
+                            </button>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row animated fadeIn " *ngIf="cargando ">
+    <div class="col-12 ">
+        <div class="alert alert-warning text-center ">
+            <strong> CARGANDO </strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x "></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+<div class="row " *ngIf="!cargando && etiquetas.length > 0">
+    <div class="col-12 ">
+        <div class="card ">
+            <div class="card-body " style="overflow-x:auto; ">
+                <h3 class="card-title ">Etiquetas registradas (<small>{{ total }}</small>)</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Etiquetas</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let et of etiquetas; let i = index">
+                            <td style="width: 100%;">
+                                <input *ngIf="et.modificando" class="form-control" type="text" [(ngModel)]="et.etiqueta.nombre">
+                                <span *ngIf="!et.modificando"> {{ et.etiqueta.nombre }} </span>
+                            </td>
+                            <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
+                                <button (click)="et.modificando = !et.modificando" class="btn btn-primary" matTooltip="Modificar etiqueta"><i class="fa fa-wrench"></i></button> &nbsp;
+                                <button [disabled]="!et.modificando" (click)="actualizarEtiqueta(et.etiqueta)" class="btn btn-info" matTooltip="Guardar ingrediente"><i class="fa fa-save"></i></button> &nbsp;
+                                <button class="btn btn-danger" (click)="borrarEtiqueta(et.etiqueta)" matTooltip="Borrar etiqueta"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
+                <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row " *ngIf="!cargando && etiquetas.length == 0">
+    <div class="col-12 ">
+        <div class="alert alert-warning text-center ">
+            <strong> No se han encontrado resultados </strong>
+            <br>
+            <i class="fa fa-question-circle"></i>
+        </div>
+    </div>
+</div>

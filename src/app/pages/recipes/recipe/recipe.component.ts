@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 export class RecipeComponent implements OnInit {
 
   receta: Recipe = new Recipe();
+  etiquetas: string[] = [];
   sustituibles: string[] = [];
   isDataAvailable: boolean;
 
@@ -22,19 +23,34 @@ export class RecipeComponent implements OnInit {
           Swal.fire('Error', 'Error al cargar la receta', 'error');
           this.router.navigate(['recipes']);
         } else {
-        Object.assign(this.receta, resp[0]);
-        this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
-          this.sustituibles = resp.map(el => {
-            if (el != null) {
-              return el.nombre;
-            } else {
-              return null;
-            }
+          Object.assign(this.receta, resp[0]);
+          this.receta.ingredientes.sort(this.compare);
+          console.log(this.receta.ingredientes);
+          this.ingsService.obtenerEtiquetas(this.receta.ingredientes.map(el => el._id)).subscribe(resp => {
+            this.etiquetas = resp;
+            this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
+              this.sustituibles = resp.map(el => {
+                if (el != null) {
+                  return el.nombre;
+                } else {
+                  return null;
+                }
+              });
+            });
           });
-        });
         }
       });
     });
+  }
+
+  compare(a: any, b: any) {
+    if (a.tipo > b.tipo) {
+      return 1;
+    }
+    if (a.tipo < b.tipo) {
+      return -1;
+    }
+    return 0;
   }
 
   ngOnInit() {
@@ -52,19 +68,6 @@ export class RecipeComponent implements OnInit {
       return true;
     }
     return false;
-  }
-
-  classTipo(receta: any) {
-    switch (receta.tipoRe) {
-      case 'Desayuno' :
-        return 'label label-warning';
-      case 'Desayuno' :
-        return 'label label-success';
-      case 'Desayuno' :
-        return 'label label-info';
-      case 'Desayuno' :
-        return 'label label-danger';
-    }
   }
 
 }

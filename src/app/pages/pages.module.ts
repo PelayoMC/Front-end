@@ -17,6 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Rutas
@@ -39,6 +40,7 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { IntolerancesComponent } from './intolerances/intolerances.component';
 import { IntoleranceComponent } from './intolerances/intolerance/intolerance.component';
 import { CreateIntoleranceComponent } from './intolerances/create-intolerance/create-intolerance.component';
+import { TagsComponent } from './tags/tags.component';
 
 
 @NgModule({
@@ -53,6 +55,7 @@ import { CreateIntoleranceComponent } from './intolerances/create-intolerance/cr
         IngredientsComponent,
         IntolerancesComponent,
         IntoleranceComponent,
+        TagsComponent,
         CreateIntoleranceComponent,
         UsersComponent,
         UserComponent,
@@ -82,6 +85,7 @@ import { CreateIntoleranceComponent } from './intolerances/create-intolerance/cr
         MatChipsModule,
         MatAutocompleteModule,
         MatSelectModule,
+        MatMenuModule,
         NgbPaginationModule
       ]
 })

@@ -68,7 +68,21 @@
                                                     <b class="text-warning">{{ sustituibles[i] }}</b>
                                                 </div>
                                             </div>
-
+                                        </div>
+                                        <div *ngIf="etiquetas[i]?.length > 0">
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <b>Etiquetas: </b>
+                                                </div>
+                                                <div class="col-7">
+                                                    <mat-chip-list #list aria-label="tag selection">
+                                                        <mat-chip *ngFor="let et of etiquetas[i]" [selectable]="false" [removable]="false">
+                                                            {{ et }}
+                                                        </mat-chip>
+                                                    </mat-chip-list>
+                                                </div>
+                                            </div>
                                         </div>
                                     </mat-expansion-panel>
                                 </mat-accordion>

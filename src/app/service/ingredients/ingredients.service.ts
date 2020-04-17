@@ -123,7 +123,7 @@ export class IngredientsService {
     );
   }
 
-  obtainTags(ings: string[]) {
+  obtenerEtiquetas(ings: string[]) {
     const ids = {
       ings
     };

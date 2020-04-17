@@ -27,6 +27,10 @@ export const menuNR: any = [
                 {
                   titulo: 'Lista de intolerancias',
                   url: '/intolerances'
+                },
+                {
+                  titulo: 'Lista de etiquetas',
+                  url: '/tags'
                 }
               ]
             }
@@ -71,6 +75,10 @@ export const menuU: any = [
                 {
                   titulo: 'Lista de intolerancias',
                   url: '/intolerances'
+                },
+                {
+                  titulo: 'Lista de etiquetas',
+                  url: '/tags'
                 }
               ]
             }
@@ -119,6 +127,10 @@ export const menuA: any = [
                 {
                   titulo: 'Lista de intolerancias',
                   url: '/intolerances'
+                },
+                {
+                  titulo: 'Lista de etiquetas',
+                  url: '/tags'
                 },
                 {
                   titulo: 'Crear intolerancia',

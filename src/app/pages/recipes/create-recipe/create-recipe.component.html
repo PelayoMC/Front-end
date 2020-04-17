@@ -86,7 +86,7 @@
                                             </select>
                                         </td>
                                         <td class="medium-td">
-                                            <select class="form-control" formControlName="tipo" placeholder="Tipo">
+                                            <select class="form-control" formControlName="tipo" placeholder="Tipo" matTooltip="El tipo indica si un ingrediente es esencial para la receta o puede ser sustituido">
                                                 <option *ngFor="let tipo of opt.tipoUnidades" [value]="tipo.nombre">{{ tipo.nombre }}</option>
                                             </select>
                                         </td>
