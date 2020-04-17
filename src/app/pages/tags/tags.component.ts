@@ -54,7 +54,11 @@ export class TagsComponent implements OnInit {
     this.etiquetas = [];
     this.tagsService.buscarEtiquetas(termino, this.from, this.limit).subscribe(
       (resp: any) => {
-        this.etiquetas = resp.coleccion;
+        const ar: EtiquetaDecorator[] = [];
+        for (const et of resp.coleccion) {
+          ar.push(new EtiquetaDecorator(et, false));
+        }
+        this.etiquetas = ar;
         this.total = resp.total;
         this.cargando = false;
         this.busqueda.nativeElement.select();
