@@ -61,17 +61,7 @@ export class CreateRecipeComponent implements OnInit {
         this.recipeService.getRecipe(params._id).subscribe(resp => {
           const rec: any = resp[0];
           this.vaciarCampos(rec);
-          this.recipe._id = rec._id;
-          this.recipe.imagen = rec.imagen;
-          this.form.get('nombre').setValue(rec.nombre);
-          this.form.get('descripcion').setValue(rec.descripcion);
-          this.imgTemp = URL_SERVICIOS + '/imagen/recetas/' + rec.imagen;
-          for (const ing of rec.ingredientes) {
-            this.addIngrediente(ing.nombre, ing.cantidad, ing.unidades, ing.tipo);
-          }
-          for (const paso of rec.pasos) {
-            this.addPaso(paso);
-          }
+          this.modificarCampos(rec);
         });
         this.cargando = false;
       } else {
@@ -85,17 +75,39 @@ export class CreateRecipeComponent implements OnInit {
     this.eliminarPaso(0);
   }
 
+  modificarCampos(rec: any) {
+    this.recipe._id = rec._id;
+    this.recipe.imagen = rec.imagen;
+    this.form.get('nombre').setValue(rec.nombre);
+    this.form.get('descripcion').setValue(rec.descripcion);
+    this.form.get('tipoRe').setValue(rec.tipoRe);
+    this.form.get('nivel').setValue(rec.nivel);
+    this.form.get('calorias.cantidad').setValue(rec.calorias.cantidad);
+    this.form.get('calorias.unidades').setValue(rec.calorias.unidades);
+    this.imgTemp = URL_SERVICIOS + '/imagen/recetas/' + rec.imagen;
+    for (const ing of rec.ingredientes) {
+      this.addIngrediente(ing.nombre, ing.cantidad, ing.unidades, ing.tipo);
+    }
+    for (const paso of rec.pasos) {
+      this.addPaso(paso);
+    }
+  }
+
   ingredientes(): FormArray {
     return this.form.get('ingredientes') as FormArray;
   }
 
   nuevoIngrediente(nombre: string, cantidad: number, unidades: string, tipo: string): FormGroup {
-    return this.fb.group({
+    let fg: FormGroup = this.fb.group({
       nombre: [nombre, Validators.required],
       cantidad: [cantidad, Validators.required],
       unidades: [unidades, Validators.required],
       tipo: [tipo, Validators.required]
     });
+    if ((unidades === 'Al gusto' || unidades === 'Sin unidades')) {
+      fg.get('cantidad').disable();
+    }
+    return fg;
   }
 
   addIngrediente(nombre: string = '', cantidad: number = 0, unidades: string = 'Sin unidades', tipo: string = 'Principal') {
@@ -139,7 +151,6 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   onChange(input: any, select: any) {
-    console.log('CAMBIA');
     if (input.controls.unidades.value === 'Al gusto' || input.controls.unidades.value === 'Sin unidades') {
       select.disabled = true;
     } else {

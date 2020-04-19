@@ -77,7 +77,7 @@
                                             <small *ngIf="ingredienteNoValido(ingrediente)" class="form-text text-danger">El nombre es obligatorio</small>
                                         </td>
                                         <td>
-                                            <input #cantidad class="form-control" type="number" formControlName="cantidad" (load)="onChange(ingrediente, cantidad)" placeholder="Cantidad" disabled>
+                                            <input #cantidad class="form-control" type="number" formControlName="cantidad" (load)="onChange(ingrediente, cantidad)" placeholder="Cantidad">
                                         </td>
                                         <td class="long-td">
                                             <select class="form-control" (change)="onChange(ingrediente, cantidad)" formControlName="unidades">

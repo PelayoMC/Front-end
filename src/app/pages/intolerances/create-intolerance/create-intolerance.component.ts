@@ -112,7 +112,7 @@ export class CreateIntoleranceComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.imgUpload == null) {
+    if (this.imgUpload == null  && !this.modificando) {
       Swal.fire('Error', 'Añada una imagen a la intolerancia', 'error');
       return;
     }
@@ -221,9 +221,13 @@ export class CreateIntoleranceComponent implements OnInit {
   modInto() {
     this.añadirCamposIntolerancia();
     this.intoleranceService.modificarIntolerancia(this.intolerancia).subscribe((resp: any) => {
-      this.intoleranceService.cambiarImagen(this.intolerancia, this.imgUpload);
+      if (this.imgUpload) {
+        this.intolerancia._id = resp._id;
+        this.intoleranceService.cambiarImagen(this.intolerancia, this.imgUpload);
+      }
       Swal.fire('Intolerancia modificada', 'La intolerancia se ha modificado correctamente', 'success');
       this.router.navigate(['/intolerances']);
     });
   }
 }
+ 
