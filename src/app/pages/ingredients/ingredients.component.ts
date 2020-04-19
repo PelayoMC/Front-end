@@ -168,8 +168,10 @@ export class IngredientsComponent implements OnInit {
   }
 
   actualizarIngrediente(ingredient: Ingredient) {
-    this.ingredientesService.modificarIngrediente(ingredient).subscribe(resp => {
-      this.cargar();
+    this.ingredientesService.modificarIngredienteReceta(ingredient._id, ingredient.nombre).subscribe(resp => {
+      this.ingredientesService.modificarIngrediente(ingredient).subscribe(resp => {
+        this.cargar();
+      });
     });
   }
 

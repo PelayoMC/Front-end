@@ -16,7 +16,7 @@ export class VerifyTokenGuardGuard implements CanActivate {
       const payload = JSON.parse( atob( token.split('.')[1] ) );
       const expirado = this.expirado(payload.exp);
       if (expirado) {
-        Swal.fire('Error de sesión', 'La sesión ha expirado. Vuelva a iniciar sesión', 'error');
+        Swal.fire('Sesión expirada', 'La sesión de usuario ha expirado. Vuelva a iniciar sesión', 'warning');
         this.usuarioService.logout('home');
         return false;
       }

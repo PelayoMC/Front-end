@@ -38,7 +38,6 @@ export class TagsComponent implements OnInit {
         ar.push(new EtiquetaDecorator(et, false));
       }
       this.etiquetas = ar;
-      console.log(ar);
       this.total = resp.total;
       this.cargando = false;
     });
@@ -67,9 +66,10 @@ export class TagsComponent implements OnInit {
   }
 
   actualizarEtiqueta(etiqueta: Etiqueta) {
-    this.tagsService.modificarEtiqueta(etiqueta).subscribe(resp => {
-      Swal.fire('Etiqueta modificada', 'La etiqueta se ha modificado correctamente', 'success');
-      this.cargarEtiquetas();
+    this.tagsService.modificarEtiquetaIngsInto(etiqueta._id, etiqueta.nombre).subscribe(resp => {
+      this.tagsService.modificarEtiqueta(etiqueta).subscribe(resp => {
+        this.cargarEtiquetas();
+      });
     });
   }
 

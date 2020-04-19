@@ -54,11 +54,28 @@ export class IngredientsService {
     url += '?token=' + localStorage.token;
     return this.http.put(url, ingredient).pipe(
       map( (resp: any) => {
-        Swal.fire('Ingrediente modificado', ingredient.nombre, 'success');
         return resp.ingrediente;
       }),
       catchError( err => {
         Swal.fire('Error', 'Error al modificar el ingrediente', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  modificarIngredienteReceta(id: string, nuevo: string) {
+    const n = {
+      nuevo
+    };
+    let url = URL_SERVICIOS + '/ingrediente/mod/' + id;
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, n).pipe(
+      map( (resp: any) => {
+        Swal.fire('Ingrediente modificado', 'El ingrediente ha sido modificado correctamente', 'success');
+        return resp.recetas;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al modificar el ingrediente en las recetas', 'error');
         return throwError(err);
       })
     );

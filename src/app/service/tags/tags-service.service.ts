@@ -47,7 +47,25 @@ export class TagsServiceService {
         return resp.etiqueta;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al modificar la intolerancia', 'error');
+        Swal.fire('Error', 'Error al modificar la etiqueta', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  modificarEtiquetaIngsInto(id: string, nuevo: string) {
+    const n = {
+      nuevo
+    };
+    let url = URL_SERVICIOS + '/etiqueta/mod/'  + id;
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, n).pipe(
+      map( (resp: any) => {
+        Swal.fire('Etiqueta modificada', 'La etiqueta ha sido modificada correctamente', 'success');
+        return resp;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al modificar la etiqueta en los ingredientes y las intolerancias', 'error');
         return throwError(err);
       })
     );
