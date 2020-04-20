@@ -31,7 +31,7 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h3 class="card-title ">Etiquetas registradas (<small>{{ total }}</small>)</h3>
+                <h3 class="card-title ">Etiquetas registradas (<small>{{ total }}</small>)&nbsp; <button (click)="mostrarModal()" matTooltip="Añadir usuario" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -70,3 +70,4 @@
         </div>
     </div>
 </div>
+<app-modal-tags (created)="cargarEtiquetas()"></app-modal-tags>

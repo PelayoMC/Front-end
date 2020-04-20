@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { TagsServiceService } from '../../service/service.index';
+import { TagsServiceService, UsersService, ModalTagService } from '../../service/service.index';
 import { EtiquetaDecorator } from '../../models/decorators/tag-decorator.model';
 import Swal from 'sweetalert2';
-import { UsersService } from '../../service/users/users.service';
 import { Etiqueta } from 'src/app/models/etiqueta.model';
 
 @Component({
@@ -18,7 +17,7 @@ export class TagsComponent implements OnInit {
   limit = 7;
   total: number;
 
-  constructor(public tagsService: TagsServiceService, public userService: UsersService) { }
+  constructor(public tagsService: TagsServiceService, public userService: UsersService, public modalService: ModalTagService) { }
 
   ngOnInit() {
     this.cargando = true;
@@ -108,6 +107,10 @@ export class TagsComponent implements OnInit {
     const value = this.from + valor;
     this.from = value;
     this.cargarEtiquetas();
+  }
+
+  mostrarModal() {
+    this.modalService.mostrarModal();
   }
 
 }

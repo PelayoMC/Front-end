@@ -7,13 +7,14 @@
                     <br>
                     <div class="form-group" formArrayName="noApto">
                         <mat-accordion>
-                            <mat-expansion-panel *ngFor="let ing of ingredients; let j = index">
+                            <mat-expansion-panel *ngFor="let ing of ingredients; let j = index" [disabled]="copy.length == 0">
                                 <mat-expansion-panel-header>
                                     <mat-panel-title>
                                         <b>{{ ing.nombre }}</b>
                                     </mat-panel-title>
                                     <mat-panel-description>
-                                        Añadir etiquetas<span class="text-warning"> &nbsp; (Opcional)</span>
+                                        <span *ngIf="copy.length > 0">Añadir etiquetas<span class="text-warning"> &nbsp; (Opcional)</span></span>
+                                        <span *ngIf="copy.length == 0">No existen etiquetas</span>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
                                 <div #inputGroup class="form-group">

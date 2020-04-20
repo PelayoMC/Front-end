@@ -39,6 +39,31 @@ export class TagsServiceService {
     );
   }
 
+  crearEtiqueta(etiqueta: any) {
+    let url = URL_SERVICIOS + '/etiqueta';
+    url += '?token=' + localStorage.token;
+    return this.http.post(url, etiqueta).pipe(
+      map( (resp: any) => {
+        Swal.fire('Etiqueta creada', 'La etiqueta se ha creado correctamente', 'success');
+        return resp.etiqueta;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'La etiqueta no se ha podido crear correctamente', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  añadirTags(tags: string[]) {
+    let url = URL_SERVICIOS + '/etiqueta/varios';
+    url += '?token=' + localStorage.token;
+    return this.http.post(url, tags).pipe(
+      map( (resp: any) => {
+        return resp;
+      })
+    );
+  }
+
   modificarEtiqueta(et: any) {
     let url = URL_SERVICIOS + '/etiqueta/' + et._id;
     url += '?token=' + localStorage.token;
@@ -81,19 +106,6 @@ export class TagsServiceService {
       catchError( err => {
         Swal.fire('Error', 'Error al borrar la intolerancia', 'error');
         return throwError(err);
-      })
-    );
-  }
-
-  añadirTag(tags: string[]) {
-    const etiquetas = {
-      etiquetas: tags
-    };
-    let url = URL_SERVICIOS + '/etiqueta';
-    url += '?token=' + localStorage.token;
-    return this.http.post(url, tags).pipe(
-      map( (resp: any) => {
-        return resp;
       })
     );
   }

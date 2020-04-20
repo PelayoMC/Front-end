@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ModalCreateUserService {
-  public oculto: string = 'oculto';
+  public oculto = 'oculto';
   constructor() { }
 
   ocultarModal() {

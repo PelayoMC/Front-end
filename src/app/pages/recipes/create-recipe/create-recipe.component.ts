@@ -33,14 +33,7 @@ export class CreateRecipeComponent implements OnInit {
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       tipoRe: ['Desayuno', Validators.required],
-      ingredientes: this.fb.array([
-        this.fb.group({
-          nombre: ['', Validators.required],
-          cantidad: [0, Validators.required],
-          unidades: ['Sin unidades', Validators.required],
-          tipo: ['Principal', Validators.required]
-        }, Validators.required)
-      ], Validators.required),
+      ingredientes: this.fb.array([], Validators.required),
       pasos: this.fb.array([
         ['', Validators.required]
       ]),
@@ -50,6 +43,7 @@ export class CreateRecipeComponent implements OnInit {
         unidades: ['Caloria/s', Validators.required],
       })
     });
+    this.addIngrediente();
     this.recipe = new Recipe();
     this.cargarReceta();
   }
@@ -86,7 +80,7 @@ export class CreateRecipeComponent implements OnInit {
     this.form.get('calorias.unidades').setValue(rec.calorias.unidades);
     this.imgTemp = URL_SERVICIOS + '/imagen/recetas/' + rec.imagen;
     for (const ing of rec.ingredientes) {
-      this.addIngrediente(ing.nombre, ing.cantidad, ing.unidades, ing.tipo);
+      this.addIngrediente(ing.nombre, ing.cantidad, ing.unidades, ing.tipo, ing.ingredienteSustituible);
     }
     for (const paso of rec.pasos) {
       this.addPaso(paso);
@@ -97,12 +91,13 @@ export class CreateRecipeComponent implements OnInit {
     return this.form.get('ingredientes') as FormArray;
   }
 
-  nuevoIngrediente(nombre: string, cantidad: number, unidades: string, tipo: string): FormGroup {
+  nuevoIngrediente(nombre: string, cantidad: number, unidades: string, tipo: string, is: string): FormGroup {
     let fg: FormGroup = this.fb.group({
       nombre: [nombre, Validators.required],
       cantidad: [cantidad, Validators.required],
       unidades: [unidades, Validators.required],
-      tipo: [tipo, Validators.required]
+      tipo: [tipo, Validators.required],
+      ingredienteSustituible: [is]
     });
     if ((unidades === 'Al gusto' || unidades === 'Sin unidades')) {
       fg.get('cantidad').disable();
@@ -110,8 +105,8 @@ export class CreateRecipeComponent implements OnInit {
     return fg;
   }
 
-  addIngrediente(nombre: string = '', cantidad: number = 0, unidades: string = 'Sin unidades', tipo: string = 'Principal') {
-    this.ingredientes().push(this.nuevoIngrediente(nombre, cantidad, unidades, tipo));
+  addIngrediente(nombre: string = '', cantidad: number = 0, unidades: string = 'Sin unidades', tipo: string = 'Principal', is: string = null) {
+    this.ingredientes().push(this.nuevoIngrediente(nombre, cantidad, unidades, tipo, is));
   }
 
   eliminarIngrediente(i: number) {
@@ -224,6 +219,7 @@ export class CreateRecipeComponent implements OnInit {
   modificarReceta() {
     this.cargando = true;
     Object.assign(this.recipe, this.form.value);
+    console.log(this.recipe.ingredientes);
     this.ingredientService.obtenerIngsRecipe(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
       this.recipeService.modificarReceta(this.recipe).subscribe(resp => {

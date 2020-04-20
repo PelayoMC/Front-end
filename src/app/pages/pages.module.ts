@@ -35,6 +35,7 @@ import { UserComponent } from './users/user/user.component';
 import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { ModalCreateUserComponent } from '../components/modal-create-user/modal-create-user.component';
+import { ModalTagsComponent } from '../components/modal-tags/modal-tags.component';
 import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { IntolerancesComponent } from './intolerances/intolerances.component';
@@ -61,6 +62,7 @@ import { TagsComponent } from './tags/tags.component';
         UserComponent,
         ModalUploadComponent,
         ModalCreateUserComponent,
+        ModalTagsComponent
       ],
       exports: [
         MainComponent

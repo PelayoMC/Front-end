@@ -24,6 +24,7 @@ export class ModalUploadComponent implements OnInit {
       this.modalService.notificacion.emit(resp);
       this.cerrarModal();
     }).catch( err => {
+      this.cerrarModal();
       Swal.fire('Imagen no actualizada', 'Error al actualizar la imagen', 'error');
     });
   }

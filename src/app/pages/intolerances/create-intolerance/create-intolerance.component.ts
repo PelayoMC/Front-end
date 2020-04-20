@@ -184,7 +184,7 @@ export class CreateIntoleranceComponent implements OnInit {
       const ar2 = resp.etiquetas.map(el => el.nombre);
       const ar = ar1.filter(el => !ar2.includes(el));
       if (ar.length > 0) {
-        this.tagsService.añadirTag(ar).subscribe(resp => {
+        this.tagsService.añadirTags(ar).subscribe(resp => {
           this.addInto();
         });
       } else {
@@ -199,7 +199,7 @@ export class CreateIntoleranceComponent implements OnInit {
       const ar2 = resp.etiquetas.map(el => el.nombre);
       const ar = ar1.filter(el => !ar2.includes(el));
       if (ar.length > 0) {
-        this.tagsService.añadirTag(ar).subscribe(resp => {
+        this.tagsService.añadirTags(ar).subscribe(resp => {
           this.modInto();
         });
       } else {

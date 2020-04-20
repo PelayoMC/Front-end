@@ -78,8 +78,7 @@ export class RecipesService {
     return this.http.post(url, receta).pipe(
       map( (resp: any) => {
         Swal.fire('Receta creada',
-        '<p>Nombre: ' + receta.nombre + '</p>' +
-        '<p>Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes</p>',
+        'Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes',
         'success');
         return resp.receta;
       }),
@@ -96,8 +95,7 @@ export class RecipesService {
     return this.http.put(url, receta).pipe(
       map( (resp: any) => {
         Swal.fire('Receta modificada',
-        '<p>Nombre: ' + receta.nombre + '</p>'+
-        '<p>Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes</p>',
+        'Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes',
         'success');
         return resp.receta;
       }),

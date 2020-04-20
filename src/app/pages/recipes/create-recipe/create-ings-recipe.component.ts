@@ -27,10 +27,7 @@ export class CreateIngsRecipeComponent implements OnInit {
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
               public recipesService: RecipesService, public ingsService: IngredientsService,
               public router: Router, public validador: SustValidatorService,
-              public tagsService: TagsServiceService)
-  {
-
-  }
+              public tagsService: TagsServiceService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -40,6 +37,7 @@ export class CreateIngsRecipeComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.idReceta = params.id;
       this.recipesService.getIngredients(this.idReceta).subscribe((resp: IngredientRecipe[]) => {
+        console.log(resp);
         this.ingredients = resp;
         this.cargarIngredientes();
         this.cargarEtiquetas();

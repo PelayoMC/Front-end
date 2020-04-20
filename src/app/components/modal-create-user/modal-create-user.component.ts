@@ -14,7 +14,7 @@ export class ModalCreateUserComponent implements OnInit {
 
   usuario: Usuario;
   selected: string;
-  passEqual: boolean = true;
+  passEqual = true;
 
   @Output() created = new EventEmitter();
 
@@ -40,7 +40,6 @@ export class ModalCreateUserComponent implements OnInit {
   }
 
   crearUsuario(form: NgForm) {
-    this.ocultarModal();
     if (form.form.valid) {
       let user = new Usuario(
         form.form.value.nombre,
@@ -53,13 +52,10 @@ export class ModalCreateUserComponent implements OnInit {
       );
       this.userService.crearUsuario(user).subscribe((resp: any) => {
         Swal.fire('Usuario creado', resp.email, 'success');
+        this.ocultarModal();
         this.created.emit();
-      });
-    } else {
-      Swal.fire('Error', 'Rellene el formulario correctamente', 'error');
+      }, err => this.cerrarModal(form));
     }
-    this.passEqual = true;
-    this.limpiarModal(form);
   }
 
   checkPass(form: NgForm) {
