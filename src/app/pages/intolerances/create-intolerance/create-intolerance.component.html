@@ -34,6 +34,7 @@
                                         <input placeholder="Para añadir una etiqueta use , o intro" #input (keyup)="filtrar(input)" [class.is-invalid]="aptoNoValido()" [matAutocomplete]="auto" [matChipInputFor]="list" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
                                     </mat-chip-list>
                                     <small *ngIf="aptoNoValido()" class="form-text text-danger">La intolerancia debe tener al menos una etiqueta</small>
+                                    <small *ngIf="etiquetasRepetidas()" class="form-text text-danger">No se permiten etiquetas repetidas</small>
                                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                                         <mat-option *ngFor="let tag of filteredTags" [value]="tag">
                                             {{ tag }}

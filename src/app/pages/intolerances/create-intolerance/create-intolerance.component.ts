@@ -174,6 +174,14 @@ export class CreateIntoleranceComponent implements OnInit {
     return this.form.get('noApto').invalid;
   }
 
+  etiquetasRepetidas() {
+    return this.comprobarDuplicados(this.form.get('noApto').value);
+  }
+
+  comprobarDuplicados(array){
+    return new Set(array).size !== array.length;
+  }
+
   filtrar(input: any) {
     this.filteredTags = this.copy.map(el => el.nombre).filter(el => el.includes(input.value));
   }

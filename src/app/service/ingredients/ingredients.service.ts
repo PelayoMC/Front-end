@@ -100,11 +100,15 @@ export class IngredientsService {
     );
   }
 
-  borrarIngredientesSinReceta(ingredientes: any) {
+  borrarIngredientesSinReceta() {
     let url = URL_SERVICIOS + '/ingrediente/sinReceta' + '?token=' + localStorage.token;
-    return this.http.post(url, ingredientes).pipe(
+    return this.http.delete(url).pipe(
       map(  (resp: any) => {
-        Swal.fire('Ingredientes borrados', 'Los ingredientes han sido borrados correctamente', 'success');
+        if (resp.ingredientes.deletedCount === 0) {
+          Swal.fire('No se puede borrar', 'No hay ingredientes que borrar', 'error');
+        } else {
+          Swal.fire('Ingredientes borrados', 'Los ingredientes han sido borrados correctamente', 'success');
+        }
         return resp.ingredientes;
       }),
       catchError( err => {
