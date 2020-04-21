@@ -36,13 +36,12 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Etiquetas</th>
-                            <th></th>
+                            <th *ngIf="userService.esAdmin()">Etiquetas</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let et of etiquetas; let i = index">
-                            <td style="width: 100%;">
+                            <td>
                                 <input *ngIf="et.modificando" class="form-control" type="text" [(ngModel)]="et.etiqueta.nombre">
                                 <span *ngIf="!et.modificando"> {{ et.etiqueta.nombre }} </span>
                             </td>

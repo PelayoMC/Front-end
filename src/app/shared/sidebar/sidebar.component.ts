@@ -19,6 +19,10 @@ export class SidebarComponent implements OnInit {
     });
   }
 
+  obtenerId() {
+    return localStorage.getItem('id');
+  }
+
   ponerMenu() {
     if (!this.userService.usuario.value) {
       this.menu = this.sidebarService.menuNR;

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Intolerance } from 'src/app/models/intolerance.model';
 import { Etiqueta } from '../../../models/etiqueta.model';
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { TagsServiceService, IntolerancesService } from '../../../service/service.index';
+import { TagsService, IntolerancesService } from '../../../service/service.index';
 import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
 import Swal from 'sweetalert2';
 import { URL_SERVICIOS } from '../../../config/config';
@@ -21,6 +21,7 @@ export class CreateIntoleranceComponent implements OnInit {
 
   tags: Etiqueta[];
   copy: Etiqueta[] = [];
+  filteredTags: string[];
 
   imgUpload: any;
   imgTemp: string;
@@ -28,7 +29,7 @@ export class CreateIntoleranceComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   @ViewChild('input', {static: false}) input: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
-  constructor(private fb: FormBuilder, public route: ActivatedRoute,  public tagsService: TagsServiceService, public intoleranceService: IntolerancesService, public router: Router) { }
+  constructor(private fb: FormBuilder, public route: ActivatedRoute,  public tagsService: TagsService, public intoleranceService: IntolerancesService, public router: Router) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -47,6 +48,8 @@ export class CreateIntoleranceComponent implements OnInit {
         ar[i] = new Etiqueta(resp.etiquetas[i].nombre, resp.etiquetas[i]._id);
       }
       this.tags = ar;
+      this.copy = ar.slice();
+      this.filteredTags = this.copy.map(el => el.nombre).slice();
       for (const tag of this.tags) {
         this.addNoApto(tag.nombre);
       }
@@ -146,7 +149,6 @@ export class CreateIntoleranceComponent implements OnInit {
     const index = ar.indexOf(tag);
 
     if (index >= 0) {
-      this.copy.push(this.tags[index]);
       this.tags.splice(index, 1);
       this.eliminarNoApto(index);
     }
@@ -154,7 +156,7 @@ export class CreateIntoleranceComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.tags.push(new Etiqueta(event.option.viewValue));
-    this.copy.splice(this.copy.findIndex(el => el.nombre === event.option.viewValue), 1);
+    this.filteredTags = this.copy.map(el => el.nombre);
     this.addNoApto(event.option.viewValue);
     this.input.nativeElement.blur();
     this.input.nativeElement.value = '';
@@ -170,6 +172,10 @@ export class CreateIntoleranceComponent implements OnInit {
 
   aptoNoValido() {
     return this.form.get('noApto').invalid;
+  }
+
+  filtrar(input: any) {
+    this.filteredTags = this.copy.map(el => el.nombre).filter(el => el.includes(input.value));
   }
 
   añadirCamposIntolerancia() {

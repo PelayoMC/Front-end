@@ -25,8 +25,10 @@ import { PAGE_ROUTES } from './pages-routing.module';
 import { PAGE_ROUTES_PRIVATE } from './pages-routing-private.module';
 
 // Componentes
-import { MainComponent } from './main/main.component';
 import { PagesComponent } from './pages.component';
+import { MainComponent } from './main/main.component';
+import { PlanningComponent } from './diet/planning/planning.component';
+import { TrackingComponent } from './diet/tracking/tracking.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
@@ -48,6 +50,8 @@ import { TagsComponent } from './tags/tags.component';
     declarations: [
         PagesComponent,
         MainComponent,
+        PlanningComponent,
+        TrackingComponent,
         RecipesComponent,
         RecipeComponent,
         RecipeCardComponent,

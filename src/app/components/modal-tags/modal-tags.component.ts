@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalTagService } from '../../service/service.index';
 import { NgForm } from '@angular/forms';
 import { Etiqueta } from '../../models/etiqueta.model';
-import { TagsServiceService } from '../../service/tags/tags-service.service';
+import { TagsService } from '../../service/tags/tags.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,7 +14,7 @@ export class ModalTagsComponent implements OnInit {
   etiqueta: Etiqueta;
   @Output() created = new EventEmitter();
 
-  constructor(public modalService: ModalTagService, public tagService: TagsServiceService) { }
+  constructor(public modalService: ModalTagService, public tagService: TagsService) { }
 
   ngOnInit() {
   }

@@ -1,6 +1,6 @@
 export { AuthService } from './auth/auth.service';
-export { LoginGuardGuard } from './guards/login-guard.guard';
-export { VerifyTokenGuardGuard } from './guards/verify-token-guard.guard';
+export { LoginGuard } from './guards/login.guard';
+export { VerifyTokenGuard } from './guards/verify-token.guard';
 export { IngredientsService } from './ingredients/ingredients.service';
 export { IntolerancesService } from './intolerances/intolerances.service';
 export { ModalCreateUserService } from './modals/modal-create-user.service';
@@ -9,7 +9,7 @@ export { ModalTagService } from './modals/modal-tag.service';
 export { RecipesService } from './recipes/recipes.service';
 export { SidebarService } from './shared/sidebar.service';
 export { SharedService } from './shared/shared.service';
-export { TagsServiceService } from './tags/tags-service.service';
+export { TagsService } from './tags/tags.service';
 export { UploadImageService } from './upload/upload-image.service';
 export { UsersService } from './users/users.service';
 export { SustValidatorService } from './validators/sust-validator.service';

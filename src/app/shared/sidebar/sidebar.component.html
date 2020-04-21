@@ -10,7 +10,8 @@
                 <li *ngFor="let menu of menu"><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu">{{ menu.titulo }}</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li *ngFor="let submenu of menu.submenu">
-                            <a *ngIf="submenu.url" [routerLink]="submenu.url">{{ submenu.titulo }}</a>
+                            <a *ngIf="submenu.url && !submenu.id" [routerLink]="submenu.url">{{ submenu.titulo }}</a>
+                            <a *ngIf="submenu.url && submenu.id" [routerLink]="submenu.url + '/' + obtenerId()">{{ submenu.titulo }}</a>
                             <a *ngIf="!submenu.url" class="has-arrow waves-effect waves-dark" aria-expanded="false">{{ submenu.titulo }}</a>
                             <ul *ngIf="submenu.submenu" aria-expanded="false" class="collapse">
                                 <li *ngFor="let sub of submenu.submenu"><a aria-expanded="false" [routerLink]="sub.url">{{ sub.titulo }}</a></li>

@@ -3,7 +3,7 @@ import { PagesComponent } from './pages.component';
 import { MainComponent } from './main/main.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
-import { VerifyTokenGuardGuard } from '../service/guards/verify-token-guard.guard';
+import { VerifyTokenGuard } from '../service/guards/verify-token.guard';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { IntolerancesComponent } from './intolerances/intolerances.component';
 import { IntoleranceComponent } from './intolerances/intolerance/intolerance.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        canActivate: [VerifyTokenGuardGuard],
+        canActivate: [VerifyTokenGuard],
         children: [
           { path: 'home', component: MainComponent, data: { titulo: 'Inicio' } },
           { path: 'recipes', component: RecipesComponent, data: { titulo: 'Recetas' } },

@@ -3,11 +3,10 @@ import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Ingredient } from '../../../models/ingredient.model';
 import { IngredientRecipe } from '../../../models/recipe.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RecipesService, IngredientsService, SustValidatorService, TagsServiceService } from '../../../service/service.index';
+import { RecipesService, IngredientsService, SustValidatorService, TagsService } from '../../../service/service.index';
 import Swal from 'sweetalert2';
 import { Etiqueta } from 'src/app/models/etiqueta.model';
-import { MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
-import { Observable } from 'rxjs';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
   selector: 'app-create-ings-recipe',
@@ -27,7 +26,7 @@ export class CreateIngsRecipeComponent implements OnInit {
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
               public recipesService: RecipesService, public ingsService: IngredientsService,
               public router: Router, public validador: SustValidatorService,
-              public tagsService: TagsServiceService) { }
+              public tagsService: TagsService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -142,7 +141,6 @@ export class CreateIngsRecipeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.cargando = true;
     this.addIngs();
   }
 
@@ -155,6 +153,7 @@ export class CreateIngsRecipeComponent implements OnInit {
       Swal.fire('Error', 'No se permite añadir ingredientes duplicados', 'error');
       return;
     }
+    this.cargando = true;
     this.ingsService.añadirEtiquetas(this.ingredients, this.tags).subscribe(resp => {
       this.crearReceta();
     });

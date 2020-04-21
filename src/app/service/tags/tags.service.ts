@@ -8,7 +8,7 @@ import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TagsServiceService {
+export class TagsService {
 
   constructor(public http: HttpClient) { }
 

@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
-export class VerifyTokenGuardGuard implements CanActivate {
+export class VerifyTokenGuard implements CanActivate {
 
   constructor(public usuarioService: UsersService) {}
 

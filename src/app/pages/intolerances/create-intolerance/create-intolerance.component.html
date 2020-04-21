@@ -31,12 +31,12 @@
                                             {{ tag.nombre }}
                                             <mat-icon matChipRemove>cancel</mat-icon>
                                         </mat-chip>
-                                        <input placeholder="Para añadir una etiqueta use , o intro" #input [class.is-invalid]="aptoNoValido()" [matAutocomplete]="auto" [matChipInputFor]="list" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+                                        <input placeholder="Para añadir una etiqueta use , o intro" #input (keyup)="filtrar(input)" [class.is-invalid]="aptoNoValido()" [matAutocomplete]="auto" [matChipInputFor]="list" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
                                     </mat-chip-list>
                                     <small *ngIf="aptoNoValido()" class="form-text text-danger">La intolerancia debe tener al menos una etiqueta</small>
                                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                                        <mat-option *ngFor="let tag of copy" [value]="tag.nombre">
-                                            {{ tag.nombre }}
+                                        <mat-option *ngFor="let tag of filteredTags" [value]="tag">
+                                            {{ tag }}
                                         </mat-option>
                                     </mat-autocomplete>
                                 </mat-form-field>

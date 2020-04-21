@@ -36,13 +36,12 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Etiquetas</th>
-                            <th></th>
+                            <th *ngIf="userService.esAdmin()">Etiquetas</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let int of intolerancias; let i = index">
-                            <td style="width: 100%;" (click)="mostrarIntolerancia(int)">
+                            <td (click)="mostrarIntolerancia(int)">
                                 <span> {{ int.nombre }} </span>
                             </td>
                             <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
