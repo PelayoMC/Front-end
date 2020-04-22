@@ -36,7 +36,6 @@ export class CreateIngsRecipeComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.idReceta = params.id;
       this.recipesService.getIngredients(this.idReceta).subscribe((resp: IngredientRecipe[]) => {
-        console.log(resp);
         this.ingredients = resp;
         this.cargarIngredientes();
         this.cargarEtiquetas();
@@ -102,20 +101,19 @@ export class CreateIngsRecipeComponent implements OnInit {
 
   aptoRepetido(i: number) {
     if (this.noAptos(i) && this.noAptos(i).value.length > 0) {
-      return this.hasDuplicates(this.noAptos(i).value);
+      return this.findDuplicates(this.noAptos(i).value).length > 0;
     }
   }
 
-  hasDuplicates(array) {
-    const valuesSoFar = Object.create(null);
-    for (let i = 0; i < array.length; ++i) {
-        const value = array[i];
-        if (value in valuesSoFar) {
-            return true;
-        }
-        valuesSoFar[value] = true;
+  findDuplicates(arr) {
+    const sortedArr = arr.slice().sort();
+    const results = [];
+    for (let i = 0; i < sortedArr.length - 1; i++) {
+      if (sortedArr[i + 1] === sortedArr[i] && sortedArr[i] !== '') {
+        results.push(sortedArr[i]);
+      }
     }
-    return false;
+    return results;
   }
 
   filtrar(input: any) {
@@ -162,10 +160,13 @@ export class CreateIngsRecipeComponent implements OnInit {
   crearReceta() {
     this.ingsService.crearIngredientes(this.form.value.ingredientes).subscribe((resp: Ingredient[]) => {
       let a = 0;
+      console.log(this.ingredients);
       for (let i = 0; i < this.ingredients.length; i++) {
+        console.log(this.ingredients[i].ingredienteSustituible);
         if (this.form.value.ingredientes[i] !== '') {
           this.ingredients[i].ingredienteSustituible = resp[a++]._id;
-        } else {
+        } else if (!this.ingredients[i].ingredienteSustituible) {
+          console.log('pongo a null');
           this.ingredients[i].ingredienteSustituible = null;
         }
       }
@@ -184,16 +185,5 @@ export class CreateIngsRecipeComponent implements OnInit {
 
   ingredienteInvalido(i: number) {
     return (this.form.get('ingredientes') as FormArray).controls[i].invalid;
-  }
-
-  findDuplicates(arr) {
-    const sortedArr = arr.slice().sort();
-    const results = [];
-    for (let i = 0; i < sortedArr.length - 1; i++) {
-      if (sortedArr[i + 1] === sortedArr[i] && sortedArr[i] !== '') {
-        results.push(sortedArr[i]);
-      }
-    }
-    return results;
   }
 }

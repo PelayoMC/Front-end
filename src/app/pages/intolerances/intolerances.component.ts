@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IntolerancesService, UsersService } from '../../service/service.index';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { Intolerance } from 'src/app/models/intolerance.model';
 import Swal from 'sweetalert2';
 
@@ -12,24 +12,36 @@ export class IntolerancesComponent implements OnInit {
 
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   intolerancias: Intolerance[] = [];
+  etiquetas: string[] = [];
   cargando = true;
   from = 0;
   limit = 4;
   total: number;
 
-  constructor(public intolerancesService: IntolerancesService, public userService: UsersService, public router: Router) { }
+  constructor(public intolerancesService: IntolerancesService, public userService: UsersService, public router: Router, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.cargando = true;
-    if (this.busqueda.nativeElement.value.length === 0) {
-      this.cargarIntolerancias();
-    } else {
-      this.buscarIntolerancias(this.busqueda.nativeElement.value);
-    }
+    this.route.queryParams.subscribe(params => {
+      if (params.etiqueta) {
+        this.etiquetas.push(params.etiqueta);
+        this.buscarIntolerancias(this.busqueda.nativeElement.value, this.etiquetas);
+      } else {
+        if (this.busqueda.nativeElement.value.length === 0) {
+          this.cargarIntolerancias();
+        } else {
+          this.buscarIntolerancias(this.busqueda.nativeElement.value, this.etiquetas);
+        }
+      }
+    });
   }
 
   mostrarIntolerancia(int: any) {
     this.router.navigate(['/intolerance', int._id]);
+  }
+
+  cargarFiltro(event: any) {
+    Object.assign(this.etiquetas, event);
   }
 
   cargarIntolerancias() {
@@ -42,15 +54,19 @@ export class IntolerancesComponent implements OnInit {
     });
   }
 
-  buscarIntolerancias(termino: string) {
-    if (termino.length <= 0) {
+  reload() {
+    this.router.navigate(['intolerances']);
+  }
+
+  buscarIntolerancias(termino: string, etiquetas: string[]) {
+    if (termino.length <= 0 && etiquetas.length === 0) {
       this.cargarIntolerancias();
       return;
     }
     this.cargando = true;
     this.from = 0;
     this.intolerancias = [];
-    this.intolerancesService.buscarIntolerancias(termino, this.from, this.limit).subscribe(
+    this.intolerancesService.buscarIntolerancias(termino, etiquetas, this.from, this.limit).subscribe(
       (resp: any) => {
         this.intolerancias = resp.coleccion;
         this.total = resp.total;

@@ -4,14 +4,15 @@
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
                     <mat-label>Buscar intolerancias</mat-label>
-                    <input matInput #input type="text" (keyup.enter)="buscarIntolerancias(input.value)" autocomplete="off">
-                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIntolerancias('')">
+                    <input matInput #input type="text" (keyup.enter)="buscarIntolerancias(input.value, etiquetas)" autocomplete="off">
+                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIntolerancias('', etiquetas)">
                           <mat-icon>close</mat-icon>
                         </button>
-                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIntolerancias(input.value)">
+                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIntolerancias(input.value, etiquetas)">
                           <mat-icon>search</mat-icon>
-                        </button>
+                    </button>
                 </mat-form-field>
+                <app-search-tag (etiquetas)="cargarFiltro($event)" [tagsInput]="etiquetas"></app-search-tag>
             </div>
         </div>
     </div>
@@ -64,6 +65,8 @@
             <strong> No se han encontrado resultados </strong>
             <br>
             <i class="fa fa-question-circle"></i>
+            <br>
+            <button class="btn btn-warning" (click)="reload()">Recargar intolerancias</button>
         </div>
     </div>
 </div>

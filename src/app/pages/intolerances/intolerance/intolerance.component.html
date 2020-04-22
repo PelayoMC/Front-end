@@ -21,7 +21,7 @@
                                 <h4>Etiquetas</h4>
                                 <hr>
                                 <mat-chip-list #list aria-label="tag selection">
-                                    <mat-chip *ngFor="let et of intolerancia?.noApto" [selectable]="false" [removable]="false">
+                                    <mat-chip *ngFor="let et of intolerancia?.noApto" [selectable]="false" [removable]="false" (click)="buscarEtiqueta(et)">
                                         {{ et }}
                                     </mat-chip>
                                 </mat-chip-list>

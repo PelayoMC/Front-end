@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Etiqueta } from '../../../models/etiqueta.model';
 
 @Component({
   selector: 'app-planning',

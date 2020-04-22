@@ -32,9 +32,12 @@ export class IntolerancesService {
     );
   }
 
-  buscarIntolerancias(termino: string, from: number, limit: number) {
+  buscarIntolerancias(termino: string, tags: string[], from: number, limit: number) {
+    const etiquetas = {
+      etiquetas: tags
+    };
     let url = URL_SERVICIOS + '/busqueda/intolerancia/' + termino + '?from=' + from + '&limit=' + limit;
-    return this.http.get(url).pipe(
+    return this.http.post(url, etiquetas).pipe(
       map(  (resp: any) => {
         return resp;
       })
