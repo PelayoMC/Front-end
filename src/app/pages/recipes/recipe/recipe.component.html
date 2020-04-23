@@ -8,7 +8,7 @@
                     <div class="col-md-4">
                         <img *ngIf="receta?.imagen" [src]='receta?.imagen | image: "receta"' class="img-responsive" alt="receta-imagen">
                         <br><br>
-                        <div class="row">
+                        <div class="row" *ngIf="usuarioService.estaLogueado()">
                             <div class="col-md-6">
                                 <h4>Calorias</h4>
                                 <hr>
@@ -33,7 +33,7 @@
                         <p>
                             {{ receta?.descripcion }}
                         </p>
-                        <div class="row">
+                        <div class="row" *ngIf="usuarioService.estaLogueado()">
                             <div class="col-md-6">
                                 <h4>Ingredientes</h4>
                                 <hr>
@@ -96,6 +96,19 @@
                                         {{ i + 1 }} - {{ paso }}
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="row animated fadeIn" *ngIf="!usuarioService.estaLogueado()">
+                            <div class="col-12">
+                                <div class="alert alert-warning text-center">
+                                    <strong> No ha iniciado sesión </strong>
+                                    <br>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <br>
+                                    <span>Para ver el resto del contenido de la receta, necesita iniciar sesión</span>
+                                    <br>
+                                    <button class="btn btn-warning" (click)="llevarAInicio()">Iniciar sesión</button>
+                                </div>
                             </div>
                         </div>
                     </div>

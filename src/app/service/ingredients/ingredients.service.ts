@@ -36,10 +36,14 @@ export class IngredientsService {
     );
   }
 
-  buscarIngredientes(termino: string, from: number) {
-    let url = URL_SERVICIOS + '/busqueda/ingrediente/' + termino + '?from=' + from;
-    return this.http.get(url).pipe(
+  buscarIngredientes(termino: string, tags: string[], from: number, limit: number) {
+    const etiquetas = {
+      etiquetas: tags
+    };
+    let url = URL_SERVICIOS + '/busqueda/ingrediente/' + termino + '?from=' + from + '&limit=' + limit;
+    return this.http.post(url, etiquetas).pipe(
       map(  (resp: any) => {
+        console.log(resp);
         return resp;
       }),
       catchError( err => {

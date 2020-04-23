@@ -12,10 +12,12 @@ export class RecipesComponent implements OnInit {
 
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   recetas: Recipe[] = [];
-  from: number = 1;
-  tam: number = 9;
+  etiquetas: string[] = [];
+
+  from = 1;
+  tam = 9;
   total: number;
-  cargando: boolean = true;
+  cargando = true;
 
   constructor(private recipesService: RecipesService, private router: Router ) { }
 
@@ -39,13 +41,17 @@ export class RecipesComponent implements OnInit {
     });
   }
 
+  cargarFiltro(event: any) {
+    Object.assign(this.etiquetas, event);
+  }
+
   buscarRecetas(termino: string, valor: number) {
     if (termino.length < 0) {
       this.cargarRecetas(--this.from);
       return;
     }
     this.cargando = true;
-    this.recipesService.buscarRecetas(termino, valor, this.tam).subscribe(
+    this.recipesService.buscarRecetas(termino, this.etiquetas, valor, this.tam).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;
         this.recetas = recetas;

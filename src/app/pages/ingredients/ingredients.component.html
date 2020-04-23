@@ -3,15 +3,16 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Buscar ingredientes</mat-label>
-                    <input matInput #input type="text" (keyup.enter)="buscarIngredientes(input.value)" autocomplete="off">
-                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIngredientes('')">
+                    <mat-label>Nombre del ingrediente</mat-label>
+                    <input matInput #input type="text" (keyup.enter)="buscarIngredientes(input.value, this.etiquetas)" autocomplete="off">
+                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIngredientes('', this.etiquetas)">
                       <mat-icon>close</mat-icon>
                     </button>
-                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIngredientes(input.value);">
+                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIngredientes(input.value, this.etiquetas);">
                       <mat-icon>search</mat-icon>
                     </button>
                 </mat-form-field>
+                <app-search-tag (etiquetas)="cargarFiltro($event)" [tagsInput]="etiquetas"></app-search-tag>
             </div>
         </div>
     </div>
@@ -50,8 +51,8 @@
                             </td>
                             <td>
                                 <div *ngIf="extra[i].recetas.length > 0" class="row">
-                                    <div *ngFor="let receta of extra[i].recetas" class="col-1">
-                                        <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" matTooltip="Mostrar receta" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
+                                    <div *ngFor="let receta of extra[i].recetas" class="col-2">
+                                        <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" [matTooltip]="receta.nombre" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
                                     </div>
                                 </div>
                                 <span *ngIf="!(extra[i].recetas.length > 0)"><small class="text text-muted">No está presente en ninguna receta </small></span>

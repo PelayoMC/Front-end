@@ -17,6 +17,8 @@ export class IngredientsComponent implements OnInit {
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   ingredientes: IngredienteDecorator[] = [];
   extra = [];
+  etiquetas: string[] = [];
+
   cargando = true;
   from = 0;
   limit = 7;
@@ -49,7 +51,7 @@ export class IngredientsComponent implements OnInit {
         });
       });
     } else {
-      this.buscarIngredientes(this.busqueda.nativeElement.value);
+      this.buscarIngredientes(this.busqueda.nativeElement.value, this.etiquetas);
     }
   }
 
@@ -59,14 +61,15 @@ export class IngredientsComponent implements OnInit {
     this.cargar();
   }
 
-  buscarIngredientes(termino: string) {
-    if (termino.length <= 0) {
-      this.cargar();
-      return;
-    }
+  cargarFiltro(event: any) {
+    Object.assign(this.etiquetas, event);
+  }
+
+  buscarIngredientes(termino: string, etiquetas: string[]) {
     this.cargando = true;
     this.extra = [];
-    this.ingredientesService.buscarIngredientes(termino, this.from).subscribe(
+    console.log(termino, this.etiquetas);
+    this.ingredientesService.buscarIngredientes(termino, this.etiquetas, this.from, this.limit).subscribe(
       (resp: any) => {
         const re = {
           ingredientes: resp.coleccion

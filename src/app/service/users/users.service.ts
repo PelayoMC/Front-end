@@ -179,7 +179,7 @@ export class UsersService {
 
   buscarUsuarios(termino: string, from: number) {
     let url = URL_SERVICIOS + '/busqueda/usuario/' + termino + '?from=' + from;
-    return this.http.get(url).pipe(
+    return this.http.post(url, []).pipe(
       map(  (resp: any) => {
         return resp;
       }),

@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Buscar intolerancias</mat-label>
+                    <mat-label>Nombre de la intolerancia</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarIntolerancias(input.value, etiquetas)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIntolerancias('', etiquetas)">
                           <mat-icon>close</mat-icon>

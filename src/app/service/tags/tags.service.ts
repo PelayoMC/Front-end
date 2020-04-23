@@ -32,7 +32,7 @@ export class TagsService {
 
   buscarEtiquetas(termino: string, from: number, limit: number) {
     let url = URL_SERVICIOS + '/busqueda/etiqueta/' + termino + '?from=' + from + '&limit=' + limit;
-    return this.http.get(url).pipe(
+    return this.http.post(url, []).pipe(
       map(  (resp: any) => {
         return resp;
       })

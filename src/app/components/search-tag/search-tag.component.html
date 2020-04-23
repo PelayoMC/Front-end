@@ -4,7 +4,7 @@
             {{ tag.nombre }}
             <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
-        <input placeholder="Añadir etiquetas para filtrar" #input (keyup)="filtrar(input)" [matAutocomplete]="auto" [matChipInputFor]="list">
+        <input placeholder="Toca para añadir una etiqueta al filtro" #input (keyup)="filtrar(input)" [matAutocomplete]="auto" [matChipInputFor]="list">
     </mat-chip-list>
     <small *ngIf="aptoRepetido()" class="form-text text-danger">No puede haber etiquetas repetidas</small>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, input)">

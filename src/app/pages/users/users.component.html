@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Buscar ingredientes</mat-label>
+                    <mat-label>Nombre del usuario</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarUsuarios(input.value)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; cargarUsuarios()">
                       <mat-icon>close</mat-icon>

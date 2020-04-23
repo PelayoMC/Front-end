@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipesService, IngredientsService } from '../../../service/service.index';
+import { RecipesService, IngredientsService, UsersService } from '../../../service/service.index';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
 import Swal from 'sweetalert2';
@@ -16,7 +16,7 @@ export class RecipeComponent implements OnInit {
   sustituibles: string[] = [];
   isDataAvailable: boolean;
 
-  constructor( private activatedRoute: ActivatedRoute , private recipesService: RecipesService, public ingsService: IngredientsService, public router: Router) {
+  constructor( private activatedRoute: ActivatedRoute , private recipesService: RecipesService, public ingsService: IngredientsService, public router: Router, public usuarioService: UsersService) {
     this.activatedRoute.params.subscribe(params => {
       this.recipesService.getRecipe(params['id']).subscribe((resp) => {
         if (resp.length === 0) {
@@ -25,7 +25,6 @@ export class RecipeComponent implements OnInit {
         } else {
           Object.assign(this.receta, resp[0]);
           this.receta.ingredientes.sort(this.compare);
-          console.log(this.receta.ingredientes);
           this.ingsService.obtenerEtiquetas(this.receta.ingredientes.map(el => el._id)).subscribe(resp => {
             this.etiquetas = resp;
             this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
@@ -68,6 +67,10 @@ export class RecipeComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  llevarAInicio() {
+    this.router.navigate(['login']);
   }
 
 }

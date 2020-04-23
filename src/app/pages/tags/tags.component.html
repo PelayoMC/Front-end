@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Buscar etiquetas</mat-label>
+                    <mat-label>Nombre de la etiqueta</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarEtiquetas(input.value)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarEtiquetas('')">
                               <mat-icon>close</mat-icon>
