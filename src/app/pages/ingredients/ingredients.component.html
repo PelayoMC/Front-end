@@ -4,15 +4,19 @@
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
                     <mat-label>Nombre del ingrediente</mat-label>
-                    <input matInput #input type="text" (keyup.enter)="buscarIngredientes(input.value, this.etiquetas)" autocomplete="off">
-                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIngredientes('', this.etiquetas)">
+                    <input matInput #input type="text" (keyup.enter)="buscarIngredientes(input.value)" autocomplete="off">
+                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIngredientes('')">
                       <mat-icon>close</mat-icon>
                     </button>
-                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIngredientes(input.value, this.etiquetas);">
-                      <mat-icon>search</mat-icon>
+                    <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIngredientes(input.value);">
+                        <div class="icon">
+                            <mat-icon>search</mat-icon>
+                        </div>
                     </button>
                 </mat-form-field>
-                <app-search-tag (etiquetas)="cargarFiltro($event)" [tagsInput]="etiquetas"></app-search-tag>
+                <app-show-filters (filtros)=cambiarFiltros($event)></app-show-filters>
+                <app-search-intolerance *ngIf="filtros.intolerancias" (intolerancias)="cargarFiltroIntolerancias($event)"></app-search-intolerance>
+                <app-search-tag *ngIf="filtros.etiquetas" (etiquetas)="cargarFiltroEtiquetas($event)" [tagsInput]="etiquetas"></app-search-tag>
             </div>
         </div>
     </div>

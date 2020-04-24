@@ -39,12 +39,14 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
 import { ModalCreateUserComponent } from '../components/modal-create-user/modal-create-user.component';
 import { ModalTagsComponent } from '../components/modal-tags/modal-tags.component';
 import { SearchTagComponent } from '../components/search-tag/search-tag.component';
+import { SearchIntoleranceComponent } from '../components/search-intolerance/search-intolerance.component';
 import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { IntolerancesComponent } from './intolerances/intolerances.component';
 import { IntoleranceComponent } from './intolerances/intolerance/intolerance.component';
 import { CreateIntoleranceComponent } from './intolerances/create-intolerance/create-intolerance.component';
 import { TagsComponent } from './tags/tags.component';
+import { ShowFiltersComponent } from '../components/show-filters/show-filters.component';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { TagsComponent } from './tags/tags.component';
         ModalUploadComponent,
         ModalCreateUserComponent,
         ModalTagsComponent,
-        SearchTagComponent
+        SearchTagComponent,
+        SearchIntoleranceComponent,
+        ShowFiltersComponent
       ],
       exports: [
         MainComponent

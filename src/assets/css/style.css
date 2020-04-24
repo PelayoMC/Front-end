@@ -101,6 +101,10 @@ a.link:focus {
     z-index: 9999;
 }
 
+.icon {
+    font-size: 25px;
+}
+
 html body .mdi:before,
 html body .mdi-set {
     line-height: initial;

@@ -14,6 +14,15 @@ export class IntolerancesService {
 
   constructor(public http: HttpClient, public uploadService: UploadImageService) { }
 
+  obtenerAllInto() {
+    let url = URL_SERVICIOS + '/intolerancia';
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp;
+      })
+    );
+  }
+
   obtenerInto(from: any, limit: any) {
     let url = URL_SERVICIOS + '/intolerancia?from=' + from + '&limit=' + limit;
     return this.http.get(url).pipe(
@@ -28,6 +37,18 @@ export class IntolerancesService {
     return this.http.get(url).pipe(
       map( (resp: any) => {
         return resp.intolerancia;
+      })
+    );
+  }
+
+  getIntoNombres(nombres: string[]) {
+    let names = {
+      nombres
+    };
+    let url = URL_SERVICIOS + '/intolerancia/nombre';
+    return this.http.post(url, names).pipe(
+      map( (resp: any) => {
+        return resp.intolerancias;
       })
     );
   }

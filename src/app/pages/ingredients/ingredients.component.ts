@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { Recipe } from '../../models/recipe.model';
 import { Router } from '@angular/router';
 import { RecipesService } from '../../service/recipes/recipes.service';
+import { Filtros } from 'src/app/models/filtros.model';
 
 @Component({
   selector: 'app-ingredients',
@@ -18,6 +19,8 @@ export class IngredientsComponent implements OnInit {
   ingredientes: IngredienteDecorator[] = [];
   extra = [];
   etiquetas: string[] = [];
+  intolerancias: string[] = [];
+  filtros: Filtros = new Filtros();
 
   cargando = true;
   from = 0;
@@ -51,7 +54,7 @@ export class IngredientsComponent implements OnInit {
         });
       });
     } else {
-      this.buscarIngredientes(this.busqueda.nativeElement.value, this.etiquetas);
+      this.buscarIngredientes(this.busqueda.nativeElement.value);
     }
   }
 
@@ -61,15 +64,28 @@ export class IngredientsComponent implements OnInit {
     this.cargar();
   }
 
-  cargarFiltro(event: any) {
+  cargarFiltroEtiquetas(event: any) {
     Object.assign(this.etiquetas, event);
   }
 
-  buscarIngredientes(termino: string, etiquetas: string[]) {
+  cargarFiltroIntolerancias(event: any) {
+    Object.assign(this.intolerancias, event);
+  }
+
+  cambiarFiltros(event: any) {
+    Object.assign(this.filtros, event);
+    if (this.filtros.intolerancias === false) {
+      this.intolerancias = [];
+    }
+    if (this.filtros.etiquetas === false) {
+      this.etiquetas = [];
+    }
+  }
+
+  buscarIngredientes(termino: string) {
     this.cargando = true;
     this.extra = [];
-    console.log(termino, this.etiquetas);
-    this.ingredientesService.buscarIngredientes(termino, this.etiquetas, this.from, this.limit).subscribe(
+    this.ingredientesService.buscarIngredientes(termino, this.etiquetas, this.intolerancias, this.from, this.limit).subscribe(
       (resp: any) => {
         const re = {
           ingredientes: resp.coleccion
@@ -165,5 +181,7 @@ export class IngredientsComponent implements OnInit {
   mostrarReceta(receta: Recipe) {
     this.router.navigate(['/recipe', receta._id]);
   }
+
+  
 
 }
