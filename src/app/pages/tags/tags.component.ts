@@ -3,6 +3,7 @@ import { TagsService, UsersService, ModalTagService } from '../../service/servic
 import { EtiquetaDecorator } from '../../models/decorators/tag-decorator.model';
 import Swal from 'sweetalert2';
 import { Etiqueta } from 'src/app/models/etiqueta.model';
+import { Filtros } from 'src/app/models/filtros.model';
 
 @Component({
   selector: 'app-tags',
@@ -12,6 +13,7 @@ export class TagsComponent implements OnInit {
 
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   etiquetas: EtiquetaDecorator[] = [];
+
   cargando = true;
   from = 0;
   limit = 7;

@@ -97,8 +97,8 @@ export class SearchTagComponent implements OnInit {
     if (index >= 0) {
       this.tags.splice(index, 1);
       this.eliminarNoApto(i);
+      this.etiquetas.emit(this.getTags());
     }
-    this.etiquetas.emit(this.getTags());
   }
 
   selected(event: MatAutocompleteSelectedEvent, input: any): void {

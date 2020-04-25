@@ -54,11 +54,12 @@ export class IntolerancesService {
   }
 
   buscarIntolerancias(termino: string, tags: string[], from: number, limit: number) {
-    const etiquetas = {
+    const extra = {
       etiquetas: tags
     };
+    console.log(extra);
     let url = URL_SERVICIOS + '/busqueda/intolerancia/' + termino + '?from=' + from + '&limit=' + limit;
-    return this.http.post(url, etiquetas).pipe(
+    return this.http.post(url, extra).pipe(
       map(  (resp: any) => {
         return resp;
       })

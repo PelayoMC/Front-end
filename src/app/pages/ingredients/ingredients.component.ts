@@ -65,10 +65,12 @@ export class IngredientsComponent implements OnInit {
   }
 
   cargarFiltroEtiquetas(event: any) {
+    this.etiquetas = [];
     Object.assign(this.etiquetas, event);
   }
 
   cargarFiltroIntolerancias(event: any) {
+    this.intolerancias = [];
     Object.assign(this.intolerancias, event);
   }
 

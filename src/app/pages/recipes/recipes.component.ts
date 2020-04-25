@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RecipesService } from 'src/app/service/recipes/recipes.service';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
+import { Filtros } from 'src/app/models/filtros.model';
 
 @Component({
   selector: 'app-recipes',
@@ -13,6 +14,8 @@ export class RecipesComponent implements OnInit {
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   recetas: Recipe[] = [];
   etiquetas: string[] = [];
+  intolerancias: string[] = [];
+  filtros: Filtros = new Filtros();
 
   from = 1;
   tam = 9;
@@ -27,6 +30,26 @@ export class RecipesComponent implements OnInit {
 
   verReceta(idx: number) {
     this.router.navigate(['/recipe', idx]);
+  }
+
+  cargarFiltroEtiquetas(event: any) {
+    this.etiquetas = [];
+    Object.assign(this.etiquetas, event);
+  }
+
+  cargarFiltroIntolerancias(event: any) {
+    this.intolerancias = [];
+    Object.assign(this.intolerancias, event);
+  }
+
+  cambiarFiltros(event: any) {
+    Object.assign(this.filtros, event);
+    if (this.filtros.intolerancias === false) {
+      this.intolerancias = [];
+    }
+    if (this.filtros.etiquetas === false) {
+      this.etiquetas = [];
+    }
   }
 
   cargarRecetas(from) {
@@ -51,7 +74,7 @@ export class RecipesComponent implements OnInit {
       return;
     }
     this.cargando = true;
-    this.recipesService.buscarRecetas(termino, this.etiquetas, valor, this.tam).subscribe(
+    this.recipesService.buscarRecetas(termino, this.etiquetas, this.intolerancias, valor, this.tam).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;
         this.recetas = recetas;

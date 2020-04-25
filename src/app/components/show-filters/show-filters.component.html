@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-2">
+    <div class="col-sm-4 col-lg-2" *ngIf="showIntolerancias">
         <label for="intsw">Filtro de intolerancias</label>
         <div #intsw class="switch">
             <label>
@@ -7,7 +7,7 @@
             </label>
         </div>
     </div>
-    <div class="col-2">
+    <div class="col-sm-4 col-lg-2" *ngIf="showEtiquetas">
         <label for="etsw">Filtro de etiquetas</label>
         <div #etsw class="switch">
             <label>

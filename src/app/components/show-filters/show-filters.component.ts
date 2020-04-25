@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-show-filters',
@@ -10,6 +10,9 @@ export class ShowFiltersComponent implements OnInit {
 
   intolerancias = false;
   etiquetas = false;
+
+  @Input() showIntolerancias: boolean;
+  @Input() showEtiquetas: boolean;
 
   @Output() filtros = new EventEmitter<any>();
 

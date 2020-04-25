@@ -63,12 +63,13 @@ export class RecipesService {
     );
   }
 
-  buscarRecetas(termino: string, tags: string[], from: number, limit: number) {
-    const etiquetas = {
-      etiquetas: tags
+  buscarRecetas(termino: string, tags: string[], intolerancias: string[], from: number, limit: number) {
+    const extra = {
+      etiquetas: tags,
+      intolerancias
     };
     let url = URL_SERVICIOS + '/busqueda/receta/' + termino + '?from=' + from + '&limit=' + limit;
-    return this.http.post(url, etiquetas).pipe(
+    return this.http.post(url, extra).pipe(
       map(  (resp: any) => {
         return resp;
       })
