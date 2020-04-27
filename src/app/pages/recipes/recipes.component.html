@@ -12,24 +12,15 @@
                       <mat-icon>search</mat-icon>
                     </button>
                 </mat-form-field>
-                <app-show-filters [showIntolerancias]=true [showEtiquetas]=true (filtros)=cambiarFiltros($event)></app-show-filters>
+                <app-show-filters [showIntolerancias]=true [showEtiquetas]=false (filtros)=cambiarFiltros($event)></app-show-filters>
                 <app-search-intolerance *ngIf="filtros.intolerancias" (intolerancias)="cargarFiltroIntolerancias($event)"></app-search-intolerance>
                 <app-search-tag *ngIf="filtros.etiquetas" (etiquetas)="cargarFiltroEtiquetas($event)" [tagsInput]="etiquetas"></app-search-tag>
             </div>
         </div>
     </div>
 </div>
-<div class="row animated fadeIn" *ngIf="cargando">
-    <div class="col-12">
-        <div class="alert alert-warning text-center">
-            <strong> CARGANDO </strong>
-            <br>
-            <i class="fa fa-refresh fa-spin fa-2x"></i>
-            <br>
-            <span>Espere por favor</span>
-        </div>
-    </div>
-</div>
+<app-loading-component [cargando]="cargando"></app-loading-component>
+<app-no-found-component [cargando]="cargando" [array]="recetas"></app-no-found-component>
 <div class="row" *ngIf="!cargando && recetas.length > 0">
     <div class="col-12">
         <div class="card">
@@ -38,15 +29,6 @@
                     <app-recipe-card class="col-sm-6 col-lg-4" (recetaBorrada)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="row " *ngIf="!cargando && recetas.length == 0">
-    <div class="col-12 ">
-        <div class="alert alert-warning text-center ">
-            <strong> No se han encontrado resultados </strong>
-            <br>
-            <i class="fa fa-question-circle"></i>
         </div>
     </div>
 </div>

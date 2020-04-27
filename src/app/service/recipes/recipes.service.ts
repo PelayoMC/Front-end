@@ -71,6 +71,7 @@ export class RecipesService {
     let url = URL_SERVICIOS + '/busqueda/receta/' + termino + '?from=' + from + '&limit=' + limit;
     return this.http.post(url, extra).pipe(
       map(  (resp: any) => {
+        console.log(resp);
         return resp;
       })
     );

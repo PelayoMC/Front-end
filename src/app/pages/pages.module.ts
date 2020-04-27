@@ -47,6 +47,8 @@ import { IntoleranceComponent } from './intolerances/intolerance/intolerance.com
 import { CreateIntoleranceComponent } from './intolerances/create-intolerance/create-intolerance.component';
 import { TagsComponent } from './tags/tags.component';
 import { ShowFiltersComponent } from '../components/show-filters/show-filters.component';
+import { LoadingComponent } from '../components/loading-component/loading.component';
+import { NoFoundComponentComponent } from '../components/no-found-component/no-found.component';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { ShowFiltersComponent } from '../components/show-filters/show-filters.co
         ModalUploadComponent,
         ModalCreateUserComponent,
         ModalTagsComponent,
+        LoadingComponent,
+        NoFoundComponentComponent,
         SearchTagComponent,
         SearchIntoleranceComponent,
         ShowFiltersComponent

@@ -16,17 +16,8 @@
         </div>
     </div>
 </div>
-<div class="row animated fadeIn" *ngIf="cargando">
-    <div class="col-12">
-        <div class="alert alert-warning text-center">
-            <strong> CARGANDO </strong>
-            <br>
-            <i class="fa fa-refresh fa-spin fa-2x"></i>
-            <br>
-            <span>Espere por favor</span>
-        </div>
-    </div>
-</div>
+<app-loading-component [cargando]="cargando"></app-loading-component>
+<app-no-found-component [cargando]="cargando" [array]="usuarios"></app-no-found-component>
 <div class="row" *ngIf="!cargando && usuarios.length > 0">
     <div class="col-12">
         <div class="card">
@@ -77,15 +68,6 @@
                 <button [disabled]="(from - 7) >= total || (from - 7) < 0" (click)="cambiarDesde(-7)" class="btn btn-secondary">Anteriores</button> &nbsp;
                 <button [disabled]="(from + 7) >= total || (from + 7) < 0" (click)="cambiarDesde(7)" class="btn btn-secondary">Siguientes</button>
             </div>
-        </div>
-    </div>
-</div>
-<div class="row " *ngIf="!cargando && usuarios.length == 0">
-    <div class="col-12 ">
-        <div class="alert alert-warning text-center ">
-            <strong> No se han encontrado resultados </strong>
-            <br>
-            <i class="fa fa-question-circle"></i>
         </div>
     </div>
 </div>
