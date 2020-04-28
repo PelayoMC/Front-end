@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
-import { IngredientsService, RecipesService } from '../../../service/service.index';
+import { IngredientsService, RecipesService, VotingService } from '../../../service/service.index';
 import Swal from 'sweetalert2';
 import * as opt from './select-options';
 import { URL_SERVICIOS } from 'src/app/config/config';
@@ -21,7 +21,8 @@ export class CreateRecipeComponent implements OnInit {
   form: FormGroup;
   opt: any;
 
-  constructor(private fb: FormBuilder, public router: Router, public route: ActivatedRoute, public recipeService: RecipesService, public ingredientService: IngredientsService) { }
+  constructor(private fb: FormBuilder, public router: Router, public route: ActivatedRoute,
+              public recipeService: RecipesService, public ingredientService: IngredientsService, public voteService: VotingService) { }
 
   ngOnInit() {
     this.opt = opt;
@@ -213,8 +214,10 @@ export class CreateRecipeComponent implements OnInit {
         this.recipe._id = resp._id;
         this.form.value.imagen = this.imgUpload;
         this.recipeService.cambiarImagen(this.recipe, this.form.value.imagen);
-        this.cargando = false;
-        this.router.navigate(['/addIngsRecipe/', this.recipe._id]);
+        this.voteService.crearVotacion(this.recipe._id).subscribe(resp => {
+          this.cargando = false;
+          this.router.navigate(['/addIngsRecipe/', this.recipe._id]);
+        });
       });
     });
   }

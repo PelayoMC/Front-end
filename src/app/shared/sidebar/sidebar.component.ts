@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../../service/service.index';
 import { UsersService } from '../../service/users/users.service';
 
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',

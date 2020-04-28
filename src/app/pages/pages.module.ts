@@ -18,7 +18,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Rutas
 import { PAGE_ROUTES } from './pages-routing.module';
@@ -49,6 +49,7 @@ import { TagsComponent } from './tags/tags.component';
 import { ShowFiltersComponent } from '../components/show-filters/show-filters.component';
 import { LoadingComponent } from '../components/loading-component/loading.component';
 import { NoFoundComponentComponent } from '../components/no-found-component/no-found.component';
+import { ModalVoteComponent } from '../components/modal-vote/modal-vote.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { NoFoundComponentComponent } from '../components/no-found-component/no-f
         ModalUploadComponent,
         ModalCreateUserComponent,
         ModalTagsComponent,
+        ModalVoteComponent,
         LoadingComponent,
         NoFoundComponentComponent,
         SearchTagComponent,
@@ -102,7 +104,8 @@ import { NoFoundComponentComponent } from '../components/no-found-component/no-f
         MatAutocompleteModule,
         MatSelectModule,
         MatMenuModule,
-        NgbPaginationModule
+        NgbPaginationModule,
+        NgbRatingModule
       ]
 })
 export class PageModule {}

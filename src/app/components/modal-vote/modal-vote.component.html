@@ -1,0 +1,26 @@
+<div class="fondo-negro animated fadeIn" [ngClass]='modalService.visible'>
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Añadir votacion</h5>
+                    <button (click)="cerrarModal(form)" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                            </button>
+                </div>
+                <form #form="ngForm" (ngSubmit)="crearVotacion()">
+                    <div class="modal-body">
+                        <ngb-rating class="puntuacion" [(rate)]="puntuacion" [max]="5" [starTemplate]="t"></ngb-rating>
+                        <ng-template #t let-fill="fill" let-index="index">
+                            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                        </ng-template>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-info">Votar</button>
+                        <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,14 +9,16 @@ import {
   ModalCreateUserService,
   ModalUploadService,
   ModalTagService,
+  ModalVoteServiceService,
   RecipesService,
   SidebarService,
   SharedService,
   TagsService,
   UploadImageService,
   UsersService,
-  GeneralServiceService,
-  SustValidatorService
+  SustValidatorService,
+  VotingService,
+  GeneralServiceService
 } from './service.index';
 
 
@@ -35,14 +37,16 @@ import {
     ModalCreateUserService,
     ModalUploadService,
     ModalTagService,
+    ModalVoteServiceService,
     RecipesService,
     SidebarService,
     SharedService,
     TagsService,
     UploadImageService,
     UsersService,
-    GeneralServiceService,
-    SustValidatorService
+    SustValidatorService,
+    VotingService,
+    GeneralServiceService
   ]
 })
 export class ServiceModule { }
