@@ -46,9 +46,9 @@ export class RecipeComponent implements OnInit {
           this.receta.ingredientes.sort(this.compare);
           this.voteService.getVotingRecipe(this.receta._id).subscribe(resp => {
             Object.assign(this.votacion, resp[0]);
-            this.puntuacion = this.votacion.puntos;
+            this.puntuacion = this.redondear(this.votacion.puntos / this.votacion.total);
             this.puntuacionesTotales = this.votacion.total;
-            this.usuarioVotado(this.votacion.usuarios);
+            this.votado = this.usuarioVotado(this.votacion.usuarios);
             this.ingsService.obtenerEtiquetas(this.receta.ingredientes.map(el => el._id)).subscribe(resp => {
               this.etiquetas = resp;
               this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
@@ -65,6 +65,9 @@ export class RecipeComponent implements OnInit {
         }
       });
     });
+  }
+
+  ngOnInit() {
   }
 
   usuarioVotado(array: string[]) {
@@ -84,9 +87,6 @@ export class RecipeComponent implements OnInit {
     return 0;
   }
 
-  ngOnInit() {
-  }
-
   color(ing: any) {
     if (ing.tipo === 'Principal') {
       return 'text-danger';
@@ -99,6 +99,10 @@ export class RecipeComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  redondear(numero: number) {
+    return Math.round((numero + Number.EPSILON) * 100) / 100;
   }
 
   llevarAInicio() {

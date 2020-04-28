@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { UsersService, RecipesService } from '../../../service/service.index';
+import { UsersService, RecipesService, VotingService } from '../../../service/service.index';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +15,7 @@ export class RecipeCardComponent implements OnInit {
   @Output() recetaSeleccionada: EventEmitter<number>;
   @Output() recetaBorrada: EventEmitter<number>;
 
-  constructor( private router: Router, public userService: UsersService, public recipesService: RecipesService) {
+  constructor( private router: Router, public userService: UsersService, public recipesService: RecipesService, public voteService: VotingService) {
     this.recetaSeleccionada = new EventEmitter();
     this.recetaBorrada = new EventEmitter();
    }
@@ -33,7 +33,7 @@ export class RecipeCardComponent implements OnInit {
         _id: receta._id
       }
     };
-    this.router.navigate(['/addRecipe'], navigationExtras);
+    this.router.navigate(['/modRecipe'], navigationExtras);
   }
 
   borrarReceta(receta: any) {
@@ -48,8 +48,10 @@ export class RecipeCardComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.recipesService.borrarReceta(receta._id).subscribe(resp => {
-          Swal.fire('Receta borrada', 'Receta borrada correctamente', 'success');
-          this.recetaBorrada.emit(this.receta._id);
+          this.voteService.borrarVotacion(receta._id).subscribe(resp => {
+            Swal.fire('Receta borrada', 'Receta borrada correctamente', 'success');
+            this.recetaBorrada.emit(this.receta._id);
+          });
         });
       }
     });

@@ -43,7 +43,8 @@ export class VotingService {
     const ident = {
       id
     };
-    const url = URL_SERVICIOS + '/votacion';
+    let url = URL_SERVICIOS + '/votacion';
+    url += '?token=' + localStorage.token;
     return this.http.post(url, ident).pipe(
       map( (resp: any) => {
         return resp;
@@ -56,9 +57,11 @@ export class VotingService {
   }
 
   modificarVotacion(votacion: Votacion) {
-    const url = URL_SERVICIOS + '/votacion';
+    let url = URL_SERVICIOS + '/votacion/' + votacion._id;
+    url += '?token=' + localStorage.token;
     return this.http.put(url, votacion).pipe(
       map( (resp: any) => {
+        Swal.fire('Votación añadida', 'Su votación se ha añadido correctamente', 'success');
         return resp;
       }),
       catchError( err => {
@@ -69,9 +72,11 @@ export class VotingService {
   }
 
   borrarVotacion(id: string) {
-    const url = URL_SERVICIOS + '/votacion/' + id;
+    let url = URL_SERVICIOS + '/votacion/' + id;
+    url += '?token=' + localStorage.token;
     return this.http.delete(url).pipe(
       map( (resp: any) => {
+        Swal.fire('Votación borrada', 'La votación se ha borrado correctamente', 'success');
         return resp;
       }),
       catchError( err => {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ModalVoteServiceService, VotingService } from 'src/app/service/service.index';
+import { ModalVoteServiceService, VotingService, UsersService } from 'src/app/service/service.index';
 import { Votacion } from '../../models/votacion.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-vote',
@@ -24,7 +25,7 @@ export class ModalVoteComponent implements OnInit {
   @Output() created = new EventEmitter();
   puntuacion: number;
 
-  constructor(public modalService: ModalVoteServiceService, public voteService: VotingService) { }
+  constructor(public modalService: ModalVoteServiceService, public voteService: VotingService, public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
   }
@@ -37,9 +38,23 @@ export class ModalVoteComponent implements OnInit {
     this.modalService.visible = 'oculto';
   }
 
+  modificarVotacion() {
+    this.votacion.total += 1;
+    this.votacion.puntos = this.votacion.puntos + this.puntuacion;
+    this.votacion.usuarios.push(this.userService.usuario.value._id);
+  }
+
+
+
   crearVotacion() {
-    console.log(this.votacion);
-    console.log(this.puntuacion);
+    console.log(this.votacion.puntos / this.votacion.total);
+    this.modificarVotacion();
+    console.log(this.votacion.puntos / this.votacion.total);
+    this.voteService.modificarVotacion(this.votacion).subscribe(resp => {
+      this.puntuacion = 0;
+      this.cerrarModal();
+      this.router.navigate(['recipes']);
+    });
   }
 
 }

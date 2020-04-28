@@ -18,8 +18,10 @@ const routes: Routes = [
         canActivate: [LoginGuard, VerifyTokenGuard],
         children: [
           { path: 'addRecipe', component: CreateRecipeComponent, data: { titulo: 'Añadir receta' } },
+          { path: 'modRecipe', component: CreateRecipeComponent, data: { titulo: 'Modificar receta' } },
           { path: 'addIngsRecipe/:id', component: CreateIngsRecipeComponent, data: { titulo: 'Añadir sustituibles' } },
           { path: 'addIntolerance', component: CreateIntoleranceComponent, data: { titulo: 'Añadir intolerancia' } },
+          { path: 'modIntolerance', component: CreateIntoleranceComponent, data: { titulo: 'Modificar intolerancia' } },
           { path: 'users', component: UsersComponent, data: { titulo: 'Usuarios' } },
           { path: 'user/:id', component: UserComponent, data: { titulo: 'Usuario' } },
           { path: 'diet/planning/:id', component: PlanningComponent, data: { titulo: 'Planificación' } },

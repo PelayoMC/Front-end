@@ -94,7 +94,7 @@ export class IntolerancesComponent implements OnInit {
         imagen: intolerancia.imagen
       }
     };
-    this.router.navigate(['/addIntolerance'], navigationExtras);
+    this.router.navigate(['/modIntolerance'], navigationExtras);
   }
 
   borrarIntolerancia(intolerancia: any) {
