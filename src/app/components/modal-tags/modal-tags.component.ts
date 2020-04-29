@@ -29,7 +29,6 @@ export class ModalTagsComponent implements OnInit {
   }
 
   crearTag(form: NgForm) {
-    console.log(form.form);
     if (form.form.valid) {
       let tag = new Etiqueta(
         form.form.value.nombre

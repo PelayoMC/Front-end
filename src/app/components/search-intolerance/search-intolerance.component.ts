@@ -30,7 +30,6 @@ export class SearchIntoleranceComponent implements OnInit {
 
   cargarIntolerancias() {
     this.intoleranceService.obtenerAllInto().subscribe((resp: any) => {
-      console.log(resp);
       const ar: Intolerance[] = [];
       for (let i = 0; i < resp.intolerancias.length; i++) {
         ar[i] = new Intolerance(resp.intolerancias[i].nombre);

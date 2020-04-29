@@ -1,0 +1,18 @@
+<div class="col-12">
+    <mat-card class="pointer">
+        <mat-card-header (click)="verReceta()">
+            <mat-card-title>{{ receta.nombre }}</mat-card-title>
+            <mat-card-subtitle>
+                <label *ngIf="receta.nivel == 'Facil'" class="label label-success">Facil</label>
+                <label *ngIf="receta.nivel == 'Medio'" class="label label-warning">Medio</label>
+                <label *ngIf="receta.nivel == 'Dificil'" class="label label-danger">Dificil</label>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <img (click)="verReceta()" mat-card-image class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image">
+        <mat-card-actions align="end">
+            <button mat-icon-button color="warn" aria-label="Eliminar de favoritos" (click)="borrarReceta(receta)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

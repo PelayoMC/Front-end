@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { RecipesService, IngredientsService, UsersService, VotingService, ModalVoteServiceService } from '../../../service/service.index';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Votacion } from '../../../models/votacion.model';
 import { Recipe } from 'src/app/models/recipe.model';
 import Swal from 'sweetalert2';
-import { Votacion } from '../../../models/votacion.model';
 
 @Component({
   selector: 'app-recipe',
@@ -34,7 +35,7 @@ export class RecipeComponent implements OnInit {
   puntuacion: number;
   puntuacionesTotales: number;
 
-  constructor( private activatedRoute: ActivatedRoute , private recipesService: RecipesService, public ingsService: IngredientsService,
+  constructor( private activatedRoute: ActivatedRoute , private location: Location, private recipesService: RecipesService, public ingsService: IngredientsService,
                public router: Router, public usuarioService: UsersService, public voteService: VotingService, public modalService: ModalVoteServiceService) {
     this.activatedRoute.params.subscribe(params => {
       this.recipesService.getRecipe(params['id']).subscribe((resp) => {
@@ -103,6 +104,10 @@ export class RecipeComponent implements OnInit {
 
   redondear(numero: number) {
     return Math.round((numero + Number.EPSILON) * 100) / 100;
+  }
+
+  retornar() {
+    this.location.back();
   }
 
   llevarAInicio() {

@@ -1,0 +1,33 @@
+<h3>Mis intolerancias</h3>
+<app-loading-component [cargando]="cargando">
+</app-loading-component>
+<app-no-found-component [cargando]="cargando" [array]="intolerancias"></app-no-found-component>
+<div class="row " *ngIf="!cargando && intolerancias.length > 0">
+    <div class="col-12 ">
+        <div class="card ">
+            <div class="card-body " style="overflow-x:auto; ">
+                <h3 class="card-title ">Usuario: <small>{{ userService.usuario.value.nombre }}</small></h3>
+                <table class="table table-hover incidencias">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th *ngIf="userService.esAdmin()">Etiquetas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let int of intolerancias; let i = index">
+                            <td (click)="mostrarIntolerancia(int)">
+                                <span> {{ int.nombre }} </span>
+                            </td>
+                            <td class="text-nowrap small-td">
+                                <button (click)="borrarFavIntolerancia(int)" class="btn btn-danger" matTooltip="Modificar intolerancia"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
+                <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
+            </div>
+        </div>
+    </div>
+</div>

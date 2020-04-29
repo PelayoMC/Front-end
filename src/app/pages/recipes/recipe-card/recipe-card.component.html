@@ -9,8 +9,10 @@
             </mat-card-subtitle>
         </mat-card-header>
         <img (click)="verReceta()" mat-card-image class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image">
-        <mat-card-actions align="end" *ngIf="userService.esUser()">
-            <button mat-button class="btn btn-outline-danger"><i class="fa fa-2x fa-heart"></i></button>
+        <mat-card-actions align="end" *ngIf="userService.esUser() && noFavorite()">
+            <button mat-icon-button color="warn" aria-label="Añadir a favoritos" (click)="favorito(receta)">
+                <mat-icon>favorite</mat-icon>
+            </button>
         </mat-card-actions>
         <mat-card-actions align="end" *ngIf="userService.esAdmin()">
             <button mat-icon-button aria-label="Opciones" [matMenuTriggerFor]="appMenu">

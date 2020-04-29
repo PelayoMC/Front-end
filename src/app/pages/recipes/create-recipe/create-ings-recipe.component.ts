@@ -160,13 +160,10 @@ export class CreateIngsRecipeComponent implements OnInit {
   crearReceta() {
     this.ingsService.crearIngredientes(this.form.value.ingredientes).subscribe((resp: Ingredient[]) => {
       let a = 0;
-      console.log(this.ingredients);
       for (let i = 0; i < this.ingredients.length; i++) {
-        console.log(this.ingredients[i].ingredienteSustituible);
         if (this.form.value.ingredientes[i] !== '') {
           this.ingredients[i].ingredienteSustituible = resp[a++]._id;
         } else if (!this.ingredients[i].ingredienteSustituible) {
-          console.log('pongo a null');
           this.ingredients[i].ingredienteSustituible = null;
         }
       }

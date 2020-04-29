@@ -44,7 +44,6 @@ export class IngredientsService {
     let url = URL_SERVICIOS + '/busqueda/ingrediente/' + termino + '?from=' + from + '&limit=' + limit;
     return this.http.post(url, extra).pipe(
       map(  (resp: any) => {
-        console.log(resp);
         return resp;
       }),
       catchError( err => {

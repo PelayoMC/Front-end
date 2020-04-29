@@ -57,7 +57,6 @@ export class IntolerancesService {
     const extra = {
       etiquetas: tags
     };
-    console.log(extra);
     let url = URL_SERVICIOS + '/busqueda/intolerancia/' + termino + '?from=' + from + '&limit=' + limit;
     return this.http.post(url, extra).pipe(
       map(  (resp: any) => {
@@ -82,7 +81,6 @@ export class IntolerancesService {
 
   modificarIntolerancia(int: any) {
     let url = URL_SERVICIOS + '/intolerancia/' + int._id;
-    console.log(int._id);
     url += '?token=' + localStorage.token;
     return this.http.put(url, int).pipe(
       map( (resp: any) => {

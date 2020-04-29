@@ -157,7 +157,6 @@ export class UsersService {
         if (usuario._id === this.usuario.value._id) {
           this.guardarStorage(resp.usuario._id, this.token, resp.usuario);
         }
-        Swal.fire('Usuario modificado', usuario.email, 'success');
         return resp.usuario;
       }),
       catchError( err => {
@@ -171,7 +170,6 @@ export class UsersService {
     let url = URL_SERVICIOS + '/usuario?from=' + from;
     return this.http.get(url).pipe(
       map(  (resp: any) => {
-        console.log(resp);
         return resp;
       })
     );
@@ -198,6 +196,32 @@ export class UsersService {
       }),
       catchError( err => {
         Swal.fire('Error', 'Error al borrar al usuario', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  obtenerRecetasFavoritas(from: number, to: number) {
+    let url = URL_SERVICIOS + '/usuario/recetas/' + this.usuario.value._id + '?from=' + from + '&limit=' + to;
+    return this.http.get(url).pipe(
+      map(  (resp: any) => {
+        return resp;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al buscar las recetas favoritas', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  obtenerMisIntolerancias(from: number, to: number) {
+    let url = URL_SERVICIOS + '/usuario/intolerancias/' + this.usuario.value._id + '?from=' + from + '&limit=' + to;
+    return this.http.get(url).pipe(
+      map(  (resp: any) => {
+        return resp;
+      }),
+      catchError( err => {
+        Swal.fire('Error', 'Error al buscar las intolerancias del usuario', 'error');
         return throwError(err);
       })
     );

@@ -61,12 +61,7 @@ export class IntolerancesComponent implements OnInit {
     });
   }
 
-  reload() {
-    this.router.navigate(['intolerances']);
-  }
-
   buscarIntolerancias(termino: string) {
-    console.log(this.etiquetas);
     if (termino.length <= 0 && this.etiquetas.length === 0) {
       this.cargarIntolerancias();
       return;
@@ -82,6 +77,19 @@ export class IntolerancesComponent implements OnInit {
         this.busqueda.nativeElement.select();
       }
     );
+  }
+
+  noFavorite(intolerancia: any) {
+    return !this.userService.usuario.value.misIntolerancias.includes(intolerancia._id);
+  }
+
+  addIntolerancia(intolerancia: any) {
+    const us = this.userService.usuario.value;
+    us.misIntolerancias.push(intolerancia._id);
+    this.userService.modificarUsuario(us).subscribe(resp => {
+      Swal.fire('Intolerancia añadida', 'Intolerancia añadida a mis intolerancias correctamente', 'success');
+      this.cargarIntolerancias();
+    });
   }
 
   actualizarIntolerancia(intolerancia: any) {

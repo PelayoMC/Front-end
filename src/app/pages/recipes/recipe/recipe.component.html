@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <a (click)="mostrarModal()" class="btn btn-outline-warning btn-block" *ngIf="usuarioService.estaLogueado() && !votado"> Votar</a>
-                        <a [routerLink]="['/recipes']" class="btn btn-outline-info btn-block"> Regresar a recetas</a>
+                        <a (click)="retornar()" class="btn btn-outline-info btn-block">Regresar</a>
                         <br><br>
                     </div>
                     <div class="col-md-8">

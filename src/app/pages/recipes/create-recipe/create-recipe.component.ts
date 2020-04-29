@@ -151,7 +151,6 @@ export class CreateRecipeComponent implements OnInit {
       select.disabled = true;
     } else {
       select.disabled = false;
-      console.log( ((this.ingredientes().controls[i]) as FormGroup).get('cantidad') );
       ((this.ingredientes().controls[i]) as FormGroup).get('cantidad').enable();
     }
   }
@@ -207,7 +206,6 @@ export class CreateRecipeComponent implements OnInit {
   crearReceta() {
     this.cargando = true;
     Object.assign(this.recipe, this.form.value);
-    console.log(this.recipe.ingredientes);
     this.ingredientService.obtenerIngsRecipe(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
       this.recipeService.crearReceta(this.recipe).subscribe(resp => {
@@ -225,7 +223,6 @@ export class CreateRecipeComponent implements OnInit {
   modificarReceta() {
     this.cargando = true;
     Object.assign(this.recipe, this.form.value);
-    console.log(this.recipe.ingredientes);
     this.ingredientService.obtenerIngsRecipe(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
       this.recipeService.modificarReceta(this.recipe).subscribe(resp => {

@@ -72,6 +72,7 @@ export class UserComponent implements OnInit {
     }
 
     this.userService.modificarUsuario(this.usuario).subscribe(resp => {
+      Swal.fire('Usuario modificado', resp.email, 'success');
       this.swapForm();
       this.modificando = 'false';
       this.usuario = resp;

@@ -27,7 +27,12 @@ export const menuNR: any = [
                 {
                   titulo: 'Lista de intolerancias',
                   url: '/intolerances'
-                },
+                }
+              ]
+            },
+            {
+              titulo: 'Etiquetas',
+              submenu : [
                 {
                   titulo: 'Lista de etiquetas',
                   url: '/tags'
@@ -75,7 +80,12 @@ export const menuU: any = [
                 {
                   titulo: 'Lista de intolerancias',
                   url: '/intolerances'
-                },
+                }
+              ]
+            },
+            {
+              titulo: 'Etiquetas',
+              submenu : [
                 {
                   titulo: 'Lista de etiquetas',
                   url: '/tags'
@@ -86,14 +96,13 @@ export const menuU: any = [
         }
       ];
 
-export const menuA: any = 
+export const menuA: any =
       [
         {
           titulo: 'Dieta',
           icono: 'mdi mdi-heart-half-outline',
           submenu : [
-            { titulo: 'Planificación de dieta', url: '/diet/planning/', id: true },
-            { titulo: 'Seguimiento de dieta', url: '/diet/tracking/', id: true }
+            { titulo: 'Gestionar dietas', url: '/diet/managing/', id: true }
           ]
         },
         {
@@ -130,12 +139,17 @@ export const menuA: any =
                   url: '/intolerances'
                 },
                 {
-                  titulo: 'Lista de etiquetas',
-                  url: '/tags'
-                },
-                {
                   titulo: 'Crear intolerancia',
                   url: '/addIntolerance'
+                }
+              ]
+            },
+            {
+              titulo: 'Etiquetas',
+              submenu : [
+                {
+                  titulo: 'Lista de etiquetas',
+                  url: '/tags'
                 }
               ]
             }

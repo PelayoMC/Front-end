@@ -9,6 +9,9 @@ import { VerifyTokenGuard } from '../service/guards/verify-token.guard';
 import { CreateIntoleranceComponent } from './intolerances/create-intolerance/create-intolerance.component';
 import { PlanningComponent } from './diet/planning/planning.component';
 import { TrackingComponent } from './diet/tracking/tracking.component';
+import { FavoritesComponent } from './recipes/favorites/favorites.component';
+import { MyIntolerancesComponent } from './intolerances/my-intolerances/my-intolerances.component';
+import { ManagingComponent } from './diet/managing/managing.component';
 
 
 const routes: Routes = [
@@ -19,13 +22,16 @@ const routes: Routes = [
         children: [
           { path: 'addRecipe', component: CreateRecipeComponent, data: { titulo: 'Añadir receta' } },
           { path: 'modRecipe', component: CreateRecipeComponent, data: { titulo: 'Modificar receta' } },
+          { path: 'favorites/:id', component: FavoritesComponent, data: { titulo: 'Recetas favoritas' } },
           { path: 'addIngsRecipe/:id', component: CreateIngsRecipeComponent, data: { titulo: 'Añadir sustituibles' } },
           { path: 'addIntolerance', component: CreateIntoleranceComponent, data: { titulo: 'Añadir intolerancia' } },
           { path: 'modIntolerance', component: CreateIntoleranceComponent, data: { titulo: 'Modificar intolerancia' } },
+          { path: 'myIntolerances/:id', component: MyIntolerancesComponent, data: { titulo: 'Mis intolerancias' } },
           { path: 'users', component: UsersComponent, data: { titulo: 'Usuarios' } },
           { path: 'user/:id', component: UserComponent, data: { titulo: 'Usuario' } },
           { path: 'diet/planning/:id', component: PlanningComponent, data: { titulo: 'Planificación' } },
-          { path: 'diet/tracking/:id', component: TrackingComponent, data: { titulo: 'Seguimiento' } }
+          { path: 'diet/tracking/:id', component: TrackingComponent, data: { titulo: 'Seguimiento' } },
+          { path: 'diet/managing/:id', component: ManagingComponent, data: { titulo: 'Seguimiento' } }
         ]
     }
 ];

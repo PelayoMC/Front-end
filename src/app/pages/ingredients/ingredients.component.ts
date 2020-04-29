@@ -168,10 +168,6 @@ export class IngredientsComponent implements OnInit {
     });
   }
 
-  mostrarIntro(valor) {
-    console.log(valor);
-  }
-
   actualizarIngrediente(ingredient: Ingredient) {
     this.ingredientesService.modificarIngredienteReceta(ingredient._id, ingredient.nombre).subscribe(resp => {
       this.ingredientesService.modificarIngrediente(ingredient).subscribe(resp => {
@@ -183,7 +179,5 @@ export class IngredientsComponent implements OnInit {
   mostrarReceta(receta: Recipe) {
     this.router.navigate(['/recipe', receta._id]);
   }
-
-  
 
 }

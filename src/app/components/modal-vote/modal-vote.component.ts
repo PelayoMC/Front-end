@@ -47,9 +47,7 @@ export class ModalVoteComponent implements OnInit {
 
 
   crearVotacion() {
-    console.log(this.votacion.puntos / this.votacion.total);
     this.modificarVotacion();
-    console.log(this.votacion.puntos / this.votacion.total);
     this.voteService.modificarVotacion(this.votacion).subscribe(resp => {
       this.puntuacion = 0;
       this.cerrarModal();

@@ -37,6 +37,9 @@
                             <td (click)="mostrarIntolerancia(int)">
                                 <span> {{ int.nombre }} </span>
                             </td>
+                            <td *ngIf="userService.esUser() && noFavorite(int)" class="text-nowrap small-td">
+                                <button (click)="addIntolerancia(int)" class="btn btn-primary" matTooltip="Modificar intolerancia"><i class="fa fa-plus-circle"></i></button>
+                            </td>
                             <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
                                 <button (click)="actualizarIntolerancia(int)" class="btn btn-primary" matTooltip="Modificar intolerancia"><i class="fa fa-wrench"></i></button> &nbsp;
                                 <button class="btn btn-danger" (click)="borrarIntolerancia(int)" matTooltip="Borrar intolerancia"><i class="fa fa-trash-o"></i></button>

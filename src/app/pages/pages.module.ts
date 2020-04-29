@@ -18,6 +18,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 import { NgbPaginationModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Rutas
@@ -29,9 +30,12 @@ import { PagesComponent } from './pages.component';
 import { MainComponent } from './main/main.component';
 import { PlanningComponent } from './diet/planning/planning.component';
 import { TrackingComponent } from './diet/tracking/tracking.component';
+import { ManagingComponent } from './diet/managing/managing.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
+import { FavoriteCardComponent } from './recipes/favorite-card/favorite-card.component';
+import { FavoritesComponent } from './recipes/favorites/favorites.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
@@ -44,6 +48,7 @@ import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-r
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { IntolerancesComponent } from './intolerances/intolerances.component';
 import { IntoleranceComponent } from './intolerances/intolerance/intolerance.component';
+import { MyIntolerancesComponent } from './intolerances/my-intolerances/my-intolerances.component';
 import { CreateIntoleranceComponent } from './intolerances/create-intolerance/create-intolerance.component';
 import { TagsComponent } from './tags/tags.component';
 import { ShowFiltersComponent } from '../components/show-filters/show-filters.component';
@@ -58,16 +63,20 @@ import { ModalVoteComponent } from '../components/modal-vote/modal-vote.componen
         MainComponent,
         PlanningComponent,
         TrackingComponent,
+        ManagingComponent,
         RecipesComponent,
         RecipeComponent,
         RecipeCardComponent,
+        FavoriteCardComponent,
+        FavoritesComponent,
         CreateRecipeComponent,
         CreateIngsRecipeComponent,
         IngredientsComponent,
         IntolerancesComponent,
         IntoleranceComponent,
-        TagsComponent,
+        MyIntolerancesComponent,
         CreateIntoleranceComponent,
+        TagsComponent,
         UsersComponent,
         UserComponent,
         ModalUploadComponent,
@@ -104,6 +113,7 @@ import { ModalVoteComponent } from '../components/modal-vote/modal-vote.componen
         MatAutocompleteModule,
         MatSelectModule,
         MatMenuModule,
+        MatTabsModule,
         NgbPaginationModule,
         NgbRatingModule
       ]

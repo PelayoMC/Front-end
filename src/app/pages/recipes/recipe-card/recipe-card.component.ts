@@ -13,11 +13,11 @@ export class RecipeCardComponent implements OnInit {
   @Input() receta: any = {};
 
   @Output() recetaSeleccionada: EventEmitter<number>;
-  @Output() recetaBorrada: EventEmitter<number>;
+  @Output() cargar: EventEmitter<number>;
 
   constructor( private router: Router, public userService: UsersService, public recipesService: RecipesService, public voteService: VotingService) {
     this.recetaSeleccionada = new EventEmitter();
-    this.recetaBorrada = new EventEmitter();
+    this.cargar = new EventEmitter();
    }
 
   ngOnInit() {
@@ -25,6 +25,19 @@ export class RecipeCardComponent implements OnInit {
 
   verReceta() {
     this.recetaSeleccionada.emit(this.receta._id);
+  }
+
+  favorito(receta: any) {
+    const us = this.userService.usuario.value;
+    us.recetasFavoritas.push(receta._id);
+    this.userService.modificarUsuario(us).subscribe(resp => {
+      Swal.fire('Receta añadida', 'Receta añadida a favoritos correctamente', 'success');
+      this.cargar.emit(this.receta._id);
+    });
+  }
+
+  noFavorite() {
+    return !this.userService.usuario.value.recetasFavoritas.includes(this.receta._id);
   }
 
   actualizarReceta(receta: any) {
@@ -50,7 +63,7 @@ export class RecipeCardComponent implements OnInit {
         this.recipesService.borrarReceta(receta._id).subscribe(resp => {
           this.voteService.borrarVotacion(receta._id).subscribe(resp => {
             Swal.fire('Receta borrada', 'Receta borrada correctamente', 'success');
-            this.recetaBorrada.emit(this.receta._id);
+            this.cargar.emit(this.receta._id);
           });
         });
       }

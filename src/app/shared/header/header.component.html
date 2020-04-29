@@ -45,7 +45,8 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             <li><a [routerLink]="['/user', usuario._id]"><i class="ti-user"></i> Ver perfil</a></li>
-                            <li><a [routerLink]="['/recipes']"><i class="ti-receipt"></i> Recetas favoritas</a></li>
+                            <li *ngIf="userService.esUser()"><a [routerLink]="['/favorites/' + usuario._id]"><i class="ti-receipt"></i> Mis recetas favoritas</a></li>
+                            <li *ngIf="userService.esUser()"><a [routerLink]="['/myIntolerances/'  + usuario._id]"><i class="ti-receipt"></i> Mis intolerancias</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a (click)="userService.logout('login')" class="pointer"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
                         </ul>

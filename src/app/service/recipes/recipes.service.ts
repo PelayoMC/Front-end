@@ -71,7 +71,6 @@ export class RecipesService {
     let url = URL_SERVICIOS + '/busqueda/receta/' + termino + '?from=' + from + '&limit=' + limit;
     return this.http.post(url, extra).pipe(
       map(  (resp: any) => {
-        console.log(resp);
         return resp;
       })
     );
@@ -139,8 +138,6 @@ export class RecipesService {
       url += recetas[i]._id + '&ids=';
     }
     url += recetas[recetas.length - 1]._id + '&token=' + localStorage.token;
-    console.log('Enviamos');
-    console.log(url);
     return this.http.delete(url).pipe(
       map( (resp: any) => {
         return resp.recetas;

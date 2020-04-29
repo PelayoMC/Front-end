@@ -79,7 +79,6 @@ export class UsersComponent implements OnInit {
         this.usuarios = arr2;
         this.total = resp.total;
         this.cargando = false;
-        console.log(this.total);
       }
     );
   }
@@ -129,6 +128,7 @@ export class UsersComponent implements OnInit {
       return;
     }
     this.usuariosService.modificarUsuario(usuario).subscribe(resp => {
+      Swal.fire('Usuario modificado', usuario.email, 'success');
       this.cargarUsuarios();
     });
   }
