@@ -43,6 +43,58 @@ export const menuNR: any = [
         }
       ];
 
+export const menuUNo: any = [
+        {
+          titulo: 'Dieta',
+          icono: 'mdi mdi-heart-half-outline',
+          submenu : [
+            { titulo: 'Solicitar dieta', url: '/diet/soliciting/', id: true  }
+          ]
+        },
+        {
+          titulo: 'Alimentos',
+          icono: 'mdi mdi-food',
+          submenu : [
+            {
+              titulo: 'Recetas',
+              submenu : [
+                {
+                  titulo: 'Lista de recetas',
+                  url: '/recipes'
+                }
+              ]
+            },
+            {
+              titulo: 'Ingredientes',
+              submenu : [
+                {
+                  titulo: 'Lista de ingredientes',
+                  url: '/ingredients'
+                }
+              ]
+            },
+            {
+              titulo: 'Intolerancias',
+              submenu : [
+                {
+                  titulo: 'Lista de intolerancias',
+                  url: '/intolerances'
+                }
+              ]
+            },
+            {
+              titulo: 'Etiquetas',
+              submenu : [
+                {
+                  titulo: 'Lista de etiquetas',
+                  url: '/tags'
+                }
+              ]
+            }
+          ]
+        }
+      ];
+
 export const menuU: any = [
         {
           titulo: 'Dieta',

@@ -28,7 +28,11 @@ export class SidebarComponent implements OnInit {
     } else if (this.userService.usuario.value && this.userService.usuario.value.rol === 'ADMIN') {
       this.menu = this.sidebarService.menuA;
     } else {
-      this.menu = this.sidebarService.menuU;
+      if (!this.userService.usuario.value.dieta) {
+        this.menu = this.sidebarService.menuUNo;
+      } else {
+        this.menu = this.sidebarService.menuU;
+      }
     }
   }
 }

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+// Para evitar dependencias circulares, no importar del service.index
+import { AuthService } from '../auth/auth.service';
+import { UploadImageService } from '../upload/upload-image.service';
 import { Usuario } from '../../models/usuario.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
-import { AuthService } from '../auth/auth.service';
-import { UploadImageService } from '../upload/upload-image.service';
 import { BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';

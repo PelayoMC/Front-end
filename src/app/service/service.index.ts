@@ -1,4 +1,5 @@
 export { AuthService } from './auth/auth.service';
+export { DietService } from './diet/diet.service';
 export { LoginGuard } from './guards/login.guard';
 export { VerifyTokenGuard } from './guards/verify-token.guard';
 export { IngredientsService } from './ingredients/ingredients.service';

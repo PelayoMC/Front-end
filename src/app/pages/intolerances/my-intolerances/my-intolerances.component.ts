@@ -13,7 +13,6 @@ export class MyIntolerancesComponent implements OnInit {
 
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   intolerancias: Intolerance[] = [];
-  filtros: Filtros = new Filtros();
 
   cargando = true;
   from = 0;

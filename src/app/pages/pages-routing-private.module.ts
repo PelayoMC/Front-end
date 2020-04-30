@@ -12,6 +12,7 @@ import { TrackingComponent } from './diet/tracking/tracking.component';
 import { FavoritesComponent } from './recipes/favorites/favorites.component';
 import { MyIntolerancesComponent } from './intolerances/my-intolerances/my-intolerances.component';
 import { ManagingComponent } from './diet/managing/managing.component';
+import { SolicitingComponent } from './diet/soliciting/soliciting.component';
 
 
 const routes: Routes = [
@@ -29,9 +30,10 @@ const routes: Routes = [
           { path: 'myIntolerances/:id', component: MyIntolerancesComponent, data: { titulo: 'Mis intolerancias' } },
           { path: 'users', component: UsersComponent, data: { titulo: 'Usuarios' } },
           { path: 'user/:id', component: UserComponent, data: { titulo: 'Usuario' } },
-          { path: 'diet/planning/:id', component: PlanningComponent, data: { titulo: 'Planificación' } },
-          { path: 'diet/tracking/:id', component: TrackingComponent, data: { titulo: 'Seguimiento' } },
-          { path: 'diet/managing/:id', component: ManagingComponent, data: { titulo: 'Seguimiento' } }
+          { path: 'diet/soliciting/:id', component: SolicitingComponent, data: { titulo: 'Solicitud dieta' } },
+          { path: 'diet/planning/:id', component: PlanningComponent, data: { titulo: 'Planificación dieta' } },
+          { path: 'diet/tracking/:id', component: TrackingComponent, data: { titulo: 'Seguimiento dieta' } },
+          { path: 'diet/managing/:id', component: ManagingComponent, data: { titulo: 'Gestión dieta' } }
         ]
     }
 ];
