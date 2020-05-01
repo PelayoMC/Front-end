@@ -32,6 +32,7 @@ import { SolicitingComponent } from './diet/soliciting/soliciting.component';
 import { PlanningComponent } from './diet/planning/planning.component';
 import { TrackingComponent } from './diet/tracking/tracking.component';
 import { ManagingComponent } from './diet/managing/managing.component';
+import { CreateDietComponent } from './diet/managing/create-diet/create-diet.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
@@ -43,6 +44,9 @@ import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.com
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { ModalCreateUserComponent } from '../components/modal-create-user/modal-create-user.component';
 import { ModalTagsComponent } from '../components/modal-tags/modal-tags.component';
+import { ModalVoteComponent } from '../components/modal-vote/modal-vote.component';
+import { ModalFeedbackComponent } from '../components/modal-feedback/modal-feedback.component';
+import { ModalNoticeDietComponent } from '../components/modal-notice-diet/modal-notice-diet.component';
 import { SearchTagComponent } from '../components/search-tag/search-tag.component';
 import { SearchIntoleranceComponent } from '../components/search-intolerance/search-intolerance.component';
 import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
@@ -55,7 +59,6 @@ import { TagsComponent } from './tags/tags.component';
 import { ShowFiltersComponent } from '../components/show-filters/show-filters.component';
 import { LoadingComponent } from '../components/loading-component/loading.component';
 import { NoFoundComponentComponent } from '../components/no-found-component/no-found.component';
-import { ModalVoteComponent } from '../components/modal-vote/modal-vote.component';
 
 
 @NgModule({
@@ -66,6 +69,7 @@ import { ModalVoteComponent } from '../components/modal-vote/modal-vote.componen
         PlanningComponent,
         TrackingComponent,
         ManagingComponent,
+        CreateDietComponent,
         RecipesComponent,
         RecipeComponent,
         RecipeCardComponent,
@@ -85,6 +89,8 @@ import { ModalVoteComponent } from '../components/modal-vote/modal-vote.componen
         ModalCreateUserComponent,
         ModalTagsComponent,
         ModalVoteComponent,
+        ModalFeedbackComponent,
+        ModalNoticeDietComponent,
         LoadingComponent,
         NoFoundComponentComponent,
         SearchTagComponent,

@@ -16,7 +16,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let int of sinAsignar; let i = index">
-                                    <td>
+                                    <td (click)="mostrarDieta(int)">
                                         <span> nombre </span>
                                     </td>
                                 </tr>
@@ -45,8 +45,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let int of comentarios; let i = index">
-                                    <td>
+                                <tr *ngFor="let c of comentarios; let i = index">
+                                    <td (click)="enviarFeedBack(c)">
                                         <span> nombre </span>
                                     </td>
                                 </tr>
@@ -60,3 +60,4 @@
         </div>
     </mat-tab>
 </mat-tab-group>
+<app-modal-feedback [dieta]=coment></app-modal-feedback>
