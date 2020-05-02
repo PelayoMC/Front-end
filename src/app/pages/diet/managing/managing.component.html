@@ -46,7 +46,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let c of comentarios; let i = index">
-                                    <td (click)="enviarFeedBack(c)">
+                                    <td (click)="mostrarFeedBack(c)">
                                         <span> nombre </span>
                                     </td>
                                 </tr>
@@ -60,4 +60,4 @@
         </div>
     </mat-tab>
 </mat-tab-group>
-<app-modal-feedback [dieta]=coment></app-modal-feedback>
+<app-modal-feedback [dieta]=coment (created)="cargarDietas()"></app-modal-feedback>

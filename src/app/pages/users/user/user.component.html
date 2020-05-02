@@ -5,17 +5,37 @@
                 <h2>Perfil de usuario</h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="modificar()">
                     <div class="form-group">
-                        <label for="exampleInputuname">Nombre</label>
+                        <label for="name">Nombre</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input formControlName="nombre" type="text" name="nombre" class="form-control" placeholder="Username">
+                            <input #name formControlName="nombre" type="text" name="nombre" class="form-control" placeholder="Introducir nombre">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
+                        <label for="email">Email</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input formControlName="email" type="email" name="email" [disabled]="usuario.google" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <input #email formControlName="email" type="email" name="email" [disabled]="usuario.google" class="form-control" placeholder="Introducir email">
+                        </div>
+                    </div>
+                    <div *ngIf="usuario.rol === 'USER'">
+                        <div class="form-group">
+                            <label for="edad">Edad</label>
+                            <div class="input-group">
+                                <input #edad formControlName="edad" type="number" name="edad" class="form-control" placeholder="Introducir edad">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="altura">Altura</label>
+                            <div class="input-group">
+                                <input #altura formControlName="altura" type="number" name="altura" step="any" class="form-control" placeholder="Introducir altura">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="peso">Peso</label>
+                            <div class="input-group">
+                                <input #peso formControlName="peso" type="number" name="peso" step="any" class="form-control" placeholder="Introducir peso">
+                            </div>
                         </div>
                     </div>
                     <div *ngIf="modificando">

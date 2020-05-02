@@ -3,6 +3,7 @@ export class Dieta {
             public dieta?: Receta[],
             public admin?: string,
             public usuario?: string,
+            public feedback?: string,
             public _id?: string
         ) {
 
@@ -10,6 +11,6 @@ export class Dieta {
     }
 
 interface Receta {
-    id: string;
+    receta: string;
     comentario: string;
 }

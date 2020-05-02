@@ -23,7 +23,10 @@ export class UserComponent implements OnInit {
     this.modificando = 'false';
     this.form = new FormGroup({
       nombre: new FormControl({value: this.usuario.nombre, disabled: true}, Validators.required),
-      email: new FormControl({value: this.usuario.email, disabled: true}, [Validators.required, Validators.email])
+      email: new FormControl({value: this.usuario.email, disabled: true}, [Validators.required, Validators.email]),
+      edad: new FormControl({value: this.usuario.edad, disabled: true}, Validators.required),
+      altura: new FormControl({value: this.usuario.altura, disabled: true}, Validators.required),
+      peso: new FormControl({value: this.usuario.peso, disabled: true}, Validators.required)
     });
   }
 
@@ -52,12 +55,18 @@ export class UserComponent implements OnInit {
   swapForm() {
     if (!this.form.enabled) {
       this.form.get('nombre').enable();
+      this.form.get('edad').enable();
+      this.form.get('altura').enable();
+      this.form.get('peso').enable();
       if (!this.usuario.google) {
         this.form.get('email').enable();
       }
     } else {
       this.form.get('nombre').disable();
       this.form.get('email').disable();
+      this.form.get('edad').disable();
+      this.form.get('altura').disable();
+      this.form.get('peso').disable();
     }
   }
 
@@ -67,6 +76,9 @@ export class UserComponent implements OnInit {
     }
 
     this.usuario.nombre = this.form.get('nombre').value;
+    this.usuario.edad = this.form.get('edad').value;
+    this.usuario.altura = this.form.get('altura').value;
+    this.usuario.peso = this.form.get('peso').value;
     if (!this.usuario.google) {
       this.usuario.email = this.form.get('email').value;
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DietService, UsersService } from '../../../service/service.index';
+import { DietService, UsersService, ModalFeedbackService } from '../../../service/service.index';
 import { Dieta } from 'src/app/models/dieta.model';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ManagingComponent implements OnInit {
 
-  constructor(public userService: UsersService, public dietService: DietService, public router: Router) { }
+  constructor(public userService: UsersService, public dietService: DietService, public modalFeedback: ModalFeedbackService, public router: Router) { }
   sinAsignar: Dieta[] = [];
   comentarios: Dieta[] = [];
   coment: Dieta;
@@ -46,8 +46,19 @@ export class ManagingComponent implements OnInit {
     this.router.navigate(['/diet/createDiet', this.userService.usuario.value._id]);
   }
 
-  enviarFeedBack(dieta: any) {
-    this.coment = dieta;
+  mostrarFeedBack(dieta: any) {
+    this.modalFeedback.mostrarModal();
+    this.dietService.obtenerRecetasDietas(dieta._id).subscribe(resp => {
+      console.log(resp);
+      let i = 0;
+      for (let rec of dieta.dieta) {
+        if (rec.receta === resp.recetas[i]._id) {
+          rec.receta = resp.recetas[i++].nombre;
+        }
+      }
+      console.log(dieta);
+      this.coment = dieta;
+    });
   }
 
 }

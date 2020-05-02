@@ -1,24 +1,47 @@
-<div class="fondo-negro animated fadeIn" [ngClass]='modalService.visible'>
+<div class="fondo-negro animated fadeIn" [ngClass]='modalService.oculto'>
     <div class="modal" style="display: block;" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Enviar feedback</h5>
                     <button (click)="cerrarModal(form)" type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                            </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <form #form="ngForm" (ngSubmit)="crearTag(form)">
+                <form #form="ngForm" (ngSubmit)="enviarFeedback(form)">
                     <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Receta</th>
+                                    <th>Comentario</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let receta of dieta?.dieta">
+                                    <td>
+                                        {{ receta?.receta }}
+                                    </td>
+                                    <td>
+                                        {{ receta?.comentario }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--<label for="comentario">Comentarios</label>
+                        <div *ngFor="let receta of dieta?.dieta">
+                            <span>{{ receta?.receta }} - {{ receta?.comentario }} </span>
+                        </div>-->
+                        <br>
                         <div class="form-group">
-                            <label for="comentario">Comentario</label>
-                            <input class="form-control" type="text" ngModel #comentario="ngModel" name="comentario" [class.is-valid]="comentario.valid && comentario.touched" [class.is-invalid]="comentario.invalid && comentario.touched" autocomplete="off" placeholder="comentario"
+                            <label for="comentario">Enviar comentario</label>
+                            <input class="form-control" type="text" ngModel #comentario="ngModel" name="comentario" [class.is-valid]="comentario.valid && comentario.touched" [class.is-invalid]="comentario.invalid && comentario.touched" autocomplete="off" placeholder="Nuevo comentario"
                                 required minlength="3">
                             <small *ngIf="comentario.invalid && comentario.touched" class="form-text text-danger">El comentario ha de tener más de 3 letras</small>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-info">Guardar</button>
+                        <button type="submit" class="btn btn-info">Enviar</button>
                         <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">Cerrar</button>
                     </div>
                 </form>

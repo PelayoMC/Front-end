@@ -6,6 +6,7 @@ export { IngredientsService } from './ingredients/ingredients.service';
 export { IntolerancesService } from './intolerances/intolerances.service';
 export { ModalCreateUserService } from './modals/modal-create-user.service';
 export { ModalUploadService } from './modals/modal-upload.service';
+export { ModalFeedbackService } from './modals/modal-feedback.service';
 export { ModalTagService } from './modals/modal-tag.service';
 export { ModalVoteServiceService } from './modals/modal-vote-service.service';
 export { RecipesService } from './recipes/recipes.service';
