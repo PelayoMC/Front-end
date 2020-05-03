@@ -42,21 +42,19 @@ export class ManagingComponent implements OnInit {
     this.cargarDietas();
   }
 
-  mostrarDieta(dieta: any) {
-    this.router.navigate(['/diet/createDiet', this.userService.usuario.value._id]);
+  mostrarDieta(dieta: Dieta) {
+    this.router.navigate(['/diet/createDiet', dieta.usuario]);
   }
 
   mostrarFeedBack(dieta: any) {
     this.modalFeedback.mostrarModal();
     this.dietService.obtenerRecetasDietas(dieta._id).subscribe(resp => {
-      console.log(resp);
       let i = 0;
       for (let rec of dieta.dieta) {
         if (rec.receta === resp.recetas[i]._id) {
           rec.receta = resp.recetas[i++].nombre;
         }
       }
-      console.log(dieta);
       this.coment = dieta;
     });
   }

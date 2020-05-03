@@ -176,6 +176,15 @@ export class UsersService {
     );
   }
 
+  obtenerUsuario(id: string) {
+    let url = URL_SERVICIOS + '/usuario/' + id;
+    return this.http.get(url).pipe(
+      map(  (resp: any) => {
+        return resp.usuario;
+      })
+    );
+  }
+
   buscarUsuarios(termino: string, from: number) {
     let url = URL_SERVICIOS + '/busqueda/usuario/' + termino + '?from=' + from;
     return this.http.post(url, []).pipe(

@@ -31,10 +31,10 @@ const routes: Routes = [
           { path: 'myIntolerances/:id', component: MyIntolerancesComponent, data: { titulo: 'Mis intolerancias' } },
           { path: 'users', component: UsersComponent, data: { titulo: 'Usuarios' } },
           { path: 'user/:id', component: UserComponent, data: { titulo: 'Usuario' } },
-          { path: 'diet/soliciting/:id', component: SolicitingComponent, data: { titulo: 'Solicitud dieta' } },
-          { path: 'diet/planning/:id', component: PlanningComponent, data: { titulo: 'Planificación dieta' } },
-          { path: 'diet/tracking/:id', component: TrackingComponent, data: { titulo: 'Seguimiento dieta' } },
-          { path: 'diet/managing/:id', component: ManagingComponent, data: { titulo: 'Gestión dieta' } },
+          { path: 'diet/soliciting', component: SolicitingComponent, data: { titulo: 'Solicitud dieta' } },
+          { path: 'diet/planning', component: PlanningComponent, data: { titulo: 'Planificación dieta' } },
+          { path: 'diet/tracking', component: TrackingComponent, data: { titulo: 'Seguimiento dieta' } },
+          { path: 'diet/managing', component: ManagingComponent, data: { titulo: 'Gestión dieta' } },
           { path: 'diet/createDiet/:id', component: CreateDietComponent, data: { titulo: 'Crear dieta' } }
         ]
     }

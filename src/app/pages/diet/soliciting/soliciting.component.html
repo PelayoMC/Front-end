@@ -1,4 +1,9 @@
-<div *ngIf="!dieta">
+<div *ngIf="!dieta && !hayDatosUsuario()">
+    <h3>Solicitar dieta</h3>
+    <p>No existen información personal sobre el usuario</p>
+    <p class="text text-muted">Para poder solicitar una dieta, rellene los campos de <b>edad</b>, <b>altura</b> y <b>peso</b> en el <a routerLinkActive [routerLink]="['/user/' + userService.usuario.value._id]">perfil de usuario</a></p>
+</div>
+<div *ngIf="!dieta && hayDatosUsuario()">
     <h3>Solicitar dieta</h3>
     <p>Antes de solicitar una dieta, asegurese de añadir <a routerLinkActive [routerLink]="['/intolerances']" type="button">intolerancias</a> y <a routerLinkActive [routerLink]="['/recipes']" type="button">recetas</a> favoritas a su perfil</p>
     <p class="text text-muted">De esta forma será más facil realizar su dieta</p>

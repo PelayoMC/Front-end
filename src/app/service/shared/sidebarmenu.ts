@@ -48,7 +48,7 @@ export const menuUNo: any = [
           titulo: 'Dieta',
           icono: 'mdi mdi-heart-half-outline',
           submenu : [
-            { titulo: 'Solicitar dieta', url: '/diet/soliciting/', id: true  }
+            { titulo: 'Solicitar dieta', url: '/diet/soliciting/' }
           ]
         },
         {
@@ -100,8 +100,8 @@ export const menuU: any = [
           titulo: 'Dieta',
           icono: 'mdi mdi-heart-half-outline',
           submenu : [
-            { titulo: 'Planificación de dieta', url: '/diet/planning/', id: true  },
-            { titulo: 'Seguimiento de dieta', url: '/diet/tracking/', id: true  }
+            { titulo: 'Planificación de dieta', url: '/diet/planning/' },
+            { titulo: 'Seguimiento de dieta', url: '/diet/tracking/' }
           ]
         },
         {
@@ -154,7 +154,7 @@ export const menuA: any =
           titulo: 'Dieta',
           icono: 'mdi mdi-heart-half-outline',
           submenu : [
-            { titulo: 'Gestionar dietas', url: '/diet/managing/', id: true }
+            { titulo: 'Gestionar dietas', url: '/diet/managing/' }
           ]
         },
         {

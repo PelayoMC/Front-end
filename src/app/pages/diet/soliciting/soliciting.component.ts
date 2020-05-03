@@ -14,9 +14,7 @@ export class SolicitingComponent implements OnInit {
 
   ngOnInit() {
     this.dietService.obtenerDietaUser(this.userService.usuario.value._id).subscribe(resp => {
-      console.log(resp[0]);
       this.dieta = resp[0];
-      console.log(this.dieta);
     });
   }
 
@@ -24,6 +22,14 @@ export class SolicitingComponent implements OnInit {
     this.dietService.crearDieta().subscribe(resp => {
       this.router.navigate(['/home']);
     });
+  }
+
+  hayDatosUsuario() {
+    const user = this.userService.usuario.value;
+    if (user.edad && user.altura && user.peso) {
+      return true;
+    }
+    return false;
   }
 
 }

@@ -70,8 +70,29 @@ export class UserComponent implements OnInit {
     }
   }
 
+  nombreNoValido() {
+    return this.form.get('nombre').invalid && this.form.get('nombre').touched;
+  }
+
+  emailNoValido() {
+    return this.form.get('email').invalid && this.form.get('email').touched;
+  }
+
+  edadNoValido() {
+    return this.form.get('edad').invalid && this.form.get('edad').touched;
+  }
+
+  alturaNoValido() {
+    return this.form.get('altura').invalid && this.form.get('altura').touched;
+  }
+
+  pesoNoValido() {
+    return this.form.get('peso').invalid && this.form.get('peso').touched;
+  }
+
   modificar() {
     if (this.form.invalid) {
+      Swal.fire('Formulario incorrecto', 'Rellene todos los campos', 'error');
       return;
     }
 
