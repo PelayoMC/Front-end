@@ -14,16 +14,21 @@ export class MyIntolerancesComponent implements OnInit {
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   intolerancias: Intolerance[] = [];
 
+  user: string;
   cargando = true;
   from = 0;
   limit = 4;
   total: number;
 
-  constructor(public userService: UsersService, public router: Router, public route: ActivatedRoute) { }
+  constructor(public userService: UsersService, public router: Router, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.cargando = true;
-    this.cargarIntolerancias();
+    this.activatedRoute.params.subscribe(params => {
+      this.userService.obtenerUsuario(params['id']).subscribe(resp => {
+        this.user = resp.nombre;
+        this.cargarIntolerancias();
+      });
+    });
   }
 
   mostrarIntolerancia(int: any) {

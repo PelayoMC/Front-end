@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
 import { UsersService } from 'src/app/service/service.index';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
@@ -9,16 +9,22 @@ import { Router } from '@angular/router';
 })
 export class FavoritesComponent implements OnInit {
 
+  user: string;
   recetas: Recipe[] = [];
   from = 1;
   tam = 9;
   total: number;
   cargando = true;
 
-  constructor(private userService: UsersService, private router: Router ) { }
+  constructor(public activatedRoute: ActivatedRoute, public userService: UsersService, public router: Router) { }
 
   ngOnInit() {
-    this.cargarRecetas(--this.from);
+    this.activatedRoute.params.subscribe(params => {
+      this.userService.obtenerUsuario(params['id']).subscribe(resp => {
+        this.user = resp.nombre;
+        this.cargarRecetas(--this.from);
+      });
+    });
   }
 
   verReceta(idx: number) {

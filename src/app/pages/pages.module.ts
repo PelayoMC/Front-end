@@ -42,6 +42,7 @@ import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+import { ModalCreateDietComponent } from '../components/modal-create-diet/modal-create-diet.component';
 import { ModalCreateUserComponent } from '../components/modal-create-user/modal-create-user.component';
 import { ModalTagsComponent } from '../components/modal-tags/modal-tags.component';
 import { ModalVoteComponent } from '../components/modal-vote/modal-vote.component';
@@ -59,6 +60,7 @@ import { TagsComponent } from './tags/tags.component';
 import { ShowFiltersComponent } from '../components/show-filters/show-filters.component';
 import { LoadingComponent } from '../components/loading-component/loading.component';
 import { NoFoundComponentComponent } from '../components/no-found-component/no-found.component';
+import { SearchTypeComponent } from '../components/search-type/search-type.component';
 
 
 @NgModule({
@@ -86,6 +88,7 @@ import { NoFoundComponentComponent } from '../components/no-found-component/no-f
         UsersComponent,
         UserComponent,
         ModalUploadComponent,
+        ModalCreateDietComponent,
         ModalCreateUserComponent,
         ModalTagsComponent,
         ModalVoteComponent,
@@ -95,18 +98,19 @@ import { NoFoundComponentComponent } from '../components/no-found-component/no-f
         NoFoundComponentComponent,
         SearchTagComponent,
         SearchIntoleranceComponent,
+        SearchTypeComponent,
         ShowFiltersComponent
       ],
       exports: [
         MainComponent
       ],
       imports: [
+        PAGE_ROUTES,
+        PAGE_ROUTES_PRIVATE,
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        PAGE_ROUTES,
-        PAGE_ROUTES_PRIVATE,
         BrowserModule,
         PipeModule,
         MatTooltipModule,

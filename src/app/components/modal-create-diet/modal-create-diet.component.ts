@@ -1,35 +1,32 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { RecipesService } from 'src/app/service/recipes/recipes.service';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { RecipesService } from 'src/app/service/service.index';
 import { Recipe } from 'src/app/models/recipe.model';
+import { ModalCreateDietService } from '../../service/service.index';
 import { Filtros } from 'src/app/models/filtros.model';
 
 @Component({
-  selector: 'app-recipes',
-  templateUrl: './recipes.component.html',
-  styles: []
+  selector: 'app-modal-create-diet',
+  templateUrl: './modal-create-diet.component.html'
 })
-export class RecipesComponent implements OnInit {
+export class ModalCreateDietComponent implements OnInit {
 
   @ViewChild('input', { static: true }) busqueda: ElementRef;
+  @Output() receta = new EventEmitter<any>();
+
   recetas: Recipe[] = [];
   tipos: string[] = [];
   intolerancias: string[] = [];
   filtros: Filtros = new Filtros();
 
-  from = 1;
-  tam = 9;
+  from = 0;
+  limit = 4;
   total: number;
   cargando = true;
 
-  constructor(private recipesService: RecipesService, private router: Router ) { }
+  constructor(public recipesService: RecipesService, public modalService: ModalCreateDietService) { }
 
   ngOnInit() {
-    this.cargarRecetas(--this.from);
-  }
-
-  verReceta(idx: number) {
-    this.router.navigate(['/recipe', idx]);
+    this.cargarRecetas();
   }
 
   cargarFiltroTipos(event: any) {
@@ -52,25 +49,25 @@ export class RecipesComponent implements OnInit {
     }
   }
 
-  cargarRecetas(from) {
-    this.cargando = true;
-    this.recipesService.getRecipes(from, this.tam).subscribe((resp: any) => {
+  ocultarModal() {
+    this.modalService.oculto = 'oculto';
+  }
+
+  cargarRecetas() {
+    this.recipesService.getRecipes(this.from, this.limit).subscribe((resp: any) => {
       this.total = resp.total;
-      resp = resp.recetas;
-      this.recetas = resp.map(el =>
-        new Recipe(el.nombre, el.descripcion, el.tipoRe, el.imagen, el.ingredientes, el.pasos, el.nivel, el.calorias, el._id)
-      );
+      this.recetas = resp.recetas;
       this.cargando = false;
     });
   }
 
   buscarRecetas(termino: string, valor: number) {
     if (termino.length < 0) {
-      this.cargarRecetas(--this.from);
+      this.cargarRecetas();
       return;
     }
     this.cargando = true;
-    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, valor, this.tam).subscribe(
+    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, valor, this.limit).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;
         this.recetas = recetas;
@@ -81,11 +78,20 @@ export class RecipesComponent implements OnInit {
     );
   }
 
-  cambiarPag(event: any) {
-    if (this.busqueda.nativeElement.value != null) {
-      this.buscarRecetas(this.busqueda.nativeElement.value, --event * this.tam);
-    } else {
-      this.cargarRecetas(--event * this.tam);
-    }
+  escogerReceta(re: any) {
+    const recipe = {
+      receta: re,
+      i: this.modalService.i,
+      j: this.modalService.j
+    };
+    this.receta.emit(recipe);
+    this.ocultarModal();
   }
+
+  cambiarDesde(valor: number) {
+    const value = this.from + valor;
+    this.from = value;
+    this.cargarRecetas();
+  }
+
 }

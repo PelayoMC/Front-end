@@ -1,11 +1,11 @@
-<h3>Mis recetas favoritas</h3>
-<app-loading-component [cargando]="cargando"></app-loading-component>
-<app-no-found-component [cargando]="cargando" [array]="recetas"></app-no-found-component>
-<div class="row" *ngIf="!cargando && recetas.length > 0">
+<div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="row">
+                <h3>Recetas favoritas del usuario: <small>{{ user }}</small></h3>
+                <app-loading-component [cargando]="cargando"></app-loading-component>
+                <app-no-found-component [cargando]="cargando" [array]="recetas"></app-no-found-component>
+                <div class="row" *ngIf="!cargando && recetas.length > 0">
                     <app-favorite-card class="col-sm-6 col-lg-4" (cargar)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-favorite-card>
                 </div>
             </div>

@@ -43,10 +43,6 @@ export class SearchTagComponent implements OnInit {
     });
   }
 
-  getTags() {
-    return this.tags.map(el => el.nombre).sort();
-  }
-
   noAptos(): FormArray {
     return this.form.get('noApto') as FormArray;
   }
@@ -97,7 +93,7 @@ export class SearchTagComponent implements OnInit {
     if (index >= 0) {
       this.tags.splice(index, 1);
       this.eliminarNoApto(i);
-      this.etiquetas.emit(this.getTags());
+      this.etiquetas.emit(this.tags.map(el => el.nombre));
     }
   }
 
@@ -107,7 +103,7 @@ export class SearchTagComponent implements OnInit {
     this.filteredTags = this.copy.map(el => el.nombre);
     input.blur();
     input.value = '';
-    this.etiquetas.emit(this.getTags());
+    this.etiquetas.emit(this.tags.map(el => el.nombre));
   }
 
 }

@@ -39,10 +39,6 @@ export class SearchIntoleranceComponent implements OnInit {
     });
   }
 
-  getTags() {
-    return this.tags.map(el => el.nombre).sort();
-  }
-
   noAptos(): FormArray {
     return this.form.get('noApto') as FormArray;
   }
@@ -107,7 +103,7 @@ export class SearchIntoleranceComponent implements OnInit {
   }
 
   emitir() {
-    this.intoleranceService.getIntoNombres(this.getTags()).subscribe(resp => {
+    this.intoleranceService.getIntoNombres(this.tags.map(el => el.nombre)).subscribe(resp => {
       this.intolerancias.emit(this.obtainWithoutRepeat(resp.map(el => el.noApto)));
     });
   }

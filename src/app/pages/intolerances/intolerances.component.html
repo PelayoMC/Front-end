@@ -12,7 +12,7 @@
                           <mat-icon>search</mat-icon>
                     </button>
                 </mat-form-field>
-                <app-show-filters [showIntolerancias]=false [showEtiquetas]=true (filtros)=cambiarFiltros($event)></app-show-filters>
+                <app-show-filters [showIntolerancias]=false [showEtiquetas]=true [showTipos]=false (filtros)=cambiarFiltros($event)></app-show-filters>
                 <app-search-tag *ngIf="filtros.etiquetas" (etiquetas)="cargarFiltroEtiquetas($event)" [tagsInput]="etiquetas"></app-search-tag>
             </div>
         </div>

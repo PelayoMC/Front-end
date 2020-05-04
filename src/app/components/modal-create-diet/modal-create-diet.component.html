@@ -1,0 +1,59 @@
+<div class="fondo-negro animated fadeIn" [ngClass]='modalService.oculto'>
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Añadir receta</h5>
+                    <button (click)="ocultarModal()" type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <mat-form-field class="input-group mb-3">
+                            <mat-label>Nombre de la receta</mat-label>
+                            <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" autocomplete="off">
+                            <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; cargarRecetas(0)">
+                                      <mat-icon>close</mat-icon>
+                                    </button>
+                            <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarRecetas(input.value, 0)">
+                                      <mat-icon>search</mat-icon>
+                                    </button>
+                        </mat-form-field>
+                        <app-show-filters [showIntolerancias]=true [showEtiquetas]=false [showTipos]=true (filtros)=cambiarFiltros($event)></app-show-filters>
+                        <app-search-intolerance *ngIf="filtros.intolerancias" (intolerancias)="cargarFiltroIntolerancias($event)"></app-search-intolerance>
+                        <app-search-type *ngIf="filtros.tipos" (types)="cargarFiltroTipos($event)"></app-search-type>
+                    </div>
+                </div>
+                <app-no-found-component [cargando]="cargando" [array]="recetas"></app-no-found-component>
+                <div class="card " *ngIf="!cargando && recetas.length > 0">
+                    <div class="card-body ">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let re of recetas">
+                                    <td>
+                                        <span> {{ re.nombre }} </span>
+                                    </td>
+                                    <td class="text-nowrap small-td">
+                                        <button (click)="escogerReceta(re)" class="btn btn-info" matTooltip="Añadir receta"><i class="mdi mdi-plus"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
+                        <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="ocultarModal()" type="button" class="btn btn-secondary">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

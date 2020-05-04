@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsersService, RecipesService } from 'src/app/service/service.index';
+import { UsersService, ModalCreateDietService } from 'src/app/service/service.index';
 import { Usuario } from '../../../../models/usuario.model';
-import { Recipe } from 'src/app/models/recipe.model';
+import { Recipe } from '../../../../models/recipe.model';
 
 @Component({
   selector: 'app-create-diet',
@@ -10,20 +10,25 @@ import { Recipe } from 'src/app/models/recipe.model';
 })
 export class CreateDietComponent implements OnInit {
 
-  constructor(public activatedRoute: ActivatedRoute, public usuarioService: UsersService, public recipesService: RecipesService, private router: Router) { }
+  constructor(public activatedRoute: ActivatedRoute, public usuarioService: UsersService, public router: Router, public modalService: ModalCreateDietService) { }
 
-  recetas: Recipe[] = [];
   usuarioReceta: Usuario;
-  from = 0;
-  limit = 7;
-  total: number;
+
+  recetas: Recipe[][];
+  nombresComidas = ['Desayuno', 'Comida', 'Merienda', 'Cena'];
+  dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
   cargando = true;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.usuarioService.obtenerUsuario(params['id']).subscribe(resp => {
+        let ar = new Array(this.nombresComidas.length);
+        for (let i = 0; i < ar.length; i++) {
+          ar[i] = new Array(this.dias.length);
+        }
+        this.recetas = ar;
         this.usuarioReceta = resp;
-        this.cargarRecetas();
+        this.cargando = false;
       });
     });
   }
@@ -32,18 +37,17 @@ export class CreateDietComponent implements OnInit {
     this.router.navigate(['/recipe', idx]);
   }
 
-  cargarRecetas() {
-    this.recipesService.getRecipes(this.from, this.limit).subscribe((resp: any) => {
-      this.total = resp.total;
-      this.recetas = resp.recetas;
-      this.cargando = false;
-    });
+  getTitulo(i: number) {
+    return this.nombresComidas[i];
   }
 
-  cambiarDesde(valor: number) {
-    const value = this.from + valor;
-    this.from = value;
-    this.cargarRecetas();
+  abrirModal(i: number, j: number) {
+    this.modalService.mostrarModal(i, j);
   }
 
+  addReceta(event: any) {
+    console.log(this.recetas);
+    this.recetas[+event.i][+event.j] = event.receta;
+    console.log(this.recetas);
+  }
 }

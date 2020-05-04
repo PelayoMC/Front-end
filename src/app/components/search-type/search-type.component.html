@@ -1,0 +1,15 @@
+<mat-form-field style="width: 100%;">
+    <mat-chip-list #list [class.is-invalid]="tipoNoValido()" aria-label="tag selection">
+        <mat-chip *ngFor="let i = index; let tipo of tipos" [selectable]="true" [removable]="true" (removed)="remove(tipo, i)">
+            {{ tipo }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Toca para añadir un tipo al filtro" #input (keyup)="filtrar(input)" [matAutocomplete]="auto" [matChipInputFor]="list">
+    </mat-chip-list>
+    <small *ngIf="tipoRepetido()" class="form-text text-danger">No puede haber tipos repetidos</small>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, input)">
+        <mat-option *ngFor="let tag of filteredTipos" [value]="tag">
+            {{ tag }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

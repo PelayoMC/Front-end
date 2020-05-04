@@ -63,9 +63,9 @@ export class RecipesService {
     );
   }
 
-  buscarRecetas(termino: string, tags: string[], intolerancias: string[], from: number, limit: number) {
+  buscarRecetas(termino: string, tipos: string[], intolerancias: string[], from: number, limit: number) {
     const extra = {
-      etiquetas: tags,
+      tipos,
       intolerancias
     };
     let url = URL_SERVICIOS + '/busqueda/receta/' + termino + '?from=' + from + '&limit=' + limit;
