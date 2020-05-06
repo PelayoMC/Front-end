@@ -88,6 +88,15 @@ export class ModalCreateDietComponent implements OnInit {
     this.ocultarModal();
   }
 
+  label(nombre: string) {
+    switch (nombre) {
+      case 'Desayuno': return 'label label-success';
+      case 'Comida': return 'label label-info';
+      case 'Merienda': return 'label label-warning';
+      case 'Cena': return 'label label-danger';
+    }
+  }
+
   cambiarDesde(valor: number) {
     const value = this.from + valor;
     this.from = value;

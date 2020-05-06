@@ -12,8 +12,15 @@ export class Usuario {
         public edad?: number,
         public altura?: number,
         public peso?: number,
+        public notificaciones?: Notificacion[],
         public _id?: string
     ) {
 
     }
 }
+
+interface Notificacion {
+    titulo: string;
+    mensaje: string;
+}
+

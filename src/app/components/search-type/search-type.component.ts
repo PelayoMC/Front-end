@@ -29,6 +29,7 @@ export class SearchTypeComponent implements OnInit {
   cargarTipos() {
     this.copy = opt.tipo.map(el => el.nombre);
     this.filteredTipos = this.copy.slice();
+    console.log(this.copy);
   }
 
   tipo(): FormArray {

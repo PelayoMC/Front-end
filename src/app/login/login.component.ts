@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import Swal from 'sweetalert2';
 
 declare function init_plugins();
 // Libreria google
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
       const token = googleUser.getAuthResponse().id_token;
       this.userService.loginGoogle(token)
         .subscribe(resp => {
-          window.location.href = '#/user/' + resp;
+          window.location.href = 'user/' + resp;
         });
     });
   }
@@ -66,5 +67,4 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/user/' + resp]);
       });
   }
-
 }

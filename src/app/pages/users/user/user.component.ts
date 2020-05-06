@@ -28,6 +28,14 @@ export class UserComponent implements OnInit {
       altura: new FormControl({value: this.usuario.altura, disabled: true}, Validators.required),
       peso: new FormControl({value: this.usuario.peso, disabled: true}, Validators.required)
     });
+    this.mostrarNotificaciones();
+  }
+
+  mostrarNotificaciones() {
+    for (const notificacion of this.usuario.notificaciones) {
+      Swal.fire(notificacion.titulo, notificacion.mensaje, 'info');
+    }
+    this.usuario.notificaciones = [];
   }
 
   chooseImage(archivo) {

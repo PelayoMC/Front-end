@@ -27,6 +27,14 @@ export class RecipeCardComponent implements OnInit {
     this.recetaSeleccionada.emit(this.receta._id);
   }
 
+  label(nivel: string) {
+    switch (nivel) {
+      case 'Facil': return 'label label-success';
+      case 'Medio': return 'label label-warning';
+      case 'Dificil': return 'label label-danger';
+    }
+  }
+
   favorito(receta: any) {
     const us = this.userService.usuario.value;
     us.recetasFavoritas.push(receta._id);

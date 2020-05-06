@@ -46,6 +46,18 @@ export class RecipesService {
     );
   }
 
+  buscarIds(ids: string[]) {
+    const idsRe = {
+      ids
+    };
+    let url = URL_SERVICIOS + '/receta/ids';
+    return this.http.post(url, idsRe).pipe(
+      map( (resp: any) => {
+        return resp.recetas;
+      })
+    );
+  }
+
   guardarIngredientes(idReceta: string, ingredients: IngredientRecipe[]) {
     const ings = {
       ingredients

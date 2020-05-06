@@ -3,9 +3,7 @@
         <mat-card-header (click)="verReceta()">
             <mat-card-title>{{ receta.nombre }}</mat-card-title>
             <mat-card-subtitle>
-                <label *ngIf="receta.nivel == 'Facil'" class="label label-success">Facil</label>
-                <label *ngIf="receta.nivel == 'Medio'" class="label label-warning">Medio</label>
-                <label *ngIf="receta.nivel == 'Dificil'" class="label label-danger">Dificil</label>
+                <label [class]="label()">{{ receta.nivel }}</label>
             </mat-card-subtitle>
         </mat-card-header>
         <img (click)="verReceta()" mat-card-image class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image">

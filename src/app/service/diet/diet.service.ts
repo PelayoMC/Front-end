@@ -13,11 +13,20 @@ export class DietService {
 
   constructor(public http: HttpClient, public userService: UsersService) { }
 
+  obtenerDietaId(id: string) {
+    let url = URL_SERVICIOS + '/dieta/' + id;
+    return this.http.get(url).pipe(
+      map(  (resp: any) => {
+        return resp.dieta[0];
+      })
+    );
+  }
+
   obtenerDietaAdmin(id: string) {
     let url = URL_SERVICIOS + '/dieta/admin/' + id;
     return this.http.get(url).pipe(
       map(  (resp: any) => {
-        return resp.dieta;
+        return resp.dieta[0];
       })
     );
   }
@@ -26,7 +35,7 @@ export class DietService {
     let url = URL_SERVICIOS + '/dieta/usuario/' + id;
     return this.http.get(url).pipe(
       map(  (resp: any) => {
-        return resp.dieta;
+        return resp.dieta[0];
       })
     );
   }
@@ -62,11 +71,24 @@ export class DietService {
     const us = {
       usuario: this.userService.usuario.value._id
     };
-    let url = URL_SERVICIOS + '/dieta/';
+    let url = URL_SERVICIOS + '/dieta';
     url += '?token=' + localStorage.token;
     return this.http.post(url, us).pipe(
       map(  (resp: any) => {
         Swal.fire('Dieta solicitada', 'Su dieta será creada por un experto', 'success');
+        return resp.dieta;
+      })
+    );
+  }
+
+  crearRecetasDieta(dieta: any) {
+    const data = {
+      dieta
+    };
+    let url = URL_SERVICIOS + '/dieta/' + dieta._id;
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, data).pipe(
+      map(  (resp: any) => {
         return resp.dieta;
       })
     );

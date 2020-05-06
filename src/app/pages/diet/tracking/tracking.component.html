@@ -1,1 +1,41 @@
-<p>tracking works!</p>
+<app-loading-component [cargando]="cargando">
+</app-loading-component>
+<div class="row " *ngIf="!cargando">
+    <div class="col-12 ">
+        <div class="card ">
+            <div class="card-body " style="overflow-x:auto; ">
+                <h3>Recetas para el dia: <small>{{ obtenerFechaCompleta() }} </small></h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th *ngFor="let dia of data.nombresComidas">
+                                <label [class]="data.label(dia)">{{ dia }}</label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {{ data.dias[diaActual] }} {{ obtenerFecha() }}
+                            </td>
+                            <td *ngFor="let receta of recetas; let i = index">
+                                <img [src]="obtenerImagen(i)" class="img-rounded img-fluid pointer border border-primary" [matMenuTriggerFor]="appMenu">
+                                <mat-menu #appMenu="matMenu">
+                                    <button mat-menu-item>
+                                            <mat-icon>local_dining</mat-icon>
+                                            <span>Ver receta</span>
+                                        </button>
+                                    <button mat-menu-item>
+                                            <mat-icon>comment</mat-icon>
+                                            <span>Enviar comentario</span>
+                                        </button>
+                                </mat-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

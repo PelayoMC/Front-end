@@ -28,3 +28,12 @@ interface Calorias {
     unidades: string;
 }
 
+function label() {
+    switch (this.tipoRe) {
+      case 'Desayuno': return 'label label-success';
+      case 'Comida': return 'label label-info';
+      case 'Merienda': return 'label label-warning';
+      case 'Cena': return 'label label-danger';
+    }
+  }
+

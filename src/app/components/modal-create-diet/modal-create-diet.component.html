@@ -31,12 +31,16 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th>Tipo</th>
                                     <th>Nombre</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let re of recetas">
+                                    <td>
+                                        <label [class]="label(re.tipoRe)">{{ re.tipoRe }}</label>
+                                    </td>
                                     <td>
                                         <span> {{ re.nombre }} </span>
                                     </td>

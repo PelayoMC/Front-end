@@ -4,7 +4,7 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h3>Crear dieta para el usuario</h3>
+                <h3>Datos del usuario</h3>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -44,7 +44,7 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h3>Crear dieta para el usuario</h3>
+                <h3>Asignar recetas</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -53,9 +53,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let comida of nombresComidas; let i = index">
+                        <tr *ngFor="let fila of recetas; let i = index">
                             <td> {{ getTitulo(i) }} </td>
-                            <td *ngFor="let dia of dias; let j = index"><button class="btn btn-info" (click)="abrirModal(i, j)"><i class="mdi mdi-plus"></i></button></td>
+                            <td *ngFor="let receta of recetas[i]; let j = index">
+                                <button *ngIf="!receta" class="btn btn-info" (click)="abrirModal(i, j)"><i class="mdi mdi-plus"></i></button>
+                                <button *ngIf="receta" class="btn btn-danger" (click)="borrarReceta(i, j)"><i class="mdi mdi-minus"></i></button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -63,4 +66,5 @@
         </div>
     </div>
 </div>
+<button [disabled]="!dietaCompleta()" class="btn btn-info" (click)="crearDieta()">Crear dieta</button>
 <app-modal-create-diet (receta)="addReceta($event)"></app-modal-create-diet>

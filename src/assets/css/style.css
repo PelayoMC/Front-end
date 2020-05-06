@@ -2286,6 +2286,15 @@ ul.list-inline li {
 
 
 /*******************
+Autocomplete
+*******************/
+
+.cdk-overlay-container {
+    z-index: 999999 !important;
+}
+
+
+/*******************
 Table td vertical middle
 *******************/
 
