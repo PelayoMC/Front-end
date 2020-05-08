@@ -22,6 +22,8 @@
         "@angular/platform-browser-dynamic": "~8.2.14",
         "@angular/router": "~8.2.14",
         "@ng-bootstrap/ng-bootstrap": "~5.2.2",
+        "@ngx-translate/core": "^12.1.2",
+        "@ngx-translate/http-loader": "^4.0.0",
         "angular-star-rating": "^4.0.0-beta.3",
         "bootstrap-select": "^1.13.12",
         "css-star-rating": "^1.2.4",

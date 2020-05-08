@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, ActivationEnd } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
+import { filter, map } from 'rxjs/operators';
+import { LanguageService } from './service/language/language.service';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppComponent {
 
-  constructor(public router: Router, public title: Title) {
+  constructor(private translateService: TranslateService, private langService: LanguageService, public router: Router, public title: Title) {
     this.router.events.pipe(
       filter(event => event instanceof ActivationEnd),
       filter((event: ActivationEnd) => event.snapshot.firstChild === null),
@@ -20,5 +22,7 @@ export class AppComponent {
     .subscribe((titulo: any) => {
       title.setTitle(titulo);
     });
+    this.translateService.setDefaultLang(this.langService.selectedLanguage);
+    this.translateService.use(this.langService.selectedLanguage);
   }
 }

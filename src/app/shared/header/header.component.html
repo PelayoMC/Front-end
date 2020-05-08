@@ -21,10 +21,10 @@
                         <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-es"></i></a>
+                    <a class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i [class]="langService.toggleFlag()"></i></a>
                     <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
-                        <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-es"></i> Español</a>
-                        <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-gb"></i> Inglés</a>
+                        <a class="dropdown-item" (click)="langService.toogleLanguage('es')"><i class="flag-icon flag-icon-es"></i> Español</a>
+                        <a class="dropdown-item" (click)="langService.toogleLanguage('en')"><i class="flag-icon flag-icon-gb"></i> Inglés</a>
                     </div>
                 </li>
                 <li class="nav-item" routerLinkActive="active" *ngIf="!userService.estaLogueado()">

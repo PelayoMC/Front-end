@@ -5,10 +5,13 @@ import { NgModule } from '@angular/core';
 import { APP_ROUTING } from './app-routing.module';
 
 // Modulos
-import { PageModule } from './pages/pages.module';
+import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { PageModule } from './pages/pages.module';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -25,17 +28,28 @@ import { ServiceModule } from './service/service.module';
     RegisterComponent
   ],
   imports: [
+    APP_ROUTING,
     BrowserAnimationsModule,
     BrowserModule,
-    APP_ROUTING,
     PageModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     ServiceModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: createTranslateLoader,
+          deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}

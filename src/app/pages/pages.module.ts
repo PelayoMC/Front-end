@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgbPaginationModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Rutas
 import { PAGE_ROUTES } from './pages-routing.module';
@@ -129,7 +130,8 @@ import { SearchTypeComponent } from '../components/search-type/search-type.compo
         MatMenuModule,
         MatTabsModule,
         NgbPaginationModule,
-        NgbRatingModule
+        NgbRatingModule,
+        TranslateModule.forRoot()
       ]
 })
 export class PageModule {}
