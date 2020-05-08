@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ModalFeedbackService, DietService } from 'src/app/service/service.index';
-import { Dieta } from '../../models/dieta.model';
+import { UsersService, DietService, ModalFeedbackService } from 'src/app/service/service.index';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,10 +10,10 @@ import Swal from 'sweetalert2';
 export class ModalFeedbackComponent implements OnInit {
 
   feedback: string;
-  @Input() dieta: Dieta;
+  @Input() dieta: any;
   @Output() created = new EventEmitter();
 
-  constructor(public modalService: ModalFeedbackService, public dietaService: DietService) { }
+  constructor(public dietaService: DietService, public userService: UsersService, public modalService: ModalFeedbackService) { }
 
   ngOnInit() {
   }
@@ -30,6 +29,19 @@ export class ModalFeedbackComponent implements OnInit {
 
   enviarFeedback(form: NgForm) {
     if (form.form.valid) {
+      this.userService.obtenerUsuario(this.dieta.usuario).subscribe(resp => {
+        console.log(resp);
+        resp.notificaciones.push({
+          titulo: 'Respuesta recibida',
+          mensaje: 'Se ha recibido una respuesta a los comentarios de la dieta'
+        });
+        this.enviarNotificacion(resp, form);
+      });
+    }
+  }
+
+  enviarNotificacion(usuario: any, form: NgForm) {
+    this.userService.modificarUsuario(usuario).subscribe(resp => {
       this.feedback = form.form.value.comentario;
       this.dieta.feedback = this.feedback;
       this.dietaService.modificarFeedbackDieta(this.dieta).subscribe(resp => {
@@ -37,7 +49,7 @@ export class ModalFeedbackComponent implements OnInit {
         Swal.fire('Feedback enviado', 'Se ha enviado un comentario de feedback a la dieta', 'success');
         this.created.emit();
       });
-    }
+    });
   }
 
   limpiarModal(form: NgForm) {

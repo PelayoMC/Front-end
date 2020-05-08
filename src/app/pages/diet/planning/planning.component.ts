@@ -4,6 +4,7 @@ import { UsersService, RecipesService, DietService } from '../../../service/serv
 import { Recipe } from 'src/app/models/recipe.model';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import * as data from '../diets.data';
+import { nombresComidas } from '../diets.data';
 
 @Component({
   selector: 'app-planning',
@@ -32,6 +33,18 @@ export class PlanningComponent implements OnInit {
 
   verReceta(i: number, j: number) {
     this.router.navigate(['/recipe', this.recetas[(i * 7) + j]._id]);
+  }
+
+  totalCalorias(k: number) {
+    let calculo = 0;
+    for (let i = k; i < this.recetas.length; i += 7) {
+      if (this.recetas[i].calorias.unidades === 'Caloria/s') {
+        calculo += this.recetas[i].calorias.cantidad / 1000;
+      } else {
+        calculo += this.recetas[i].calorias.cantidad;
+      }
+    }
+    return calculo;
   }
 
 }

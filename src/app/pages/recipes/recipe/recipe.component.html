@@ -8,7 +8,7 @@
                     <div class="col-md-4">
                         <img *ngIf="receta?.imagen" [src]='receta?.imagen | image: "receta"' class="img-responsive" alt="receta-imagen">
                         <br><br>
-                        <div class="row" *ngIf="usuarioService.estaLogueado() && votado">
+                        <div class="row" *ngIf="usuarioService.esUser() && votado">
                             <div class="col-md-12">
                                 <h4>Puntuacion <small>  ( total: {{ puntuacionesTotales }} )</small></h4>
                                 <hr>
@@ -36,7 +36,7 @@
                                 </p>
                             </div>
                         </div>
-                        <a (click)="mostrarModal()" class="btn btn-outline-warning btn-block" *ngIf="usuarioService.estaLogueado() && !votado"> Votar</a>
+                        <a (click)="mostrarModal()" class="btn btn-outline-warning btn-block" *ngIf="usuarioService.esUser() && !votado"> Votar</a>
                         <a (click)="retornar()" class="btn btn-outline-info btn-block">Regresar</a>
                         <br><br>
                     </div>

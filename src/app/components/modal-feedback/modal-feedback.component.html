@@ -19,10 +19,10 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let receta of dieta?.dieta">
-                                    <td>
-                                        {{ receta?.receta }}
+                                    <td *ngIf="receta?.nombre">
+                                        {{ receta?.nombre }}
                                     </td>
-                                    <td>
+                                    <td *ngIf="receta?.nombre">
                                         {{ receta?.comentario }}
                                     </td>
                                 </tr>

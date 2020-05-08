@@ -36,6 +36,7 @@ export class UserComponent implements OnInit {
       Swal.fire(notificacion.titulo, notificacion.mensaje, 'info');
     }
     this.usuario.notificaciones = [];
+    this.userService.modificarUsuario(this.usuario).subscribe();
   }
 
   chooseImage(archivo) {

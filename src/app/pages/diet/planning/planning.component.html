@@ -22,6 +22,14 @@
                                 <!--<button *ngIf="receta" class="btn btn-danger" (click)="verReceta(i, j)">Ver receta</button>-->
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <b>Kilocalorias semanales</b>
+                            </td>
+                            <td *ngFor="let receta of data.dias; let k = index">
+                                &nbsp; {{ totalCalorias(k) }} Kcal
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

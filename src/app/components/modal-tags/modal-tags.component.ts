@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 })
 export class ModalTagsComponent implements OnInit {
 
-  etiqueta: Etiqueta;
   @Output() created = new EventEmitter();
 
   constructor(public modalService: ModalTagService, public tagService: TagsService) { }

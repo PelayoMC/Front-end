@@ -20,13 +20,13 @@
                                 {{ data.dias[diaActual] }} {{ obtenerFecha() }}
                             </td>
                             <td *ngFor="let receta of recetas; let i = index">
-                                <img [src]="obtenerImagen(i)" class="img-rounded img-fluid pointer border border-primary" [matMenuTriggerFor]="appMenu">
+                                <img [src]="obtenerImagen(i)" class="img-rounded img-fluid pointer border border-primary" [matMenuTriggerFor]="appMenu" style="max-width:100%; max-height:100%;">
                                 <mat-menu #appMenu="matMenu">
-                                    <button mat-menu-item>
+                                    <button (click)="verReceta(i)" mat-menu-item>
                                             <mat-icon>local_dining</mat-icon>
                                             <span>Ver receta</span>
                                         </button>
-                                    <button mat-menu-item>
+                                    <button (click)="enviarComentario(i)" mat-menu-item>
                                             <mat-icon>comment</mat-icon>
                                             <span>Enviar comentario</span>
                                         </button>
@@ -35,7 +35,20 @@
                         </tr>
                     </tbody>
                 </table>
+                <h2>Total de calorias de hoy: <span *ngIf="recetas" class="text text-info">{{ calcularCalorias() }} kilocalorias</span></h2>
             </div>
         </div>
     </div>
 </div>
+<div class="row " *ngIf="!cargando && dieta.feedback">
+    <div class="col-12 ">
+        <div class="card ">
+            <div class="card-body " style="overflow-x:auto; ">
+                <h2>Mensaje del administrador</h2>
+                <p>{{ dieta.feedback }}</p>
+                <button (click)="borrarFeedback()" class="btn btn-danger">Eliminar mensaje</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal-comment-diet></app-modal-comment-diet>

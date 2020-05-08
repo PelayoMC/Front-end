@@ -5,6 +5,7 @@ export { VerifyTokenGuard } from './guards/verify-token.guard';
 export { IngredientsService } from './ingredients/ingredients.service';
 export { IntolerancesService } from './intolerances/intolerances.service';
 export { ModalCreateDietService } from './modals/modal-create-diet.service';
+export { ModalCommentDietService } from './modals/modal-comment-diet.service';
 export { ModalCreateUserService } from './modals/modal-create-user.service';
 export { ModalUploadService } from './modals/modal-upload.service';
 export { ModalFeedbackService } from './modals/modal-feedback.service';

@@ -43,6 +43,7 @@ import { UserComponent } from './users/user/user.component';
 import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { ModalCreateDietComponent } from '../components/modal-create-diet/modal-create-diet.component';
+import { ModalCommentDietComponent } from '../components/modal-comment-diet/modal-comment-diet.component';
 import { ModalCreateUserComponent } from '../components/modal-create-user/modal-create-user.component';
 import { ModalTagsComponent } from '../components/modal-tags/modal-tags.component';
 import { ModalVoteComponent } from '../components/modal-vote/modal-vote.component';
@@ -89,6 +90,7 @@ import { SearchTypeComponent } from '../components/search-type/search-type.compo
         UserComponent,
         ModalUploadComponent,
         ModalCreateDietComponent,
+        ModalCommentDietComponent,
         ModalCreateUserComponent,
         ModalTagsComponent,
         ModalVoteComponent,

@@ -47,16 +47,17 @@ export class ManagingComponent implements OnInit {
   }
 
   mostrarFeedBack(dieta: any) {
-    this.modalFeedback.mostrarModal();
     this.dietService.obtenerRecetasDietas(dieta._id).subscribe(resp => {
-      let i = 0;
       for (let rec of dieta.dieta) {
-        if (rec.receta === resp.recetas[i]._id) {
-          rec.receta = resp.recetas[i++].nombre;
+        if (rec.comentario !== null) {
+          let index = resp.recetas.map(el => el._id).findIndex(el => el === rec.receta);
+          rec.nombre = resp.recetas[index].nombre;
         }
       }
       this.coment = dieta;
+      console.log(this.coment);
     });
+    this.modalFeedback.mostrarModal();
   }
 
 }
