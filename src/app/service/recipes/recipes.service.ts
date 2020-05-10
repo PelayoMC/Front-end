@@ -75,6 +75,19 @@ export class RecipesService {
     );
   }
 
+  descubrirRecetas(termino: string, tipos: string[], intolerancias: string[], from: number, limit: number) {
+    const extra = {
+      tipos,
+      intolerancias
+    };
+    let url = URL_SERVICIOS + '/busqueda/descubrir/' + termino + '?from=' + from + '&limit=' + limit;
+    return this.http.post(url, extra).pipe(
+      map(  (resp: any) => {
+        return resp;
+      })
+    );
+  }
+
   buscarRecetas(termino: string, tipos: string[], intolerancias: string[], from: number, limit: number) {
     const extra = {
       tipos,

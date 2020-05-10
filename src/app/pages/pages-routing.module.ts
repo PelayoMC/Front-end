@@ -1,9 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
+
+import { LanguageGuard } from '../service/guards/language.guard';
+import { VerifyTokenGuard } from '../service/guards/verify-token.guard';
+
 import { PagesComponent } from './pages.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 import { MainComponent } from './main/main.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
-import { VerifyTokenGuard } from '../service/guards/verify-token.guard';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { IntolerancesComponent } from './intolerances/intolerances.component';
 import { IntoleranceComponent } from './intolerances/intolerance/intolerance.component';
@@ -14,9 +18,10 @@ const routes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        canActivate: [VerifyTokenGuard],
+        canActivate: [VerifyTokenGuard, LanguageGuard],
         children: [
           { path: 'home', component: MainComponent, data: { titulo: 'Inicio' } },
+          { path: 'search', component: BusquedaComponent, data: { titulo: 'Busqueda' } },
           { path: 'recipes', component: RecipesComponent, data: { titulo: 'Recetas' } },
           { path: 'recipe/:id', component: RecipeComponent, data: { titulo: 'Receta' } },
           { path: 'ingredients', component: IngredientsComponent, data: { titulo: 'Ingredientes' } },

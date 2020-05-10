@@ -1,11 +1,14 @@
 import { Routes, RouterModule } from '@angular/router';
+
 import { LoginGuard } from '../service/service.index';
+import { LanguageGuard } from '../service/guards/language.guard';
+import { VerifyTokenGuard } from '../service/guards/verify-token.guard';
+
 import { PagesComponent } from './pages.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.component';
 import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
-import { VerifyTokenGuard } from '../service/guards/verify-token.guard';
 import { CreateIntoleranceComponent } from './intolerances/create-intolerance/create-intolerance.component';
 import { PlanningComponent } from './diet/planning/planning.component';
 import { TrackingComponent } from './diet/tracking/tracking.component';
@@ -20,7 +23,7 @@ const routes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        canActivate: [LoginGuard, VerifyTokenGuard],
+        canActivate: [LoginGuard, VerifyTokenGuard, LanguageGuard],
         children: [
           { path: 'addRecipe', component: CreateRecipeComponent, data: { titulo: 'Añadir receta' } },
           { path: 'modRecipe', component: CreateRecipeComponent, data: { titulo: 'Modificar receta' } },

@@ -3,14 +3,14 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Nombre de la receta</mat-label>
+                    <mat-label>Nombre del ingrediente</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; cargarRecetas(0)">
-                      <mat-icon>close</mat-icon>
-                    </button>
+                          <mat-icon>close</mat-icon>
+                        </button>
                     <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarRecetas(input.value, 0)">
-                      <mat-icon>search</mat-icon>
-                    </button>
+                          <mat-icon>search</mat-icon>
+                        </button>
                 </mat-form-field>
                 <app-show-filters [showIntolerancias]=true [showEtiquetas]=false [showTipos]=true (filtros)=cambiarFiltros($event)></app-show-filters>
                 <app-search-intolerance *ngIf="filtros.intolerancias" (intolerancias)="cargarFiltroIntolerancias($event)"></app-search-intolerance>
@@ -25,7 +25,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">Recetas (<small>{{ total }}</small>)</h3>
                 <div class="row">
                     <app-recipe-card class="col-sm-6 col-lg-4" (cargar)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
                 </div>
@@ -33,4 +32,4 @@
         </div>
     </div>
 </div>
-<ngb-pagination class="d-flex justify-content-center" (pageChange)="cambiarPag($event)" [pageSize]="tam" [collectionSize]="total" [(page)]="from" [boundaryLinks]="true"></ngb-pagination>
+<ngb-pagination class="d-flex justify-content-center" (pageChange)="cambiarPag($event)" [pageSize]="limit" [collectionSize]="total" [(page)]="from" [boundaryLinks]="true"></ngb-pagination>

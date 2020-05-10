@@ -1,5 +1,227 @@
 {
     "home": {
-        "title": "INGLES"
+        "titulo": "English",
+        "mensaje": "Here there will be some info about the app and stuff"
+    },
+    "comun": {
+        "filtros": {
+            "intolerancias": "Filtro de intolerancias",
+            "etiquetas": "Filtro de etiquetas",
+            "tipos": "Filtro de tipos"
+        },
+        "tabla": {
+            "nombre": "Nombre",
+            "ing": "Ingrediente",
+            "cantidad": "Cantidad",
+            "unidades": "Unidades",
+            "tipo": "Tipo",
+            "acciones": "Acciones",
+            "numero": "Numero",
+            "infPaso": "Información del paso",
+            "ingDe": "Ingrediente de:",
+            "sustDe": "Sustituible de:",
+            "correo": "Correo",
+            "imagen": "Imagen",
+            "rol": "Rol",
+            "auth": "Autenticacion",
+            "etiquetas": "Etiquetas",
+            "dias": {
+                "lunes": "Lunes",
+                "martes": "Martes",
+                "miercoles": "Miércoles",
+                "jueves": "Jueves",
+                "viernes": "Viernes",
+                "sabado": "Sabado",
+                "domingo": "Domingo"
+            }
+        },
+        "botones": {
+            "anterior": "Anteriores",
+            "siguiente": "Siguientes"
+        }
+    },
+    "header": {
+        "perfil": "Ver perfil",
+        "recetas": "Mis recetas favoritas",
+        "intolerancias": "Mis intolerancias",
+        "cerrar": "Cerrar sesión"
+    },
+    "sidebar": {
+        "titulo": "TFG",
+        "inicio": "Inicio",
+        "dieta": {
+            "gestion": "Gestionar dietas",
+            "solicitar": "Solicitar dieta",
+            "planificar": "Planificación de la dieta",
+            "seguimiento": "Seguimiento de la dieta"
+        },
+        "alimentos": {
+            "recetas": {
+                "lista": "Lista de recetas",
+                "añadir": "Crear receta"
+            },
+            "ingredientes": {
+                "lista": "Lista de ingredientes"
+            },
+            "intolerancias": {
+                "lista": "Lista de intolerancias",
+                "añadir": "Crear intolerancia"
+            },
+            "etiquetas": {
+                "lista": "Lista de etiquetas"
+            }
+        },
+        "usuarios": {
+            "lista": "Lista de usuarios"
+        }
+    },
+    "login": {
+        "correo": "Email",
+        "contraseña": "Password",
+        "recuerdame": "Remember me",
+        "contraseñaOlvidada": "Forgotten password?",
+        "iniciarSesion": "Login",
+        "pregunta": "Don't have account?",
+        "link": "Register"
+    },
+    "register": {
+        "titulo": "Register",
+        "nombre": "Name",
+        "correo": "Email",
+        "contraseña": "Password",
+        "confirmarContraseña": "Confirm password",
+        "contraseñasIguales": "The passwords have to be the same",
+        "terminos": "I accept the",
+        "linkTerminos": "terms and conditions",
+        "registrarse": "Register",
+        "pregunta": "Do you have an account?",
+        "linkSesion": "Login"
+    },
+    "usuarios": {
+        "usuario": {
+            "titulo": "Perfil de usuario",
+            "nombre": "Nombre",
+            "nombrePh": "Introducir nombre",
+            "nombreErr": "El nombre es obligatorio",
+            "email": "Email",
+            "emailPh": "Introducir email",
+            "emailErr": "El email es obligatorio",
+            "datos": "Datos personales",
+            "necesarios": "necesarios para la solicitud de dietas",
+            "edad": "Edad",
+            "edadPh": "Introducir edad",
+            "edadErr": "La edad es obligatoria",
+            "altura": "Altura",
+            "alturaPh": "Introducir altura",
+            "alturaErr": "La altura es obligatoria",
+            "peso": "Nombre",
+            "pesoPh": "Introducir nombre",
+            "pesoErr": "El nombre es obligatorio",
+            "botonMod": "Modificar",
+            "botonAceptar": "Aceptar",
+            "botonBorrar": "Borrar",
+            "imagen": "Imagen de usuario",
+            "botonAct": "Actualizar imagen"
+
+        },
+        "titulo": "Usuarios registrados",
+        "buscador": "Nombre del usuario"
+    },
+    "recetas": {
+        "receta": {
+            "descripcion": "Descripción de la receta",
+            "calorias": "Calorias",
+            "dificultad": "Dificultad",
+            "ingredientes": "Ingredientes",
+            "pasos": "Pasos a seguir",
+            "botonRe": "Regresar"
+        },
+        "crear": {
+            "titulo": "Crear receta",
+            "nombre": "Nombre",
+            "nombrePh": "Nombre de la receta",
+            "descripcion": "Descripcion",
+            "descripcionPh": "Descripcion de la receta",
+            "tipo": "Tipo",
+            "imagen": "Imagen",
+            "imagenP": " - Vista previa",
+            "ingredientes": "Ingredientes",
+            "botonIng": "Agregar ingrediente",
+            "pasos": "Pasos a seguir de la receta",
+            "botonPaso": "Agregar paso",
+            "dificultad": "Dificultad de la receta",
+            "calorias": "Calorias (receta)",
+            "unidades": "Unidades",
+            "botonCrear": "Crear receta",
+            "crearIng": {
+                "tituloEt": "Añadir etiquetas",
+                "añadirEt": "Añadir etiquetas",
+                "opcional": "(Opcional)",
+                "tituloSust": "Añadir ingredientes sustituibles",
+                "añadirSust": "Añadir ingrediente de sustitución",
+                "noSecundario": "No es un ingrediente secundario",
+                "nombreSust": "Nombre del ingrediente de sustitución"
+            }
+        },
+        "titulo": "Recetas",
+        "buscador": "Nombre de la receta"
+    },
+    "ingredientes": {
+        "titulo": "Ingredientes registrados",
+        "buscador": "Nombre del ingrediente",
+        "botonBorrarSin": "Borrar ingredientes sin receta"
+    },
+    "intolerancias": {
+        "intolerancia": {
+            "descripcion": "Descripción",
+            "etiquetas": "Etiquetas",
+            "botonRe": "Regresar"
+        },
+        "crear": {
+            "titulo": "Crear intolerancia",
+            "nombre": "Nombre",
+            "nombrePh": "Nombre de la intolerancia",
+            "descripcion": "Descripcion",
+            "descripcionPh": "Descripcion de la intolerancia",
+            "etiquetas": "Etiquetas",
+            "etiquetasPh": "Para añadir una etiqueta use , o intro",
+            "imagen": "Imagen",
+            "botonCrear": "Crear intolerancia"
+        },
+        "titulo": "Intolerancias registradas",
+        "buscador": "Nombre de la intolerancia"
+    },
+    "etiquetas": {
+        "titulo": "Etiquetas registradas",
+        "buscador": "Nombre de la etiqueta"
+    },
+    "dietas": {
+        "gestion": {
+            "dietas": "Dietas sin asignar",
+            "comentarios": "Comentarios"
+        },
+        "solicitar": {
+            "titulo": "Solicitar dieta",
+            "titulo2": "Dieta solicitada",
+            "noInfo": "No existe información personal sobre el usuario",
+            "noInfo2": "Para poder solicitar una dieta, rellene los campos de edad, altura y peso en el ",
+            "noInfoLink": "perfil de usuario",
+            "solicitar": "Antes de solicitar una dieta, asegurese de añadir ",
+            "solicitar2": " y ",
+            "solicitar3": " favoritas a su perfil",
+            "solicitar4": "De esta forma será más facil realizar su dieta",
+            "solicitarLink": "intolerancias",
+            "solicitarLink2": "recetas",
+            "solicitarBoton": "Solicitar dieta",
+            "solicitada": "Espere a que un experto realice el planning de su dieta"
+        },
+        "planificar": {
+            "titulo": "Planificación semanal de la dieta",
+            "kcal": "Kilocalorias diarias"
+        },
+        "seguimiento": {
+            "titulo": "Recetas para el dia: ",
+            "total": "Total de calorias de hoy:"
+        }
     }
 }

@@ -17,7 +17,7 @@ export class TrackingComponent implements OnInit {
   indexes: number[] = [];
   recetas: Recipe[] = [];
   data = data;
-  diaActual = new Date().getDay() - 1;
+  diaActual = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
   cargando = true;
 
   constructor(public userService: UsersService, public recipesService: RecipesService, public dietService: DietService, public modalService: ModalCommentDietService, public router: Router) { }

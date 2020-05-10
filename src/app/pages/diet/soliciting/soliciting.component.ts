@@ -10,11 +10,15 @@ import { Dieta } from 'src/app/models/dieta.model';
 export class SolicitingComponent implements OnInit {
 
   constructor(public dietService: DietService, public userService: UsersService, public router: Router) { }
+  cargando = true;
   dieta: Dieta;
 
   ngOnInit() {
     this.dietService.obtenerDietaUser(this.userService.usuario.value._id).subscribe(resp => {
-      this.dieta = resp[0];
+      if (resp) {
+        this.dieta = resp;
+      }
+      this.cargando = false;
     });
   }
 

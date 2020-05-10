@@ -14,10 +14,12 @@ export class LanguageService {
   toogleLanguage(lang: string) {
     this.selectedLanguage = lang;
     this.translateService.use(lang);
+    localStorage.setItem('lang', lang);
   }
 
   toggleFlag() {
-    switch(this.selectedLanguage) {
+    const idioma = localStorage.getItem('lang') ? localStorage.getItem('lang') : this.selectedLanguage;
+    switch (idioma) {
       case 'es': return 'flag-icon flag-icon-es';
       case 'en': return 'flag-icon flag-icon-gb';
     }

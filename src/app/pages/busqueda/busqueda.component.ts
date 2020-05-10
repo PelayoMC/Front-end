@@ -1,15 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { RecipesService } from 'src/app/service/recipes/recipes.service';
-import { Router } from '@angular/router';
-import { Recipe } from 'src/app/models/recipe.model';
+import { Recipe } from '../../models/recipe.model';
 import { Filtros } from 'src/app/models/filtros.model';
+import { RecipesService } from '../../service/recipes/recipes.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-recipes',
-  templateUrl: './recipes.component.html',
-  styles: []
+  selector: 'app-busqueda',
+  templateUrl: './busqueda.component.html'
 })
-export class RecipesComponent implements OnInit {
+export class BusquedaComponent implements OnInit {
 
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   recetas: Recipe[] = [];
@@ -17,12 +16,12 @@ export class RecipesComponent implements OnInit {
   intolerancias: string[] = [];
   filtros: Filtros = new Filtros();
 
-  from = 1;
-  tam = 9;
-  total: number;
   cargando = true;
+  from = 1;
+  limit = 7;
+  total: number;
 
-  constructor(private recipesService: RecipesService, private router: Router ) { }
+  constructor(private recipeService: RecipesService, private router: Router) { }
 
   ngOnInit() {
     this.cargarRecetas(--this.from);
@@ -54,7 +53,7 @@ export class RecipesComponent implements OnInit {
 
   cargarRecetas(from) {
     this.cargando = true;
-    this.recipesService.getRecipes(from, this.tam).subscribe((resp: any) => {
+    this.recipeService.getRecipes(from, this.limit).subscribe((resp: any) => {
       this.total = resp.total;
       resp = resp.recetas;
       this.recetas = resp.map(el =>
@@ -70,8 +69,9 @@ export class RecipesComponent implements OnInit {
       return;
     }
     this.cargando = true;
-    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, valor, this.tam).subscribe(
+    this.recipeService.descubrirRecetas(termino, this.tipos, this.intolerancias, valor, this.limit).subscribe(
       (resp: any) => {
+        console.log('Busco');
         const recetas: Recipe[] = resp.coleccion;
         this.recetas = recetas;
         this.total = resp.total;
@@ -83,9 +83,9 @@ export class RecipesComponent implements OnInit {
 
   cambiarPag(event: any) {
     if (this.busqueda.nativeElement.value != null) {
-      this.buscarRecetas(this.busqueda.nativeElement.value, --event * this.tam);
+      this.buscarRecetas(this.busqueda.nativeElement.value, --event * this.limit);
     } else {
-      this.cargarRecetas(--event * this.tam);
+      this.cargarRecetas(--event * this.limit);
     }
   }
 }

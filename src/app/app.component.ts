@@ -22,7 +22,5 @@ export class AppComponent {
     .subscribe((titulo: any) => {
       title.setTitle(titulo);
     });
-    this.translateService.setDefaultLang(this.langService.selectedLanguage);
-    this.translateService.use(this.langService.selectedLanguage);
   }
 }
