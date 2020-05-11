@@ -36,4 +36,8 @@ export class SolicitingComponent implements OnInit {
     return false;
   }
 
+  hayDietaCreada() {
+    return this.userService.usuario.value.dieta;
+  }
+
 }

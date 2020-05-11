@@ -20,7 +20,7 @@
                                 {{ data.dias[diaActual] }} {{ obtenerFecha() }}
                             </td>
                             <td *ngFor="let receta of recetas; let i = index">
-                                <img [src]="obtenerImagen(i)" class="img-rounded img-fluid pointer border border-primary" [matMenuTriggerFor]="appMenu" style="max-width:100%; max-height:100%;">
+                                <img [src]='this.recetas[i].imagen | image: "receta"' class="img-rounded img-fluid pointer border border-primary" [matMenuTriggerFor]="appMenu" style="max-width:100%; max-height:100%;">
                                 <mat-menu #appMenu="matMenu">
                                     <button (click)="verReceta(i)" mat-menu-item>
                                             <mat-icon>local_dining</mat-icon>

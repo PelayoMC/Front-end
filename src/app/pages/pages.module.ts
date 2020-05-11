@@ -24,12 +24,12 @@ import { TranslateModule } from '@ngx-translate/core';
 
 // Rutas
 import { PAGE_ROUTES } from './pages-routing.module';
-import { PAGE_ROUTES_PRIVATE } from './pages-routing-private.module';
 
 // Componentes
 import { PagesComponent } from './pages.component';
 import { MainComponent } from './main/main.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { BusquedaCardComponent } from './busqueda/busqueda-card/busqueda-card.component';
 import { SolicitingComponent } from './diet/soliciting/soliciting.component';
 import { PlanningComponent } from './diet/planning/planning.component';
 import { TrackingComponent } from './diet/tracking/tracking.component';
@@ -71,6 +71,7 @@ import { SearchTypeComponent } from '../components/search-type/search-type.compo
         PagesComponent,
         MainComponent,
         BusquedaComponent,
+        BusquedaCardComponent,
         SolicitingComponent,
         PlanningComponent,
         TrackingComponent,
@@ -111,7 +112,6 @@ import { SearchTypeComponent } from '../components/search-type/search-type.compo
       ],
       imports: [
         PAGE_ROUTES,
-        PAGE_ROUTES_PRIVATE,
         CommonModule,
         ReactiveFormsModule,
         FormsModule,

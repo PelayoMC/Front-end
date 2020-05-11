@@ -18,7 +18,7 @@
                                 <label [class]="data.label(comida)">{{ comida }}</label>
                             </td>
                             <td *ngFor="let receta of data.dias; let j = index">
-                                <img (click)="verReceta(i, j)" [src]="obtenerImagen(i, j)" class="img-rounded img-fluid pointer border border-primary">
+                                <img (click)="verReceta(i, j)" [src]='this.recetas[(i * 7) + j].imagen | image: "receta"' class="img-rounded img-fluid pointer border border-primary">
                                 <!--<button *ngIf="receta" class="btn btn-danger" (click)="verReceta(i, j)">Ver receta</button>-->
                             </td>
                         </tr>

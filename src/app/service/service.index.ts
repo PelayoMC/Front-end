@@ -1,7 +1,11 @@
-export { AuthService } from './auth/auth.service';
-export { DietService } from './diet/diet.service';
+// Guards
 export { LoginGuard } from './guards/login.guard';
 export { VerifyTokenGuard } from './guards/verify-token.guard';
+export { AdminGuard } from './guards/admin.guard';
+
+// Servicios
+export { AuthService } from './auth/auth.service';
+export { DietService } from './diet/diet.service';
 export { IngredientsService } from './ingredients/ingredients.service';
 export { IntolerancesService } from './intolerances/intolerances.service';
 export { LanguageService } from './language/language.service';

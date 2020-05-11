@@ -5,14 +5,26 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img class="d-block w-100" src="..." alt="First slide">
+        <div class="carousel-item active" (click)="ir('diet/soliciting')">
+            <img class="d-block w-100 pointer" src="../../../assets/images/main/main1.jpg" alt="First slide" style="max-height: 10%;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Dietas</h5>
+                <p>Solicita una dieta de acuerdo a tus recetas e intolerancias</p>
+            </div>
         </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="..." alt="Second slide">
+        <div class="carousel-item" (click)="ir('search')">
+            <img class="d-block w-100 pointer" src="../../../assets/images/main/main2.jpg" alt="Second slide" style="max-height: 10%;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Descubre</h5>
+                <p>Introduce el nombre de un ingrediente y descubre que recetas lo contienen</p>
+            </div>
         </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="..." alt="Third slide">
+        <div class="carousel-item" (click)="ir('recipes')">
+            <img class="d-block w-100 pointer" src="../../../assets/images/main/main3.jpg" alt="Second slide" style="max-height: 10%;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Recetas</h5>
+                <p>Mira nuestras recetas y como se hacen</p>
+            </div>
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

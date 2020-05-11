@@ -5,7 +5,7 @@
                 <mat-form-field class="input-group mb-3">
                     <mat-label>Nombre del ingrediente</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" autocomplete="off">
-                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; cargarRecetas(0)">
+                    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''">
                           <mat-icon>close</mat-icon>
                         </button>
                     <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarRecetas(input.value, 0)">
@@ -20,13 +20,34 @@
     </div>
 </div>
 <app-loading-component [cargando]="cargando"></app-loading-component>
-<app-no-found-component [cargando]="cargando" [array]="recetas"></app-no-found-component>
+<app-no-found-component *ngIf="buscando" [cargando]="cargando" [array]="recetas"></app-no-found-component>
+<div class="row" *ngIf="!cargando && ingredientes.length > 0">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <h3>Ingredientes encontrados</h3>
+                    <mat-form-field style="width: 100%;">
+                        <mat-chip-list #list aria-label="tag selection">
+                            <mat-chip *ngFor="let ing of ingredientes" [selectable]="false" [removable]="false">
+                                {{ ing.nombre }}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row" *ngIf="!cargando && recetas.length > 0">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="row">
-                    <app-recipe-card class="col-sm-6 col-lg-4" (cargar)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
+                <div>
+                    <h3>Recetas que contienen los ingredientes encontrados</h3>
+                    <div class="row">
+                        <app-busqueda-card class="col-sm-6 col-lg-4" (cargar)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-busqueda-card>
+                    </div>
                 </div>
             </div>
         </div>

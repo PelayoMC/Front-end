@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {
-  AuthService,
-  DietService,
+  AdminGuard,
   LoginGuard,
   VerifyTokenGuard,
+  AuthService,
+  DietService,
   IngredientsService,
   IntolerancesService,
   LanguageService,
@@ -34,10 +35,11 @@ import {
     HttpClientModule
   ],
   providers: [
-    AuthService,
-    DietService,
+    AdminGuard,
     LoginGuard,
     VerifyTokenGuard,
+    AuthService,
+    DietService,
     IngredientsService,
     IntolerancesService,
     LanguageService,

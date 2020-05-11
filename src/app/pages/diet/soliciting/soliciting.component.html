@@ -10,9 +10,13 @@
         <p class="text text-muted">De esta forma será más facil realizar su dieta</p>
         <button (click)="solicitarDieta()" type="button" class="btn btn-info">Solicitar dieta</button>
     </div>
-    <div *ngIf="dieta">
+    <div *ngIf="dieta && !hayDietaCreada()">
         <h3>Dieta solicitada</h3>
         <p>Espere a que un experto realice el planning de su dieta</p>
+    </div>
+    <div *ngIf="dieta && hayDietaCreada()">
+        <h3>Dieta asignada</h3>
+        <p>Ya tiene una dieta asignada</p>
     </div>
 </div>
 <app-loading-component [cargando]="cargando"></app-loading-component>

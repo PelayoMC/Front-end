@@ -79,6 +79,31 @@ a.link:focus {
     height: 80%;
 }
 
+.carousel-item {
+    height: 80vh;
+}
+
+.carousel-item h5 {
+    font-size: 60px;
+    font-weight: bolder;
+    color: white !important;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.carousel-item p {
+    font-size: 25px;
+    font-weight: bold;
+    color: #a6b7bf;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 800px;
+}
+
 .modal-dialog {
     transform: translate(0, -50%);
     top: 50%;

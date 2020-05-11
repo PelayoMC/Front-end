@@ -3,6 +3,7 @@ import { Recipe } from '../../models/recipe.model';
 import { Filtros } from 'src/app/models/filtros.model';
 import { RecipesService } from '../../service/recipes/recipes.service';
 import { Router } from '@angular/router';
+import { Ingredient } from '../../models/ingredient.model';
 
 @Component({
   selector: 'app-busqueda',
@@ -12,11 +13,13 @@ export class BusquedaComponent implements OnInit {
 
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   recetas: Recipe[] = [];
+  ingredientes: Ingredient[] = [];
   tipos: string[] = [];
   intolerancias: string[] = [];
   filtros: Filtros = new Filtros();
 
   cargando = true;
+  buscando = false;
   from = 1;
   limit = 7;
   total: number;
@@ -24,7 +27,8 @@ export class BusquedaComponent implements OnInit {
   constructor(private recipeService: RecipesService, private router: Router) { }
 
   ngOnInit() {
-    this.cargarRecetas(--this.from);
+    // this.cargarRecetas(--this.from);
+    this.cargando = false;
   }
 
   verReceta(idx: number) {
@@ -60,6 +64,7 @@ export class BusquedaComponent implements OnInit {
         new Recipe(el.nombre, el.descripcion, el.tipoRe, el.imagen, el.ingredientes, el.pasos, el.nivel, el.calorias, el._id)
       );
       this.cargando = false;
+      this.buscando = false;
     });
   }
 
@@ -71,12 +76,12 @@ export class BusquedaComponent implements OnInit {
     this.cargando = true;
     this.recipeService.descubrirRecetas(termino, this.tipos, this.intolerancias, valor, this.limit).subscribe(
       (resp: any) => {
-        console.log('Busco');
-        const recetas: Recipe[] = resp.coleccion;
-        this.recetas = recetas;
+        this.ingredientes = resp.coleccion.ingredientes;
+        this.recetas = resp.coleccion.recetas;
         this.total = resp.total;
         this.cargando = false;
         this.busqueda.nativeElement.select();
+        this.buscando = true;
       }
     );
   }

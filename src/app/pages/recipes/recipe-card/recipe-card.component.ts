@@ -70,8 +70,11 @@ export class RecipeCardComponent implements OnInit {
       if (result.value) {
         this.recipesService.borrarReceta(receta._id).subscribe(resp => {
           this.voteService.borrarVotacion(receta._id).subscribe(resp => {
-            Swal.fire('Receta borrada', 'Receta borrada correctamente', 'success');
-            this.cargar.emit(this.receta._id);
+            this.userService.usuario.value.recetasFavoritas = this.userService.usuario.value.recetasFavoritas.filter(el => el !== receta._id);
+            this.userService.modificarUsuario(this.userService.usuario.value).subscribe(resp => {
+              Swal.fire('Receta borrada', 'Receta borrada correctamente', 'success');
+              this.cargar.emit(this.receta._id);
+            });
           });
         });
       }

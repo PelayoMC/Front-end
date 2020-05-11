@@ -118,12 +118,15 @@ export class IntolerancesComponent implements OnInit {
       if (result.value) {
         this.intolerancesService.borrarIntolerancia(intolerancia).subscribe(resp => {
           if (resp.nombre === intolerancia.nombre) {
-            Swal.fire(
-              'Intolerancia borrada',
-              'La intolerancia ha sido borrada correctamente',
-              'success'
-            );
-            this.cargarIntolerancias();
+            this.userService.usuario.value.misIntolerancias = this.userService.usuario.value.misIntolerancias.filter(el => el !== intolerancia._id);
+            this.userService.modificarUsuario(this.userService.usuario.value).subscribe(resp => {
+              Swal.fire(
+                'Intolerancia borrada',
+                'La intolerancia ha sido borrada correctamente',
+                'success'
+              );
+              this.cargarIntolerancias();
+            });
           } else {
             Swal.fire(
               'Intolerancia no borrada',
