@@ -79,6 +79,11 @@ a.link:focus {
     height: 80%;
 }
 
+.carousel {
+    border-radius: 35px 35px 35px 35px;
+    overflow: hidden;
+}
+
 .carousel-item {
     height: 80vh;
 }

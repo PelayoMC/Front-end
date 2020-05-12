@@ -5,74 +5,134 @@
     },
     "comun": {
         "filtros": {
-            "intolerancias": "Filtro de intolerancias",
-            "etiquetas": "Filtro de etiquetas",
-            "tipos": "Filtro de tipos"
+            "intolerancias": "Intolerance filter",
+            "intoleranciasTexto": "Touch to add an intolerance to the filter",
+            "etiquetas": "Tag filter",
+            "etiquetasTexto": "Touch to add a tag to the filter",
+            "tipos": "Type filter",
+            "tiposTexto": "Touch to add a type to the filter"
         },
+        "buscando": {
+            "titulo": "LOADING",
+            "texto": "Wait please"
+        },
+        "sinResultados": "No results have been found",
         "tabla": {
-            "nombre": "Nombre",
-            "ing": "Ingrediente",
-            "cantidad": "Cantidad",
-            "unidades": "Unidades",
-            "tipo": "Tipo",
-            "acciones": "Acciones",
-            "numero": "Numero",
-            "infPaso": "Información del paso",
-            "ingDe": "Ingrediente de:",
-            "sustDe": "Sustituible de:",
-            "correo": "Correo",
-            "imagen": "Imagen",
-            "rol": "Rol",
-            "auth": "Autenticacion",
-            "etiquetas": "Etiquetas",
+            "nombre": "Name",
+            "ing": "Ingredient",
+            "cantidad": "Quantity",
+            "unidades": "Units",
+            "tipo": "Type",
+            "acciones": "Actions",
+            "numero": "Number",
+            "infPaso": "Step info",
+            "ingDe": "Ingredient of:",
+            "sustDe": "Repleaceable in:",
+            "correo": "Email",
+            "imagen": "Image",
+            "rol": "Role",
+            "auth": "Authentication",
+            "etiquetas": "Tags",
+            "edad": "Age",
+            "altura": "Height",
+            "peso": "Weight",
+            "info": "User info",
+            "receta": "Recipe",
+            "comentario": "Comment",
             "dias": {
-                "lunes": "Lunes",
-                "martes": "Martes",
-                "miercoles": "Miércoles",
-                "jueves": "Jueves",
-                "viernes": "Viernes",
-                "sabado": "Sabado",
-                "domingo": "Domingo"
+                "lunes": "Monday",
+                "martes": "Tuesday",
+                "miercoles": "Wednesday",
+                "jueves": "Thursday",
+                "viernes": "Friday",
+                "sabado": "Saturday",
+                "domingo": "Sunday"
+            },
+            "comidas": {
+                "desayuno": "Breakfast",
+                "comida": "Lunch",
+                "merienda": "Snack",
+                "cena": "Dinner"
             }
         },
         "botones": {
-            "anterior": "Anteriores",
-            "siguiente": "Siguientes"
+            "anterior": "Previous",
+            "siguiente": "Next"
+        }
+    },
+    "modales": {
+        "comentarios": {
+            "titulo": "Send comment",
+            "enviar": "Comment",
+            "texto": "Comment name"
+        },
+        "crearDieta": {
+            "titulo": "Add recipe",
+            "buscador": "Recipe name",
+            "enviar": "Send feedback",
+            "texto": "Feedback text"
+        },
+        "crearUsuario": {
+            "titulo": "Add user",
+            "campo1": "Name",
+            "texto1": "Username",
+            "campo2": "Email",
+            "texto2": "Users email",
+            "campo3": "Password",
+            "texto3": "Password",
+            "campo5": "Role"
+        },
+        "crearEtiqueta": {
+            "titulo": "Add tag",
+            "enviar": "Name",
+            "texto": "Tag name"
+        },
+        "feedback": {
+            "titulo": "Feedback",
+            "enviar": "Send feedback",
+            "texto": "Feedback text"
+        },
+        "votar": {
+            "titulo": "Add vote"
+        },
+        "botones": {
+            "enviar": "Send",
+            "cerrar": "Close"
         }
     },
     "header": {
-        "perfil": "Ver perfil",
-        "recetas": "Mis recetas favoritas",
-        "intolerancias": "Mis intolerancias",
-        "cerrar": "Cerrar sesión"
+        "perfil": "View profile",
+        "recetas": "Favorite recipes",
+        "intolerancias": "My intolerances",
+        "cerrar": "Sign out"
     },
     "sidebar": {
         "titulo": "TFG",
-        "inicio": "Inicio",
+        "inicio": "Home",
         "dieta": {
-            "gestion": "Gestionar dietas",
-            "solicitar": "Solicitar dieta",
-            "planificar": "Planificación de la dieta",
-            "seguimiento": "Seguimiento de la dieta"
+            "gestion": "Manage diets",
+            "solicitar": "Request diet",
+            "planificar": "Diet planning",
+            "seguimiento": "Diet tracking"
         },
         "alimentos": {
             "recetas": {
-                "lista": "Lista de recetas",
-                "añadir": "Crear receta"
+                "lista": "Recipe list",
+                "añadir": "Create recipe"
             },
             "ingredientes": {
-                "lista": "Lista de ingredientes"
+                "lista": "Ingredient list"
             },
             "intolerancias": {
-                "lista": "Lista de intolerancias",
-                "añadir": "Crear intolerancia"
+                "lista": "Intolerance list",
+                "añadir": "Create intolerance"
             },
             "etiquetas": {
-                "lista": "Lista de etiquetas"
+                "lista": "Tag list"
             }
         },
         "usuarios": {
-            "lista": "Lista de usuarios"
+            "lista": "User list"
         }
     },
     "login": {
@@ -99,129 +159,133 @@
     },
     "usuarios": {
         "usuario": {
-            "titulo": "Perfil de usuario",
-            "nombre": "Nombre",
-            "nombrePh": "Introducir nombre",
-            "nombreErr": "El nombre es obligatorio",
+            "titulo": "User profile",
+            "nombre": "Name",
+            "nombrePh": "Introduce name",
+            "nombreErr": "The name is required",
             "email": "Email",
-            "emailPh": "Introducir email",
-            "emailErr": "El email es obligatorio",
-            "datos": "Datos personales",
-            "necesarios": "necesarios para la solicitud de dietas",
-            "edad": "Edad",
-            "edadPh": "Introducir edad",
-            "edadErr": "La edad es obligatoria",
-            "altura": "Altura",
-            "alturaPh": "Introducir altura",
-            "alturaErr": "La altura es obligatoria",
-            "peso": "Nombre",
-            "pesoPh": "Introducir nombre",
-            "pesoErr": "El nombre es obligatorio",
-            "botonMod": "Modificar",
-            "botonAceptar": "Aceptar",
-            "botonBorrar": "Borrar",
-            "imagen": "Imagen de usuario",
-            "botonAct": "Actualizar imagen"
+            "emailPh": "Introduce email",
+            "emailErr": "The email is required",
+            "datos": "Personal data",
+            "necesarios": "necessary for diet soliciting",
+            "edad": "Age",
+            "edadPh": "Introduce age",
+            "edadErr": "The age is required",
+            "altura": "Height",
+            "alturaPh": "Introduce height",
+            "alturaErr": "The height is required",
+            "peso": "Weight",
+            "pesoPh": "Introduce weight",
+            "pesoErr": "The weight is required",
+            "botonMod": "Modify",
+            "botonAceptar": "Accept",
+            "botonBorrar": "Delete",
+            "imagen": "User image",
+            "botonAct": "Update image"
 
         },
-        "titulo": "Usuarios registrados",
-        "buscador": "Nombre del usuario"
+        "titulo": "Registered users",
+        "buscador": "Username"
     },
     "recetas": {
         "receta": {
-            "descripcion": "Descripción de la receta",
-            "calorias": "Calorias",
-            "dificultad": "Dificultad",
-            "ingredientes": "Ingredientes",
-            "pasos": "Pasos a seguir",
-            "botonRe": "Regresar"
+            "descripcion": "Recipe description",
+            "calorias": "Calories",
+            "dificultad": "Difficulty",
+            "ingredientes": "Ingredients",
+            "pasos": "Steps",
+            "botonRe": "Return"
         },
         "crear": {
-            "titulo": "Crear receta",
-            "nombre": "Nombre",
-            "nombrePh": "Nombre de la receta",
-            "descripcion": "Descripcion",
-            "descripcionPh": "Descripcion de la receta",
-            "tipo": "Tipo",
-            "imagen": "Imagen",
-            "imagenP": " - Vista previa",
-            "ingredientes": "Ingredientes",
-            "botonIng": "Agregar ingrediente",
-            "pasos": "Pasos a seguir de la receta",
-            "botonPaso": "Agregar paso",
-            "dificultad": "Dificultad de la receta",
-            "calorias": "Calorias (receta)",
-            "unidades": "Unidades",
-            "botonCrear": "Crear receta",
+            "titulo": "Create recipe",
+            "nombre": "Name",
+            "nombrePh": "Recipe name",
+            "descripcion": "Description",
+            "descripcionPh": "Recipe description",
+            "tipo": "Type",
+            "imagen": "Image",
+            "imagenP": " - Preview",
+            "ingredientes": "Ingredients",
+            "botonIng": "Add ingredient",
+            "pasos": "Recipe steps",
+            "botonPaso": "Add steps",
+            "dificultad": "Recipe difficulty",
+            "calorias": "Calories (recipe)",
+            "unidades": "Units",
+            "botonCrear": "Create recipe",
             "crearIng": {
-                "tituloEt": "Añadir etiquetas",
-                "añadirEt": "Añadir etiquetas",
-                "opcional": "(Opcional)",
-                "tituloSust": "Añadir ingredientes sustituibles",
-                "añadirSust": "Añadir ingrediente de sustitución",
-                "noSecundario": "No es un ingrediente secundario",
-                "nombreSust": "Nombre del ingrediente de sustitución"
+                "tituloEt": "Add tags",
+                "añadirEt": "Add tags",
+                "opcional": "(Optional)",
+                "tituloSust": "Add replaceable ingredient",
+                "añadirSust": "Add replaceable ingredient",
+                "noSecundario": "Is not a secondary ingredient",
+                "nombreSust": "Name of the replaceable ingredient"
             }
         },
-        "titulo": "Recetas",
-        "buscador": "Nombre de la receta"
+        "titulo": "Recipes",
+        "buscador": "Recipe name"
     },
     "ingredientes": {
-        "titulo": "Ingredientes registrados",
-        "buscador": "Nombre del ingrediente",
-        "botonBorrarSin": "Borrar ingredientes sin receta"
+        "titulo": "Registered ingredients",
+        "buscador": "Ingredient name",
+        "botonBorrarSin": "Delete ingredients without recipes"
     },
     "intolerancias": {
         "intolerancia": {
-            "descripcion": "Descripción",
-            "etiquetas": "Etiquetas",
-            "botonRe": "Regresar"
+            "descripcion": "Description",
+            "etiquetas": "Tags",
+            "botonRe": "Return"
         },
         "crear": {
-            "titulo": "Crear intolerancia",
-            "nombre": "Nombre",
-            "nombrePh": "Nombre de la intolerancia",
-            "descripcion": "Descripcion",
-            "descripcionPh": "Descripcion de la intolerancia",
-            "etiquetas": "Etiquetas",
-            "etiquetasPh": "Para añadir una etiqueta use , o intro",
-            "imagen": "Imagen",
-            "botonCrear": "Crear intolerancia"
+            "titulo": "Create intolerance",
+            "nombre": "Name",
+            "nombrePh": "Intolerance name",
+            "descripcion": "Description",
+            "descripcionPh": "Intolerance description",
+            "etiquetas": "Tags",
+            "etiquetasPh": "To add a tag use , or intro",
+            "imagen": "Image",
+            "botonCrear": "Create intolerance"
         },
-        "titulo": "Intolerancias registradas",
-        "buscador": "Nombre de la intolerancia"
+        "titulo": "Registered intolerances",
+        "buscador": "Intolerance name"
     },
     "etiquetas": {
-        "titulo": "Etiquetas registradas",
-        "buscador": "Nombre de la etiqueta"
+        "titulo": "Registered tags",
+        "buscador": "Tag name"
     },
     "dietas": {
         "gestion": {
-            "dietas": "Dietas sin asignar",
-            "comentarios": "Comentarios"
+            "dietas": "Unassigned diets",
+            "comentarios": "Comments",
+            "noAsig": {
+                "titulo1": "User data",
+                "titulo2": "Add recipes"
+            }
         },
         "solicitar": {
-            "titulo": "Solicitar dieta",
-            "titulo2": "Dieta solicitada",
-            "noInfo": "No existe información personal sobre el usuario",
-            "noInfo2": "Para poder solicitar una dieta, rellene los campos de edad, altura y peso en el ",
-            "noInfoLink": "perfil de usuario",
-            "solicitar": "Antes de solicitar una dieta, asegurese de añadir ",
-            "solicitar2": " y ",
-            "solicitar3": " favoritas a su perfil",
-            "solicitar4": "De esta forma será más facil realizar su dieta",
-            "solicitarLink": "intolerancias",
-            "solicitarLink2": "recetas",
-            "solicitarBoton": "Solicitar dieta",
-            "solicitada": "Espere a que un experto realice el planning de su dieta"
+            "titulo": "Request diets",
+            "titulo2": "Diet requested",
+            "noInfo": "There is no personal information about this user",
+            "noInfo2": "To request a diet, complete the fields about age, height and weight in ",
+            "noInfoLink": "user profile",
+            "solicitar": "Before requesting a dieta, be sure to add ",
+            "solicitar2": " and ",
+            "solicitar3": " to your profile",
+            "solicitar4": "It'll make your diet easier to generate",
+            "solicitarLink": "intolerances",
+            "solicitarLink2": "favorite recipes",
+            "solicitarBoton": "Request diet",
+            "solicitada": "An expert is creating your diet, please wait"
         },
         "planificar": {
-            "titulo": "Planificación semanal de la dieta",
-            "kcal": "Kilocalorias diarias"
+            "titulo": "Weakly planning of the diet Planificación semanal de la dieta",
+            "kcal": "Daily Kilocalories"
         },
         "seguimiento": {
-            "titulo": "Recetas para el dia: ",
-            "total": "Total de calorias de hoy:"
+            "titulo": "Recipes for: ",
+            "total": "Total calories of today:"
         }
     }
 }

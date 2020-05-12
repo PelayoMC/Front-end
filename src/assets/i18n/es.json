@@ -6,9 +6,17 @@
     "comun": {
         "filtros": {
             "intolerancias": "Filtro de intolerancias",
+            "intoleranciasTexto": "Toca para añadir una intolerancia al filtro",
             "etiquetas": "Filtro de etiquetas",
-            "tipos": "Filtro de tipos"
+            "etiquetasTexto": "Toca para añadir una etiqueta al filtro",
+            "tipos": "Filtro de tipos",
+            "tiposTexto": "Toca para añadir un tipo al filtro"
         },
+        "buscando": {
+            "titulo": "CARGANDO",
+            "texto": "Espere por favor"
+        },
+        "sinResultados": "No se han encontrado resultados",
         "tabla": {
             "nombre": "Nombre",
             "ing": "Ingrediente",
@@ -25,6 +33,12 @@
             "rol": "Rol",
             "auth": "Autenticacion",
             "etiquetas": "Etiquetas",
+            "edad": "Edad",
+            "altura": "Altura",
+            "peso": "Peso",
+            "info": "Información del usuario",
+            "receta": "Receta",
+            "comentario": "Comentario",
             "dias": {
                 "lunes": "Lunes",
                 "martes": "Martes",
@@ -33,11 +47,57 @@
                 "viernes": "Viernes",
                 "sabado": "Sabado",
                 "domingo": "Domingo"
+            },
+            "comidas": {
+                "desayuno": "Desayuno",
+                "comida": "Comida",
+                "merienda": "Merienda",
+                "cena": "Cena"
             }
         },
         "botones": {
             "anterior": "Anteriores",
             "siguiente": "Siguientes"
+        }
+    },
+    "modales": {
+        "comentarios": {
+            "titulo": "Enviar comentario",
+            "enviar": "Comentario",
+            "texto": "Nombre del comentario"
+        },
+        "crearDieta": {
+            "titulo": "Añadir receta",
+            "buscador": "Nombre de la receta",
+            "enviar": "Enviar feedback",
+            "texto": "Texto del feedback"
+        },
+        "crearUsuario": {
+            "titulo": "Añadir usuario",
+            "campo1": "Nombre",
+            "texto1": "Nombre del usuario",
+            "campo2": "Email",
+            "texto2": "Email del usuario",
+            "campo3": "Contraseña",
+            "texto3": "Contraseña",
+            "campo5": "Rol"
+        },
+        "crearEtiqueta": {
+            "titulo": "Añadir etiqueta",
+            "enviar": "Nombre",
+            "texto": "Nombre de la etiqueta"
+        },
+        "feedback": {
+            "titulo": "Feedback",
+            "enviar": "Enviar feedback",
+            "texto": "Texto del feedback"
+        },
+        "votar": {
+            "titulo": "Añadir votacion"
+        },
+        "botones": {
+            "enviar": "Enviar",
+            "cerrar": "Cerrar"
         }
     },
     "header": {
@@ -114,9 +174,9 @@
             "altura": "Altura",
             "alturaPh": "Introducir altura",
             "alturaErr": "La altura es obligatoria",
-            "peso": "Nombre",
-            "pesoPh": "Introducir nombre",
-            "pesoErr": "El nombre es obligatorio",
+            "peso": "Peso",
+            "pesoPh": "Introducir peso",
+            "pesoErr": "El peso es obligatorio",
             "botonMod": "Modificar",
             "botonAceptar": "Aceptar",
             "botonBorrar": "Borrar",
@@ -133,7 +193,7 @@
             "calorias": "Calorias",
             "dificultad": "Dificultad",
             "ingredientes": "Ingredientes",
-            "pasos": "Pasos a seguir",
+            "pasos": "Pasos de la receta",
             "botonRe": "Regresar"
         },
         "crear": {
@@ -198,7 +258,11 @@
     "dietas": {
         "gestion": {
             "dietas": "Dietas sin asignar",
-            "comentarios": "Comentarios"
+            "comentarios": "Comentarios",
+            "noAsig": {
+                "titulo1": "Datos del usuario",
+                "titulo2": "Asignar recetas"
+            }
         },
         "solicitar": {
             "titulo": "Solicitar dieta",
@@ -208,10 +272,10 @@
             "noInfoLink": "perfil de usuario",
             "solicitar": "Antes de solicitar una dieta, asegurese de añadir ",
             "solicitar2": " y ",
-            "solicitar3": " favoritas a su perfil",
+            "solicitar3": " a su perfil",
             "solicitar4": "De esta forma será más facil realizar su dieta",
             "solicitarLink": "intolerancias",
-            "solicitarLink2": "recetas",
+            "solicitarLink2": "recetas favoritas",
             "solicitarBoton": "Solicitar dieta",
             "solicitada": "Espere a que un experto realice el planning de su dieta"
         },
@@ -220,7 +284,7 @@
             "kcal": "Kilocalorias diarias"
         },
         "seguimiento": {
-            "titulo": "Recetas para el dia: ",
+            "titulo": "Recetas para: ",
             "total": "Total de calorias de hoy:"
         }
     }
