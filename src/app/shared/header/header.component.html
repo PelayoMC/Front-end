@@ -21,12 +21,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i [class]="langService.toggleFlag()"></i></a>
                     <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
-                        <a class="dropdown-item" (click)="langService.toogleLanguage('es')"><i class="flag-icon flag-icon-es"></i> Español</a>
-                        <a class="dropdown-item" (click)="langService.toogleLanguage('en')"><i class="flag-icon flag-icon-gb"></i> Inglés</a>
+                        <a class="dropdown-item" (click)="langService.toogleLanguage('es')"><i class="flag-icon flag-icon-es"></i> {{ 'header.idiomaEsp' | translate }} </a>
+                        <a class="dropdown-item" (click)="langService.toogleLanguage('en')"><i class="flag-icon flag-icon-gb"></i> {{ 'header.idiomaIng' | translate }} </a>
                     </div>
                 </li>
                 <li class="nav-item" routerLinkActive="active" *ngIf="!userService.estaLogueado()">
-                    <a class="nav-link waves-effect waves-dark" [routerLink]="['/login']"><b>Login</b></a>
+                    <a class="nav-link waves-effect waves-dark" [routerLink]="['/login']"><b> {{ 'header.sesion' | translate }} </b></a>
                 </li>
                 <li class="nav-item dropdown" *ngIf="userService.estaLogueado()">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img [src]="usuario.imagen | image" alt="user" class="profile-pic" /></a>
@@ -42,11 +42,11 @@
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a [routerLink]="['/user', usuario._id]"><i class="ti-user"></i> Ver perfil</a></li>
-                            <li *ngIf="userService.esUser()"><a [routerLink]="['/favorites/' + usuario._id]"><i class="ti-receipt"></i> Mis recetas favoritas</a></li>
-                            <li *ngIf="userService.esUser()"><a [routerLink]="['/myIntolerances/'  + usuario._id]"><i class="ti-receipt"></i> Mis intolerancias</a></li>
+                            <li><a [routerLink]="['/user', usuario._id]"><i class="ti-user"></i> {{ 'header.perfil' | translate }} </a></li>
+                            <li *ngIf="userService.esUser()"><a [routerLink]="['/favorites/' + usuario._id]"><i class="ti-receipt"></i> {{ 'header.recetas' | translate }} </a></li>
+                            <li *ngIf="userService.esUser()"><a [routerLink]="['/myIntolerances/'  + usuario._id]"><i class="ti-receipt"></i> {{ 'header.intolerancias' | translate }} </a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a (click)="userService.logout('login')" class="pointer"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
+                            <li><a (click)="userService.logout('login')" class="pointer"><i class="fa fa-power-off"></i> {{ 'header.cerrar' | translate }} </a></li>
                         </ul>
                     </div>
                 </li>

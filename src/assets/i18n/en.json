@@ -1,7 +1,16 @@
 {
     "home": {
-        "titulo": "English",
-        "mensaje": "Here there will be some info about the app and stuff"
+        "titulo1": "Diets",
+        "mensaje1": "Request a diet according to your favorite recipes and intolerancies",
+        "titulo2": "Find",
+        "mensaje2": "Introduce an ingredient name and find which recipes contain it",
+        "titulo3": "Recipes",
+        "mensaje3": "Look at our recipes and how they are done"
+    },
+    "noFound": {
+        "titulo": "ERROR 404",
+        "mensaje": "The page was not found",
+        "boton": "Home"
     },
     "comun": {
         "filtros": {
@@ -101,37 +110,46 @@
         }
     },
     "header": {
+        "sesion": "Log in",
+        "idiomaEsp": "Español",
+        "idiomaIng": "Inglés",
         "perfil": "View profile",
         "recetas": "Favorite recipes",
         "intolerancias": "My intolerances",
         "cerrar": "Sign out"
     },
     "sidebar": {
-        "titulo": "TFG",
         "inicio": "Home",
         "dieta": {
+            "titulo": "Diet",
             "gestion": "Manage diets",
             "solicitar": "Request diet",
             "planificar": "Diet planning",
             "seguimiento": "Diet tracking"
         },
         "alimentos": {
+            "titulo": "Food",
             "recetas": {
+                "titulo": "Recipes",
                 "lista": "Recipe list",
                 "añadir": "Create recipe"
             },
             "ingredientes": {
+                "titulo": "Ingredients",
                 "lista": "Ingredient list"
             },
             "intolerancias": {
+                "titulo": "Intolerances",
                 "lista": "Intolerance list",
                 "añadir": "Create intolerance"
             },
             "etiquetas": {
+                "titulo": "Tags",
                 "lista": "Tag list"
             }
         },
         "usuarios": {
+            "titulo": "Users",
             "lista": "User list"
         }
     },
@@ -189,6 +207,9 @@
     },
     "recetas": {
         "receta": {
+            "noSesionTitulo": " You aren't logged in ",
+            "noSesionTexto": "To see the rest of the recipe's content, you need to be logged in",
+            "noSesionBoton": "Log in",
             "descripcion": "Recipe description",
             "calorias": "Calories",
             "dificultad": "Difficulty",

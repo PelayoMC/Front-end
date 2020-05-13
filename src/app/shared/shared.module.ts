@@ -5,6 +5,7 @@ import { NoFoundComponent } from '../no-found/no-found.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PipeModule } from '../pipes/pipe.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { PipeModule } from '../pipes/pipe.module';
       imports: [
         RouterModule,
         CommonModule,
-        PipeModule
+        PipeModule,
+        TranslateModule.forRoot()
       ],
       exports: [
         HeaderComponent,

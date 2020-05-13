@@ -1,40 +1,40 @@
 export const menuNR: any = [
         {
-          titulo: 'Alimentos',
+          titulo: 'sidebar.alimentos.titulo',
           icono: 'mdi mdi-food',
           submenu : [
             {
-              titulo: 'Recetas',
+              titulo: 'sidebar.alimentos.recetas.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de recetas',
+                  titulo: 'sidebar.alimentos.recetas.lista',
                   url: '/recipes'
                 }
               ]
             },
             {
-              titulo: 'Ingredientes',
+              titulo: 'sidebar.alimentos.ingredientes.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de ingredientes',
+                  titulo: 'sidebar.alimentos.ingredientes.lista',
                   url: '/ingredients'
                 }
               ]
             },
             {
-              titulo: 'Intolerancias',
+              titulo: 'sidebar.alimentos.intolerancias.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de intolerancias',
+                  titulo: 'sidebar.alimentos.intolerancias.lista',
                   url: '/intolerances'
                 }
               ]
             },
             {
-              titulo: 'Etiquetas',
+              titulo: 'sidebar.alimentos.etiquetas.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de etiquetas',
+                  titulo: 'sidebar.alimentos.etiquetas.lista',
                   url: '/tags'
                 }
               ]
@@ -45,48 +45,48 @@ export const menuNR: any = [
 
 export const menuUNo: any = [
         {
-          titulo: 'Dieta',
+          titulo: 'sidebar.dieta.titulo',
           icono: 'mdi mdi-heart-half-outline',
           submenu : [
-            { titulo: 'Solicitar dieta', url: '/diet/soliciting/' }
+            { titulo: 'sidebar.dieta.solicitar', url: '/diet/soliciting/' }
           ]
         },
         {
-          titulo: 'Alimentos',
+          titulo: 'sidebar.alimentos.titulo',
           icono: 'mdi mdi-food',
           submenu : [
             {
-              titulo: 'Recetas',
+              titulo: 'sidebar.alimentos.recetas.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de recetas',
+                  titulo: 'sidebar.alimentos.recetas.lista',
                   url: '/recipes'
                 }
               ]
             },
             {
-              titulo: 'Ingredientes',
+              titulo: 'sidebar.alimentos.ingredientes.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de ingredientes',
+                  titulo: 'sidebar.alimentos.ingredientes.lista',
                   url: '/ingredients'
                 }
               ]
             },
             {
-              titulo: 'Intolerancias',
+              titulo: 'sidebar.alimentos.intolerancias.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de intolerancias',
+                  titulo: 'sidebar.alimentos.intolerancias.lista',
                   url: '/intolerances'
                 }
               ]
             },
             {
-              titulo: 'Etiquetas',
+              titulo: 'sidebar.alimentos.etiquetas.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de etiquetas',
+                  titulo: 'sidebar.alimentos.etiquetas.lista',
                   url: '/tags'
                 }
               ]
@@ -97,49 +97,49 @@ export const menuUNo: any = [
 
 export const menuU: any = [
         {
-          titulo: 'Dieta',
+          titulo: 'sidebar.dieta.titulo',
           icono: 'mdi mdi-heart-half-outline',
           submenu : [
-            { titulo: 'Planificación de dieta', url: '/diet/planning/' },
-            { titulo: 'Seguimiento de dieta', url: '/diet/tracking/' }
+            { titulo: 'sidebar.dieta.planificar', url: '/diet/planning/' },
+            { titulo: 'sidebar.dietas.seguimiento', url: '/diet/tracking/' }
           ]
         },
         {
-          titulo: 'Alimentos',
+          titulo: 'sidebar.alimentos.titulo',
           icono: 'mdi mdi-food',
           submenu : [
             {
-              titulo: 'Recetas',
+              titulo: 'sidebar.alimentos.recetas.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de recetas',
+                  titulo: 'sidebar.alimentos.recetas.lista',
                   url: '/recipes'
                 }
               ]
             },
             {
-              titulo: 'Ingredientes',
+              titulo: 'sidebar.alimentos.ingredientes.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de ingredientes',
+                  titulo: 'sidebar.alimentos.ingredientes.lista',
                   url: '/ingredients'
                 }
               ]
             },
             {
-              titulo: 'Intolerancias',
+              titulo: 'sidebar.alimentos.intolerancias.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de intolerancias',
+                  titulo: 'sidebar.alimentos.intolerancias.lista',
                   url: '/intolerances'
                 }
               ]
             },
             {
-              titulo: 'Etiquetas',
+              titulo: 'sidebar.alimentos.etiquetas.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de etiquetas',
+                  titulo: 'sidebar.alimentos.etiquetas.lista',
                   url: '/tags'
                 }
               ]
@@ -151,56 +151,48 @@ export const menuU: any = [
 export const menuA: any =
       [
         {
-          titulo: 'Dieta',
+          titulo: 'sidebar.dieta.titulo',
           icono: 'mdi mdi-heart-half-outline',
           submenu : [
-            { titulo: 'Gestionar dietas', url: '/diet/managing/' }
+            { titulo: 'sidebar.dieta.gestion', url: '/diet/managing/' }
           ]
         },
         {
-          titulo: 'Alimentos',
+          titulo: 'sidebar.alimentos.titulo',
           icono: 'mdi mdi-food',
           submenu : [
             {
-              titulo: 'Recetas',
+              titulo: 'sidebar.alimentos.recetas.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de recetas',
+                  titulo: 'sidebar.alimentos.recetas.lista',
                   url: '/recipes'
-                },
-                {
-                  titulo: 'Añadir receta',
-                  url: '/addRecipe'
                 }
               ]
             },
             {
-              titulo: 'Ingredientes',
+              titulo: 'sidebar.alimentos.ingredientes.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de ingredientes',
+                  titulo: 'sidebar.alimentos.ingredientes.lista',
                   url: '/ingredients'
                 }
               ]
             },
             {
-              titulo: 'Intolerancias',
+              titulo: 'sidebar.alimentos.intolerancias.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de intolerancias',
+                  titulo: 'sidebar.alimentos.intolerancias.lista',
                   url: '/intolerances'
-                },
-                {
-                  titulo: 'Crear intolerancia',
-                  url: '/addIntolerance'
                 }
               ]
             },
             {
-              titulo: 'Etiquetas',
+              titulo: 'sidebar.alimentos.etiquetas.titulo',
               submenu : [
                 {
-                  titulo: 'Lista de etiquetas',
+                  titulo: 'sidebar.alimentos.etiquetas.lista',
                   url: '/tags'
                 }
               ]
@@ -208,10 +200,10 @@ export const menuA: any =
           ]
         },
         {
-          titulo: 'Usuarios',
+          titulo: 'sidebar.usuarios.titulo',
           icono: 'mdi mdi-account-circle',
           submenu : [
-            { titulo: 'Lista de usuarios', url: '/users' }
+            { titulo: 'sidebar.usuarios.lista', url: '/users' }
           ]
         }
       ];

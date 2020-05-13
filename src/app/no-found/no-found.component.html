@@ -2,9 +2,9 @@
     <div class="middle">
         <div class="inner">
             <i class="fa fa-exclamation-circle fa-4x"></i>
-            <h1 class="text text-danger"><b>ERROR 404</b></h1>
-            <p class="text text-danger"><b>No se ha podido encontrar la página</b></p>
-            <button routerLinkActive [routerLink]="['/home']" type="button" class="btn btn-danger"><i class="fa fa-home"></i> Inicio</button>
+            <h1 class="text text-danger"><b> {{ 'noFound.titulo' | translate }} </b></h1>
+            <p class="text text-danger"><b> {{ 'noFound.mensaje' | translate }} </b></p>
+            <button routerLinkActive [routerLink]="['/home']" type="button" class="btn btn-danger"><i class="fa fa-home"></i> {{ 'noFound.boton' | translate }} </button>
         </div>
     </div>
 </div>

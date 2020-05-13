@@ -1,7 +1,16 @@
 {
     "home": {
-        "titulo": "ESPAÑOL",
-        "mensaje": "Aquí irían cierta información sobre la aplicación y demás"
+        "titulo1": "Dietas",
+        "mensaje1": "Solicita una dieta de acuerdo a tus recetas e intolerancias",
+        "titulo2": "Descubre",
+        "mensaje2": "Introduce el nombre de un ingrediente y descubre que recetas lo contienen",
+        "titulo3": "Recetas",
+        "mensaje3": "Mira nuestras recetas y como se hacen"
+    },
+    "noFound": {
+        "titulo": "ERROR 404",
+        "mensaje": "No se ha podido encontrar la página",
+        "boton": "Inicio"
     },
     "comun": {
         "filtros": {
@@ -101,37 +110,46 @@
         }
     },
     "header": {
+        "sesion": "Iniciar sesion",
+        "idiomaEsp": "Español",
+        "idiomaIng": "Inglés",
         "perfil": "Ver perfil",
         "recetas": "Mis recetas favoritas",
         "intolerancias": "Mis intolerancias",
         "cerrar": "Cerrar sesión"
     },
     "sidebar": {
-        "titulo": "TFG",
         "inicio": "Inicio",
         "dieta": {
+            "titulo": "Dieta",
             "gestion": "Gestionar dietas",
             "solicitar": "Solicitar dieta",
             "planificar": "Planificación de la dieta",
             "seguimiento": "Seguimiento de la dieta"
         },
         "alimentos": {
+            "titulo": "Alimentos",
             "recetas": {
+                "titulo": "Recetas",
                 "lista": "Lista de recetas",
                 "añadir": "Crear receta"
             },
             "ingredientes": {
+                "titulo": "Ingredientes",
                 "lista": "Lista de ingredientes"
             },
             "intolerancias": {
+                "titulo": "Intolerancias",
                 "lista": "Lista de intolerancias",
                 "añadir": "Crear intolerancia"
             },
             "etiquetas": {
+                "titulo": "Etiquetas",
                 "lista": "Lista de etiquetas"
             }
         },
         "usuarios": {
+            "titulo": "Usuarios",
             "lista": "Lista de usuarios"
         }
     },
@@ -189,6 +207,9 @@
     },
     "recetas": {
         "receta": {
+            "noSesionTitulo": " No ha iniciado sesión ",
+            "noSesionTexto": "Para ver el resto del contenido de la receta, necesita iniciar sesión",
+            "noSesionBoton": "Iniciar sesión",
             "descripcion": "Descripción de la receta",
             "calorias": "Calorias",
             "dificultad": "Dificultad",
