@@ -2,56 +2,56 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h2>Perfil de usuario</h2>
+                <h2>{{ 'usuarios.usuario.titulo' | translate }}</h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="modificar()">
                     <div class="form-group">
-                        <label for="name">Nombre</label>
+                        <label for="name">{{ 'usuarios.usuario.nombre' | translate }}</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input #name formControlName="nombre" type="text" name="nombre" [class.is-invalid]="nombreNoValido()" class="form-control" placeholder="Introducir nombre">
+                            <input #name formControlName="nombre" type="text" name="nombre" [class.is-invalid]="nombreNoValido()" class="form-control" [placeholder]="'usuarios.usuario.nombrePh' | translate">
                         </div>
-                        <small *ngIf="nombreNoValido()" class="form-text text-danger">El nombre es obligatorio</small>
+                        <small *ngIf="nombreNoValido()" class="form-text text-danger">{{ 'usuarios.usuario.nombreErr' | translate }}</small>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">{{ 'usuarios.usuario.email' | translate }}</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input #email formControlName="email" type="email" name="email" [class.is-invalid]="emailNoValido()" [disabled]="usuario.google" class="form-control" placeholder="Introducir email">
+                            <input #email formControlName="email" type="email" name="email" [class.is-invalid]="emailNoValido()" [disabled]="usuario.google" class="form-control" [placeholder]="'usuarios.usuario.emailPh' | translate">
                         </div>
-                        <small *ngIf="emailNoValido()" class="form-text text-danger">El email es obligatorio</small>
+                        <small *ngIf="emailNoValido()" class="form-text text-danger">{{ 'usuarios.usuario.emailErr' | translate }}</small>
                     </div>
                     <div *ngIf="usuario.rol === 'USER'">
-                        <h3>Datos personales</h3>
-                        <span class="text text-warning">(necesarios para la solicitud de dietas)</span>
+                        <h3>{{ 'usuarios.usuario.datos' | translate }}</h3>
+                        <span class="text text-warning">{{ 'usuarios.usuario.necesarios' | translate }}</span>
                         <br><br>
                         <div class="form-group">
-                            <label for="edad">Edad</label>
+                            <label for="edad">{{ 'usuarios.usuario.edad' | translate }}</label>
                             <div class="input-group">
-                                <input #edad formControlName="edad" type="number" name="edad" [class.is-invalid]="edadNoValido()" class="form-control" placeholder="Introducir edad">
+                                <input #edad formControlName="edad" type="number" name="edad" [class.is-invalid]="edadNoValido()" class="form-control" [placeholder]="'usuarios.usuario.edadPh' | translate">
                             </div>
-                            <small *ngIf="edadNoValido()" class="form-text text-danger">La edad es obligatoria</small>
+                            <small *ngIf="edadNoValido()" class="form-text text-danger">{{ 'usuarios.usuario.edadErr' | translate }}</small>
                         </div>
                         <div class="form-group">
-                            <label for="altura">Altura</label>
+                            <label for="altura">{{ 'usuarios.usuario.altura' | translate }}</label>
                             <div class="input-group">
-                                <input #altura formControlName="altura" type="number" name="altura" [class.is-invalid]="alturaNoValido()" step="any" class="form-control" placeholder="Introducir altura">
+                                <input #altura formControlName="altura" type="number" name="altura" [class.is-invalid]="alturaNoValido()" step="any" class="form-control" [placeholder]="'usuarios.usuario.alturaPh' | translate">
                             </div>
-                            <small *ngIf="alturaNoValido()" class="form-text text-danger">La altura es obligatoria</small>
+                            <small *ngIf="alturaNoValido()" class="form-text text-danger">{{ 'usuarios.usuario.alturaErr' | translate }}</small>
                         </div>
                         <div class="form-group">
-                            <label for="peso">Peso</label>
+                            <label for="peso">{{ 'usuarios.usuario.peso' | translate }}</label>
                             <div class="input-group">
-                                <input #peso formControlName="peso" type="number" name="peso" [class.is-invalid]="pesoNoValido()" step="any" class="form-control" placeholder="Introducir peso">
+                                <input #peso formControlName="peso" type="number" name="peso" [class.is-invalid]="pesoNoValido()" step="any" class="form-control" [placeholder]="'usuarios.usuario.pesoPh' | translate">
                             </div>
-                            <small *ngIf="pesoNoValido()" class="form-text text-danger">El peso es obligatorio</small>
+                            <small *ngIf="pesoNoValido()" class="form-text text-danger">{{ 'usuarios.usuario.pesoErr' | translate }}</small>
                         </div>
                     </div>
                     <div *ngIf="modificando">
-                        <button (click)="(modificando = !modificando); swapForm()" class="btn btn-info waves-effect waves-light">Modificar</button>
+                        <button (click)="(modificando = !modificando); swapForm()" class="btn btn-info waves-effect waves-light">{{ 'usuarios.usuario.botonMod' | translate }}</button>
                     </div>
                     <div *ngIf="!modificando">
-                        <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Aceptar</button>
-                        <button (click)="(modificando = !modificando); swapForm()" class="btn btn-inverse waves-effect waves-light">Cancelar</button>
+                        <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">{{ 'usuarios.usuario.botonAceptar' | translate }}</button>
+                        <button (click)="(modificando = !modificando); swapForm()" class="btn btn-inverse waves-effect waves-light">{{ 'usuarios.usuario.botonBorrar' | translate }}</button>
                     </div>
                 </form>
             </div>
@@ -61,9 +61,9 @@
     <div class="col-lg-5">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Imagen de usuario</h4>
+                <h4 class="card-title">{{ 'usuarios.usuario.imagen' | translate }}</h4>
                 <img *ngIf="!imgTemp" [src]="usuario.imagen | image" class="img-profile">
-                <h6 *ngIf="imgTemp">Vista previa</h6>
+                <h6 *ngIf="imgTemp">{{ 'usuarios.usuario.previa' | translate }}</h6>
                 <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile">
                 <br>
                 <br>
@@ -71,7 +71,7 @@
                 <input (change)="chooseImage($event.target.files[0])" type="file">
                 <br>
                 <br>
-                <button (click)="changeImage()" [disabled]="!imgUpload" type="button" class="btn btn-info">Actualizar imagen</button>
+                <button (click)="changeImage()" [disabled]="!imgUpload" type="button" class="btn btn-info">{{ 'usuarios.usuario.botonAct' | translate }}</button>
             </div>
         </div>
     </div>

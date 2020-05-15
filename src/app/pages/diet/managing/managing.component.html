@@ -1,5 +1,5 @@
 <mat-tab-group>
-    <mat-tab label="Dietas gestionadas">
+    <mat-tab [label]="'dietas.gestion.dietas' | translate">
         <app-loading-component [cargando]="cargando">
         </app-loading-component>
         <app-no-found-component [cargando]="cargando" [array]="sinAsignar"></app-no-found-component>
@@ -7,11 +7,11 @@
             <div class="col-12 ">
                 <div class="card ">
                     <div class="card-body " style="overflow-x:auto; ">
-                        <h3 class="card-title ">Dietas sin asignar</h3>
+                        <h3 class="card-title ">{{ 'dietas.gestion.dietas' | translate }}</h3>
                         <table class="table table-hover incidencias">
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
+                                    <th>{{ 'comun.tabla.nombre' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,7 +29,7 @@
             </div>
         </div>
     </mat-tab>
-    <mat-tab label="Comentarios">
+    <mat-tab [label]="'dietas.gestion.comentarios' | translate">
         <app-loading-component [cargando]="cargando">
         </app-loading-component>
         <app-no-found-component [cargando]="cargando" [array]="comentarios"></app-no-found-component>
@@ -37,11 +37,11 @@
             <div class="col-12 ">
                 <div class="card ">
                     <div class="card-body " style="overflow-x:auto; ">
-                        <h3 class="card-title ">Comentarios de mis dietas</h3>
+                        <h3 class="card-title ">{{ 'dietas.gestion.dietas' | translate }}</h3>
                         <table class="table table-hover incidencias">
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
+                                    <th>{{ 'comun.tabla.nombre' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,8 +52,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [disabled]="(from - limit) >= totalC || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
-                        <button [disabled]="(from + limit) >= totalC || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
+                        <button [disabled]="(from - limit) >= totalC || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">{{ 'comun.botones.anterior' | translate }}</button> &nbsp;
+                        <button [disabled]="(from + limit) >= totalC || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">{{ 'comun.botones.siguiente' | translate }}</button>
                     </div>
                 </div>
             </div>

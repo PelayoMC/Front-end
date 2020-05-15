@@ -41,6 +41,7 @@
             "imagen": "Imagen",
             "rol": "Rol",
             "auth": "Autenticacion",
+            "normal": "Normal",
             "etiquetas": "Etiquetas",
             "edad": "Edad",
             "altura": "Altura",
@@ -85,26 +86,34 @@
             "titulo": "Añadir usuario",
             "campo1": "Nombre",
             "texto1": "Nombre del usuario",
+            "error1": "El nombre ha de tener más de 3 letras",
             "campo2": "Email",
             "texto2": "Email del usuario",
+            "error2": "El email ha de tener un formato correcto",
             "campo3": "Contraseña",
-            "texto3": "Contraseña",
+            "texto3": "Contraseña del usuario",
+            "error3": "La contraseña ha de tener más de 3 letras",
+            "campo4": "Repetir contraseña",
+            "error4": "Las contraseñas no son iguales",
             "campo5": "Rol"
         },
         "crearEtiqueta": {
             "titulo": "Añadir etiqueta",
             "enviar": "Nombre",
-            "texto": "Nombre de la etiqueta"
+            "texto": "Nombre de la etiqueta",
+            "error": "El nombre ha de tener más de 3 letras"
         },
         "feedback": {
             "titulo": "Feedback",
             "enviar": "Enviar feedback",
-            "texto": "Texto del feedback"
+            "texto": "Texto del feedback",
+            "error": "El texto ha de tener más de 10 letras"
         },
         "votar": {
             "titulo": "Añadir votacion"
         },
         "botones": {
+            "guardar": "Guardar",
             "enviar": "Enviar",
             "cerrar": "Cerrar"
         }
@@ -175,6 +184,11 @@
         "pregunta": "¿Ya tienes cuenta?",
         "linkSesion": "Inicia sesión"
     },
+    "buscador": {
+        "buscador": "Nombre del ingrediente",
+        "tituloIng": "Ingredientes encontrados",
+        "tituloRe": "Recetas que contienen los ingredientes encontrados"
+    },
     "usuarios": {
         "usuario": {
             "titulo": "Perfil de usuario",
@@ -199,6 +213,7 @@
             "botonAceptar": "Aceptar",
             "botonBorrar": "Borrar",
             "imagen": "Imagen de usuario",
+            "previa": "Vista previa",
             "botonAct": "Actualizar imagen"
 
         },
@@ -206,19 +221,37 @@
         "buscador": "Nombre del usuario"
     },
     "recetas": {
+        "recetasFavoritas": {
+            "titulo": "Recetas favoritas del usuario: "
+        },
         "receta": {
             "noSesionTitulo": " No ha iniciado sesión ",
             "noSesionTexto": "Para ver el resto del contenido de la receta, necesita iniciar sesión",
             "noSesionBoton": "Iniciar sesión",
             "descripcion": "Descripción de la receta",
+            "puntuacion": "Puntuacion ",
+            "total": "total",
             "calorias": "Calorias",
             "dificultad": "Dificultad",
             "ingredientes": "Ingredientes",
+            "cantidad": "Cantidad",
+            "principal": "Principal",
+            "secundario": "Secundario",
+            "sustituible": "Sustituible",
+            "etiquetas": "Etiquetas",
             "pasos": "Pasos de la receta",
             "botonRe": "Regresar"
         },
+        "tarjetaReceta": {
+            "facil": "Facil",
+            "medio": "Medio",
+            "dificil": "Dificil",
+            "editar": "Editar receta",
+            "borrar": "Borrar receta"
+        },
         "crear": {
             "titulo": "Crear receta",
+            "tituloMod": "Modificar receta",
             "nombre": "Nombre",
             "nombrePh": "Nombre de la receta",
             "descripcion": "Descripcion",
@@ -234,14 +267,22 @@
             "calorias": "Calorias (receta)",
             "unidades": "Unidades",
             "botonCrear": "Crear receta",
+            "botonMod": "Modificar receta",
             "crearIng": {
                 "tituloEt": "Añadir etiquetas",
-                "añadirEt": "Añadir etiquetas",
+                "añadirEt": "Añadir etiquetas al ingrediente",
                 "opcional": "(Opcional)",
+                "etiquetaTitulo": "Etiquetas",
+                "etiquetaPH": "Añadir etiquetas",
+                "etiquetaErr": "El ingrediente no puede tener etiquetas repetidas",
                 "tituloSust": "Añadir ingredientes sustituibles",
-                "añadirSust": "Añadir ingrediente de sustitución",
                 "noSecundario": "No es un ingrediente secundario",
-                "nombreSust": "Nombre del ingrediente de sustitución"
+                "yaSust": "Ya existe un ingrediente sustituible",
+                "añadirSust": "Añadir ingrediente de sustitución",
+                "sustTitulo": "Nombre del ingrediente sustituible",
+                "sustPH": "Añadir ingrediente",
+                "sustErr": "El ingrediente ha de tener más de 3 letras",
+                "guardar": "Guardar etiquetas e ingredientes"
             }
         },
         "titulo": "Recetas",
@@ -250,9 +291,13 @@
     "ingredientes": {
         "titulo": "Ingredientes registrados",
         "buscador": "Nombre del ingrediente",
+        "noPresente": "No está presente en ninguna receta",
         "botonBorrarSin": "Borrar ingredientes sin receta"
     },
     "intolerancias": {
+        "misIntolerancias": {
+            "titulo": "Intolerancias del usuario: "
+        },
         "intolerancia": {
             "descripcion": "Descripción",
             "etiquetas": "Etiquetas",
@@ -260,14 +305,21 @@
         },
         "crear": {
             "titulo": "Crear intolerancia",
+            "tituloMod": "Modificar intolerancia",
             "nombre": "Nombre",
             "nombrePh": "Nombre de la intolerancia",
+            "nombreErr": "El nombre es obligatorio",
             "descripcion": "Descripcion",
             "descripcionPh": "Descripcion de la intolerancia",
+            "descripcionErr": "La descripción es obligatoria",
             "etiquetas": "Etiquetas",
             "etiquetasPh": "Para añadir una etiqueta use , o intro",
+            "etiquetasErr": "La intolerancia debe tener al menos una etiqueta",
+            "etiquetasRepErr": "No se permiten etiquetas repetidas",
             "imagen": "Imagen",
-            "botonCrear": "Crear intolerancia"
+            "previa": " - Vista previa",
+            "botonCrear": "Crear intolerancia",
+            "botonMod": "Modificar intolerancia"
         },
         "titulo": "Intolerancias registradas",
         "buscador": "Nombre de la intolerancia"
@@ -282,7 +334,10 @@
             "comentarios": "Comentarios",
             "noAsig": {
                 "titulo1": "Datos del usuario",
-                "titulo2": "Asignar recetas"
+                "favoritas": "Recetas favoritas",
+                "intolerancias": "Intolerancias",
+                "titulo2": "Asignar recetas",
+                "crear": "Crear dieta"
             }
         },
         "solicitar": {
@@ -306,7 +361,8 @@
         },
         "seguimiento": {
             "titulo": "Recetas para: ",
-            "total": "Total de calorias de hoy:"
+            "total": "Total de calorias de hoy:",
+            "admin": "Mensaje del administrador"
         }
     }
 }

@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Nombre de la intolerancia</mat-label>
+                    <mat-label>{{ 'modales.intolerancias.buscador' | translate }}</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarIntolerancias(input.value)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIntolerancias('')">
                           <mat-icon>close</mat-icon>
@@ -24,12 +24,12 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h3 class="card-title ">Intolerancias registradas (<small>{{ total }}</small>)</h3>
+                <h3 class="card-title ">{{ 'modales.intolerancias.titulo' | translate }} (<small>{{ total }}</small>)</h3>
                 <table class="table table-hover incidencias">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th *ngIf="userService.esAdmin()">Etiquetas</th>
+                            <th>{{ 'comun.tabla.nombre' | translate }}</th>
+                            <th *ngIf="userService.esAdmin()">{{ 'comun.tabla.etiquetas' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,8 +47,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
-                <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
+                <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">{{ 'comun.botones.anterior' | translate }}</button> &nbsp;
+                <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">{{ 'comun.botones.siguiente' | translate }}</button>
             </div>
         </div>
     </div>

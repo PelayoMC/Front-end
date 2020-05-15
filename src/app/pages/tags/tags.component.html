@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Nombre de la etiqueta</mat-label>
+                    <mat-label>{{ 'etiquetas.buscador' | translate }}</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarEtiquetas(input.value)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarEtiquetas('')">
                               <mat-icon>close</mat-icon>
@@ -22,12 +22,12 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h3 class="card-title ">Etiquetas registradas (<small>{{ total }}</small>)&nbsp; <button (click)="mostrarModal()" matTooltip="Añadir usuario" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
+                <h3 class="card-title ">{{ 'etiquetas.titulo' | translate }} (<small>{{ total }}</small>)&nbsp; <button (click)="mostrarModal()" matTooltip="Añadir usuario" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th *ngIf="userService.esAdmin()">Etiquetas</th>
+                            <th>{{ 'comun.tabla.nombre' | translate }}</th>
+                            <th *ngIf="userService.esAdmin()">{{ 'comun.tabla.etiquetas' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,8 +44,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
-                <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
+                <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">{{ 'comun.botones.anterior' | translate }}</button> &nbsp;
+                <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">{{ 'comun.botones.siguiente' | translate }}</button>
             </div>
         </div>
     </div>

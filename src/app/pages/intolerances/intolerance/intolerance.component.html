@@ -8,17 +8,17 @@
                     <div class="col-md-4">
                         <img [src]="intolerancia?.imagen | image: 'intolerancia'" class="img-intolerance">
                         <br><br>
-                        <a [routerLink]="['/intolerances']" class="btn btn-outline-info btn-block"> Regresar a intolerancias</a>
+                        <a [routerLink]="['/intolerances']" class="btn btn-outline-info btn-block">{{ 'intolerancias.intolerancia.botonRe' | translate }}</a>
                     </div>
                     <div class="col-md-8">
-                        <h3>Descripción</h3>
+                        <h3>{{ 'intolerancias.intolerancia.descripcion' | translate }}</h3>
                         <hr>
                         <p>
                             {{ intolerancia?.descripcion }}
                         </p>
                         <div class="row">
                             <div class="col-md-6">
-                                <h4>Etiquetas</h4>
+                                <h4>{{ 'intolerancias.intolerancia.etiquetas' | translate }}</h4>
                                 <hr>
                                 <mat-chip-list #list aria-label="tag selection">
                                     <mat-chip *ngFor="let et of intolerancia?.noApto" [selectable]="false" [removable]="false" (click)="buscarEtiqueta(et)">

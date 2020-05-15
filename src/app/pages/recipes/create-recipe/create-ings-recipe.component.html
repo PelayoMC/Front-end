@@ -3,7 +3,7 @@
         <div class="card">
             <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
                 <div class="card-body">
-                    <h2>Añadir etiquetas</h2>
+                    <h2>{{ 'recetas.crear.crearIng.tituloEt' | translate }}</h2>
                     <br>
                     <div class="form-group" formArrayName="noApto">
                         <mat-accordion>
@@ -13,21 +13,21 @@
                                         <b>{{ ing.nombre }}</b>
                                     </mat-panel-title>
                                     <mat-panel-description>
-                                        <span *ngIf="copy.length > 0">Añadir etiquetas<span class="text-warning"> &nbsp; (Opcional)</span></span>
+                                        <span *ngIf="copy.length > 0">{{ 'recetas.crear.crearIng.añadirEt' | translate }}<span class="text-warning"> &nbsp; {{ 'recetas.crear.crearIng.opcional' | translate }}</span></span>
                                         <span *ngIf="copy.length == 0">No existen etiquetas</span>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
                                 <div #inputGroup class="form-group">
-                                    <label>Etiquetas</label>
+                                    <label>{{ 'recetas.crear.crearIng.etiquetaTitulo' | translate }}</label>
                                     <mat-form-field style="width: 100%;">
                                         <mat-chip-list #list [class.is-invalid]="aptoNoValido()" aria-label="tag selection">
                                             <mat-chip *ngFor="let i = index; let tag of tags[j]" [selectable]="true" [removable]="true" (removed)="remove(tag.nombre, j)">
                                                 {{ tag.nombre }}
                                                 <mat-icon matChipRemove>cancel</mat-icon>
                                             </mat-chip>
-                                            <input placeholder="Añadir etiquetas" #input (keyup)="filtrar(input)" [matAutocomplete]="auto" [matChipInputFor]="list">
+                                            <input [placeholder]="'recetas.crear.crearIng.etiquetaPH' | translate" #input (keyup)="filtrar(input)" [matAutocomplete]="auto" [matChipInputFor]="list">
                                         </mat-chip-list>
-                                        <small *ngIf="aptoRepetido(j)" class="form-text text-danger">El ingrediente no puede etiquetas repetidas</small>
+                                        <small *ngIf="aptoRepetido(j)" class="form-text text-danger">{{ 'recetas.crear.crearIng.etiquetaErr' | translate }}</small>
                                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, j, input)">
                                             <mat-option *ngFor="let tag of filteredTags" [value]="tag">
                                                 {{ tag }}
@@ -38,7 +38,7 @@
                             </mat-expansion-panel>
                         </mat-accordion>
                     </div>
-                    <h2>Añadir ingredientes sustituibles</h2>
+                    <h2>{{ 'recetas.crear.crearIng.tituloSust' | translate }}</h2>
                     <br>
                     <div class="form-group" formArrayName="ingredientes">
                         <mat-accordion>
@@ -48,24 +48,24 @@
                                         <b>{{ ing.nombre }}</b>
                                     </mat-panel-title>
                                     <mat-panel-description>
-                                        <span *ngIf="ing.tipo == 'Principal'" class="text-danger">No es un ingrediente secundario</span>
-                                        <span *ngIf="ing.tipo != 'Principal' && ing.ingredienteSustituible" class="text-danger">Ya existe un ingrediente sustituible</span>
-                                        <span *ngIf="ing.tipo != 'Principal' && !ing.ingredienteSustituible">Añadir ingrediente de sustitución <span class="text-warning">&nbsp;(Opcional)</span></span>
+                                        <span *ngIf="ing.tipo == 'Principal'" class="text-danger">{{ 'recetas.crear.crearIng.noSecundario' | translate }}</span>
+                                        <span *ngIf="ing.tipo != 'Principal' && ing.ingredienteSustituible" class="text-danger">{{ 'recetas.crear.crearIng.yaSust' | translate }}</span>
+                                        <span *ngIf="ing.tipo != 'Principal' && !ing.ingredienteSustituible">{{ 'recetas.crear.crearIng.añadirSust' | translate }}<span class="text-warning">&nbsp;(Opcional)</span></span>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
                                 <div #inputGroup class="form-group">
-                                    <label>Nombre del ingrediente sustituible</label>
+                                    <label>{{ 'recetas.crear.crearIng.sustTitulo' | translate }}</label>
                                     <div class="input-group">
-                                        <input [formControlName]="i" class="form-control" [class.is-invalid]="ingredienteInvalido(i)" type="text">
+                                        <input [placeholder]="'recetas.crear.crearIng.sustPH' | translate" [formControlName]="i" class="form-control" [class.is-invalid]="ingredienteInvalido(i)" type="text">
                                     </div>
-                                    <small *ngIf="ingredienteInvalido(i)" class="text-danger">El nombre ha de tener más de 3 letras</small>
+                                    <small *ngIf="ingredienteInvalido(i)" class="text-danger">{{ 'recetas.crear.crearIng.sustErr' | translate }}</small>
                                 </div>
                             </mat-expansion-panel>
                         </mat-accordion>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-info" type="submit"><i class="fa fa-save"></i> Guardar ingredientes</button>
+                    <button class="btn btn-info" type="submit"><i class="fa fa-save"></i>{{ 'recetas.crear.crearIng.guardar' | translate }}</button>
                 </div>
             </form>
         </div>

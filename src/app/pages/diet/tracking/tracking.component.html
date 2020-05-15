@@ -4,7 +4,7 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h3>Recetas para el dia: <small>{{ obtenerFechaCompleta() }} </small></h3>
+                <h3>{{ 'dietas.seguimiento.titulo' | translate }}<small>{{ obtenerFechaCompleta() }} </small></h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -35,7 +35,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <h2>Total de calorias de hoy: <span *ngIf="recetas" class="text text-info">{{ calcularCalorias() }} kilocalorias</span></h2>
+                <h2>{{ 'dietas.seguimiento.total' | translate }}<span *ngIf="recetas" class="text text-info">{{ calcularCalorias() }} kilocalorias</span></h2>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h2>Mensaje del administrador</h2>
+                <h2>{{ 'dietas.seguimiento.admin' | translate }}</h2>
                 <p>{{ dieta.feedback }}</p>
                 <button (click)="borrarFeedback()" class="btn btn-danger">Eliminar mensaje</button>
             </div>

@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Nombre de la receta</mat-label>
+                    <mat-label>{{ 'recetas.buscador' | translate }}</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; cargarRecetas(0)">
                       <mat-icon>close</mat-icon>
@@ -25,7 +25,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">Recetas (<small>{{ total }}</small>)</h3>
+                <h3 class="card-title">{{ 'recetas.titulo' | translate }} (<small>{{ total }}</small>)</h3>
                 <div class="row">
                     <app-recipe-card class="col-sm-6 col-lg-4" (cargar)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
                 </div>

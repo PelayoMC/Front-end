@@ -3,13 +3,13 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h2 *ngIf="!modificando">Crear receta</h2>
-                <h2 *ngIf="modificando">Modificar receta</h2>
+                <h2 *ngIf="!modificando">{{ 'recetas.crear.titulo' | translate }}</h2>
+                <h2 *ngIf="modificando">{{ 'recetas.crear.tituloMod' | translate }}</h2>
                 <form ngNativeValidate [formGroup]="form" class="form p-t-20" (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="col-lg-8 col-sm-12">
                             <div class="form-group">
-                                <label>Nombre</label>
+                                <label>{{ 'recetas.crear.nombre' | translate }}</label>
                                 <div class="input-group">
                                     <input formControlName="nombre" [class.is-invalid]="nombreNoValido()" type="text" name="nombre" class="form-control" autocomplete="off" placeholder="Nombre de la receta">
                                 </div>
@@ -17,7 +17,7 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <label>Descripcion</label>
+                                <label>{{ 'recetas.crear.descripcion' | translate }}</label>
                                 <div class="input-group">
                                     <textarea formControlName="descripcion" [class.is-invalid]="descripcionNoValida()" name="descripcion" class="form-control" rows="3" placeholder="Descripcion de la receta"></textarea>
                                 </div>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-lg-4 col-sm-12">
                             <div class="form-group">
-                                <h4>Imagen<span class="text-warning" *ngIf="imgTemp">Vista previa</span></h4>
+                                <h4>{{ 'recetas.crear.imagen' | translate }}<span class="text-warning" *ngIf="imgTemp">{{ 'recetas.crear.imagenP' | translate }}</span></h4>
                                 <img *ngIf="!imgTemp" src="/assets/images/no-img.jpg" class="img-profile">
                                 <img *ngIf="imgTemp" [src]="imgTemp" class="img-profile">
                                 <br>
@@ -46,7 +46,7 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <label>Ingredientes</label>
+                        <label>{{ 'recetas.crear.ingredientes' | translate }}</label>
                         <div style="overflow-x:auto;">
                             <table class="table table-primary">
                                 <thead>
@@ -87,11 +87,11 @@
                                 </tbody>
                             </table>
                         </div>
-                        <button type="button" class="btn btn-info waves-effect waves-light m-r-10" (click)="addIngrediente()">Agregar ingrediente</button>
+                        <button type="button" class="btn btn-info waves-effect waves-light m-r-10" (click)="addIngrediente()">{{ 'recetas.crear.botonIng' | translate }}</button>
                     </div>
                     <br>
                     <div class="form-group">
-                        <label>Pasos a seguir de la receta</label>
+                        <label>{{ 'recetas.crear.pasos' | translate }}</label>
                         <div style="overflow-x:auto;">
                             <table class="table table-primary">
                                 <thead>
@@ -115,13 +115,13 @@
                                 </tbody>
                             </table>
                         </div>
-                        <button type="button" class="btn btn-info waves-effect waves-light m-r-10" (click)="addPaso()">Agregar paso</button>
+                        <button type="button" class="btn btn-info waves-effect waves-light m-r-10" (click)="addPaso()">{{ 'recetas.crear.botonPaso' | translate }}</button>
                     </div>
                     <br><br>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-3 col-sm-12">
-                                <label>Dificultad de la receta</label>
+                                <label>{{ 'recetas.crear.dificultad' | translate }}</label>
                                 <select class="form-control" formControlName="nivel" placeholder="dificultad">
                                     <option *ngFor="let dif of opt.dificultades" [value]="dif.nombre">{{ dif.nombre }}</option>
                                 </select>
@@ -131,13 +131,13 @@
                                 <div class="form-group" formGroupName="calorias">
                                     <div class="row">
                                         <div class="col-6">
-                                            <label>Calorias (receta)</label>
+                                            <label>{{ 'recetas.crear.calorias' | translate }}</label>
                                             <div class="input-group">
                                                 <input formControlName="cantidad" type="number" name="cantidad" class="form-control" autocomplete="off" placeholder="Número de calorias">
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <label>Unidades</label>
+                                            <label>{{ 'recetas.crear.unidades' | translate }}</label>
                                             <select class="form-control" formControlName="unidades" placeholder="unidades">
                                                 <option *ngFor="let ud of opt.nutricion" [value]="ud.nombre">{{ ud.nombre }}</option>
                                             </select>
@@ -147,8 +147,8 @@
                             </div>
                         </div>
                     </div>
-                    <button *ngIf="!modificando" type="submit" class="btn btn-info waves-effect waves-light m-r-10">Crear receta</button>
-                    <button *ngIf="modificando" type="submit" class="btn btn-info waves-effect waves-light m-r-10">Modificar receta</button>
+                    <button *ngIf="!modificando" type="submit" class="btn btn-info waves-effect waves-light m-r-10">{{ 'recetas.crear.botonCrear' | translate }}</button>
+                    <button *ngIf="modificando" type="submit" class="btn btn-info waves-effect waves-light m-r-10">{{ 'recetas.crear.botonMod' | translate }}</button>
                 </form>
             </div>
         </div>

@@ -4,7 +4,7 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h3>Asignar recetas</h3>
+                <h3>{{ 'dietas.planificar.titulo' | translate }}</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -24,7 +24,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>Kilocalorias semanales</b>
+                                <b>{{ 'dietas.planificar.kcal' | translate }}</b>
                             </td>
                             <td *ngFor="let receta of data.dias; let k = index">
                                 &nbsp; {{ totalCalorias(k) }} Kcal

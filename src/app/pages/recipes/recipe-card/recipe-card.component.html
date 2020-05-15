@@ -3,7 +3,9 @@
         <mat-card-header (click)="verReceta()">
             <mat-card-title>{{ receta.nombre }}</mat-card-title>
             <mat-card-subtitle>
-                <label [class]="label(receta.nivel)">{{ receta.nivel }}</label>
+                <label *ngIf="receta.nivel == 'Facil'" class="label label-success">{{ 'recetas.tarjetaReceta.facil' | translate }}</label>
+                <label *ngIf="receta.nivel == 'Medio'" class="label label-warning">{{ 'recetas.tarjetaReceta.medio' | translate }}</label>
+                <label *ngIf="receta.nivel == 'Dificil'" class="label label-danger">{{ 'recetas.tarjetaReceta.dificil' | translate }}</label>
             </mat-card-subtitle>
         </mat-card-header>
         <img (click)="verReceta()" mat-card-image class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image">
@@ -22,11 +24,11 @@
             <mat-menu #appMenu="matMenu">
                 <button mat-menu-item (click)="actualizarReceta(receta)">
                     <mat-icon>edit</mat-icon>
-                    <span>Editar receta</span>
+                    <span>{{ 'recetas.tarjetaReceta.editar' | translate }}</span>
                 </button>
                 <button mat-menu-item (click)="borrarReceta(receta)" style="color: red;">
                     <mat-icon style="color: red;">delete</mat-icon>
-                    <span>Borrar receta</span>
+                    <span>{{ 'recetas.tarjetaReceta.borrar' | translate }}</span>
                 </button>
             </mat-menu>
         </mat-card-actions>

@@ -101,7 +101,7 @@ export const menuU: any = [
           icono: 'mdi mdi-heart-half-outline',
           submenu : [
             { titulo: 'sidebar.dieta.planificar', url: '/diet/planning/' },
-            { titulo: 'sidebar.dietas.seguimiento', url: '/diet/tracking/' }
+            { titulo: 'sidebar.dieta.seguimiento', url: '/diet/tracking/' }
           ]
         },
         {
@@ -167,6 +167,10 @@ export const menuA: any =
                 {
                   titulo: 'sidebar.alimentos.recetas.lista',
                   url: '/recipes'
+                },
+                {
+                  titulo: 'sidebar.alimentos.recetas.añadir',
+                  url: '/addRecipe'
                 }
               ]
             },
@@ -185,6 +189,10 @@ export const menuA: any =
                 {
                   titulo: 'sidebar.alimentos.intolerancias.lista',
                   url: '/intolerances'
+                },
+                {
+                  titulo: 'sidebar.alimentos.intolerancias.añadir',
+                  url: '/addIntolerance'
                 }
               ]
             },

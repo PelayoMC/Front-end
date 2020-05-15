@@ -10,7 +10,7 @@
                         <br><br>
                         <div class="row" *ngIf="usuarioService.esUser() && votado">
                             <div class="col-md-12">
-                                <h4>Puntuacion <small>  ( total: {{ puntuacionesTotales }} )</small></h4>
+                                <h4>{{ 'recetas.receta.puntuacion' | translate }} <small>  ( {{ 'recetas.receta.total' | translate }}: {{ puntuacionesTotales }} )</small></h4>
                                 <hr>
                                 <p>
                                     <ngb-rating class="puntuacion" [(rate)]="puntuacion" [max]="5" [starTemplate]="t" [readonly]="true"></ngb-rating>
@@ -22,14 +22,14 @@
                         </div>
                         <div class="row" *ngIf="usuarioService.estaLogueado()">
                             <div class="col-md-6">
-                                <h4>Calorias</h4>
+                                <h4>{{ 'recetas.receta.calorias' | translate }}</h4>
                                 <hr>
                                 <p>
                                     {{ receta?.calorias?.cantidad }} {{ receta?.calorias?.unidades }}
                                 </p>
                             </div>
                             <div class="col-md-6">
-                                <h4>Dificultad</h4>
+                                <h4>{{ 'recetas.receta.dificultad' | translate }}</h4>
                                 <hr>
                                 <p>
                                     {{ receta?.nivel | uppercase }}
@@ -37,25 +37,25 @@
                             </div>
                         </div>
                         <a (click)="mostrarModal()" class="btn btn-outline-warning btn-block" *ngIf="usuarioService.esUser() && !votado"> Votar</a>
-                        <a (click)="retornar()" class="btn btn-outline-info btn-block">Regresar</a>
+                        <a (click)="retornar()" class="btn btn-outline-info btn-block">{{ 'recetas.receta.botonRe' | translate }}</a>
                         <br><br>
                     </div>
                     <div class="col-md-8">
-                        <h3>Descripción de la receta</h3>
+                        <h3>{{ 'recetas.receta.descripcion' | translate }}</h3>
                         <hr>
                         <p>
                             {{ receta?.descripcion }}
                         </p>
                         <div class="row" *ngIf="usuarioService.estaLogueado()">
                             <div class="col-md-6">
-                                <h4>Ingredientes</h4>
+                                <h4>{{ 'recetas.receta.ingredientes' | translate }}</h4>
                                 <hr>
                                 <mat-accordion>
                                     <mat-expansion-panel *ngFor="let ing of receta?.ingredientes; let i = index">
                                         <mat-expansion-panel-header>
                                             <mat-panel-title>
-                                                <label *ngIf="ing.tipo == 'Principal'" class="label label-danger">Principal</label>
-                                                <label *ngIf="ing.tipo == 'Secundario'" class="label label-info">Secundario</label>
+                                                <label *ngIf="ing.tipo == 'Principal'" class="label label-danger">{{ 'recetas.receta.principal' | translate }}</label>
+                                                <label *ngIf="ing.tipo == 'Secundario'" class="label label-info">{{ 'recetas.receta.secundario' | translate }}</label>
                                             </mat-panel-title>
                                             <mat-panel-description>
                                                 <b [ngClass]="color(ing)">{{ ing.nombre }}</b>
@@ -63,7 +63,7 @@
                                         </mat-expansion-panel-header>
                                         <div class="row">
                                             <div class="col">
-                                                <b>Cantidad: </b>
+                                                <b>{{ 'recetas.receta.cantidad' | translate }}:</b>
                                             </div>
                                             <div class="col-7">
                                                 <span *ngIf="noUnidades(ing)">{{ ing.unidades }}</span>
@@ -74,7 +74,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col">
-                                                    <label class="label label-warning">Sustituible</label>
+                                                    <label class="label label-warning">{{ 'recetas.receta.sustituible' | translate }}</label>
                                                 </div>
                                                 <div class="col-7">
                                                     <b class="text-warning">{{ sustituibles[i] }}</b>
@@ -85,7 +85,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col">
-                                                    <b>Etiquetas: </b>
+                                                    <b>{{ 'recetas.receta.etiquetas' | translate }}</b>
                                                 </div>
                                                 <div class="col-7">
                                                     <mat-chip-list #list aria-label="tag selection">
@@ -101,7 +101,7 @@
                                 <br>
                             </div>
                             <div class="col-md-6">
-                                <h4>Pasos a seguir</h4>
+                                <h4>{{ 'recetas.receta.pasos' | translate }}</h4>
                                 <hr>
                                 <ul class="list-group">
                                     <li class="list-group-item" *ngFor="let paso of receta?.pasos; let i = index">
@@ -113,13 +113,13 @@
                         <div class="row animated fadeIn" *ngIf="!usuarioService.estaLogueado()">
                             <div class="col-12">
                                 <div class="alert alert-warning text-center">
-                                    <strong> No ha iniciado sesión </strong>
+                                    <strong>{{ 'recetas.receta.noSesionTitulo' | translate }}</strong>
                                     <br>
                                     <i class="fa fa-exclamation-circle"></i>
                                     <br>
-                                    <span>Para ver el resto del contenido de la receta, necesita iniciar sesión</span>
+                                    <span>{{ 'recetas.receta.noSesionTexto' | translate }}</span>
                                     <br>
-                                    <button class="btn btn-warning" (click)="llevarAInicio()">Iniciar sesión</button>
+                                    <button class="btn btn-warning" (click)="llevarAInicio()">{{ 'recetas.receta.noSesionBoton' | translate }}</button>
                                 </div>
                             </div>
                         </div>

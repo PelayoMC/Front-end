@@ -41,6 +41,7 @@
             "imagen": "Image",
             "rol": "Role",
             "auth": "Authentication",
+            "normal": "Normal",
             "etiquetas": "Tags",
             "edad": "Age",
             "altura": "Height",
@@ -85,34 +86,42 @@
             "titulo": "Add user",
             "campo1": "Name",
             "texto1": "Username",
+            "error1": "The name must have at least 3 letters",
             "campo2": "Email",
             "texto2": "Users email",
+            "error2": "The email must have a correct format",
             "campo3": "Password",
-            "texto3": "Password",
+            "texto3": "User password",
+            "error3": "The password must have at least 3 letters",
+            "campo4": "Repeat password",
+            "error4": "Paswords aren't equal",
             "campo5": "Role"
         },
         "crearEtiqueta": {
             "titulo": "Add tag",
             "enviar": "Name",
-            "texto": "Tag name"
+            "texto": "Tag name",
+            "error": "The name must have at least 3 letters"
         },
         "feedback": {
             "titulo": "Feedback",
             "enviar": "Send feedback",
-            "texto": "Feedback text"
+            "texto": "Feedback text",
+            "error": "The text must have at least 10 letters"
         },
         "votar": {
             "titulo": "Add vote"
         },
         "botones": {
+            "guardar": "Save",
             "enviar": "Send",
             "cerrar": "Close"
         }
     },
     "header": {
         "sesion": "Log in",
-        "idiomaEsp": "Español",
-        "idiomaIng": "Inglés",
+        "idiomaEsp": "Spanish",
+        "idiomaIng": "English",
         "perfil": "View profile",
         "recetas": "Favorite recipes",
         "intolerancias": "My intolerances",
@@ -175,6 +184,11 @@
         "pregunta": "Do you have an account?",
         "linkSesion": "Login"
     },
+    "buscador": {
+        "buscador": "Ingredient name",
+        "tituloIng": "Found ingredients",
+        "tituloRe": "Recipes that contain the ingredients found"
+    },
     "usuarios": {
         "usuario": {
             "titulo": "User profile",
@@ -199,6 +213,7 @@
             "botonAceptar": "Accept",
             "botonBorrar": "Delete",
             "imagen": "User image",
+            "previa": "Preview",
             "botonAct": "Update image"
 
         },
@@ -206,19 +221,37 @@
         "buscador": "Username"
     },
     "recetas": {
+        "recetasFavoritas": {
+            "titulo": "Favorite recipes of the user: "
+        },
         "receta": {
             "noSesionTitulo": " You aren't logged in ",
             "noSesionTexto": "To see the rest of the recipe's content, you need to be logged in",
             "noSesionBoton": "Log in",
             "descripcion": "Recipe description",
+            "puntuacion": "Score ",
+            "total": "total",
             "calorias": "Calories",
             "dificultad": "Difficulty",
             "ingredientes": "Ingredients",
+            "cantidad": "Quantity",
+            "principal": "Principal",
+            "secundario": "Secondary",
+            "sustituible": "Repleaceable",
+            "etiquetas": "Tags",
             "pasos": "Steps",
             "botonRe": "Return"
         },
+        "tarjetaReceta": {
+            "facil": "Easy",
+            "medio": "Medium",
+            "dificil": "Hard",
+            "editar": "Modify recipe",
+            "borrar": "Delete recipe"
+        },
         "crear": {
             "titulo": "Create recipe",
+            "tituloMod": "Modify recipe",
             "nombre": "Name",
             "nombrePh": "Recipe name",
             "descripcion": "Description",
@@ -234,14 +267,22 @@
             "calorias": "Calories (recipe)",
             "unidades": "Units",
             "botonCrear": "Create recipe",
+            "botonMod": "Modify recipe",
             "crearIng": {
                 "tituloEt": "Add tags",
-                "añadirEt": "Add tags",
+                "añadirEt": "Add tags to the ingredient",
                 "opcional": "(Optional)",
+                "etiquetaTitulo": "Tags",
+                "etiquetaPH": "Add tags",
+                "etiquetaErr": "The ingredient can't have repeated tags",
                 "tituloSust": "Add replaceable ingredient",
-                "añadirSust": "Add replaceable ingredient",
                 "noSecundario": "Is not a secondary ingredient",
-                "nombreSust": "Name of the replaceable ingredient"
+                "yaSust": "A repleaceable ingredient already exists",
+                "añadirSust": "Add replaceable ingredient",
+                "sustTitulo": "Name of the replaceable ingredient",
+                "sustPH": "Add ingredient",
+                "sustErr": "The ingredient must have at least 3 letters",
+                "guardar": "Save tags and ingredients"
             }
         },
         "titulo": "Recipes",
@@ -253,6 +294,9 @@
         "botonBorrarSin": "Delete ingredients without recipes"
     },
     "intolerancias": {
+        "misIntolerancias": {
+            "titulo": "Intolerances of the user: "
+        },
         "intolerancia": {
             "descripcion": "Description",
             "etiquetas": "Tags",
@@ -260,14 +304,21 @@
         },
         "crear": {
             "titulo": "Create intolerance",
+            "tituloMod": "Modify intolerance",
             "nombre": "Name",
             "nombrePh": "Intolerance name",
+            "nombreErr": "The name is mandatory",
             "descripcion": "Description",
             "descripcionPh": "Intolerance description",
+            "descripcionErr": "The description is mandatory",
             "etiquetas": "Tags",
             "etiquetasPh": "To add a tag use , or intro",
+            "etiquetasErr": "The intolerance must have at least one tag",
+            "etiquetasRepErr": "No repeated tags allowed",
             "imagen": "Image",
-            "botonCrear": "Create intolerance"
+            "previa": " - Preview",
+            "botonCrear": "Create intolerance",
+            "botonMod": "Modify intolerance"
         },
         "titulo": "Registered intolerances",
         "buscador": "Intolerance name"
@@ -282,7 +333,10 @@
             "comentarios": "Comments",
             "noAsig": {
                 "titulo1": "User data",
-                "titulo2": "Add recipes"
+                "favoritas": "Favorite recipes",
+                "intolerancias": "Intolerances",
+                "titulo2": "Add recipes",
+                "crear": "Create diet"
             }
         },
         "solicitar": {
@@ -301,12 +355,13 @@
             "solicitada": "An expert is creating your diet, please wait"
         },
         "planificar": {
-            "titulo": "Weakly planning of the diet Planificación semanal de la dieta",
+            "titulo": "Weakly planning of the diet",
             "kcal": "Daily Kilocalories"
         },
         "seguimiento": {
             "titulo": "Recipes for: ",
-            "total": "Total calories of today:"
+            "total": "Total calories of today:",
+            "admin": "Admin message"
         }
     }
 }

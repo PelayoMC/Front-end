@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Añadir Etiqueta</h5>
+                    <h5 class="modal-title">{{ 'modales.crearEtiqueta.titulo' | translate }}</h5>
                     <button (click)="cerrarModal(form)" type="button" class="close" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                         </button>
@@ -11,14 +11,15 @@
                 <form #form="ngForm" (ngSubmit)="crearTag(form)">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input class="form-control" type="text" ngModel #nombre="ngModel" name="nombre" [class.is-valid]="nombre.valid && nombre.touched" [class.is-invalid]="nombre.invalid && nombre.touched" autocomplete="off" placeholder="Nombre de la etiqueta" required minlength="3">
-                            <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">El nombre ha de tener más de 3 letras</small>
+                            <label for="nombre">{{ 'modales.crearEtiqueta.enviar' | translate }}</label>
+                            <input class="form-control" type="text" ngModel #nombre="ngModel" name="nombre" [class.is-valid]="nombre.valid && nombre.touched" [class.is-invalid]="nombre.invalid && nombre.touched" autocomplete="off" [placeholder]="'modales.crearEtiqueta.texto' | translate"
+                                required minlength="3">
+                            <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">{{ 'modales.crearEtiqueta.error' | translate }}</small>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-info">Guardar</button>
-                        <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">Cerrar</button>
+                        <button type="submit" class="btn btn-info">{{ 'modales.botones.guardar' | translate }}</button>
+                        <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">{{ 'modales.botones.cerrar' | translate }}</button>
                     </div>
                 </form>
             </div>

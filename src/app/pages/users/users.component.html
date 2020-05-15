@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>Nombre del usuario</mat-label>
+                    <mat-label>{{ 'usuarios.buscador' | translate }}</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarUsuarios(input.value)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; cargarUsuarios()">
                       <mat-icon>close</mat-icon>
@@ -22,15 +22,15 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-x:auto;">
-                <h3 class="card-title">Usuarios registrados (<small>{{ total }}</small>) &nbsp; <button (click)="mostrarModal('','user', '', null)" matTooltip="Añadir usuario" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
+                <h3 class="card-title">{{ 'usuarios.titulo' | translate }} (<small>{{ total }}</small>) &nbsp; <button (click)="mostrarModal('','user', '', null)" matTooltip="Añadir usuario" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Imagen</th>
-                            <th>Correo</th>
-                            <th>Nombre</th>
-                            <th>Role</th>
-                            <th>Auth</th>
+                            <th>{{ 'comun.tabla.imagen' | translate }}</th>
+                            <th>{{ 'comun.tabla.correo' | translate }}</th>
+                            <th>{{ 'comun.tabla.nombre' | translate }}</th>
+                            <th>{{ 'comun.tabla.rol' | translate }}</th>
+                            <th>{{ 'comun.tabla.auth' | translate }}</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -55,7 +55,7 @@
                             </td>
                             <td>
                                 <label *ngIf="usuario.usuario.google" class="label label-danger">Google</label>
-                                <label *ngIf="!usuario.usuario.google" class="label label-info">Normal</label>
+                                <label *ngIf="!usuario.usuario.google" class="label label-info">{{ 'comun.tabla.normal' | translate }}</label>
                             </td>
                             <td class="text-nowrap small-td">
                                 <button [disabled]="usuario.usuario.email === usuariosService.usuario.value.email" (click)="usuario.modificando = !usuario.modificando" class="btn btn-primary" matTooltip="Modificar ingrediente"><i class="fa fa-wrench"></i></button>                                &nbsp;
@@ -65,8 +65,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <button [disabled]="(from - 7) >= total || (from - 7) < 0" (click)="cambiarDesde(-7)" class="btn btn-secondary">Anteriores</button> &nbsp;
-                <button [disabled]="(from + 7) >= total || (from + 7) < 0" (click)="cambiarDesde(7)" class="btn btn-secondary">Siguientes</button>
+                <button [disabled]="(from - 7) >= total || (from - 7) < 0" (click)="cambiarDesde(-7)" class="btn btn-secondary">{{ 'comun.botones.anterior' | translate }}</button> &nbsp;
+                <button [disabled]="(from + 7) >= total || (from + 7) < 0" (click)="cambiarDesde(7)" class="btn btn-secondary">{{ 'comun.botones.siguiente' | translate }}</button>
             </div>
         </div>
     </div>
