@@ -63,10 +63,6 @@ export class UsersComponent implements OnInit {
   }
 
   buscarUsuarios(termino: string) {
-    if (termino.length < 0) {
-      this.cargarUsuarios();
-      return;
-    }
     this.cargando = true;
     this.from = 0;
     this.usuariosService.buscarUsuarios(termino, this.from).subscribe(

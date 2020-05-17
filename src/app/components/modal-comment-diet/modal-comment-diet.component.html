@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Enviar comentario</h5>
+                    <h5 class="modal-title">{{ 'modales.comentarios.titulo' | translate }}</h5>
                     <button (click)="cerrarModal(form)" type="button" class="close" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                             </button>
@@ -11,14 +11,14 @@
                 <form #form="ngForm" (ngSubmit)="crearComment(form)">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="comentario">Comentario</label>
-                            <input class="form-control" type="text" ngModel #comentario="ngModel" name="comentario" [class.is-valid]="comentario.valid && comentario.touched" [class.is-invalid]="comentario.invalid && comentario.touched" autocomplete="off" placeholder="Comentario de la etiqueta"
+                            <label for="comentario">{{ 'modales.comentarios.label' | translate }}</label>
+                            <input class="form-control" type="text" ngModel #comentario="ngModel" name="comentario" [class.is-valid]="comentario.valid && comentario.touched" [class.is-invalid]="comentario.invalid && comentario.touched" autocomplete="off" [placeholder]="'modales.comentarios.texto' | translate"
                                 required minlength="10">
-                            <small *ngIf="comentario.invalid && comentario.touched" class="form-text text-danger">El comentario ha de tener más de 10 letras</small>
+                            <small *ngIf="comentario.invalid && comentario.touched" class="form-text text-danger">{{ 'modales.comentarios.textoErr' | translate }}</small>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-info">Enviar</button>
+                        <button type="submit" class="btn btn-info">{{ 'modales.comentarios.enviar' | translate }}</button>
                         <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">Cerrar</button>
                     </div>
                 </form>

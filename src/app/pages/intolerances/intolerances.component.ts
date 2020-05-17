@@ -62,10 +62,6 @@ export class IntolerancesComponent implements OnInit {
   }
 
   buscarIntolerancias(termino: string) {
-    if (termino.length <= 0 && this.etiquetas.length === 0) {
-      this.cargarIntolerancias();
-      return;
-    }
     this.cargando = true;
     this.from = 0;
     this.intolerancias = [];

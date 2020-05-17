@@ -98,7 +98,11 @@ export class UsersService {
       }),
       catchError( err => {
         if (this.auth.checkToken(err)) {
-          Swal.fire('Error al iniciar sesión', err.error.mensaje, 'error');
+          Swal.fire({
+            title: "{{ 'comun.alertas.sesion' | translate }}",
+            text: err.error.mensaje,
+            icon: 'error'
+          }); //err.error.mensaje
         } else {
           this.logout('login');
         }

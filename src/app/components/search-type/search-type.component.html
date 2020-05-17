@@ -4,9 +4,9 @@
             {{ tipo }}
             <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
-        <input placeholder="Toca para añadir un tipo al filtro" #input (keyup)="filtrar(input)" [matAutocomplete]="auto" [matChipInputFor]="list">
+        <input [placeholder]="'comun.filtros.tiposTexto' | translate" #input (keyup)="filtrar(input)" [matAutocomplete]="auto" [matChipInputFor]="list">
     </mat-chip-list>
-    <small *ngIf="tipoRepetido()" class="form-text text-danger">No puede haber tipos repetidos</small>
+    <small *ngIf="tipoRepetido()" class="form-text text-danger">{{ 'comun.filtros.tiposErr' | translate }} </small>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, input)">
         <mat-option *ngFor="let tag of filteredTipos" [value]="tag">
             {{ tag }}

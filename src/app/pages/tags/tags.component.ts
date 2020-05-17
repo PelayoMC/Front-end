@@ -45,10 +45,6 @@ export class TagsComponent implements OnInit {
   }
 
   buscarEtiquetas(termino: string) {
-    if (termino.length <= 0) {
-      this.cargarEtiquetas();
-      return;
-    }
     this.cargando = true;
     this.from = 0;
     this.etiquetas = [];

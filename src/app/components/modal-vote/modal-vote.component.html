@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Añadir votacion</h5>
+                    <h5 class="modal-title">{{ 'modales.votar.titulo' | translate }}</h5>
                     <button (click)="cerrarModal(form)" type="button" class="close" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                             </button>
@@ -16,8 +16,8 @@
                         </ng-template>
                     </div>
                     <div class="modal-footer">
-                        <button *ngIf="puntuacion" type="submit" class="btn btn-info">Votar</button>
-                        <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">Cerrar</button>
+                        <button *ngIf="puntuacion" type="submit" class="btn btn-info">{{ 'modales.botones.votar' | translate }}</button>
+                        <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">{{ 'modales.botones.cerrar' | translate }}</button>
                     </div>
                 </form>
             </div>

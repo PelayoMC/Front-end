@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Enviar feedback</h5>
+                    <h5 class="modal-title">{{ 'modales.feedback.titulo' | translate }}</h5>
                     <button (click)="cerrarModal(form)" type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,8 +13,8 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Receta</th>
-                                    <th>Comentario</th>
+                                    <th>{{ 'comun.tabla.receta' | translate }}</th>
+                                    <th>{{ 'comun.tabla.comentario' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,15 +30,15 @@
                         </table>
                         <br>
                         <div class="form-group">
-                            <label for="comentario">Enviar comentario</label>
-                            <input class="form-control" type="text" ngModel #comentario="ngModel" name="comentario" [class.is-valid]="comentario.valid && comentario.touched" [class.is-invalid]="comentario.invalid && comentario.touched" autocomplete="off" placeholder="Nuevo comentario"
+                            <label for="comentario">{{ 'modales.feedback.enviar' | translate }}</label>
+                            <input class="form-control" type="text" ngModel #comentario="ngModel" name="comentario" [class.is-valid]="comentario.valid && comentario.touched" [class.is-invalid]="comentario.invalid && comentario.touched" autocomplete="off" [placeholder]="'modales.feedback.texto' | translate"
                                 required minlength="3">
-                            <small *ngIf="comentario.invalid && comentario.touched" class="form-text text-danger">El comentario ha de tener más de 3 letras</small>
+                            <small *ngIf="comentario.invalid && comentario.touched" class="form-text text-danger">{{ 'modales.feedback.error' | translate }}</small>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-info">Enviar</button>
-                        <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">Cerrar</button>
+                        <button type="submit" class="btn btn-info">{{ 'modales.botones.enviar' | translate }}</button>
+                        <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">{{ 'modales.botones.enviar' | translate }}</button>
                     </div>
                 </form>
             </div>

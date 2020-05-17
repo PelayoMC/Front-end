@@ -62,11 +62,7 @@ export class ModalCreateDietComponent implements OnInit {
   }
 
   buscarRecetas(termino: string, valor: number) {
-    if (termino.length < 0) {
-      this.cargarRecetas();
-      return;
-    }
-    this.cargando = true;
+   this.cargando = true;
     this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, valor, this.limit).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;

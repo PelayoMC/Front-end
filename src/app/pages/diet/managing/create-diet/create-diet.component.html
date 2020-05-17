@@ -49,12 +49,12 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th *ngFor="let dia of dias">{{ dia }}</th>
+                            <th *ngFor="let dia of dias">{{ dia | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let fila of recetas; let i = index">
-                            <td> {{ getTitulo(i) }} </td>
+                            <td> {{ getTitulo(i) | translate }} </td>
                             <td *ngFor="let receta of recetas[i]; let j = index">
                                 <button *ngIf="!receta" class="btn btn-info" (click)="abrirModal(i, j)"><i class="mdi mdi-plus"></i></button>
                                 <button *ngIf="receta" class="btn btn-danger" (click)="borrarReceta(i, j)"><i class="mdi mdi-minus"></i></button>

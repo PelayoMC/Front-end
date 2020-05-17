@@ -65,10 +65,6 @@ export class RecipesComponent implements OnInit {
   }
 
   buscarRecetas(termino: string, valor: number) {
-    if (termino.length <= 0) {
-      this.cargarRecetas(0);
-      return;
-    }
     this.cargando = true;
     this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, valor, this.tam).subscribe(
       (resp: any) => {

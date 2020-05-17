@@ -13,13 +13,19 @@
         "boton": "Home"
     },
     "comun": {
+        "alertas": {
+            "sesion": "Log in error"
+        },
         "filtros": {
             "intolerancias": "Intolerance filter",
             "intoleranciasTexto": "Touch to add an intolerance to the filter",
+            "intoleranciasErr": "There can't be any repeated intolerances",
             "etiquetas": "Tag filter",
             "etiquetasTexto": "Touch to add a tag to the filter",
+            "etiquetasErr": "There can't be any repeated tags",
             "tipos": "Type filter",
-            "tiposTexto": "Touch to add a type to the filter"
+            "tiposTexto": "Touch to add a type to the filter",
+            "tiposErr": "There can't be any repeated types"
         },
         "buscando": {
             "titulo": "LOADING",
@@ -71,16 +77,20 @@
         }
     },
     "modales": {
+        "upload": {
+            "titulo": "Change image",
+            "previa": "Preview"
+        },
         "comentarios": {
             "titulo": "Send comment",
-            "enviar": "Comment",
-            "texto": "Comment name"
+            "label": "Comment",
+            "texto": "Comment name",
+            "textoErr": "The comment must have at least 10 letters",
+            "enviar": "Send"
         },
         "crearDieta": {
             "titulo": "Add recipe",
-            "buscador": "Recipe name",
-            "enviar": "Send feedback",
-            "texto": "Feedback text"
+            "buscador": "Recipe name"
         },
         "crearUsuario": {
             "titulo": "Add user",
@@ -113,6 +123,7 @@
             "titulo": "Add vote"
         },
         "botones": {
+            "votar": "Vote",
             "guardar": "Save",
             "enviar": "Send",
             "cerrar": "Close"
@@ -291,6 +302,7 @@
     "ingredientes": {
         "titulo": "Registered ingredients",
         "buscador": "Ingredient name",
+        "noPresente": "Doesn't belong to any recipes",
         "botonBorrarSin": "Delete ingredients without recipes"
     },
     "intolerancias": {

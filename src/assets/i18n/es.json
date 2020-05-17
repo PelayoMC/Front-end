@@ -13,13 +13,19 @@
         "boton": "Inicio"
     },
     "comun": {
+        "alertas": {
+            "sesion": "Error al iniciar sesión"
+        },
         "filtros": {
             "intolerancias": "Filtro de intolerancias",
             "intoleranciasTexto": "Toca para añadir una intolerancia al filtro",
+            "intoleranciasErr": "No puede haber intolerancias repetidas",
             "etiquetas": "Filtro de etiquetas",
             "etiquetasTexto": "Toca para añadir una etiqueta al filtro",
+            "etiquetasErr": "No puede haber etiquetas repetidas",
             "tipos": "Filtro de tipos",
-            "tiposTexto": "Toca para añadir un tipo al filtro"
+            "tiposTexto": "Toca para añadir un tipo al filtro",
+            "tiposErr": "No puede haber tipos repetidos"
         },
         "buscando": {
             "titulo": "CARGANDO",
@@ -71,10 +77,16 @@
         }
     },
     "modales": {
+        "upload": {
+            "titulo": "Cambiar imagen",
+            "previa": "Vista previa"
+        },
         "comentarios": {
             "titulo": "Enviar comentario",
-            "enviar": "Comentario",
-            "texto": "Nombre del comentario"
+            "label": "Comentario",
+            "texto": "Nombre del comentario",
+            "textoErr": "El comentario ha de tener más de 10 letras",
+            "enviar": "Enviar"
         },
         "crearDieta": {
             "titulo": "Añadir receta",
@@ -113,6 +125,7 @@
             "titulo": "Añadir votacion"
         },
         "botones": {
+            "votar": "Votar",
             "guardar": "Guardar",
             "enviar": "Enviar",
             "cerrar": "Cerrar"

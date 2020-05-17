@@ -3,22 +3,22 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Cambiar imagen</h5>
+                    <h5 class="modal-title">{{ 'modales.upload.titulo' | translate }}</h5>
                     <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 <div class="modal-body text-center">
                     <img *ngIf="!modalService.img" [src]="'xxx' | image" class="img-profile-small">
-                    <h6 *ngIf="modalService.img">Vista previa</h6>
+                    <h6 *ngIf="modalService.img">{{ 'modales.upload.previa' | translate }}</h6>
                     <img *ngIf="modalService.img" [src]="modalService.img" class="img-profile">
                     <br>
                     <br>
                     <input (change)="chooseImage($event.target.files[0])" type="file">
                 </div>
                 <div class="modal-footer">
-                    <button (click)="upload()" [disabled]="!imgUpload" type="button" class="btn btn-info">Guardar</button>
-                    <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Cerrar</button>
+                    <button (click)="upload()" [disabled]="!imgUpload" type="button" class="btn btn-info">{{ 'modales.botones.guardar' | translate }}</button>
+                    <button (click)="cerrarModal()" type="button" class="btn btn-secondary">{{ 'modales.botones.cerrar' | translate }}</button>
                 </div>
             </div>
         </div>

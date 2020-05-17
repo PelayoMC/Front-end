@@ -1,22 +1,52 @@
 <div *ngIf="!cargando">
-    <div *ngIf="!dieta && !hayDatosUsuario()">
-        <h3>Solicitar dieta</h3>
-        <p>No existen información personal sobre el usuario</p>
-        <p class="text text-muted">Para poder solicitar una dieta, rellene los campos de <b>edad</b>, <b>altura</b> y <b>peso</b> en el <a routerLinkActive [routerLink]="['/user/' + userService.usuario.value._id]">perfil de usuario</a></p>
+    <div class="row animated fadeIn" *ngIf="!dieta && !hayDatosUsuario()">
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <strong>No existen información personal sobre el usuario</strong>
+                <br>
+                <i class="fa fa-user-times fa-2x"></i>
+                <br>
+                <p class="text text-muted">Para poder solicitar una dieta, rellene los campos de <b>edad</b>, <b>altura</b> y <b>peso</b> en el perfil de usuario</p>
+                <button routerLinkActive [routerLink]="['/user/' + userService.usuario.value._id]" type="button" class="btn btn-info">Ir al perfil</button>
+            </div>
+        </div>
     </div>
-    <div *ngIf="!dieta && hayDatosUsuario()">
-        <h3>Solicitar dieta</h3>
-        <p>Antes de solicitar una dieta, asegurese de añadir <a routerLinkActive [routerLink]="['/intolerances']" type="button">intolerancias</a> y <a routerLinkActive [routerLink]="['/recipes']" type="button">recetas</a> favoritas a su perfil</p>
-        <p class="text text-muted">De esta forma será más facil realizar su dieta</p>
-        <button (click)="solicitarDieta()" type="button" class="btn btn-info">Solicitar dieta</button>
+    <div class="row animated fadeIn" *ngIf="!dieta && hayDatosUsuario()">
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <strong>Solicitar dieta</strong>
+                <br>
+                <i class="fa fa-user fa-2x"></i>
+                <br>
+                <p>Antes de solicitar una dieta, asegurese de añadir <a routerLinkActive [routerLink]="['/intolerances']" type="button">intolerancias</a> y <a routerLinkActive [routerLink]="['/recipes']" type="button">recetas</a> favoritas a su perfil</p>
+                <p class="text text-muted">De esta forma será más facil realizar su dieta</p>
+                <button (click)="solicitarDieta()" type="button" class="btn btn-info">Solicitar dieta</button>
+            </div>
+        </div>
     </div>
-    <div *ngIf="dieta && !hayDietaCreada()">
-        <h3>Dieta solicitada</h3>
-        <p>Espere a que un experto realice el planning de su dieta</p>
+    <div class="row animated fadeIn" *ngIf="dieta && !hayDietaCreada()">
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <strong>Dieta solicitada</strong>
+                <br>
+                <i class="fa fa-check fa-2x"></i>
+                <br>
+                <p>Espere a que un experto realice el planning de su dieta</p>
+            </div>
+        </div>
     </div>
-    <div *ngIf="dieta && hayDietaCreada()">
-        <h3>Dieta asignada</h3>
-        <p>Ya tiene una dieta asignada</p>
+    <div class="row animated fadeIn" *ngIf="dieta && hayDietaCreada()">
+        <div class="col-12">
+            <div class="alert alert-success text-center">
+                <strong>Dieta asignada</strong>
+                <br>
+                <i class="fa fa-check fa-2x"></i>
+                <br>
+                <p>Ya tiene una dieta asignada</p>
+                <button routerLinkActive [routerLink]="['/diet/planning']" type="button" class="btn btn-info">Planificación</button> &nbsp;
+                <button routerLinkActive [routerLink]="['/diet/tracking']" type="button" class="btn btn-info">Seguimiento</button>
+            </div>
+        </div>
     </div>
 </div>
 <app-loading-component [cargando]="cargando"></app-loading-component>

@@ -1,5 +1,5 @@
-export const nombresComidas = ['Desayuno', 'Comida', 'Merienda', 'Cena'];
-export const dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+export const nombresComidas = ['comun.tabla.comidas.desayuno', 'comun.tabla.comidas.comida', 'comun.tabla.comidas.merienda', 'comun.tabla.comidas.cena'];
+export const dias = ['comun.tabla.dias.lunes', 'comun.tabla.dias.martes', 'comun.tabla.dias.miercoles', 'comun.tabla.dias.jueves', 'comun.tabla.dias.viernes', 'comun.tabla.dias.sabado', 'comun.tabla.dias.domingo'];
 
 export function label(nombre: string) {
         switch (nombre) {

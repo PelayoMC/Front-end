@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Añadir receta</h5>
+                    <h5 class="modal-title">{{ 'modales.crearDieta.titulo' | translate }}</h5>
                     <button (click)="ocultarModal()" type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <mat-form-field class="input-group mb-3">
-                            <mat-label>Nombre de la receta</mat-label>
+                            <mat-label>{{ 'modales.crearDieta.buscador' | translate }}</mat-label>
                             <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" autocomplete="off">
                             <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; cargarRecetas(0)">
                                       <mat-icon>close</mat-icon>
@@ -31,8 +31,8 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Tipo</th>
-                                    <th>Nombre</th>
+                                    <th>{{ 'comun.tabla.tipo' | translate }}</th>
+                                    <th>{{ 'comun.tabla.nombre' | translate }}</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -50,12 +50,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
-                        <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
+                        <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">{{ 'comun.botones.anterior' | translate }}</button> &nbsp;
+                        <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">{{ 'comun.botones.siguiente' | translate }}</button>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button (click)="ocultarModal()" type="button" class="btn btn-secondary">Cerrar</button>
+                    <button (click)="ocultarModal()" type="button" class="btn btn-secondary">{{ 'modales.botones.cerrar' | translate }}</button>
                 </div>
             </div>
         </div>

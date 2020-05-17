@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col" *ngIf="showIntolerancias">
-        <label for="intsw">Filtro de intolerancias</label>
+        <label for="intsw">{{ 'comun.filtros.intolerancias' | translate }}</label>
         <div #intsw class="switch">
             <label>
                 <input type="checkbox" [checked]="intolerancias" (change)="intolerancias = !intolerancias; emit()"><span class="lever switch-col-green"></span>
@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="col" *ngIf="showEtiquetas">
-        <label for="etsw">Filtro de etiquetas</label>
+        <label for="etsw">{{ 'comun.filtros.etiquetas' | translate }}</label>
         <div #etsw class="switch">
             <label>
                 <input type="checkbox" [checked]="etiquetas" (change)="etiquetas = !etiquetas; emit()"><span class="lever switch-col-green"></span>
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="col" *ngIf="showTipos">
-        <label for="etsw">Filtro de tipos</label>
+        <label for="etsw">{{ 'comun.filtros.tipos' | translate }}</label>
         <div #etsw class="switch">
             <label>
                 <input type="checkbox" [checked]="tipos" (change)="tipos = !tipos; emit()"><span class="lever switch-col-green"></span>

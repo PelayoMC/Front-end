@@ -69,10 +69,6 @@ export class BusquedaComponent implements OnInit {
   }
 
   buscarRecetas(termino: string, valor: number) {
-    if (termino.length <= 0) {
-      this.cargarRecetas(0);
-      return;
-    }
     this.cargando = true;
     this.recipeService.descubrirRecetas(termino, this.tipos, this.intolerancias, valor, this.limit).subscribe(
       (resp: any) => {
