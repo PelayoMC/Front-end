@@ -14,7 +14,58 @@
     },
     "comun": {
         "alertas": {
-            "sesion": "Log in error"
+            "errores": {
+                "sesion": {
+                    "titulo": "Login error",
+                    "mensaje": "Incorrect credentials"
+                },
+                "sesionGoogle": {
+                    "titulo": "Login error",
+                    "mensaje": "The google log in couldn't be made"
+                },
+                "renovarToken": {
+                    "titulo": "Login error",
+                    "mensaje": "The user session could not be renewed"
+                },
+                "crearUsuario": {
+                    "titulo": "Error",
+                    "mensaje": "Use another email"
+                },
+                "modificarUsuario": {
+                    "titulo": "Error",
+                    "mensaje": "Error while modifying the user"
+                },
+                "buscarUsuario": {
+                    "titulo": "Error",
+                    "mensaje": "Error while searching for the user"
+                },
+                "borrarUsuario": {
+                    "titulo": "Error",
+                    "mensaje": "Error while deleting the user"
+                },
+                "buscarRecetasFavoritas": {
+                    "titulo": "Error",
+                    "mensaje": "Error searching for the user favorite recipes"
+                },
+                "buscarMisIntolerancias": {
+                    "titulo": "Error",
+                    "mensaje": "Error searching for the user intolerancies"
+                },
+                "cambiarImagen": {
+                    "titulo": "Image not actualized",
+                    "mensaje": "An error happened while actualizing the image"
+                }
+            },
+            "exito": {
+                "cambiarImagen": {
+                    "titulo": "Image actualized",
+                    "mensaje": "Image actualized correctly"
+                },
+                "comentario": {
+                    "titulo": "Comment send",
+                    "mensaje": "Your comment will be checked by the assigned admin"
+                }
+            }
         },
         "filtros": {
             "intolerancias": "Intolerance filter",

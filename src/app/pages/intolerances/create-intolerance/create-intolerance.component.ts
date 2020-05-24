@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Intolerance } from 'src/app/models/intolerance.model';
 import { Etiqueta } from '../../../models/etiqueta.model';
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { TagsService, IntolerancesService } from '../../../service/service.index';
+import { TagsService, IntolerancesService, SwalService } from '../../../service/service.index';
 import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
 import Swal from 'sweetalert2';
 import { URL_SERVICIOS } from '../../../config/config';
@@ -29,7 +29,9 @@ export class CreateIntoleranceComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   @ViewChild('input', {static: false}) input: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
-  constructor(private fb: FormBuilder, public route: ActivatedRoute,  public tagsService: TagsService, public intoleranceService: IntolerancesService, public router: Router) { }
+  constructor(private fb: FormBuilder, public route: ActivatedRoute,
+              public tagsService: TagsService, public intoleranceService: IntolerancesService,
+              public router: Router, public swal: SwalService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -101,7 +103,7 @@ export class CreateIntoleranceComponent implements OnInit {
       return;
     }
     if (archivo.type.indexOf('image') < 0) {
-      Swal.fire('Error', 'El archivo seleccionado no es una imagen', 'error');
+      this.swal.crearSwal('comun.alertas.errores.noImagen', 'error');
       this.imgUpload = null;
       this.imgTemp = null;
       return;
@@ -116,11 +118,11 @@ export class CreateIntoleranceComponent implements OnInit {
 
   onSubmit() {
     if (this.imgUpload == null  && !this.modificando) {
-      Swal.fire('Error', 'Añada una imagen a la intolerancia', 'error');
+      this.swal.crearSwal('comun.alertas.errores.añadirImagen', 'error');
       return;
     }
     if (this.form.invalid) {
-      Swal.fire('Error', 'Complete todos los campos', 'error');
+      this.swal.crearSwal('comun.alertas.errores.completarCampos', 'error');
       return;
     }
     if (!this.modificando) {
@@ -227,7 +229,7 @@ export class CreateIntoleranceComponent implements OnInit {
     this.intoleranceService.añadirIntolerancia(this.intolerancia).subscribe((resp: any) => {
       this.intolerancia._id = resp._id;
       this.intoleranceService.cambiarImagen(this.intolerancia, this.imgUpload);
-      Swal.fire('Intolerancia añadida', 'La intolerancia se ha añadido correctamente', 'success');
+      this.swal.crearSwal('comun.alertas.exito.crearIntolerancia', 'success');
       this.router.navigate(['/intolerances']);
     });
   }
@@ -239,7 +241,7 @@ export class CreateIntoleranceComponent implements OnInit {
         this.intolerancia._id = resp._id;
         this.intoleranceService.cambiarImagen(this.intolerancia, this.imgUpload);
       }
-      Swal.fire('Intolerancia modificada', 'La intolerancia se ha modificado correctamente', 'success');
+      this.swal.crearSwal('comun.alertas.exito.modificarIntolerancia', 'success');
       this.router.navigate(['/intolerances']);
     });
   }

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { UsersService } from '../users/users.service';
-import Swal from 'sweetalert2';
+import { SwalService } from '../language/swal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
 
-  constructor( public usuarioService: UsersService, public router: Router ) {
+  constructor( public usuarioService: UsersService, public router: Router, public swal: SwalService) {
 
   }
 
@@ -16,7 +16,7 @@ export class LoginGuard implements CanActivate {
     if (this.usuarioService.estaLogueado()) {
       return true;
     } else {
-      Swal.fire('No ha iniciado sesión', 'Para realizar esta acción debe acceder desde un perfil válido', 'error');
+      this.swal.crearSwal('comun.alertas.errores.noSesion', 'error');
       this.router.navigate(['/home']);
       return false;
     }

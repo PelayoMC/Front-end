@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsersService } from '../service/service.index';
+import { UsersService, SwalService } from '../service/service.index';
 import { Usuario } from '../models/usuario.model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   forma: FormGroup;
 
 
-  constructor(public userService: UsersService, public router: Router) { }
+  constructor(public userService: UsersService, public router: Router, public swal: SwalService) { }
 
   ngOnInit() {
     init_plugins();
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     }
 
     if (!this.forma.value.condiciones) {
-      Swal.fire('Importante', 'Debe aceptar las condiciones', 'warning');
+      this.swal.crearSwal('comun.alertas.avisos.condiciones', 'warning');
       return;
     }
 
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
     );
 
     this.userService.crearUsuario(usuario).subscribe(resp => {
-      Swal.fire('Usuario creado', 'Inicie sesión en la aplicación', 'success');
+      this.swal.crearSwal('comun.alertas.exito.crearUsuarioRegister', 'success');
       this.router.navigate(['/login']);
     });
   }

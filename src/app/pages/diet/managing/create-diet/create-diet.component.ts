@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsersService, DietService, ModalCreateDietService } from 'src/app/service/service.index';
+import { UsersService, DietService, ModalCreateDietService, SwalService } from 'src/app/service/service.index';
 import { Usuario } from '../../../../models/usuario.model';
 import { Recipe } from '../../../../models/recipe.model';
 import * as data from '../../diets.data';
@@ -12,7 +12,9 @@ import Swal from 'sweetalert2';
 })
 export class CreateDietComponent implements OnInit {
 
-  constructor(public activatedRoute: ActivatedRoute, public usuarioService: UsersService, public dietaService: DietService, public router: Router, public modalService: ModalCreateDietService) { }
+  constructor(public activatedRoute: ActivatedRoute, public usuarioService: UsersService,
+              public dietaService: DietService, public router: Router,
+              public modalService: ModalCreateDietService, public swal: SwalService) { }
 
   usuarioReceta: Usuario;
 
@@ -94,7 +96,7 @@ export class CreateDietComponent implements OnInit {
           mensaje: 'Un administrador le ha asignado una dieta'
         });
         this.usuarioService.modificarUsuario(this.usuarioReceta).subscribe(resp => {
-          Swal.fire('Dieta creada correctamente', 'Se comunicará al usuario que su dieta está creada', 'success');
+          this.swal.crearSwal('comun.alertas.exito.dietaCreada', 'success');
           this.router.navigate(['diet/managing']);
         });
       });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { RecipesService, IngredientsService, UsersService, VotingService, ModalVoteServiceService } from '../../../service/service.index';
+import { RecipesService, IngredientsService, UsersService, VotingService, ModalVoteServiceService, SwalService } from '../../../service/service.index';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Votacion } from '../../../models/votacion.model';
 import { Recipe } from 'src/app/models/recipe.model';
@@ -35,12 +35,13 @@ export class RecipeComponent implements OnInit {
   puntuacion: number;
   puntuacionesTotales: number;
 
-  constructor( private activatedRoute: ActivatedRoute , private location: Location, private recipesService: RecipesService, public ingsService: IngredientsService,
-               public router: Router, public usuarioService: UsersService, public voteService: VotingService, public modalService: ModalVoteServiceService) {
+  constructor(private activatedRoute: ActivatedRoute , private location: Location, private recipesService: RecipesService,
+              public ingsService: IngredientsService, public router: Router, public usuarioService: UsersService,
+              public voteService: VotingService, public modalService: ModalVoteServiceService, public swal: SwalService) {
     this.activatedRoute.params.subscribe(params => {
       this.recipesService.getRecipe(params['id']).subscribe((resp) => {
         if (resp.length === 0) {
-          Swal.fire('Error', 'Error al cargar la receta', 'error');
+          this.swal.crearSwal('comun.alertas.errores.noCargaReceta', 'error');
           this.router.navigate(['recipes']);
         } else {
           this.cargarReceta(resp[0]);

@@ -4,11 +4,11 @@ import {
   AdminGuard,
   LoginGuard,
   VerifyTokenGuard,
-  AuthService,
   DietService,
   IngredientsService,
   IntolerancesService,
   LanguageService,
+  SwalService,
   ModalCreateDietService,
   ModalCommentDietService,
   ModalCreateUserService,
@@ -23,8 +23,7 @@ import {
   UploadImageService,
   UsersService,
   SustValidatorService,
-  VotingService,
-  GeneralServiceService
+  VotingService
 } from './service.index';
 
 
@@ -38,11 +37,11 @@ import {
     AdminGuard,
     LoginGuard,
     VerifyTokenGuard,
-    AuthService,
     DietService,
     IngredientsService,
     IntolerancesService,
     LanguageService,
+    SwalService,
     ModalCreateDietService,
     ModalCommentDietService,
     ModalCreateUserService,
@@ -57,8 +56,7 @@ import {
     UploadImageService,
     UsersService,
     SustValidatorService,
-    VotingService,
-    GeneralServiceService
+    VotingService
   ]
 })
 export class ServiceModule { }

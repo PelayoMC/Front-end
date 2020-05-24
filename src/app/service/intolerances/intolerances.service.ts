@@ -4,15 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Intolerance } from '../../models/intolerance.model';
 import { UploadImageService } from '../upload/upload-image.service';
-import Swal from 'sweetalert2';
 import { throwError } from 'rxjs';
+import { SwalService } from '../language/swal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IntolerancesService {
 
-  constructor(public http: HttpClient, public uploadService: UploadImageService) { }
+  constructor(public http: HttpClient, public uploadService: UploadImageService, public swal: SwalService) { }
 
   obtenerAllInto() {
     let url = URL_SERVICIOS + '/intolerancia';
@@ -73,7 +73,7 @@ export class IntolerancesService {
         return resp.intolerancia;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al crear la intolerancia', 'error');
+        this.swal.crearSwal('comun.alertas.errores.crearIntolerancia', 'error');
         return throwError(err);
       })
     );
@@ -87,7 +87,7 @@ export class IntolerancesService {
         return resp.intolerancia;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al modificar la intolerancia', 'error');
+        this.swal.crearSwal('comun.alertas.errores.modificarIntolerancia', 'error');
         return throwError(err);
       })
     );
@@ -101,7 +101,7 @@ export class IntolerancesService {
         return resp.intolerancia;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al borrar la intolerancia', 'error');
+        this.swal.crearSwal('comun.alertas.errores.borrarIntolerancia', 'error');
         return throwError(err);
       })
     );
@@ -111,7 +111,7 @@ export class IntolerancesService {
     this.uploadService.subirArchivo(file, 'intolerancias', intolerancia._id).then( (resp: any) => {
       intolerancia.imagen = JSON.parse(resp).intolerancia.imagen;
     }).catch(err => {
-      Swal.fire('Error', 'Error al cambiar la imagen a la intolerancia', 'error');
+      this.swal.crearSwal('comun.alertas.errores.cambiarImagenIntolerancia', 'error');
     });
   }
 }

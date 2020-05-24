@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsersService, DietService, ModalFeedbackService } from 'src/app/service/service.index';
+import { UsersService, DietService, ModalFeedbackService, SwalService } from 'src/app/service/service.index';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,7 +13,8 @@ export class ModalFeedbackComponent implements OnInit {
   @Input() dieta: any;
   @Output() created = new EventEmitter();
 
-  constructor(public dietaService: DietService, public userService: UsersService, public modalService: ModalFeedbackService) { }
+  constructor(public dietaService: DietService, public userService: UsersService,
+              public modalService: ModalFeedbackService, public swal: SwalService) { }
 
   ngOnInit() {
   }
@@ -46,7 +47,7 @@ export class ModalFeedbackComponent implements OnInit {
       this.dieta.feedback = this.feedback;
       this.dietaService.modificarFeedbackDieta(this.dieta).subscribe(resp => {
         this.cerrarModal(form);
-        Swal.fire('Feedback enviado', 'Se ha enviado un comentario de feedback a la dieta', 'success');
+        this.swal.crearSwal('comun.alertas.exito.feedback', 'success');
         this.created.emit();
       });
     });

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { UsersService, RecipesService, VotingService } from '../../../service/service.index';
+import { UsersService, RecipesService, VotingService, SwalService } from '../../../service/service.index';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +15,8 @@ export class RecipeCardComponent implements OnInit {
   @Output() recetaSeleccionada: EventEmitter<number>;
   @Output() cargar: EventEmitter<number>;
 
-  constructor( private router: Router, public userService: UsersService, public recipesService: RecipesService, public voteService: VotingService) {
+  constructor(private router: Router, public userService: UsersService, public recipesService: RecipesService,
+              public voteService: VotingService, public swal: SwalService) {
     this.recetaSeleccionada = new EventEmitter();
     this.cargar = new EventEmitter();
    }
@@ -39,7 +40,7 @@ export class RecipeCardComponent implements OnInit {
     const us = this.userService.usuario.value;
     us.recetasFavoritas.push(receta._id);
     this.userService.modificarUsuario(us).subscribe(resp => {
-      Swal.fire('Receta añadida', 'Receta añadida a favoritos correctamente', 'success');
+      this.swal.crearSwal('comun.alertas.exito.añadirRecetaFav', 'success');
       this.cargar.emit(this.receta._id);
     });
   }
@@ -72,7 +73,7 @@ export class RecipeCardComponent implements OnInit {
           this.voteService.borrarVotacion(receta._id).subscribe(resp => {
             this.userService.usuario.value.recetasFavoritas = this.userService.usuario.value.recetasFavoritas.filter(el => el !== receta._id);
             this.userService.modificarUsuario(this.userService.usuario.value).subscribe(resp => {
-              Swal.fire('Receta borrada', 'Receta borrada correctamente', 'success');
+              this.swal.crearSwal('comun.alertas.exito.añadirRecetaFav', 'success');
               this.cargar.emit(this.receta._id);
             });
           });

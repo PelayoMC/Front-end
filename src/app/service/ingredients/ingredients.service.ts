@@ -4,15 +4,15 @@ import { IngredientRecipe } from 'src/app/models/recipe.model';
 import { map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Ingredient } from '../../models/ingredient.model';
-import Swal from 'sweetalert2';
 import { throwError } from 'rxjs';
+import { SwalService } from '../language/swal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IngredientsService {
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public swal: SwalService) { }
 
   obtenerIngsRecipe(ingredientes: IngredientRecipe[]) {
     const send = {
@@ -47,7 +47,7 @@ export class IngredientsService {
         return resp;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al buscar los ingredientes', 'error');
+        this.swal.crearSwal('comun.alertas.errores.buscarIngredientes', 'error');
         return throwError(err);
       })
     );
@@ -61,7 +61,7 @@ export class IngredientsService {
         return resp.ingrediente;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al modificar el ingrediente', 'error');
+        this.swal.crearSwal('comun.alertas.errores.modificarIngrediente', 'error');
         return throwError(err);
       })
     );
@@ -75,11 +75,11 @@ export class IngredientsService {
     url += '?token=' + localStorage.token;
     return this.http.put(url, n).pipe(
       map( (resp: any) => {
-        Swal.fire('Ingrediente modificado', 'El ingrediente ha sido modificado correctamente', 'success');
+        this.swal.crearSwal('comun.alertas.exito.modificarIngrediente', 'success');
         return resp.recetas;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al modificar el ingrediente en las recetas', 'error');
+        this.swal.crearSwal('comun.alertas.errores.modificarIngredienteRecetas', 'error');
         return throwError(err);
       })
     );
@@ -91,14 +91,14 @@ export class IngredientsService {
     return this.http.delete(url).pipe(
       map(  (resp: any) => {
         if (resp.ingrediente.nombre === ingrediente.nombre) {
-          Swal.fire('Ingrediente borrado', 'El ingrediente ha sido borrado correctamente', 'success');
+          this.swal.crearSwal('comun.alertas.exito.borrarIngrediente', 'success');
         } else {
-          Swal.fire('Ingrediente no borrado', 'El ingrediente no se ha podido borrar correctamente', 'error');
+          this.swal.crearSwal('comun.alertas.errores.borrarIngrediente', 'error');
         }
         return resp.ingrediente;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al borrar el ingrediente', 'error');
+        this.swal.crearSwal('comun.alertas.errores.borrarIngrediente', 'error');
         return throwError(err);
       })
     );
@@ -109,14 +109,14 @@ export class IngredientsService {
     return this.http.delete(url).pipe(
       map(  (resp: any) => {
         if (resp.ingredientes.deletedCount === 0) {
-          Swal.fire('No se puede borrar', 'No hay ingredientes que borrar', 'error');
+          this.swal.crearSwal('comun.alertas.errores.noIngredientes', 'error');
         } else {
-          Swal.fire('Ingredientes borrados', 'Los ingredientes han sido borrados correctamente', 'success');
+          this.swal.crearSwal('comun.alertas.exito.borrarIngredientes', 'success');
         }
         return resp.ingredientes;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al borrar los ingredientes', 'error');
+        this.swal.crearSwal('comun.alertas.errores.borrarIngredientes', 'error');
         return throwError(err);
       })
     );
@@ -129,7 +129,7 @@ export class IngredientsService {
         return resp.resp;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al cargar las recetas', 'error');
+        this.swal.crearSwal('comun.alertas.errores.cargarRecetas', 'error');
         return throwError(err);
       })
     );
@@ -158,7 +158,7 @@ export class IngredientsService {
         return resp.etiquetas;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al cargar las etiquetas', 'error');
+        this.swal.crearSwal('comun.alertas.errores.cargarEtiquetas', 'error');
         return throwError(err);
       })
     );

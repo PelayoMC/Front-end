@@ -14,7 +14,342 @@
     },
     "comun": {
         "alertas": {
-            "sesion": "Error al iniciar sesión"
+            "borrado": {
+                "feedback": {
+                    "titulo": "¿Borrar mensaje?",
+                    "mensaje": "Está a punto de borrar el mensaje del administrador traducido"
+                },
+                "ingrediente": {
+                    "titulo": "¿Borrar ingrediente?",
+                    "mensaje": "¿Desea borrar todos los ingredientes sin receta?"
+                },
+                "botones": {
+                    "cancelar": "Cancelar",
+                    "borrar": "Borrar"
+                }
+            },
+            "avisos": {
+                "condiciones": {
+                    "titulo": "Importante",
+                    "mensaje": "Debe aceptar las condiciones"
+                },
+                "sesionExpirada": {
+                    "titulo": "Sesión expirada",
+                    "mensaje": "La sesión de usuario ha expirado. Vuelva a iniciar sesión"
+                }
+            },
+            "errores": {
+                "sesion": {
+                    "titulo": "Error de sesión",
+                    "mensaje": "Credenciales incorrectas"
+                },
+                "sesionGoogle": {
+                    "titulo": "Error de sesión",
+                    "mensaje": "El inicio de sesión con google no ha sido posible"
+                },
+                "renovarToken": {
+                    "titulo": "Error de sesión",
+                    "mensaje": "No se ha podido renovar la sesión de usuario"
+                },
+                "noSesion": {
+                    "titulo": "No ha iniciado sesión",
+                    "mensaje": "Para realizar esta acción debe acceder desde un perfil válido"
+                },
+                "noAdmin": {
+                    "titulo": "Permiso denegado",
+                    "mensaje": "No puede acceder a esta página porque no es administrador"
+                },
+                "actualizarUsuario": {
+                    "titulo": "No se puede actualizar el usuario",
+                    "mensaje": "Esta acción no está permitida para sí mismo"
+                },
+                "crearUsuario": {
+                    "titulo": "Error",
+                    "mensaje": "Utilice un email distinto"
+                },
+                "modificarUsuario": {
+                    "titulo": "Error",
+                    "mensaje": "Error al modificar al usuario"
+                },
+                "buscarUsuario": {
+                    "titulo": "Error",
+                    "mensaje": "Error al buscar al usuario"
+                },
+                "borrarUsuario": {
+                    "titulo": "Error",
+                    "mensaje": "Error al borrar al usuario"
+                },
+                "borrarUsuarioPropio": {
+                    "titulo": "Error",
+                    "mensaje": "Un usuario no puede borrarse a sí mismo"
+                },
+                "buscarRecetasFavoritas": {
+                    "titulo": "Error",
+                    "mensaje": "Error al buscar las recetas favoritas del usuario"
+                },
+                "buscarMisIntolerancias": {
+                    "titulo": "Error",
+                    "mensaje": "Error al buscar las intolerancias del usuario"
+                },
+                "cambiarImagen": {
+                    "titulo": "Imagen no actualizada",
+                    "mensaje": "Ha ocurrido un error al actualizar la imagen"
+                },
+                "cambiarImagenPropia": {
+                    "titulo": "Error",
+                    "mensaje": "Cambie su imagen desde su perfil de usuario"
+                },
+                "noImagen": {
+                    "titulo": "Error",
+                    "mensaje": "El archivo seleccionado no es una imagen"
+                },
+                "noImagenAñadida": {
+                    "titulo": "Error",
+                    "mensaje": "No se ha elegido ninguna imagen"
+                },
+                "añadirImagen": {
+                    "titulo": "Error",
+                    "mensaje": "Añada una imagen al formulario"
+                },
+                "completarCampos": {
+                    "titulo": "Error",
+                    "mensaje": "Complete todos los campos del formulario"
+                },
+                "eliminarIntolerancia": {
+                    "titulo": "Intolerancia no eliminada",
+                    "mensaje": "No se ha podido eliminar de mis intolerancias"
+                },
+                "noIngredientesDuplicados": {
+                    "titulo": "Error",
+                    "mensaje": "No se permite añadir ingredientes duplicados"
+                },
+                "noIngredientePrincipal": {
+                    "titulo": "Error de receta",
+                    "mensaje": "La receta debe tener al menos un ingrediente principal"
+                },
+                "noEliminarRecetaFav": {
+                    "titulo": "Receta no eliminada",
+                    "mensaje": "No se ha podido eliminar de favoritos"
+                },
+                "noCargaReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al cargar la receta"
+                },
+                "crearIngrediente": {
+                    "titulo": "Error",
+                    "mensaje": "Error al crear el ingrediente"
+                },
+                "modificarIngrediente": {
+                    "titulo": "Error",
+                    "mensaje": "Error al modificar el ingrediente"
+                },
+                "modificarIngredienteRecetas": {
+                    "titulo": "Error",
+                    "mensaje": "Error al modificar el ingrediente en las recetas"
+                },
+                "buscarIngredientes": {
+                    "titulo": "Error",
+                    "mensaje": "Error al buscar los ingredientes"
+                },
+                "borrarIngrediente": {
+                    "titulo": "Error",
+                    "mensaje": "Error al borrar el ingrediente"
+                },
+                "borrarIngredientes": {
+                    "titulo": "Error",
+                    "mensaje": "Error al borrar los ingredientes"
+                },
+                "noIngredientes": {
+                    "titulo": "No se puede borrar",
+                    "mensaje": "No hay ingredientes que borrar"
+                },
+                "cargarRecetas": {
+                    "titulo": "Error",
+                    "mensaje": "Error al cargar las recetas"
+                },
+                "cargarEtiquetas": {
+                    "titulo": "Error",
+                    "mensaje": "Error al cargar las etiquetas"
+                },
+                "crearIntolerancia": {
+                    "titulo": "Error",
+                    "mensaje": "Error al crear la intolerancia"
+                },
+                "modificarIntolerancia": {
+                    "titulo": "Error",
+                    "mensaje": "Error al modificar la intolerancia"
+                },
+                "borrarIntolerancia": {
+                    "titulo": "Error",
+                    "mensaje": "Error al borrar la intolerancia"
+                },
+                "cambiarImagenIntolerancia": {
+                    "titulo": "Error",
+                    "mensaje": "Error al cambiar la imagen a la intolerancia"
+                },
+                "cargarReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al cargar la receta"
+                },
+                "guardarIngredientes": {
+                    "titulo": "Error",
+                    "mensaje": "Error al guardar los ingredientes"
+                },
+                "crearReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al crear la receta"
+                },
+                "modificarReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al modificar la receta"
+                },
+                "cambiarImagenReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al cambiar la imagen a la receta"
+                },
+                "borrarReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al borrar la receta"
+                },
+                "borrarRecetas": {
+                    "titulo": "Error",
+                    "mensaje": "Error al borrar las recetas"
+                },
+                "crearEtiqueta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al crear la etiqueta"
+                },
+                "modificarEtiqueta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al modificar la etiqueta"
+                },
+                "borrarEtiqueta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al borrar la etiqueta"
+                },
+                "obtenerVotacion": {
+                    "titulo": "Error",
+                    "mensaje": "Error al obtener la votación"
+                },
+                "crearVotacion": {
+                    "titulo": "Error",
+                    "mensaje": "Error al crear la votación"
+                },
+                "modificarVotacion": {
+                    "titulo": "Error",
+                    "mensaje": "Error al modificar la votación"
+                },
+                "borrarVotacion": {
+                    "titulo": "Error",
+                    "mensaje": "Error al borrar la votación"
+                }
+            },
+            "exito": {
+                "cambiarImagen": {
+                    "titulo": "Imagen actualizada",
+                    "mensaje": "Imagen actualizada correctamente"
+                },
+                "comentario": {
+                    "titulo": "Comentario enviado",
+                    "mensaje": "Su comentario será comprobado por el administrador asociado"
+                },
+                "crearUsuario": {
+                    "titulo": "Usuario creado",
+                    "mensaje": "El usuario ha sido añadido al sistema correctamente"
+                },
+                "modificarUsuario": {
+                    "titulo": "Usuario modificado",
+                    "mensaje": "El usuario ha sido modificado correctamente en el sistema"
+                },
+                "crearUsuarioRegister": {
+                    "titulo": "Usuario creado",
+                    "mensaje": "Inicie sesión con sus credenciales"
+                },
+                "feedback": {
+                    "titulo": "Feedback enviado",
+                    "mensaje": "Se ha enviado un comentario de feedback a la dieta"
+                },
+                "dietaSolicitada": {
+                    "titulo": "Dieta solicitada",
+                    "mensaje": "Su dieta será creada por un administrador disponible"
+                },
+                "dietaCreada": {
+                    "titulo": "Dieta creada",
+                    "mensaje": "Se comunicará al usuario que su dieta está creada"
+                },
+                "mensajeAdminBorrado": {
+                    "titulo": "Mensaje eliminado",
+                    "mensaje": "El mensaje del administrador ha sido eliminado"
+                },
+                "añadirIntolerancia": {
+                    "titulo": "Intolerancia añadida",
+                    "mensaje": "Intolerancia añadida a mis intolerancias correctamente"
+                },
+                "crearIntolerancia": {
+                    "titulo": "Intolerancia creada",
+                    "mensaje": "Intolerancia creada correctamente"
+                },
+                "modificarIntolerancia": {
+                    "titulo": "Intolerancia añadida",
+                    "mensaje": "Intolerancia añadida a mis intolerancias correctamente"
+                },
+                "eliminarIntolerancia": {
+                    "titulo": "Intolerancia eliminada",
+                    "mensaje": "Intolerancia eliminada de mis intolerancias correctamente"
+                },
+                "modificarIngrediente": {
+                    "titulo": "Ingrediente modificado",
+                    "mensaje": "El ingrediente ha sido modificado correctamente"
+                },
+                "borrarIngrediente": {
+                    "titulo": "Ingrediente borrado",
+                    "mensaje": "El ingrediente ha sido borrado correctamente"
+                },
+                "borrarIngredientes": {
+                    "titulo": "Ingredientes borrados",
+                    "mensaje": "Los ingredientes han sido borrados correctamente"
+                },
+                "ingsYTagsAñadidos": {
+                    "titulo": "Elementos añadidos",
+                    "mensaje": "Ingredientes y etiquetas añadidos a la receta"
+                },
+                "eliminarRecetaFav": {
+                    "titulo": "Receta eliminada",
+                    "mensaje": "Receta eliminada de favoritos correctamente"
+                },
+                "añadirRecetaFav": {
+                    "titulo": "Receta añadida",
+                    "mensaje": "Receta añadida a favoritos correctamente"
+                },
+                "crearReceta": {
+                    "titulo": "Receta creada",
+                    "mensaje": "Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes"
+                },
+                "modificarReceta": {
+                    "titulo": "Receta modificada",
+                    "mensaje": "Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes"
+                },
+                "borrarReceta": {
+                    "titulo": "Receta borrada",
+                    "mensaje": "Receta borrada correctamente"
+                },
+                "crearEtiqueta": {
+                    "titulo": "Etiqueta creada",
+                    "mensaje": "La etiqueta ha sido creada correctamente"
+                },
+                "modificarEtiqueta": {
+                    "titulo": "Etiqueta modificada",
+                    "mensaje": "La etiqueta ha sido modificada correctamente"
+                },
+                "modificarVotacion": {
+                    "titulo": "Votación añadida",
+                    "mensaje": "Su votación se ha añadido correctamente"
+                },
+                "borrarVotacion": {
+                    "titulo": "Votación borrada",
+                    "mensaje": "La votación se ha borrado correctamente"
+                }
+            }
         },
         "filtros": {
             "intolerancias": "Filtro de intolerancias",

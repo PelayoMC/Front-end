@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService, RecipesService, DietService, ModalCommentDietService } from 'src/app/service/service.index';
+import { UsersService, RecipesService, DietService, ModalCommentDietService, SwalService } from 'src/app/service/service.index';
 import { Recipe } from 'src/app/models/recipe.model';
 import { Dieta } from 'src/app/models/dieta.model';
 import { URL_SERVICIOS } from 'src/app/config/config';
@@ -20,7 +20,9 @@ export class TrackingComponent implements OnInit {
   diaActual = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
   cargando = true;
 
-  constructor(public userService: UsersService, public recipesService: RecipesService, public dietService: DietService, public modalService: ModalCommentDietService, public router: Router) { }
+  constructor(public userService: UsersService, public recipesService: RecipesService,
+              public dietService: DietService, public modalService: ModalCommentDietService,
+              public router: Router, public swal: SwalService) { }
 
   ngOnInit() {
     const search = [];
@@ -68,21 +70,12 @@ export class TrackingComponent implements OnInit {
   }
 
   borrarFeedback() {
-    Swal.fire({
-      title: '¿Borrar mensaje?',
-      text: 'Está a punto de borrar el mensaje del administrador',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Borrar',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this.dieta.feedback = null;
-        this.dietService.modificarFeedbackDieta(this.dieta).subscribe((resp: any) => {
-          Swal.fire('Mensaje eliminado', 'El mensaje del administrador ha sido eliminado', 'success');
-        });
-      }
+    this.swal.crearSwalBorrar('comun.alertas.borrado.feedback',
+    () => {
+      this.dieta.feedback = null;
+      this.dietService.modificarFeedbackDieta(this.dieta).subscribe((resp: any) => {
+        this.swal.crearSwal('comun.alertas.exito.mensajeAdminBorrado', 'success');
+      });
     });
   }
 

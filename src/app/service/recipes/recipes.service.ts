@@ -6,15 +6,15 @@ import { Router } from '@angular/router';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import Swal from 'sweetalert2';
-import { AuthService } from '../auth/auth.service';
 import { UsersService } from '../users/users.service';
+import { SwalService } from '../language/swal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesService {
-  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService, public auth: AuthService, public userService: UsersService) { }
+  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService,
+              public userService: UsersService, public swal: SwalService) { }
 
   getRecipe(idx: string){
     let url = URL_SERVICIOS + '/receta/' + idx;
@@ -23,7 +23,7 @@ export class RecipesService {
         return resp.receta;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al cargar la receta', 'error');
+        this.swal.crearSwal('comun.alertas.errores.cargarReceta', 'error');
         return throwError(err.message);
       })
     );
@@ -69,7 +69,7 @@ export class RecipesService {
         return resp.receta;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al guardar los ingrediente', 'error');
+        this.swal.crearSwal('comun.alertas.errores.guardarIngredientes', 'error');
         return throwError(err);
       })
     );
@@ -106,13 +106,11 @@ export class RecipesService {
     url += '?token=' + localStorage.token;
     return this.http.post(url, receta).pipe(
       map( (resp: any) => {
-        Swal.fire('Receta creada',
-        'Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes',
-        'success');
+        this.swal.crearSwal('comun.alertas.exito.crearReceta', 'success');
         return resp.receta;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al crear la receta', 'error');
+        this.swal.crearSwal('comun.alertas.errores.crearReceta', 'error');
         return throwError(err);
       })
     );
@@ -123,13 +121,11 @@ export class RecipesService {
     url += '?token=' + localStorage.token;
     return this.http.put(url, receta).pipe(
       map( (resp: any) => {
-        Swal.fire('Receta modificada',
-        'Se procederá a añadir etiquetas e ingredientes sustituibles a los ingredientes',
-        'success');
+        this.swal.crearSwal('comun.alertas.exito.modificarReceta', 'success');
         return resp.receta;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al modificar la receta', 'error');
+        this.swal.crearSwal('comun.alertas.errores.modificarReceta', 'error');
         return throwError(err);
       })
     );
@@ -139,7 +135,7 @@ export class RecipesService {
     this.uploadService.subirArchivo(file, 'recetas', receta._id).then( (resp: any) => {
       receta.imagen = JSON.parse(resp).receta.imagen;
     }).catch(err => {
-      Swal.fire('Error', 'Error al cambiar la imagen a la receta', 'error');
+      this.swal.crearSwal('comun.alertas.errores.cambiarImagenReceta', 'error');
     });
   }
 
@@ -151,7 +147,7 @@ export class RecipesService {
         return resp.receta;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al borrar la receta', 'error');
+        this.swal.crearSwal('comun.alertas.errores.borrarReceta', 'error');
         return throwError(err);
       })
     );
@@ -168,7 +164,7 @@ export class RecipesService {
         return resp.recetas;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al borrar las recetas', 'error');
+        this.swal.crearSwal('comun.alertas.errores.borrarRecetas', 'error');
         return throwError(err);
       })
     );

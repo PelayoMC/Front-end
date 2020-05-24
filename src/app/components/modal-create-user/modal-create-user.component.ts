@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ModalCreateUserService } from '../../service/service.index';
+import { ModalCreateUserService, SwalService } from '../../service/service.index';
 import { UsersService } from '../../service/users/users.service';
 import { Usuario } from '../../models/usuario.model';
 import { NgForm } from '@angular/forms';
@@ -18,7 +18,8 @@ export class ModalCreateUserComponent implements OnInit {
 
   @Output() created = new EventEmitter();
 
-  constructor(public modalCreateUser: ModalCreateUserService, public userService: UsersService, public router: Router) { }
+  constructor(public modalCreateUser: ModalCreateUserService, public userService: UsersService,
+              public router: Router, public swal: SwalService) { }
 
   ngOnInit() {
     this.usuario = this.userService.usuario.value;
@@ -41,7 +42,7 @@ export class ModalCreateUserComponent implements OnInit {
 
   crearUsuario(form: NgForm) {
     if (form.form.valid) {
-      let user = new Usuario(
+      const user = new Usuario(
         form.form.value.nombre,
         form.form.value.email,
         form.form.value.password,
@@ -51,7 +52,7 @@ export class ModalCreateUserComponent implements OnInit {
         null
       );
       this.userService.crearUsuario(user).subscribe((resp: any) => {
-        Swal.fire('Usuario creado', resp.email, 'success');
+        this.swal.crearSwal('comun.alertas.exito.crearUsuario', 'success');
         this.ocultarModal();
         this.created.emit();
       }, err => this.cerrarModal(form));
@@ -59,7 +60,7 @@ export class ModalCreateUserComponent implements OnInit {
   }
 
   checkPass(form: NgForm) {
-    if (form.form.value['password'] === form.form.value['password2']) {
+    if (form.form.value.password === form.form.value.password2) {
       this.passEqual = true;
     } else {
       this.passEqual = false;

@@ -4,6 +4,7 @@ import { UploadImageService } from '../../service/upload/upload-image.service';
 import { ModalUploadService } from '../../service/modals/modal-upload.service';
 import { Usuario } from '../../models/usuario.model';
 import { UsersService } from '../../service/users/users.service';
+import { SwalService } from 'src/app/service/service.index';
 
 @Component({
   selector: 'app-modal-upload',
@@ -12,7 +13,8 @@ import { UsersService } from '../../service/users/users.service';
 export class ModalUploadComponent implements OnInit {
   imgUpload: any;
 
-  constructor(public carga: UploadImageService, public modalService: ModalUploadService, public userService: UsersService) { }
+  constructor(public carga: UploadImageService, public modalService: ModalUploadService,
+              public userService: UsersService, public swal: SwalService) { }
 
   ngOnInit() {
   }
@@ -20,12 +22,12 @@ export class ModalUploadComponent implements OnInit {
   upload() {
     this.carga.subirArchivo(this.imgUpload, this.modalService.tipo, this.modalService.id)
     .then( (resp: any) => {
-      Swal.fire('Imagen actualizada', 'La imagen se ha actualizado con éxito', 'success');
+      this.swal.crearSwal('comun.alertas.exito.cambiarImagen', 'success');
       this.modalService.notificacion.emit(resp);
       this.cerrarModal();
     }).catch( err => {
       this.cerrarModal();
-      Swal.fire('Imagen no actualizada', 'Error al actualizar la imagen', 'error');
+      this.swal.crearSwal('comun.alertas.errores.cambiarImagen', 'error');
     });
   }
 
@@ -41,7 +43,7 @@ export class ModalUploadComponent implements OnInit {
       return;
     }
     if (archivo.type.indexOf('image') < 0) {
-      Swal.fire('Error', 'El archivo seleccionado no es una imagen', 'error');
+      this.swal.crearSwal('comun.alertas.errores.noImagen', 'error');
       this.imgUpload = null;
       return;
     }

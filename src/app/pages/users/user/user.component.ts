@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../../service/service.index';
+import { UsersService, SwalService } from '../../../service/service.index';
 import { Usuario } from '../../../models/usuario.model';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
   imgUpload: any;
   imgTemp: string;
 
-  constructor(public userService: UsersService, public router: Router) { }
+  constructor(public userService: UsersService, public router: Router, public swal: SwalService) { }
 
   ngOnInit() {
     this.usuario = this.userService.usuario.value;
@@ -45,7 +45,7 @@ export class UserComponent implements OnInit {
       return;
     }
     if (archivo.type.indexOf('image') < 0) {
-      Swal.fire('Error', 'El archivo seleccionado no es una imagen', 'error');
+      this.swal.crearSwal('comun.alertas.errores.noImagen', 'error');
       this.imgUpload = null;
       return;
     }
@@ -101,7 +101,7 @@ export class UserComponent implements OnInit {
 
   modificar() {
     if (this.form.invalid) {
-      Swal.fire('Formulario incorrecto', 'Rellene todos los campos', 'error');
+      this.swal.crearSwal('comun.alertas.errores.completarCampos', 'error');
       return;
     }
 
@@ -114,7 +114,7 @@ export class UserComponent implements OnInit {
     }
 
     this.userService.modificarUsuario(this.usuario).subscribe(resp => {
-      Swal.fire('Usuario modificado', resp.email, 'success');
+      this.swal.crearSwal('comun.alertas.exito.modificarUsuario', 'success');
       this.swapForm();
       this.modificando = 'false';
       this.usuario = resp;

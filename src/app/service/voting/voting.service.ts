@@ -3,15 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import Swal from 'sweetalert2';
 import { Votacion } from 'src/app/models/votacion.model';
+import { SwalService } from '../language/swal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VotingService {
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public swal: SwalService) { }
 
   getVotingRecipe(id: string) {
     const url = URL_SERVICIOS + '/votacion/receta/' + id;
@@ -20,7 +20,7 @@ export class VotingService {
         return resp.votacion;
       }),
       catchError( err => {
-        Swal.fire('Error al obtener la votación', err.error.mensaje, 'error');
+        this.swal.crearSwal('comun.alertas.errores.obtenerVotacion', 'error');
         return throwError(err);
       })
     );
@@ -33,7 +33,7 @@ export class VotingService {
         return resp.votacion;
       }),
       catchError( err => {
-        Swal.fire('Error al obtener la votación', err.error.mensaje, 'error');
+        this.swal.crearSwal('comun.alertas.errores.obtenerVotacion', 'error');
         return throwError(err);
       })
     );
@@ -50,7 +50,7 @@ export class VotingService {
         return resp;
       }),
       catchError( err => {
-        Swal.fire('Error al crear la votación', err.error.mensaje, 'error');
+        this.swal.crearSwal('comun.alertas.errores.crearVotacion', 'error');
         return throwError(err);
       })
     );
@@ -61,11 +61,11 @@ export class VotingService {
     url += '?token=' + localStorage.token;
     return this.http.put(url, votacion).pipe(
       map( (resp: any) => {
-        Swal.fire('Votación añadida', 'Su votación se ha añadido correctamente', 'success');
+        this.swal.crearSwal('comun.alertas.exito.modificarVotacion', 'success');
         return resp;
       }),
       catchError( err => {
-        Swal.fire('Error al modificar la votación', err.error.mensaje, 'error');
+        this.swal.crearSwal('comun.alertas.errores.modificarVotacion', 'error');
         return throwError(err);
       })
     );
@@ -76,11 +76,11 @@ export class VotingService {
     url += '?token=' + localStorage.token;
     return this.http.delete(url).pipe(
       map( (resp: any) => {
-        Swal.fire('Votación borrada', 'La votación se ha borrado correctamente', 'success');
+        this.swal.crearSwal('comun.alertas.exito.borrarVotacion', 'success');
         return resp;
       }),
       catchError( err => {
-        Swal.fire('Error al borrar la votación', err.error.mensaje, 'error');
+        this.swal.crearSwal('comun.alertas.errores.borrarVotacion', 'error');
         return throwError(err);
       })
     );

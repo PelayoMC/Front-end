@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-// Para evitar dependencias circulares, no importar del service.index
-import { AuthService } from '../auth/auth.service';
 import { UploadImageService } from '../upload/upload-image.service';
 import { Usuario } from '../../models/usuario.model';
 import { Router } from '@angular/router';
@@ -10,7 +8,7 @@ import { URL_SERVICIOS } from '../../config/config';
 import { BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import Swal from 'sweetalert2';
+import { SwalService } from '../language/swal.service';
 
 
 @Injectable({
@@ -21,7 +19,7 @@ export class UsersService {
   usuario: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(new Usuario());
   token: string;
 
-  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService, public auth: AuthService) {
+  constructor(public http: HttpClient, public router: Router, public uploadService: UploadImageService, public swal: SwalService) {
     this.cargarStorage();
   }
 
@@ -40,7 +38,7 @@ export class UsersService {
       }
     ), catchError(err => {
       this.router.navigate(['/login']);
-      Swal.fire('No se pudo renovar token', 'No se ha podido renovar el token de sesión de usuario', 'error');
+      this.swal.crearSwal('comun.alertas.errores.renovarToken', 'error');
       return throwError(err);
     }));
   }
@@ -78,7 +76,8 @@ export class UsersService {
       }
     ),
     catchError( err => {
-      Swal.fire('Error', 'Error usar el login de google', 'error');
+      this.swal.crearSwal('comun.alertas.errores.sesionGoogle', 'error');
+      this.logout('login');
       return throwError(err);
     }));
   }
@@ -97,15 +96,8 @@ export class UsersService {
         return resp.id;
       }),
       catchError( err => {
-        if (this.auth.checkToken(err)) {
-          Swal.fire({
-            title: "{{ 'comun.alertas.sesion' | translate }}",
-            text: err.error.mensaje,
-            icon: 'error'
-          }); //err.error.mensaje
-        } else {
-          this.logout('login');
-        }
+        this.swal.crearSwal('comun.alertas.errores.sesion', 'error');
+        this.logout('login');
         return throwError(err);
       })
     );
@@ -144,11 +136,7 @@ export class UsersService {
         return resp.usuario;
       }),
       catchError( err => {
-        if (this.auth.checkToken(err)) {
-          Swal.fire(err.error.mensaje, 'Utilice un email distinto', 'error');
-        } else {
-          this.logout('login');
-        }
+        this.swal.crearSwal('comun.alertas.errores.crearUsuario', 'error');
         return throwError(err);
       })
     );
@@ -165,7 +153,7 @@ export class UsersService {
         return resp.usuario;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al modificar al usuario', 'error');
+        this.swal.crearSwal('comun.alertas.errores.modificarUsuario', 'error');
         return throwError(err);
       })
     );
@@ -196,7 +184,7 @@ export class UsersService {
         return resp;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al buscar los usuarios', 'error');
+        this.swal.crearSwal('comun.alertas.errores.buscarUsuario', 'error');
         return throwError(err);
       })
     );
@@ -209,7 +197,7 @@ export class UsersService {
         return resp.usuario;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al borrar al usuario', 'error');
+        this.swal.crearSwal('comun.alertas.errores.borrarUsuario', 'error');
         return throwError(err);
       })
     );
@@ -222,7 +210,7 @@ export class UsersService {
         return resp;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al buscar las recetas favoritas', 'error');
+        this.swal.crearSwal('comun.alertas.errores.buscarRecetasFavoritas', 'error');
         return throwError(err);
       })
     );
@@ -235,7 +223,7 @@ export class UsersService {
         return resp;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al buscar las intolerancias del usuario', 'error');
+        this.swal.crearSwal('comun.alertas.errores.buscarMisIntolerancias', 'error');
         return throwError(err);
       })
     );
@@ -245,9 +233,9 @@ export class UsersService {
     this.uploadService.subirArchivo(file, 'usuarios', id).then( (resp: any) => {
       this.usuario.value.imagen = JSON.parse(resp).usuario.imagen;
       this.guardarStorage(id, this.token, this.usuario.value);
-      Swal.fire('Imagen actualizada', this.usuario.value.email, 'success');
+      this.swal.crearSwal('comun.alertas.exito.cambiarImagen', 'success');
     }).catch( err => {
-      Swal.fire('Imagen no actualizada', this.usuario.value.email, 'error');
+      this.swal.crearSwal('comun.alertas.errores.cambiarImagen', 'error');
     });
   }
 

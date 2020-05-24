@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { IntolerancesService, UsersService } from '../../service/service.index';
+import { IntolerancesService, UsersService, SwalService } from '../../service/service.index';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { Intolerance } from 'src/app/models/intolerance.model';
 import Swal from 'sweetalert2';
@@ -21,7 +21,8 @@ export class IntolerancesComponent implements OnInit {
   limit = 4;
   total: number;
 
-  constructor(public intolerancesService: IntolerancesService, public userService: UsersService, public router: Router, public route: ActivatedRoute) { }
+  constructor(public intolerancesService: IntolerancesService, public userService: UsersService,
+              public router: Router, public route: ActivatedRoute, public swal: SwalService) { }
 
   ngOnInit() {
     this.cargando = true;
@@ -83,7 +84,7 @@ export class IntolerancesComponent implements OnInit {
     const us = this.userService.usuario.value;
     us.misIntolerancias.push(intolerancia._id);
     this.userService.modificarUsuario(us).subscribe(resp => {
-      Swal.fire('Intolerancia añadida', 'Intolerancia añadida a mis intolerancias correctamente', 'success');
+      this.swal.crearSwal('comun.alertas.exito.añadirIntolerancia', 'success');
       this.cargarIntolerancias();
     });
   }

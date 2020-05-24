@@ -1,8 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ModalCommentDietService } from '../../service/service.index';
+import { ModalCommentDietService, SwalService } from '../../service/service.index';
 import { NgForm } from '@angular/forms';
 import { DietService } from '../../service/diet/diet.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-comment-diet',
@@ -10,7 +9,7 @@ import Swal from 'sweetalert2';
 })
 export class ModalCommentDietComponent implements OnInit {
 
-  constructor(public dietService: DietService, public modalService: ModalCommentDietService) { }
+  constructor(public dietService: DietService, public modalService: ModalCommentDietService, public swal: SwalService) { }
 
   ngOnInit() {
   }
@@ -31,7 +30,7 @@ export class ModalCommentDietComponent implements OnInit {
       this.dietService.modificarDieta(this.modalService.dieta).subscribe(resp => {
         this.limpiarModal(form);
         this.cerrarModal(form);
-        Swal.fire('Comentario enviado', 'Su comentario será comprobado por el administrador asociado', 'success');
+        this.swal.crearSwal('comun.alertas.exito.comentario', 'success');
       }, err => this.cerrarModal(form));
     }
   }

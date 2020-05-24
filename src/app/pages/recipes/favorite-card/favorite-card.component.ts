@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { UsersService, RecipesService, VotingService } from 'src/app/service/service.index';
+import { UsersService, RecipesService, VotingService, SwalService } from 'src/app/service/service.index';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -14,7 +14,9 @@ export class FavoriteCardComponent implements OnInit {
   @Output() recetaSeleccionada: EventEmitter<number>;
   @Output() cargar: EventEmitter<number>;
 
-  constructor( private router: Router, public userService: UsersService, public recipesService: RecipesService, public voteService: VotingService) {
+  constructor(private router: Router, public userService: UsersService,
+              public recipesService: RecipesService, public voteService: VotingService,
+              public swal: SwalService) {
     this.recetaSeleccionada = new EventEmitter();
     this.cargar = new EventEmitter();
    }
@@ -42,11 +44,11 @@ export class FavoriteCardComponent implements OnInit {
         if (index > -1) {
           us.recetasFavoritas.splice(index, 1);
           this.userService.modificarUsuario(us).subscribe(resp => {
-            Swal.fire('Receta eliminada', 'Receta eliminada de favoritos correctamente', 'success');
+            this.swal.crearSwal('comun.alertas.errores.eliminarRecetaFav', 'success');
             this.cargar.emit(this.receta._id);
           });
         } else {
-          Swal.fire('Receta no eliminada', 'No se ha podido eliminar de favoritos', 'error');
+          this.swal.crearSwal('comun.alertas.errores.noEliminarRecetaFav', 'error');
         }
       }
     });

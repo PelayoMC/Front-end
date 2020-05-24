@@ -3,15 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { UsersService } from '../users/users.service';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { map } from 'rxjs/operators';
-import Swal from 'sweetalert2';
 import { Dieta } from '../../models/dieta.model';
+import { SwalService } from '../language/swal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DietService {
 
-  constructor(public http: HttpClient, public userService: UsersService) { }
+  constructor(public http: HttpClient, public userService: UsersService, public swal: SwalService) { }
 
   obtenerDietaId(id: string) {
     let url = URL_SERVICIOS + '/dieta/' + id;
@@ -75,7 +75,7 @@ export class DietService {
     url += '?token=' + localStorage.token;
     return this.http.post(url, us).pipe(
       map(  (resp: any) => {
-        Swal.fire('Dieta solicitada', 'Su dieta será creada por un experto', 'success');
+        this.swal.crearSwal('comun.alertas.exito.dietaSolicitada', 'success');
         return resp.dieta;
       })
     );

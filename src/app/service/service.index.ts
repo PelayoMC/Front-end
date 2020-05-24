@@ -1,14 +1,15 @@
+
 // Guards
 export { LoginGuard } from './guards/login.guard';
 export { VerifyTokenGuard } from './guards/verify-token.guard';
 export { AdminGuard } from './guards/admin.guard';
 
 // Servicios
-export { AuthService } from './auth/auth.service';
 export { DietService } from './diet/diet.service';
 export { IngredientsService } from './ingredients/ingredients.service';
 export { IntolerancesService } from './intolerances/intolerances.service';
 export { LanguageService } from './language/language.service';
+export { SwalService } from './language/swal.service';
 export { ModalCreateDietService } from './modals/modal-create-diet.service';
 export { ModalCommentDietService } from './modals/modal-comment-diet.service';
 export { ModalCreateUserService } from './modals/modal-create-user.service';
@@ -24,4 +25,3 @@ export { UploadImageService } from './upload/upload-image.service';
 export { UsersService } from './users/users.service';
 export { SustValidatorService } from './validators/sust-validator.service';
 export { VotingService } from './voting/voting.service';
-export { GeneralServiceService } from './general-service.service';

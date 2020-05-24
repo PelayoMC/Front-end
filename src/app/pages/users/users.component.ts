@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
-import { UsersService } from '../../service/service.index';
+import { UsersService, SwalService } from '../../service/service.index';
 import Swal from 'sweetalert2';
 import { ModalUploadService } from '../../service/modals/modal-upload.service';
 import { ModalCreateUserService } from '../../service/modals/modal-create-user.service';
@@ -18,7 +18,8 @@ export class UsersComponent implements OnInit {
   from: number = 0;
   total: number = 0;
 
-  constructor(public usuariosService: UsersService, public modalService: ModalUploadService, public modalUser: ModalCreateUserService) { }
+  constructor(public usuariosService: UsersService, public modalService: ModalUploadService,
+              public modalUser: ModalCreateUserService, public swal: SwalService) { }
 
   ngOnInit() {
     this.cargarUsuarios();
@@ -28,7 +29,7 @@ export class UsersComponent implements OnInit {
   mostrarModal(id: string, tipo: string, img: string, usuario: Usuario) {
     if (tipo === 'upload') {
       if (usuario.email === this.usuariosService.usuario.value.email) {
-        Swal.fire('Error', 'Cambie su imagen desde su perfil de usuario', 'error');
+        this.swal.crearSwal('comun.alertas.errores.cambiarImagenPropia', 'error');
       } else {
         this.modalService.mostrarModal('usuarios', id, img);
       }
@@ -85,7 +86,7 @@ export class UsersComponent implements OnInit {
 
   borrarUsuario(usuario: Usuario) {
     if (usuario._id === this.usuariosService.usuario.value._id) {
-      Swal.fire('No se puede borrar el usuario', 'No puede borrarse a sí mismo', 'error');
+      this.swal.crearSwal('comun.alertas.errores.borrarUsuarioPropio', 'error');
       return;
     }
     Swal.fire({
@@ -120,11 +121,11 @@ export class UsersComponent implements OnInit {
 
   actualizarUsuario(usuario: Usuario) {
     if (usuario._id === this.usuariosService.usuario.value._id) {
-      Swal.fire('No se puede actualizar el usuario', 'Esta acción no está permitida para sí mismo', 'error');
+      this.swal.crearSwal('comun.alertas.errores.actualizarUsuario', 'error');
       return;
     }
     this.usuariosService.modificarUsuario(usuario).subscribe(resp => {
-      Swal.fire('Usuario modificado', usuario.email, 'success');
+      this.swal.crearSwal('comun.alertas.exito.modificarUsuario', 'success');
       this.cargarUsuarios();
     });
   }

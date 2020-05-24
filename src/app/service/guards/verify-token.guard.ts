@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { UsersService } from '../users/users.service';
-import Swal from 'sweetalert2';
+import { SwalService } from '../language/swal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VerifyTokenGuard implements CanActivate {
 
-  constructor(public usuarioService: UsersService) {}
+  constructor(public usuarioService: UsersService, public swal: SwalService) {}
 
   canActivate(): Promise<boolean> | boolean {
     const token = this.usuarioService.token;
@@ -16,7 +16,7 @@ export class VerifyTokenGuard implements CanActivate {
       const payload = JSON.parse( atob( token.split('.')[1] ) );
       const expirado = this.expirado(payload.exp);
       if (expirado) {
-        Swal.fire('Sesión expirada', 'La sesión de usuario ha expirado. Vuelva a iniciar sesión', 'warning');
+        this.swal.crearSwal('comun.alertas.avisos.sesionExpirada', 'warning');
         this.usuarioService.logout('home');
         return false;
       }

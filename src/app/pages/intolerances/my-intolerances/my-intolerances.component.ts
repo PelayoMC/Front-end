@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { IntolerancesService, UsersService } from 'src/app/service/service.index';
+import { IntolerancesService, UsersService, SwalService } from 'src/app/service/service.index';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Filtros } from 'src/app/models/filtros.model';
 import { Intolerance } from 'src/app/models/intolerance.model';
@@ -20,7 +20,8 @@ export class MyIntolerancesComponent implements OnInit {
   limit = 4;
   total: number;
 
-  constructor(public userService: UsersService, public router: Router, public activatedRoute: ActivatedRoute) { }
+  constructor(public userService: UsersService, public router: Router,
+              public activatedRoute: ActivatedRoute, public swal: SwalService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -61,11 +62,11 @@ export class MyIntolerancesComponent implements OnInit {
         if (index > -1) {
           us.misIntolerancias.splice(index, 1);
           this.userService.modificarUsuario(us).subscribe(resp => {
-            Swal.fire('Intolerancia eliminada', 'Intolerancia eliminada de mis intolerancias correctamente', 'success');
+            this.swal.crearSwal('comun.alertas.exito.eliminar', 'success');
             this.cargarIntolerancias();
           });
         } else {
-          Swal.fire('Intolerancia no eliminada', 'No se ha podido eliminar de mis intolerancias', 'error');
+          this.swal.crearSwal('comun.alertas.errores.eliminarIntolerancia', 'error');
         }
       }
     });

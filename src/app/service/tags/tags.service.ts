@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import Swal from 'sweetalert2';
 import { throwError } from 'rxjs';
+import { SwalService } from '../language/swal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TagsService {
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public swal: SwalService) { }
 
   obtenerEtiquetas() {
     const url = URL_SERVICIOS + '/etiqueta';
@@ -44,11 +44,11 @@ export class TagsService {
     url += '?token=' + localStorage.token;
     return this.http.post(url, etiqueta).pipe(
       map( (resp: any) => {
-        Swal.fire('Etiqueta creada', 'La etiqueta se ha creado correctamente', 'success');
+        this.swal.crearSwal('comun.alertas.exito.crearEtiqueta', 'success');
         return resp.etiqueta;
       }),
       catchError( err => {
-        Swal.fire('Error', 'La etiqueta no se ha podido crear correctamente', 'error');
+        this.swal.crearSwal('comun.alertas.errores.crearEtiqueta', 'error');
         return throwError(err);
       })
     );
@@ -72,7 +72,7 @@ export class TagsService {
         return resp.etiqueta;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al modificar la etiqueta', 'error');
+        this.swal.crearSwal('comun.alertas.errores.modificarEtiqueta', 'error');
         return throwError(err);
       })
     );
@@ -86,11 +86,11 @@ export class TagsService {
     url += '?token=' + localStorage.token;
     return this.http.put(url, n).pipe(
       map( (resp: any) => {
-        Swal.fire('Etiqueta modificada', 'La etiqueta ha sido modificada correctamente', 'success');
+        this.swal.crearSwal('comun.alertas.exito.modificarEtiqueta', 'success');
         return resp;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al modificar la etiqueta en los ingredientes y las intolerancias', 'error');
+        this.swal.crearSwal('comun.alertas.errores.modificarEtiqueta', 'error');
         return throwError(err);
       })
     );
@@ -104,7 +104,7 @@ export class TagsService {
         return resp.etiqueta;
       }),
       catchError( err => {
-        Swal.fire('Error', 'Error al borrar la intolerancia', 'error');
+        this.swal.crearSwal('comun.alertas.errores.borrarEtiqueta', 'error');
         return throwError(err);
       })
     );

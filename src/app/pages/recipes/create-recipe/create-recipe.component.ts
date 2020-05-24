@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
-import { IngredientsService, RecipesService, VotingService } from '../../../service/service.index';
+import { IngredientsService, RecipesService, VotingService, SwalService } from '../../../service/service.index';
 import Swal from 'sweetalert2';
 import * as opt from './select-options';
 import { URL_SERVICIOS } from 'src/app/config/config';
@@ -22,7 +22,8 @@ export class CreateRecipeComponent implements OnInit {
   opt: any;
 
   constructor(private fb: FormBuilder, public router: Router, public route: ActivatedRoute,
-              public recipeService: RecipesService, public ingredientService: IngredientsService, public voteService: VotingService) { }
+              public recipeService: RecipesService, public ingredientService: IngredientsService,
+              public voteService: VotingService, public swal: SwalService) { }
 
   ngOnInit() {
     this.opt = opt;
@@ -162,7 +163,7 @@ export class CreateRecipeComponent implements OnInit {
       return;
     }
     if (archivo.type.indexOf('image') < 0) {
-      Swal.fire('Error', 'El archivo seleccionado no es una imagen', 'error');
+      this.swal.crearSwal('comun.alertas.errores.noImagen', 'error');
       this.imgUpload = null;
       this.imgTemp = null;
       return;
@@ -185,15 +186,15 @@ export class CreateRecipeComponent implements OnInit {
 
   onSubmit() {
     if (this.form.invalid) {
-      Swal.fire('Complete el formulario', 'Rellene los campos obligatorios', 'warning');
+      this.swal.crearSwal('comun.alertas.errores.completarCampos', 'error');
       return;
     }
     if (this.comprobarPrincipal()) {
-      Swal.fire('Error de receta', 'La receta debe tener al menos un ingrediente principal', 'warning');
+      this.swal.crearSwal('comun.alertas.errores.noIngredientePrincipal', 'error');
       return;
     }
     if (this.imgUpload == null && !this.modificando) {
-      Swal.fire('Complete el formulario', 'Elija una imagen', 'warning');
+      this.swal.crearSwal('comun.alertas.errores.noImagenAñadida', 'error');
       return;
     }
     if (this.modificando) {
