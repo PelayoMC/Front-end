@@ -115,25 +115,21 @@ export class IngredientsComponent implements OnInit {
   borrarIngrediente(ingrediente: Ingredient, recetas: any[]) {
     this.swal.crearSwalBorrar('comun.alertas.borrado.ingrediente',
     () => {
-      this.cargando = true;
-      this.ingredientesService.borrarIngredientesSinReceta().subscribe(resp => {
-        this.cargando = false;
-        this.cargar();
-      });
+      if (recetas.length > 0) {
+        this.swal.crearSwalBorrar('comun.alertas.borrado.ingrediente2',
+        () => {
+          this.ingredientesService.borrarIngrediente(ingrediente).subscribe((resp: any) => {
+            this.recetasService.borrarRecetas(recetas).subscribe(resp => {
+              this.cargar();
+            });
+          });
+        });
+      } else {
+        this.ingredientesService.borrarIngrediente(ingrediente).subscribe((resp: any) => {
+          this.cargar();
+        });
+      }
     }, ingrediente.nombre);
-     Swal.fire({
-        title: '¿Borrar ingrediente?',
-        text: 'Está a punto de borrar el ingrediente ' + ingrediente.nombre,
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Borrar',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.value) {
-          
-        }
-      });
   }
 
   borrarIngredientesSinReceta() {

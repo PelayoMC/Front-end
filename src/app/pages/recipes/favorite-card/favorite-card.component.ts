@@ -29,27 +29,18 @@ export class FavoriteCardComponent implements OnInit {
   }
 
   borrarReceta(receta: any) {
-    Swal.fire({
-      title: '¿Borrar receta?',
-      text: 'Está a punto de borrar la receta ' + receta.nombre,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Borrar',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        const us = this.userService.usuario.value;
-        const index = us.recetasFavoritas.indexOf(receta._id);
-        if (index > -1) {
-          us.recetasFavoritas.splice(index, 1);
-          this.userService.modificarUsuario(us).subscribe(resp => {
-            this.swal.crearSwal('comun.alertas.errores.eliminarRecetaFav', 'success');
-            this.cargar.emit(this.receta._id);
-          });
-        } else {
-          this.swal.crearSwal('comun.alertas.errores.noEliminarRecetaFav', 'error');
-        }
+    this.swal.crearSwalBorrar('comun.alertas.borrado.receta',
+    () => {
+      const us = this.userService.usuario.value;
+      const index = us.recetasFavoritas.indexOf(receta._id);
+      if (index > -1) {
+        us.recetasFavoritas.splice(index, 1);
+        this.userService.modificarUsuario(us).subscribe(resp => {
+          this.swal.crearSwal('comun.alertas.errores.eliminarRecetaFav', 'success');
+          this.cargar.emit(this.receta._id);
+        });
+      } else {
+        this.swal.crearSwal('comun.alertas.errores.noEliminarRecetaFav', 'error');
       }
     });
   }

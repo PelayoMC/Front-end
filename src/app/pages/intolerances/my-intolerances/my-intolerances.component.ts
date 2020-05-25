@@ -47,27 +47,18 @@ export class MyIntolerancesComponent implements OnInit {
   }
 
   borrarFavIntolerancia(intolerancia: any) {
-    Swal.fire({
-      title: '¿Borrar intolerancia?',
-      text: 'Está a punto de borrar la intolerancia ' + intolerancia.nombre,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Borrar',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        const us = this.userService.usuario.value;
-        const index = us.misIntolerancias.indexOf(intolerancia._id);
-        if (index > -1) {
-          us.misIntolerancias.splice(index, 1);
-          this.userService.modificarUsuario(us).subscribe(resp => {
-            this.swal.crearSwal('comun.alertas.exito.eliminar', 'success');
-            this.cargarIntolerancias();
-          });
-        } else {
-          this.swal.crearSwal('comun.alertas.errores.eliminarIntolerancia', 'error');
-        }
+    this.swal.crearSwalBorrar('comun.alertas.borrado.intolerancia',
+    () => {
+      const us = this.userService.usuario.value;
+      const index = us.misIntolerancias.indexOf(intolerancia._id);
+      if (index > -1) {
+        us.misIntolerancias.splice(index, 1);
+        this.userService.modificarUsuario(us).subscribe(resp => {
+          this.swal.crearSwal('comun.alertas.exito.eliminar', 'success');
+          this.cargarIntolerancias();
+        });
+      } else {
+        this.swal.crearSwal('comun.alertas.errores.eliminarIntolerancia', 'error');
       }
     });
   }

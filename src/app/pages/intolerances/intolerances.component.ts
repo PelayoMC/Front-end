@@ -103,36 +103,19 @@ export class IntolerancesComponent implements OnInit {
   }
 
   borrarIntolerancia(intolerancia: any) {
-    Swal.fire({
-      title: '¿Borrar intolerancia?',
-      text: 'Está a punto de borrar la intolerancia ' + intolerancia.nombre,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Borrar',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this.intolerancesService.borrarIntolerancia(intolerancia).subscribe(resp => {
-          if (resp.nombre === intolerancia.nombre) {
-            this.userService.usuario.value.misIntolerancias = this.userService.usuario.value.misIntolerancias.filter(el => el !== intolerancia._id);
-            this.userService.modificarUsuario(this.userService.usuario.value).subscribe(resp => {
-              Swal.fire(
-                'Intolerancia borrada',
-                'La intolerancia ha sido borrada correctamente',
-                'success'
-              );
-              this.cargarIntolerancias();
-            });
-          } else {
-            Swal.fire(
-              'Intolerancia no borrada',
-              'La intolerancia no se ha podido borrar correctamente',
-              'error'
-            );
-          }
-        })
-      }
+    this.swal.crearSwalBorrar('comun.alertas.borrado.intolerancia',
+    () => {
+      this.intolerancesService.borrarIntolerancia(intolerancia).subscribe(resp => {
+        if (resp.nombre === intolerancia.nombre) {
+          this.userService.usuario.value.misIntolerancias = this.userService.usuario.value.misIntolerancias.filter(el => el !== intolerancia._id);
+          this.userService.modificarUsuario(this.userService.usuario.value).subscribe(resp => {
+            this.swal.crearSwal('comun.alertas.exito.borrarIntolerancia', 'success');
+            this.cargarIntolerancias();
+          });
+        } else {
+          this.swal.crearSwal('comun.alertas.errores.borrarIntolerancia', 'error');
+        }
+      });
     });
   }
 

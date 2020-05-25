@@ -19,9 +19,29 @@
                     "titulo": "¿Borrar mensaje?",
                     "mensaje": "Está a punto de borrar el mensaje del administrador traducido"
                 },
+                "usuario": {
+                    "titulo": "¿Borrar usuario?",
+                    "mensaje": "Está a punto de borrar el usuario: "
+                },
                 "ingrediente": {
                     "titulo": "¿Borrar ingrediente?",
-                    "mensaje": "¿Desea borrar todos los ingredientes sin receta?"
+                    "mensaje": "Está a punto de borrar el ingrediente: "
+                },
+                "ingrediente2": {
+                    "titulo": "¿Borrar ingrediente?",
+                    "mensaje": "Si borra el ingrediente se borrarán las recetas a las que pertenece"
+                },
+                "intolerancia": {
+                    "titulo": "¿Borrar intolerancia?",
+                    "mensaje": "Está a punto de borrar la intolerancia: "
+                },
+                "receta": {
+                    "titulo": "¿Borrar receta?",
+                    "mensaje": "Está a punto de borrar la receta: "
+                },
+                "etiqueta": {
+                    "titulo": "¿Borrar etiqueta?",
+                    "mensaje": "Está a punto de borrar la etiqueta: "
                 },
                 "botones": {
                     "cancelar": "Cancelar",
@@ -261,6 +281,10 @@
                     "titulo": "Usuario modificado",
                     "mensaje": "El usuario ha sido modificado correctamente en el sistema"
                 },
+                "borrarUsuario": {
+                    "titulo": "Usuario borrado",
+                    "mensaje": "El usuario ha sido borrado con exito"
+                },
                 "crearUsuarioRegister": {
                     "titulo": "Usuario creado",
                     "mensaje": "Inicie sesión con sus credenciales"
@@ -296,6 +320,10 @@
                 "eliminarIntolerancia": {
                     "titulo": "Intolerancia eliminada",
                     "mensaje": "Intolerancia eliminada de mis intolerancias correctamente"
+                },
+                "borrarIntolerancia": {
+                    "titulo": "Intolerancia borrada",
+                    "mensaje": "La intolerancia ha sido borrada correctamente"
                 },
                 "modificarIngrediente": {
                     "titulo": "Ingrediente modificado",
@@ -340,6 +368,10 @@
                 "modificarEtiqueta": {
                     "titulo": "Etiqueta modificada",
                     "mensaje": "La etiqueta ha sido modificada correctamente"
+                },
+                "borrarEtiqueta": {
+                    "titulo": "Etiqueta borrada",
+                    "mensaje": "La etiqueta ha sido borrada correctamente"
                 },
                 "modificarVotacion": {
                     "titulo": "Votación añadida",

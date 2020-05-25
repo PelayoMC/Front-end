@@ -89,33 +89,16 @@ export class UsersComponent implements OnInit {
       this.swal.crearSwal('comun.alertas.errores.borrarUsuarioPropio', 'error');
       return;
     }
-    Swal.fire({
-      title: '¿Borrar usuario?',
-      text: 'Está a punto de borrar el usuario ' + usuario.nombre,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Borrar',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this.usuariosService.borrarUsuario(usuario._id).subscribe((resp: any) => {
-          if (resp.nombre === usuario.nombre) {
-            Swal.fire(
-              'Usuario borrado',
-              'El usuario ha sido borrado correctamente',
-              'success'
-            );
-            this.cargarUsuarios();
-          } else {
-            Swal.fire(
-              'Usuario no borrado',
-              'El usuario no se ha podido borrar correctamente',
-              'error'
-            );
-          }
-        })
-      }
+    this.swal.crearSwalBorrar('comun.alertas.borrado.usuario',
+    () => {
+      this.usuariosService.borrarUsuario(usuario._id).subscribe((resp: any) => {
+        if (resp.nombre === usuario.nombre) {
+          this.swal.crearSwal('comun.alertas.exito.borrarUsuario', 'success');
+          this.cargarUsuarios();
+        } else {
+          this.swal.crearSwal('comun.alertas.errores.borrarUsuario', 'error');
+        }
+      });
     });
   }
 

@@ -72,33 +72,16 @@ export class TagsComponent implements OnInit {
   }
 
   borrarEtiqueta(etiqueta: any) {
-    Swal.fire({
-      title: '¿Borrar intolerancia?',
-      text: 'Está a punto de borrar la intolerancia ' + etiqueta.nombre,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Borrar',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this.tagsService.borrarEtiqueta(etiqueta).subscribe(resp => {
-          if (resp.nombre === etiqueta.nombre) {
-            Swal.fire(
-              'Intolerancia borrada',
-              'La intolerancia ha sido borrada correctamente',
-              'success'
-            );
-            this.cargarEtiquetas();
-          } else {
-            Swal.fire(
-              'Intolerancia no borrada',
-              'La intolerancia no se ha podido borrar correctamente',
-              'error'
-            );
-          }
-        })
-      }
+    this.swal.crearSwalBorrar('comun.alertas.borrado.etiqueta',
+    () => {
+      this.tagsService.borrarEtiqueta(etiqueta).subscribe(resp => {
+        if (resp.nombre === etiqueta.nombre) {
+          this.swal.crearSwal('comun.alertas.exito.borrarEtiqueta', 'success');
+          this.cargarEtiquetas();
+        } else {
+          this.swal.crearSwal('comun.alertas.errores.borrarEtiqueta', 'error');
+        }
+      });
     });
   }
 
