@@ -14,6 +14,50 @@
     },
     "comun": {
         "alertas": {
+            "borrado": {
+                "feedback": {
+                    "titulo": "¿Delete message?",
+                    "mensaje": "You're about to delete the message from the admin"
+                },
+                "usuario": {
+                    "titulo": "¿Delete user?",
+                    "mensaje": "You're about to delete the user: "
+                },
+                "ingrediente": {
+                    "titulo": "¿Delete ingredient?",
+                    "mensaje": "You're about to delete the ingredient: "
+                },
+                "ingrediente2": {
+                    "titulo": "¿Delete ingredient?",
+                    "mensaje": "The recipes that contain it will be deleted too"
+                },
+                "intolerancia": {
+                    "titulo": "¿Delete intolerance?",
+                    "mensaje": "You're about to delete the intolerance: "
+                },
+                "receta": {
+                    "titulo": "¿Delete recipe?",
+                    "mensaje": "You're about to delete the recipe: "
+                },
+                "etiqueta": {
+                    "titulo": "¿Delete tag?",
+                    "mensaje": "You're about to delete the tag: "
+                },
+                "botones": {
+                    "cancelar": "Cancel",
+                    "borrar": "Delete"
+                }
+            },
+            "avisos": {
+                "condiciones": {
+                    "titulo": "Important",
+                    "mensaje": "You must accept the conditions"
+                },
+                "sesionExpirada": {
+                    "titulo": "Session expired",
+                    "mensaje": "The user session has been expired. Login again"
+                }
+            },
             "errores": {
                 "sesion": {
                     "titulo": "Login error",
@@ -26,6 +70,18 @@
                 "renovarToken": {
                     "titulo": "Login error",
                     "mensaje": "The user session could not be renewed"
+                },
+                "noSesion": {
+                    "titulo": "You aren't logged",
+                    "mensaje": "You can't access this page because you are not a valid user"
+                },
+                "noAdmin": {
+                    "titulo": "Permiso denegado",
+                    "mensaje": "You can't access this page because you are not an admin"
+                },
+                "actualizarUsuario": {
+                    "titulo": "You can't update the user",
+                    "mensaje": "This action is not permitted for yourself"
                 },
                 "crearUsuario": {
                     "titulo": "Error",
@@ -43,6 +99,10 @@
                     "titulo": "Error",
                     "mensaje": "Error while deleting the user"
                 },
+                "borrarUsuarioPropio": {
+                    "titulo": "Error",
+                    "mensaje": "A user cannot be deleted by himself"
+                },
                 "buscarRecetasFavoritas": {
                     "titulo": "Error",
                     "mensaje": "Error searching for the user favorite recipes"
@@ -54,6 +114,154 @@
                 "cambiarImagen": {
                     "titulo": "Image not actualized",
                     "mensaje": "An error happened while actualizing the image"
+                },
+                "cambiarImagenPropia": {
+                    "titulo": "Error",
+                    "mensaje": "Change your image from your user profile"
+                },
+                "noImagen": {
+                    "titulo": "Error",
+                    "mensaje": "The selected file is not an image"
+                },
+                "noImagenAñadida": {
+                    "titulo": "Error",
+                    "mensaje": "An image has not been selected"
+                },
+                "añadirImagen": {
+                    "titulo": "Error",
+                    "mensaje": "Add an image to the form"
+                },
+                "completarCampos": {
+                    "titulo": "Error",
+                    "mensaje": "Fill all the fields of the form"
+                },
+                "eliminarIntolerancia": {
+                    "titulo": "Intolerance not deleted",
+                    "mensaje": "It couldn't be deleted from my intolerances"
+                },
+                "noIngredientesDuplicados": {
+                    "titulo": "Error",
+                    "mensaje": "It's not permitted to add duplicated ingredients"
+                },
+                "noIngredientePrincipal": {
+                    "titulo": "Recipe error",
+                    "mensaje": "The recipe must have at least one main ingredient"
+                },
+                "noEliminarRecetaFav": {
+                    "titulo": "Recipe not deleted",
+                    "mensaje": "It couldn't be deleted from favorites"
+                },
+                "noCargaReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error loading the recipe"
+                },
+                "crearIngrediente": {
+                    "titulo": "Error",
+                    "mensaje": "Error creating the ingredient"
+                },
+                "modificarIngrediente": {
+                    "titulo": "Error",
+                    "mensaje": "Error modifying the ingredient"
+                },
+                "modificarIngredienteRecetas": {
+                    "titulo": "Error",
+                    "mensaje": "Error modifying the ingredient in the recipes"
+                },
+                "buscarIngredientes": {
+                    "titulo": "Error",
+                    "mensaje": "Error searching the ingredients"
+                },
+                "borrarIngrediente": {
+                    "titulo": "Error",
+                    "mensaje": "Error deleting the ingredient"
+                },
+                "borrarIngredientes": {
+                    "titulo": "Error",
+                    "mensaje": "Error deleting the ingredients"
+                },
+                "noIngredientes": {
+                    "titulo": "Delete not permitted",
+                    "mensaje": "There are no ingredients to delete"
+                },
+                "cargarRecetas": {
+                    "titulo": "Error",
+                    "mensaje": "Error loading the recipes"
+                },
+                "cargarEtiquetas": {
+                    "titulo": "Error",
+                    "mensaje": "Error loading the tags"
+                },
+                "crearIntolerancia": {
+                    "titulo": "Error",
+                    "mensaje": "Error creating the intolerance"
+                },
+                "modificarIntolerancia": {
+                    "titulo": "Error",
+                    "mensaje": "Error modifying the intolerance"
+                },
+                "borrarIntolerancia": {
+                    "titulo": "Error",
+                    "mensaje": "Error deleting the intolerance"
+                },
+                "cambiarImagenIntolerancia": {
+                    "titulo": "Error",
+                    "mensaje": "Error changing the image of the intolerance"
+                },
+                "cargarReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error loading the recipe"
+                },
+                "guardarIngredientes": {
+                    "titulo": "Error",
+                    "mensaje": "Error saving the ingredients"
+                },
+                "crearReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error creating the recipe"
+                },
+                "modificarReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error modifying the recipe"
+                },
+                "cambiarImagenReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error changing the image of the recipe"
+                },
+                "borrarReceta": {
+                    "titulo": "Error",
+                    "mensaje": "Error deleting the recipe"
+                },
+                "borrarRecetas": {
+                    "titulo": "Error",
+                    "mensaje": "Error deleting the recipes"
+                },
+                "crearEtiqueta": {
+                    "titulo": "Error",
+                    "mensaje": "Error creating the tag"
+                },
+                "modificarEtiqueta": {
+                    "titulo": "Error",
+                    "mensaje": "Error modifying the tag"
+                },
+                "borrarEtiqueta": {
+                    "titulo": "Error",
+                    "mensaje": "Error deleting the tag"
+                },
+                "obtenerVotacion": {
+                    "titulo": "Error",
+                    "mensaje": "Error loading the vote"
+                },
+                "crearVotacion": {
+                    "titulo": "Error",
+                    "mensaje": "Error creating the vote"
+                },
+                "modificarVotacion": {
+                    "titulo": "Error",
+                    "mensaje": "Error modifying the vote"
+                },
+                "borrarVotacion": {
+                    "titulo": "Error",
+                    "mensaje": "Error deleting the vote"
                 }
             },
             "exito": {
@@ -64,6 +272,114 @@
                 "comentario": {
                     "titulo": "Comment send",
                     "mensaje": "Your comment will be checked by the assigned admin"
+                },
+                "crearUsuario": {
+                    "titulo": "User created",
+                    "mensaje": "The user has been added correctly"
+                },
+                "modificarUsuario": {
+                    "titulo": "User modified",
+                    "mensaje": "The user has been modified correctly"
+                },
+                "borrarUsuario": {
+                    "titulo": "User deleted",
+                    "mensaje": "The user has been deleted correctly"
+                },
+                "crearUsuarioRegister": {
+                    "titulo": "User created",
+                    "mensaje": "Login with your credentials"
+                },
+                "feedback": {
+                    "titulo": "Feedback send",
+                    "mensaje": "A feedback comment has been added to the diet"
+                },
+                "dietaSolicitada": {
+                    "titulo": "Diet requested",
+                    "mensaje": "Your diet will be created by an available admin"
+                },
+                "dietaCreada": {
+                    "titulo": "Diet created",
+                    "mensaje": "The user will be warned that the diet is created"
+                },
+                "mensajeAdminBorrado": {
+                    "titulo": "Message deleted",
+                    "mensaje": "The admin message has been deleted"
+                },
+                "añadirIntolerancia": {
+                    "titulo": "Intolerance added",
+                    "mensaje": "Intolerance added to my intolerances"
+                },
+                "crearIntolerancia": {
+                    "titulo": "Intolerance created",
+                    "mensaje": "Intolerance created correctly"
+                },
+                "modificarIntolerancia": {
+                    "titulo": "Intolerance modified",
+                    "mensaje": "Intolerance modified correctly"
+                },
+                "eliminarIntolerancia": {
+                    "titulo": "Intolerance removed",
+                    "mensaje": "Intolerance removed from my intolerances"
+                },
+                "borrarIntolerancia": {
+                    "titulo": "Intolerance deleted",
+                    "mensaje": "Intolerance deleted correctly"
+                },
+                "modificarIngrediente": {
+                    "titulo": "Ingredient modified",
+                    "mensaje": "Ingredient modified correctly"
+                },
+                "borrarIngrediente": {
+                    "titulo": "Ingredient deleted",
+                    "mensaje": "Ingredient deleted correctly"
+                },
+                "borrarIngredientes": {
+                    "titulo": "Ingredients deleted",
+                    "mensaje": "Ingredients deleted correctly"
+                },
+                "ingsYTagsAñadidos": {
+                    "titulo": "Elements added",
+                    "mensaje": "Ingredients and tags added to the recipe"
+                },
+                "eliminarRecetaFav": {
+                    "titulo": "Recipe removed",
+                    "mensaje": "Recipe removed from favorites"
+                },
+                "añadirRecetaFav": {
+                    "titulo": "Recipe added",
+                    "mensaje": "Recipe added to favorites"
+                },
+                "crearReceta": {
+                    "titulo": "Recipe created",
+                    "mensaje": "You'll proceed to add tags and repleaceable ingredients to the ingredients"
+                },
+                "modificarReceta": {
+                    "titulo": "Recipe modified",
+                    "mensaje": "You'll proceed to add tags and repleaceable ingredients to the ingredients"
+                },
+                "borrarReceta": {
+                    "titulo": "Recipe deleted",
+                    "mensaje": "Recipe deleted correctly"
+                },
+                "crearEtiqueta": {
+                    "titulo": "Tag created",
+                    "mensaje": "Tag created correctly"
+                },
+                "modificarEtiqueta": {
+                    "titulo": "Tag modified",
+                    "mensaje": "Tag modified correctly"
+                },
+                "borrarEtiqueta": {
+                    "titulo": "Tag deleted",
+                    "mensaje": "Tag deleted correctly"
+                },
+                "modificarVotacion": {
+                    "titulo": "Voting added",
+                    "mensaje": "Voting added correctly"
+                },
+                "borrarVotacion": {
+                    "titulo": "Voting deleted",
+                    "mensaje": "Voting deleted correctly"
                 }
             }
         },

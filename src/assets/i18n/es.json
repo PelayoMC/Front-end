@@ -17,7 +17,7 @@
             "borrado": {
                 "feedback": {
                     "titulo": "¿Borrar mensaje?",
-                    "mensaje": "Está a punto de borrar el mensaje del administrador traducido"
+                    "mensaje": "Está a punto de borrar el mensaje del administrador"
                 },
                 "usuario": {
                     "titulo": "¿Borrar usuario?",
@@ -73,7 +73,7 @@
                 },
                 "noSesion": {
                     "titulo": "No ha iniciado sesión",
-                    "mensaje": "Para realizar esta acción debe acceder desde un perfil válido"
+                    "mensaje": "No puede acceder a esta página porque no es un usuario válido"
                 },
                 "noAdmin": {
                     "titulo": "Permiso denegado",
@@ -133,7 +133,7 @@
                 },
                 "completarCampos": {
                     "titulo": "Error",
-                    "mensaje": "Complete todos los campos del formulario"
+                    "mensaje": "Rellene todos los campos del formulario"
                 },
                 "eliminarIntolerancia": {
                     "titulo": "Intolerancia no eliminada",
@@ -275,11 +275,11 @@
                 },
                 "crearUsuario": {
                     "titulo": "Usuario creado",
-                    "mensaje": "El usuario ha sido añadido al sistema correctamente"
+                    "mensaje": "El usuario ha sido añadido correctamente"
                 },
                 "modificarUsuario": {
                     "titulo": "Usuario modificado",
-                    "mensaje": "El usuario ha sido modificado correctamente en el sistema"
+                    "mensaje": "El usuario ha sido modificado correctamente"
                 },
                 "borrarUsuario": {
                     "titulo": "Usuario borrado",
@@ -307,7 +307,7 @@
                 },
                 "añadirIntolerancia": {
                     "titulo": "Intolerancia añadida",
-                    "mensaje": "Intolerancia añadida a mis intolerancias correctamente"
+                    "mensaje": "Intolerancia añadida a mis intolerancias"
                 },
                 "crearIntolerancia": {
                     "titulo": "Intolerancia creada",
@@ -315,11 +315,11 @@
                 },
                 "modificarIntolerancia": {
                     "titulo": "Intolerancia añadida",
-                    "mensaje": "Intolerancia añadida a mis intolerancias correctamente"
+                    "mensaje": "Intolerancia modificada correctamente"
                 },
                 "eliminarIntolerancia": {
                     "titulo": "Intolerancia eliminada",
-                    "mensaje": "Intolerancia eliminada de mis intolerancias correctamente"
+                    "mensaje": "Intolerancia eliminada de mis intolerancias"
                 },
                 "borrarIntolerancia": {
                     "titulo": "Intolerancia borrada",
@@ -343,11 +343,11 @@
                 },
                 "eliminarRecetaFav": {
                     "titulo": "Receta eliminada",
-                    "mensaje": "Receta eliminada de favoritos correctamente"
+                    "mensaje": "Receta eliminada de favoritos"
                 },
                 "añadirRecetaFav": {
                     "titulo": "Receta añadida",
-                    "mensaje": "Receta añadida a favoritos correctamente"
+                    "mensaje": "Receta añadida a favoritos"
                 },
                 "crearReceta": {
                     "titulo": "Receta creada",
