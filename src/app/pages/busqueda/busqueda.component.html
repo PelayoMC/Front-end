@@ -4,7 +4,12 @@
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
                     <mat-label>{{ 'buscador.buscador' | translate }}</mat-label>
-                    <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" autocomplete="off">
+                    <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="buscarRecetas(input.value, 0)">
+                        <mat-option *ngFor="let ing of filtradoIng" [value]="ing">
+                            {{ ing }}
+                        </mat-option>
+                    </mat-autocomplete>
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''">
                           <mat-icon>close</mat-icon>
                         </button>
@@ -20,7 +25,6 @@
     </div>
 </div>
 <app-loading-component [cargando]="cargando"></app-loading-component>
-<app-no-found-component *ngIf="buscando" [cargando]="cargando" [array]="recetas"></app-no-found-component>
 <div class="row" *ngIf="!cargando && ingredientes.length > 0">
     <div class="col-12">
         <div class="card">
@@ -39,16 +43,17 @@
         </div>
     </div>
 </div>
-<div class="row" *ngIf="!cargando && recetas.length > 0">
+<div class="row" *ngIf="!cargando && buscando">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div>
-                    <h3>{{ 'buscador.tituloRe' | translate }}</h3>
-                    <div class="row">
+                <h3>{{ 'buscador.tituloRe' | translate }}</h3>
+                <div class="row" *ngIf="recetas.length > 0">
+                    <div>
                         <app-busqueda-card class="col-sm-6 col-lg-4" (cargar)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-busqueda-card>
                     </div>
                 </div>
+                <app-no-found-component *ngIf="buscando" [cargando]="cargando" [array]="recetas"></app-no-found-component>
             </div>
         </div>
     </div>

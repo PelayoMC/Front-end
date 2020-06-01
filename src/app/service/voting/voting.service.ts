@@ -76,7 +76,7 @@ export class VotingService {
     url += '?token=' + localStorage.token;
     return this.http.delete(url).pipe(
       map( (resp: any) => {
-        this.swal.crearSwal('comun.alertas.exito.borrarVotacion', 'success');
+        // this.swal.crearSwal('comun.alertas.exito.borrarVotacion', 'success');
         return resp;
       }),
       catchError( err => {

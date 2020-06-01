@@ -39,6 +39,10 @@ export class TrackingComponent implements OnInit {
     });
   }
 
+  hasNull(array: any[]) {
+    return array.some(el => el == null);
+  }
+
   obtenerFecha() {
     const date = new Date();
     return date.getUTCDate() + '/' + (date.getUTCMonth() + 1);

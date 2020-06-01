@@ -1,6 +1,6 @@
 <app-loading-component [cargando]="cargando">
 </app-loading-component>
-<div class="row " *ngIf="!cargando">
+<div class="row " *ngIf="!cargando && !hasNull(recetas)">
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
@@ -33,6 +33,21 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+</div>
+<div class="row " *ngIf="!cargando && hasNull(recetas)">
+    <div class="col-12">
+        <div class="alert alert-danger text-center">
+            <strong>La dieta no está completa</strong>
+            <br>
+            <i class="fa fa-exclamation-circle fa-2x"></i>
+            <br>
+            <p>
+                <span>Parece ser que faltan recetas en la dieta</span> <br>
+                <span>El administrador se encargará de solucionar el problema</span>
+            </p>
+
         </div>
     </div>
 </div>

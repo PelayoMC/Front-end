@@ -133,7 +133,7 @@ export class IngredientsComponent implements OnInit {
   }
 
   borrarIngredientesSinReceta() {
-    this.swal.crearSwalBorrar('comun.alertas.borrado.ingrediente',
+    this.swal.crearSwalBorrar('comun.alertas.borrado.ingrediente3',
     () => {
       this.cargando = true;
       this.ingredientesService.borrarIngredientesSinReceta().subscribe(resp => {

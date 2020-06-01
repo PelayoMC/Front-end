@@ -16,31 +16,35 @@
         "alertas": {
             "borrado": {
                 "feedback": {
-                    "titulo": "¿Delete message?",
+                    "titulo": "Delete message?",
                     "mensaje": "You're about to delete the message from the admin"
                 },
                 "usuario": {
-                    "titulo": "¿Delete user?",
+                    "titulo": "Delete user?",
                     "mensaje": "You're about to delete the user: "
                 },
                 "ingrediente": {
-                    "titulo": "¿Delete ingredient?",
+                    "titulo": "Delete ingredient?",
                     "mensaje": "You're about to delete the ingredient: "
                 },
                 "ingrediente2": {
-                    "titulo": "¿Delete ingredient?",
+                    "titulo": "Delete ingredient?",
                     "mensaje": "The recipes that contain it will be deleted too"
                 },
+                "ingrediente3": {
+                    "titulo": "Delete ingredients?",
+                    "mensaje": "All ingredients that are not present in recipes will be deleted"
+                },
                 "intolerancia": {
-                    "titulo": "¿Delete intolerance?",
+                    "titulo": "Delete intolerance?",
                     "mensaje": "You're about to delete the intolerance: "
                 },
                 "receta": {
-                    "titulo": "¿Delete recipe?",
+                    "titulo": "Delete recipe?",
                     "mensaje": "You're about to delete the recipe: "
                 },
                 "etiqueta": {
-                    "titulo": "¿Delete tag?",
+                    "titulo": "Delete tag?",
                     "mensaje": "You're about to delete the tag: "
                 },
                 "botones": {
@@ -400,6 +404,7 @@
         },
         "sinResultados": "No results have been found",
         "tabla": {
+            "id": "Identifyer",
             "nombre": "Name",
             "ing": "Ingredient",
             "cantidad": "Quantity",

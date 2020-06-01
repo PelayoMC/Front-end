@@ -8,9 +8,7 @@ import { SwalService } from '../language/swal.service';
 })
 export class LoginGuard implements CanActivate {
 
-  constructor( public usuarioService: UsersService, public router: Router, public swal: SwalService) {
-
-  }
+  constructor( public usuarioService: UsersService, public router: Router, public swal: SwalService) {}
 
   canActivate() {
     if (this.usuarioService.estaLogueado()) {

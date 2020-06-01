@@ -99,7 +99,7 @@ export class UsersComponent implements OnInit {
           this.swal.crearSwal('comun.alertas.errores.borrarUsuario', 'error');
         }
       });
-    });
+    }, usuario.nombre);
   }
 
   actualizarUsuario(usuario: Usuario) {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { UsersService } from '../users/users.service';
 import { SwalService } from '../language/swal.service';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class VerifyTokenGuard implements CanActivate {
       const payload = JSON.parse( atob( token.split('.')[1] ) );
       const expirado = this.expirado(payload.exp);
       if (expirado) {
-        this.swal.crearSwal('comun.alertas.avisos.sesionExpirada', 'warning');
+        //this.swal.crearSwal('comun.alertas.avisos.sesionExpirada', 'warning');
+        Swal.fire('Puta mierda', 'Cagon dios', 'warning');
         this.usuarioService.logout('home');
         return false;
       }

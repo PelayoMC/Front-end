@@ -65,12 +65,12 @@ export class RecipeCardComponent implements OnInit {
         this.voteService.borrarVotacion(receta._id).subscribe(resp => {
           this.userService.usuario.value.recetasFavoritas = this.userService.usuario.value.recetasFavoritas.filter(el => el !== receta._id);
           this.userService.modificarUsuario(this.userService.usuario.value).subscribe(resp => {
-            this.swal.crearSwal('comun.alertas.exito.añadirRecetaFav', 'success');
+            this.swal.crearSwal('comun.alertas.exito.borrarReceta', 'success');
             this.cargar.emit(this.receta._id);
           });
         });
       });
-    });
+    }, receta.nombre);
   }
 
 }

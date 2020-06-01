@@ -36,7 +36,7 @@ export class FavoriteCardComponent implements OnInit {
       if (index > -1) {
         us.recetasFavoritas.splice(index, 1);
         this.userService.modificarUsuario(us).subscribe(resp => {
-          this.swal.crearSwal('comun.alertas.errores.eliminarRecetaFav', 'success');
+          this.swal.crearSwal('comun.alertas.exito.eliminarRecetaFav', 'success');
           this.cargar.emit(this.receta._id);
         });
       } else {

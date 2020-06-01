@@ -3,9 +3,6 @@ import { NgForm } from '@angular/forms';
 import { UsersService } from '../service/service.index';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
-import Swal from 'sweetalert2';
 
 declare function init_plugins();
 // Libreria google

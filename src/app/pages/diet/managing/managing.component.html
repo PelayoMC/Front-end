@@ -11,13 +11,13 @@
                         <table class="table table-hover incidencias">
                             <thead>
                                 <tr>
-                                    <th>{{ 'comun.tabla.nombre' | translate }}</th>
+                                    <th>{{ 'comun.tabla.id' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let int of sinAsignar; let i = index">
                                     <td (click)="mostrarDieta(int)">
-                                        <span> nombre </span>
+                                        <span> {{ int._id }} </span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -41,13 +41,13 @@
                         <table class="table table-hover incidencias">
                             <thead>
                                 <tr>
-                                    <th>{{ 'comun.tabla.nombre' | translate }}</th>
+                                    <th>{{ 'comun.tabla.id' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let c of comentarios; let i = index">
                                     <td (click)="mostrarFeedBack(c)">
-                                        <span> nombre </span>
+                                        <span> {{ c._id }} </span>
                                     </td>
                                 </tr>
                             </tbody>

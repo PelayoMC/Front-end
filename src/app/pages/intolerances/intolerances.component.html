@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
-                    <mat-label>{{ 'modales.intolerancias.buscador' | translate }}</mat-label>
+                    <mat-label>{{ 'intolerancias.buscador' | translate }}</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarIntolerancias(input.value)" autocomplete="off">
                     <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; buscarIntolerancias('')">
                           <mat-icon>close</mat-icon>
@@ -24,7 +24,7 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h3 class="card-title ">{{ 'modales.intolerancias.titulo' | translate }} (<small>{{ total }}</small>)</h3>
+                <h3 class="card-title ">{{ 'intolerancias.titulo' | translate }} (<small>{{ total }}</small>)</h3>
                 <table class="table table-hover incidencias">
                     <thead>
                         <tr>

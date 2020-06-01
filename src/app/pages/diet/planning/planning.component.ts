@@ -27,6 +27,10 @@ export class PlanningComponent implements OnInit {
     });
   }
 
+  hasNull(array: any[]) {
+    return array.some(el => el == null);
+  }
+
   obtenerImagen(i: number, j: number) {
     return URL_SERVICIOS + '/imagen/recetas/' + this.recetas[(i * 7) + j].imagen;
   }

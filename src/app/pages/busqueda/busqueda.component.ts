@@ -4,6 +4,7 @@ import { Filtros } from 'src/app/models/filtros.model';
 import { RecipesService } from '../../service/recipes/recipes.service';
 import { Router } from '@angular/router';
 import { Ingredient } from '../../models/ingredient.model';
+import { IngredientsService } from '../../service/ingredients/ingredients.service';
 
 @Component({
   selector: 'app-busqueda',
@@ -14,6 +15,7 @@ export class BusquedaComponent implements OnInit {
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   recetas: Recipe[] = [];
   ingredientes: Ingredient[] = [];
+  filtradoIng: string[] = [];
   tipos: string[] = [];
   intolerancias: string[] = [];
   filtros: Filtros = new Filtros();
@@ -24,11 +26,16 @@ export class BusquedaComponent implements OnInit {
   limit = 7;
   total: number;
 
-  constructor(private recipeService: RecipesService, private router: Router) { }
+  constructor(private recipeService: RecipesService, private ingsService: IngredientsService, private router: Router) { }
 
   ngOnInit() {
     // this.cargarRecetas(--this.from);
-    this.cargando = false;
+    this.ingsService.obtenerTodosIngs().subscribe(resp => {
+      console.log(resp);
+      this.filtradoIng = resp.ingredientes.map(el => el.nombre);
+      this.cargando = false;
+      console.log(this.filtradoIng);
+    });
   }
 
   verReceta(idx: number) {

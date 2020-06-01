@@ -31,6 +31,10 @@
                     "titulo": "¿Borrar ingrediente?",
                     "mensaje": "Si borra el ingrediente se borrarán las recetas a las que pertenece"
                 },
+                "ingrediente3": {
+                    "titulo": "¿Borrar ingredientes?",
+                    "mensaje": "Todos los ingredientes no presentes en recetas serán borrados All ingredients that are not present in recipes will be deleted"
+                },
                 "intolerancia": {
                     "titulo": "¿Borrar intolerancia?",
                     "mensaje": "Está a punto de borrar la intolerancia: "
@@ -400,6 +404,7 @@
         },
         "sinResultados": "No se han encontrado resultados",
         "tabla": {
+            "id": "Identificador",
             "nombre": "Nombre",
             "ing": "Ingrediente",
             "cantidad": "Cantidad",

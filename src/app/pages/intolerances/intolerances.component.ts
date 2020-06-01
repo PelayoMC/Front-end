@@ -116,7 +116,7 @@ export class IntolerancesComponent implements OnInit {
           this.swal.crearSwal('comun.alertas.errores.borrarIntolerancia', 'error');
         }
       });
-    });
+    }, intolerancia.nombre);
   }
 
   cambiarDesde(valor: number) {

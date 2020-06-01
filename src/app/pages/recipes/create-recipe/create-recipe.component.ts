@@ -184,12 +184,31 @@ export class CreateRecipeComponent implements OnInit {
     return true;
   }
 
+  comprobarRepetidos() {
+    console.log(this.form.value.ingredientes);
+    const sortedArr = this.form.value.ingredientes.slice().sort();
+    console.log(sortedArr);
+    const results = [];
+    for (let i = 0; i < sortedArr.length - 1; i++) {
+      if (sortedArr[i + 1].nombre === sortedArr[i].nombre && sortedArr[i].nombre !== '') {
+        results.push(sortedArr[i]);
+      }
+    }
+    console.log(results);
+    return results.length > 0;
+  }
+
   onSubmit() {
     if (this.form.invalid) {
       this.swal.crearSwal('comun.alertas.errores.completarCampos', 'error');
       return;
     }
     if (this.comprobarPrincipal()) {
+      this.swal.crearSwal('comun.alertas.errores.noIngredientePrincipal', 'error');
+      return;
+    }
+    if (this.comprobarRepetidos()) {
+      // PONER BIEN
       this.swal.crearSwal('comun.alertas.errores.noIngredientePrincipal', 'error');
       return;
     }

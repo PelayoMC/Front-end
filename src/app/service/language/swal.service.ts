@@ -10,12 +10,12 @@ export class SwalService {
   constructor(public translate: TranslateService) { }
 
   crearSwal(titulo: string, icono: SweetAlertIcon) {
+    console.log(titulo);
     this.translate.get(titulo).subscribe((translated: any) => {
       console.log(translated);
-      const mensaje = this.translate.instant(translated.mensaje);
       return Swal.fire({
         title: translated.titulo,
-        text: mensaje,
+        text: translated.mensaje,
         icon: icono
       });
     });
@@ -26,7 +26,7 @@ export class SwalService {
       console.log(translated);
       return Swal.fire({
         title: translated.titulo,
-        text: this.translate.instant(translated.mensaje) + mensaje,
+        text: this.translate.instant(translated.mensaje) + (mensaje ? mensaje : ''),
         icon: 'warning',
         showCancelButton: true,
         cancelButtonText: this.translate.instant('comun.alertas.borrado.botones.cancelar'),

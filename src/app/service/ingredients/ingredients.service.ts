@@ -27,6 +27,16 @@ export class IngredientsService {
     );
   }
 
+  obtenerTodosIngs() {
+    let url = URL_SERVICIOS + '/ingrediente/all/';
+    console.log(url);
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        return resp;
+      })
+    );
+  }
+
   obtenerIngs(from: number, limit: number) {
     let url = URL_SERVICIOS + '/ingrediente?from=' + from + '&limit=' + limit;
     return this.http.get(url).pipe(
