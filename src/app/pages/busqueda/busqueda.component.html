@@ -4,9 +4,9 @@
             <div class="card-body">
                 <mat-form-field class="input-group mb-3">
                     <mat-label>{{ 'buscador.buscador' | translate }}</mat-label>
-                    <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" [matAutocomplete]="auto">
+                    <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" (keyup)="filtrar(input)" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="buscarRecetas(input.value, 0)">
-                        <mat-option *ngFor="let ing of filtradoIng" [value]="ing">
+                        <mat-option *ngFor="let ing of ingsFiltrados" [value]="ing">
                             {{ ing }}
                         </mat-option>
                     </mat-autocomplete>

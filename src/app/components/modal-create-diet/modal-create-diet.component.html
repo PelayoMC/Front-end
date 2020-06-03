@@ -45,7 +45,7 @@
                                         <span> {{ re.nombre }} </span>
                                     </td>
                                     <td class="text-nowrap small-td">
-                                        <button (click)="escogerReceta(re)" class="btn btn-info" matTooltip="Añadir receta"><i class="mdi mdi-plus"></i></button>
+                                        <button (click)="escogerReceta(re)" class="btn btn-info" [matTooltip]="'modales.crearDieta.titulo' | translate"><i class="mdi mdi-plus"></i></button>
                                     </td>
                                 </tr>
                             </tbody>

@@ -19,7 +19,7 @@
                                 <span> {{ int.nombre }} </span>
                             </td>
                             <td class="text-nowrap small-td">
-                                <button (click)="borrarFavIntolerancia(int)" class="btn btn-danger" matTooltip="Modificar intolerancia"><i class="fa fa-trash-o"></i></button>
+                                <button (click)="borrarFavIntolerancia(int)" class="btn btn-danger" [matTooltip]="'intolerancias.misIntolerancias.tooltipEliminar' | translate"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </tbody>

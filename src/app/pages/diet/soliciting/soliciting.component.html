@@ -2,49 +2,50 @@
     <div class="row animated fadeIn" *ngIf="!dieta && !hayDatosUsuario()">
         <div class="col-12">
             <div class="alert alert-warning text-center">
-                <strong>No existen información personal sobre el usuario</strong>
+                <strong>{{ 'dietas.solicitar.noInfo' | translate }}</strong>
                 <br>
                 <i class="fa fa-user-times fa-2x"></i>
                 <br>
-                <p class="text text-muted">Para poder solicitar una dieta, rellene los campos de <b>edad</b>, <b>altura</b> y <b>peso</b> en el perfil de usuario</p>
-                <button routerLinkActive [routerLink]="['/user/' + userService.usuario.value._id]" type="button" class="btn btn-info">Ir al perfil</button>
+                <p class="text text-muted">{{ 'dietas.solicitar.noInfo2' | translate }}</p>
+                <button routerLinkActive [routerLink]="['/user/' + userService.usuario.value._id]" type="button" class="btn btn-info">{{ 'dietas.solicitar.noInfoLink' | translate }}</button>
             </div>
         </div>
     </div>
     <div class="row animated fadeIn" *ngIf="!dieta && hayDatosUsuario()">
         <div class="col-12">
             <div class="alert alert-warning text-center">
-                <strong>Solicitar dieta</strong>
+                <strong>{{ 'dietas.solicitar.titulo' | translate }}</strong>
                 <br>
                 <i class="fa fa-user fa-2x"></i>
                 <br>
-                <p>Antes de solicitar una dieta, asegurese de añadir <a routerLinkActive [routerLink]="['/intolerances']" type="button">intolerancias</a> y <a routerLinkActive [routerLink]="['/recipes']" type="button">recetas</a> favoritas a su perfil</p>
-                <p class="text text-muted">De esta forma será más facil realizar su dieta</p>
-                <button (click)="solicitarDieta()" type="button" class="btn btn-info">Solicitar dieta</button>
+                <p>{{ 'dietas.solicitar.solicitar' | translate }}<a routerLinkActive [routerLink]="['/intolerances']" type="button">{{ 'dietas.solicitar.solicitarLink' | translate }}</a>{{ 'dietas.solicitar.solicitar2' | translate }}<a routerLinkActive [routerLink]="['/recipes']"
+                        type="button">{{ 'dietas.solicitar.solicitarLink2' | translate }}</a>{{ 'dietas.solicitar.solicitar3' | translate }}</p>
+                <p class="text text-muted">{{ 'dietas.solicitar.solicitar4' | translate }}</p>
+                <button (click)="solicitarDieta()" type="button" class="btn btn-info">{{ 'dietas.solicitar.solicitarBoton' | translate }}</button>
             </div>
         </div>
     </div>
     <div class="row animated fadeIn" *ngIf="dieta && !hayDietaCreada()">
         <div class="col-12">
             <div class="alert alert-info text-center">
-                <strong>Dieta solicitada</strong>
+                <strong>{{ 'dietas.solicitar.titulo2' | translate }}</strong>
                 <br>
                 <i class="fa fa-check fa-2x"></i>
                 <br>
-                <p>Espere a que un experto realice el planning de su dieta</p>
+                <p>{{ 'dietas.solicitar.solicitada' | translate }}</p>
             </div>
         </div>
     </div>
     <div class="row animated fadeIn" *ngIf="dieta && hayDietaCreada()">
         <div class="col-12">
             <div class="alert alert-success text-center">
-                <strong>Dieta asignada</strong>
+                <strong>{{ 'dietas.solicitar.existenteTitulo' | translate }}</strong>
                 <br>
                 <i class="fa fa-check fa-2x"></i>
                 <br>
-                <p>Ya tiene una dieta asignada</p>
-                <button routerLinkActive [routerLink]="['/diet/planning']" type="button" class="btn btn-info">Planificación</button> &nbsp;
-                <button routerLinkActive [routerLink]="['/diet/tracking']" type="button" class="btn btn-info">Seguimiento</button>
+                <p>{{ 'dietas.solicitar.existente' | translate }}</p>
+                <button routerLinkActive [routerLink]="['/diet/planning']" type="button" class="btn btn-info">{{ 'dietas.solicitar.existenteLink' | translate }}</button> &nbsp;
+                <button routerLinkActive [routerLink]="['/diet/tracking']" type="button" class="btn btn-info">{{ 'dietas.solicitar.existenteLink2' | translate }}</button>
             </div>
         </div>
     </div>

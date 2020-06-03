@@ -15,7 +15,8 @@ export class BusquedaComponent implements OnInit {
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   recetas: Recipe[] = [];
   ingredientes: Ingredient[] = [];
-  filtradoIng: string[] = [];
+  ings: string[] = [];
+  ingsFiltrados: string[] = [];
   tipos: string[] = [];
   intolerancias: string[] = [];
   filtros: Filtros = new Filtros();
@@ -31,10 +32,9 @@ export class BusquedaComponent implements OnInit {
   ngOnInit() {
     // this.cargarRecetas(--this.from);
     this.ingsService.obtenerTodosIngs().subscribe(resp => {
-      console.log(resp);
-      this.filtradoIng = resp.ingredientes.map(el => el.nombre);
+      this.ings = resp.ingredientes.map(el => el.nombre);
+      this.ingsFiltrados = this.ings.slice();
       this.cargando = false;
-      console.log(this.filtradoIng);
     });
   }
 
@@ -50,6 +50,10 @@ export class BusquedaComponent implements OnInit {
   cargarFiltroIntolerancias(event: any) {
     this.intolerancias = [];
     Object.assign(this.intolerancias, event);
+  }
+
+  filtrar(input: any) {
+    this.ingsFiltrados = this.ings.filter(el => el.includes(input.value));
   }
 
   cambiarFiltros(event: any) {

@@ -39,13 +39,13 @@
 <div class="row " *ngIf="!cargando && hasNull(recetas)">
     <div class="col-12">
         <div class="alert alert-danger text-center">
-            <strong>La dieta no está completa</strong>
+            <strong>{{ 'dietas.incompletoTitulo' | translate }}</strong>
             <br>
             <i class="fa fa-exclamation-circle fa-2x"></i>
             <br>
             <p>
-                <span>Parece ser que faltan recetas en la dieta</span> <br>
-                <span>El administrador se encargará de solucionar el problema</span>
+                <span>{{ 'dietas.incompleto1' | translate }}</span> <br>
+                <span>{{ 'dietas.incompleto2' | translate }}</span>
             </p>
 
         </div>

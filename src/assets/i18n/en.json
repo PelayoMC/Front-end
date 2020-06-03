@@ -601,7 +601,11 @@
 
         },
         "titulo": "Registered users",
-        "buscador": "Username"
+        "buscador": "Username",
+        "tooltipAñadir": "Add user",
+        "tooltipModificar": "Modify user",
+        "tooltipGuardar": "Save user",
+        "tooltipBorrar": "Delete user"
     },
     "recetas": {
         "recetasFavoritas": {
@@ -640,14 +644,19 @@
             "descripcion": "Description",
             "descripcionPh": "Recipe description",
             "tipo": "Type",
+            "tipoTooltip": "The type indicates if an ingredient is essential for the recipe or can be repleaceable",
             "imagen": "Image",
             "imagenP": " - Preview",
             "ingredientes": "Ingredients",
+            "ingredientePh": "Ingredient name",
             "botonIng": "Add ingredient",
             "pasos": "Recipe steps",
+            "pasosPh": "Explanation of the step",
             "botonPaso": "Add steps",
             "dificultad": "Recipe difficulty",
+            "cantidad": "Quantity",
             "calorias": "Calories (recipe)",
+            "caloriasPh": "Number of calories",
             "unidades": "Units",
             "botonCrear": "Create recipe",
             "botonMod": "Modify recipe",
@@ -675,11 +684,17 @@
         "titulo": "Registered ingredients",
         "buscador": "Ingredient name",
         "noPresente": "Doesn't belong to any recipes",
-        "botonBorrarSin": "Delete ingredients without recipes"
+        "botonBorrarSin": "Delete ingredients without recipes",
+        "tooltipConsejo": "It should be deleted because it's not contained in any recipe",
+        "tooltipMostrar": "View recipe",
+        "tooltipModificar": "Modify ingredient",
+        "tooltipGuardar": "Save ingredient",
+        "tooltipBorrar": "Delete ingredient"
     },
     "intolerancias": {
         "misIntolerancias": {
-            "titulo": "Intolerances of the user: "
+            "titulo": "Intolerances of the user: ",
+            "tooltipEliminar": "Remove intolerance"
         },
         "intolerancia": {
             "descripcion": "Description",
@@ -705,11 +720,18 @@
             "botonMod": "Modify intolerance"
         },
         "titulo": "Registered intolerances",
-        "buscador": "Intolerance name"
+        "buscador": "Intolerance name",
+        "tooltipModificar": "Modify intolerance",
+        "tooltipGuardar": "Save intolerance",
+        "tooltipBorrar": "Delete intolerance"
     },
     "etiquetas": {
         "titulo": "Registered tags",
-        "buscador": "Tag name"
+        "buscador": "Tag name",
+        "tooltipAñadir": "Add tag",
+        "tooltipModificar": "Modify tag",
+        "tooltipGuardar": "Save tag",
+        "tooltipBorrar": "Delete tag"
     },
     "dietas": {
         "gestion": {
@@ -727,8 +749,8 @@
             "titulo": "Request diets",
             "titulo2": "Diet requested",
             "noInfo": "There is no personal information about this user",
-            "noInfo2": "To request a diet, complete the fields about age, height and weight in ",
-            "noInfoLink": "user profile",
+            "noInfo2": "To request a diet, complete the fields about age, height and weight in user profile",
+            "noInfoLink": "Go to profile",
             "solicitar": "Before requesting a dieta, be sure to add ",
             "solicitar2": " and ",
             "solicitar3": " to your profile",
@@ -736,7 +758,11 @@
             "solicitarLink": "intolerances",
             "solicitarLink2": "favorite recipes",
             "solicitarBoton": "Request diet",
-            "solicitada": "An expert is creating your diet, please wait"
+            "solicitada": "An expert is creating your diet, please wait",
+            "existenteTitulo": "Assigned diet",
+            "existente": "There is a diet assigned already",
+            "existenteLink": "Planning",
+            "existenteLink2": "Tracking"
         },
         "planificar": {
             "titulo": "Weakly planning of the diet",
@@ -746,6 +772,9 @@
             "titulo": "Recipes for: ",
             "total": "Total calories of today:",
             "admin": "Admin message"
-        }
+        },
+        "incompletoTitulo": "The diet is not complete",
+        "incompleto1": "It seems some recipes are missing from the diet",
+        "incompleto2": "The admin will fix the problem"
     }
 }

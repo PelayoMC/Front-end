@@ -38,11 +38,11 @@
                                 <span> {{ int.nombre }} </span>
                             </td>
                             <td *ngIf="userService.esUser() && noFavorite(int)" class="text-nowrap small-td">
-                                <button (click)="addIntolerancia(int)" class="btn btn-primary" matTooltip="Modificar intolerancia"><i class="fa fa-plus-circle"></i></button>
+                                <button (click)="addIntolerancia(int)" class="btn btn-primary" [matTooltip]="'intolerancias.tooltipModificar' | translate"><i class="fa fa-heart"></i></button>
                             </td>
                             <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
-                                <button (click)="actualizarIntolerancia(int)" class="btn btn-primary" matTooltip="Modificar intolerancia"><i class="fa fa-wrench"></i></button> &nbsp;
-                                <button class="btn btn-danger" (click)="borrarIntolerancia(int)" matTooltip="Borrar intolerancia"><i class="fa fa-trash-o"></i></button>
+                                <button (click)="actualizarIntolerancia(int)" class="btn btn-primary" [matTooltip]="'intolerancias.tooltipGuardar' | translate"><i class="fa fa-wrench"></i></button> &nbsp;
+                                <button class="btn btn-danger" (click)="borrarIntolerancia(int)" [matTooltip]="'intolerancias.tooltipBorrar' | translate"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </tbody>

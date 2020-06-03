@@ -22,7 +22,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-x:auto;">
-                <h3 class="card-title">{{ 'usuarios.titulo' | translate }} (<small>{{ total }}</small>) &nbsp; <button (click)="mostrarModal('','user', '', null)" matTooltip="Añadir usuario" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
+                <h3 class="card-title">{{ 'usuarios.titulo' | translate }} (<small>{{ total }}</small>) &nbsp; <button (click)="mostrarModal('','user', '', null)" [matTooltip]="'usuarios.tooltipAñadir' | translate" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -58,9 +58,9 @@
                                 <label *ngIf="!usuario.usuario.google" class="label label-info">{{ 'comun.tabla.normal' | translate }}</label>
                             </td>
                             <td class="text-nowrap small-td">
-                                <button [disabled]="usuario.usuario.email === usuariosService.usuario.value.email" (click)="usuario.modificando = !usuario.modificando" class="btn btn-primary" matTooltip="Modificar ingrediente"><i class="fa fa-wrench"></i></button>                                &nbsp;
-                                <button [disabled]="!usuario.modificando" (click)="actualizarUsuario(usuario.usuario)" class="btn btn-info" matTooltip="Guardar usuario"><i class="fa fa-save"></i></button> &nbsp;
-                                <button [disabled]="usuario.usuario.email === usuariosService.usuario.value.email" (click)="borrarUsuario(usuario.usuario)" class="btn btn-danger" matTooltip="Borrar usuario"><i class="fa fa-trash-o"></i></button>
+                                <button [disabled]="usuario.usuario.email === usuariosService.usuario.value.email" (click)="usuario.modificando = !usuario.modificando" class="btn btn-primary" [matTooltip]="'usuarios.tooltipModificar' | translate"><i class="fa fa-wrench"></i></button>                                &nbsp;
+                                <button [disabled]="!usuario.modificando" (click)="actualizarUsuario(usuario.usuario)" class="btn btn-info" [matTooltip]="'usuarios.tooltipGuardar' | translate"><i class="fa fa-save"></i></button> &nbsp;
+                                <button [disabled]="usuario.usuario.email === usuariosService.usuario.value.email" (click)="borrarUsuario(usuario.usuario)" class="btn btn-danger" [matTooltip]="'usuarios.tooltipBorrar' | translate"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </tbody>

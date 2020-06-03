@@ -13,6 +13,8 @@ import { URL_SERVICIOS } from 'src/app/config/config';
 })
 export class CreateRecipeComponent implements OnInit {
   recipe: Recipe;
+  ings: string[] = [];
+  ingsFiltrados: string[] = [];
   cargando = true;
   modificando = false;
 
@@ -45,9 +47,10 @@ export class CreateRecipeComponent implements OnInit {
         unidades: ['Caloria/s', Validators.required],
       })
     });
-    this.addIngrediente();
     this.recipe = new Recipe();
+    this.addIngrediente();
     this.cargarReceta();
+    this.cargarIngredientes();
   }
 
   cargarReceta() {
@@ -59,11 +62,25 @@ export class CreateRecipeComponent implements OnInit {
           this.vaciarCampos(rec);
           this.modificarCampos(rec);
         });
-        this.cargando = false;
       } else {
-        this.cargando = false;
       }
     });
+  }
+
+  cargarIngredientes() {
+    this.ingredientService.obtenerTodosIngs().subscribe(resp => {
+      this.ings = resp.ingredientes.map(el => el.nombre);
+      this.ingsFiltrados = this.ings.slice();
+      this.cargando = false;
+    });
+  }
+
+  filtrar(input: any) {
+    this.ingsFiltrados = this.ings.filter(el => el.includes(input.controls.nombre.value));
+  }
+
+  resetFilter() {
+    this.ingsFiltrados = this.ings.slice();
   }
 
   vaciarCampos(rec: any) {
@@ -209,7 +226,7 @@ export class CreateRecipeComponent implements OnInit {
     }
     if (this.comprobarRepetidos()) {
       // PONER BIEN
-      this.swal.crearSwal('comun.alertas.errores.noIngredientePrincipal', 'error');
+      this.swal.crearSwal('comun.alertas.errores.noIngredientesDuplicados', 'error');
       return;
     }
     if (this.imgUpload == null && !this.modificando) {

@@ -42,7 +42,7 @@
                             <td>
                                 <input *ngIf="ing.modificando " class="form-control " [(ngModel)]="ing.ingrediente.nombre ">
                                 <span *ngIf="!ing.modificando "> {{ ing.ingrediente.nombre }} </span>
-                                <i *ngIf="userService.esAdmin() && !(extra[i].recetas.length> 0) && !(extra[i].sustituibles.length > 0)" matTooltip="Debería ser borrado dado que no está presente en ninguna receta" class="fa fa-info-circle"></i>
+                                <i *ngIf="userService.esAdmin() && !(extra[i].recetas.length> 0) && !(extra[i].sustituibles.length > 0)" [matTooltip]="'ingredientes.tooltipConsejo' | translate" class="fa fa-info-circle"></i>
                             </td>
                             <td>
                                 <div *ngIf="extra[i].recetas.length > 0" class="row">
@@ -55,15 +55,15 @@
                             <td>
                                 <div *ngIf="extra[i].sustituibles.length > 0" class="row">
                                     <div *ngFor="let receta of extra[i].sustituibles">
-                                        <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" matTooltip="Mostrar receta" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
+                                        <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" [matTooltip]="'ingredientes.tooltipMostrar' | translate" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
                                     </div>
                                 </div>
                                 <span *ngIf="!(extra[i].sustituibles.length > 0)"><small class="text text-muted">{{ 'ingredientes.noPresente' | translate }}</small></span>
                             </td>
                             <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
-                                <button (click)="ing.modificando = !ing.modificando" class="btn btn-primary" matTooltip="Modificar ingrediente"><i class="fa fa-wrench"></i></button> &nbsp;
-                                <button [disabled]="!ing.modificando" (click)="actualizarIngrediente(ing.ingrediente)" class="btn btn-info" matTooltip="Guardar ingrediente"><i class="fa fa-save"></i></button> &nbsp;
-                                <button class="btn btn-danger" (click)="borrarIngrediente(ing.ingrediente, extra[i].recetas)" matTooltip="Borrar ingrediente"><i class="fa fa-trash-o"></i></button>
+                                <button (click)="ing.modificando = !ing.modificando" class="btn btn-primary" [matTooltip]="'ingredientes.tooltipModificar' | translate"><i class="fa fa-wrench"></i></button> &nbsp;
+                                <button [disabled]="!ing.modificando" (click)="actualizarIngrediente(ing.ingrediente)" class="btn btn-info" [matTooltip]="'ingredientes.tooltipGuardar' | translate"><i class="fa fa-save"></i></button> &nbsp;
+                                <button class="btn btn-danger" (click)="borrarIngrediente(ing.ingrediente, extra[i].recetas)" [matTooltip]="'ingredientes.tooltipBorrar' | translate"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </tbody>

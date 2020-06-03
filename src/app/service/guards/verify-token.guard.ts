@@ -12,13 +12,15 @@ export class VerifyTokenGuard implements CanActivate {
   constructor(public usuarioService: UsersService, public swal: SwalService) {}
 
   canActivate(): Promise<boolean> | boolean {
+    const lang = localStorage.getItem('lang');
     const token = this.usuarioService.token;
     if (token !== '') {
       const payload = JSON.parse( atob( token.split('.')[1] ) );
       const expirado = this.expirado(payload.exp);
       if (expirado) {
         //this.swal.crearSwal('comun.alertas.avisos.sesionExpirada', 'warning');
-        Swal.fire('Puta mierda', 'Cagon dios', 'warning');
+        console.log(lang);
+        this.swalSesion(lang);
         this.usuarioService.logout('home');
         return false;
       }
@@ -52,5 +54,10 @@ export class VerifyTokenGuard implements CanActivate {
         });
       }
     });
+  }
+
+  swalSesion(lang: string) {
+    if (lang === 'en') { Swal.fire('Session expired', 'The user session has been expired. Login again', 'warning'); }
+    if (lang === 'es') { Swal.fire('Sesión expirada', 'La sesión de usuario ha expirado. Vuelva a iniciar sesión', 'warning'); }
   }
 }

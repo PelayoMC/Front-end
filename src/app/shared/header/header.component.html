@@ -21,8 +21,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i [class]="langService.toggleFlag()"></i></a>
                     <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
-                        <a class="dropdown-item" (click)="langService.toogleLanguage('es')"><i class="flag-icon flag-icon-es"></i> {{ 'header.idiomaEsp' | translate }} </a>
-                        <a class="dropdown-item" (click)="langService.toogleLanguage('en')"><i class="flag-icon flag-icon-gb"></i> {{ 'header.idiomaIng' | translate }} </a>
+                        <a class="dropdown-item" (click)="langService.toogleLanguage('es')">
+                            <span class="pointer">
+                                <i class="flag-icon flag-icon-es"></i> {{ 'header.idiomaEsp' | translate }} 
+                            </span></a>
+                        <a class="dropdown-item" (click)="langService.toogleLanguage('en')">
+                            <span class="pointer">
+                                <i class="flag-icon flag-icon-gb"></i> {{ 'header.idiomaIng' | translate }} 
+                            </span></a>
                     </div>
                 </li>
                 <li class="nav-item" routerLinkActive="active" *ngIf="!userService.estaLogueado()">

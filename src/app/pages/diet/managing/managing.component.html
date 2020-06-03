@@ -22,8 +22,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button [disabled]="(from - limit) >= totalA || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">Anteriores</button> &nbsp;
-                        <button [disabled]="(from + limit) >= totalA || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">Siguientes</button>
+                        <button [disabled]="(from - limit) >= totalA || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">{{ 'comun.botones.anterior' | translate }}</button> &nbsp;
+                        <button [disabled]="(from + limit) >= totalA || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">{{ 'comun.botones.siguiente' | translate }}</button>
                     </div>
                 </div>
             </div>

@@ -603,7 +603,11 @@
 
         },
         "titulo": "Usuarios registrados",
-        "buscador": "Nombre del usuario"
+        "buscador": "Nombre del usuario",
+        "tooltipAñadir": "Añadir usuario",
+        "tooltipModificar": "Modificar usuario",
+        "tooltipGuardar": "Guardar usuario",
+        "tooltipBorrar": "Borrar usuario"
     },
     "recetas": {
         "recetasFavoritas": {
@@ -642,14 +646,19 @@
             "descripcion": "Descripcion",
             "descripcionPh": "Descripcion de la receta",
             "tipo": "Tipo",
+            "tipoTooltip": "El tipo indica si un ingrediente es esencial para la receta o puede ser sustituido",
             "imagen": "Imagen",
             "imagenP": " - Vista previa",
             "ingredientes": "Ingredientes",
+            "ingredientePh": "Nombre ingrediente",
             "botonIng": "Agregar ingrediente",
             "pasos": "Pasos a seguir de la receta",
+            "pasosPh": "Explicación del paso a seguir",
             "botonPaso": "Agregar paso",
             "dificultad": "Dificultad de la receta",
+            "cantidad": "Cantidad",
             "calorias": "Calorias (receta)",
+            "caloriasPh": "Número de calorias",
             "unidades": "Unidades",
             "botonCrear": "Crear receta",
             "botonMod": "Modificar receta",
@@ -677,11 +686,17 @@
         "titulo": "Ingredientes registrados",
         "buscador": "Nombre del ingrediente",
         "noPresente": "No está presente en ninguna receta",
-        "botonBorrarSin": "Borrar ingredientes sin receta"
+        "botonBorrarSin": "Borrar ingredientes sin receta",
+        "tooltipConsejo": "Debería ser borrado dado que no está presente en ninguna receta",
+        "tooltipMostrar": "Mostrar receta",
+        "tooltipModificar": "Modificar ingrediente",
+        "tooltipGuardar": "Guardar ingrediente",
+        "tooltipBorrar": "Borrar ingrediente"
     },
     "intolerancias": {
         "misIntolerancias": {
-            "titulo": "Intolerancias del usuario: "
+            "titulo": "Intolerancias del usuario: ",
+            "tooltipEliminar": "Eliminar intolerancia"
         },
         "intolerancia": {
             "descripcion": "Descripción",
@@ -707,11 +722,18 @@
             "botonMod": "Modificar intolerancia"
         },
         "titulo": "Intolerancias registradas",
-        "buscador": "Nombre de la intolerancia"
+        "buscador": "Nombre de la intolerancia",
+        "tooltipModificar": "Modificar intolerancia",
+        "tooltipGuardar": "Guardar intolerancia",
+        "tooltipBorrar": "Borrar intolerancia"
     },
     "etiquetas": {
         "titulo": "Etiquetas registradas",
-        "buscador": "Nombre de la etiqueta"
+        "buscador": "Nombre de la etiqueta",
+        "tooltipAñadir": "Añadir etiqueta",
+        "tooltipModificar": "Modificar etiqueta",
+        "tooltipGuardar": "Guardar etiqueta",
+        "tooltipBorrar": "Borrar etiqueta"
     },
     "dietas": {
         "gestion": {
@@ -729,8 +751,8 @@
             "titulo": "Solicitar dieta",
             "titulo2": "Dieta solicitada",
             "noInfo": "No existe información personal sobre el usuario",
-            "noInfo2": "Para poder solicitar una dieta, rellene los campos de edad, altura y peso en el ",
-            "noInfoLink": "perfil de usuario",
+            "noInfo2": "Para poder solicitar una dieta, rellene los campos de edad, altura y peso en el perfil de usuario",
+            "noInfoLink": "Ir al perfil",
             "solicitar": "Antes de solicitar una dieta, asegurese de añadir ",
             "solicitar2": " y ",
             "solicitar3": " a su perfil",
@@ -738,7 +760,11 @@
             "solicitarLink": "intolerancias",
             "solicitarLink2": "recetas favoritas",
             "solicitarBoton": "Solicitar dieta",
-            "solicitada": "Espere a que un experto realice el planning de su dieta"
+            "solicitada": "Espere a que un experto realice el planning de su dieta",
+            "existenteTitulo": "Dieta asignada",
+            "existente": "Ya tiene una dieta asignada",
+            "existenteLink": "Planificación",
+            "existenteLink2": "Seguimiento"
         },
         "planificar": {
             "titulo": "Planificación semanal de la dieta",
@@ -748,6 +774,9 @@
             "titulo": "Recetas para: ",
             "total": "Total de calorias de hoy:",
             "admin": "Mensaje del administrador"
-        }
+        },
+        "incompletoTitulo": "La dieta no está completa",
+        "incompleto1": "Parece ser que faltan recetas en la dieta",
+        "incompleto2": "El administrador se encargará de solucionar el problema"
     }
 }
