@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { UsersService, RecipesService, VotingService, SwalService } from '../../../service/service.index';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-recipe-card',

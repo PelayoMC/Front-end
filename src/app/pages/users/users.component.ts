@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { UsersService, SwalService, ModalUploadService, ModalCreateUserService } from '../../service/service.index';
 import { Usuario } from '../../models/usuario.model';
-import { UsersService, SwalService } from '../../service/service.index';
-import Swal from 'sweetalert2';
-import { ModalUploadService } from '../../service/modals/modal-upload.service';
-import { ModalCreateUserService } from '../../service/modals/modal-create-user.service';
 import { UsuarioDecorator } from '../../models/decorators/user-decorator.model';
 
 @Component({

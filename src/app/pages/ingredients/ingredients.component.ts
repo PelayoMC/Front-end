@@ -1,14 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { UsersService } from '../../service/users/users.service';
-import { IngredientsService } from '../../service/ingredients/ingredients.service';
 import { IngredienteDecorator } from 'src/app/models/decorators/ingredient-decorator.model';
 import { Ingredient } from '../../models/ingredient.model';
-import Swal from 'sweetalert2';
 import { Recipe } from '../../models/recipe.model';
 import { Router } from '@angular/router';
-import { RecipesService } from '../../service/recipes/recipes.service';
 import { Filtros } from 'src/app/models/filtros.model';
-import { SwalService } from 'src/app/service/service.index';
+import { UsersService, IngredientsService, RecipesService, SwalService } from 'src/app/service/service.index';
 
 @Component({
   selector: 'app-ingredients',

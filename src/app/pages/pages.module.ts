@@ -50,6 +50,7 @@ import { ModalCreateUserComponent } from '../components/modal-create-user/modal-
 import { ModalTagsComponent } from '../components/modal-tags/modal-tags.component';
 import { ModalVoteComponent } from '../components/modal-vote/modal-vote.component';
 import { ModalFeedbackComponent } from '../components/modal-feedback/modal-feedback.component';
+import { ModalObservationsComponent } from '../components/modal-observations/modal-observations.component';
 import { SearchTagComponent } from '../components/search-tag/search-tag.component';
 import { SearchIntoleranceComponent } from '../components/search-intolerance/search-intolerance.component';
 import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
@@ -98,6 +99,7 @@ import { SearchTypeComponent } from '../components/search-type/search-type.compo
         ModalTagsComponent,
         ModalVoteComponent,
         ModalFeedbackComponent,
+        ModalObservationsComponent,
         LoadingComponent,
         NoFoundComponentComponent,
         SearchTagComponent,

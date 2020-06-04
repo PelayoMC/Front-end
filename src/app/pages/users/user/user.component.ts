@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService, SwalService } from '../../../service/service.index';
 import { Usuario } from '../../../models/usuario.model';
-import {FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -26,7 +26,8 @@ export class UserComponent implements OnInit {
       email: new FormControl({value: this.usuario.email, disabled: true}, [Validators.required, Validators.email]),
       edad: new FormControl({value: this.usuario.edad, disabled: true}, Validators.required),
       altura: new FormControl({value: this.usuario.altura, disabled: true}, Validators.required),
-      peso: new FormControl({value: this.usuario.peso, disabled: true}, Validators.required)
+      peso: new FormControl({value: this.usuario.peso, disabled: true}, Validators.required),
+      observaciones: new FormControl({value: this.usuario.observaciones, disabled: true}, Validators.required),
     });
     this.mostrarNotificaciones();
   }
@@ -67,6 +68,7 @@ export class UserComponent implements OnInit {
       this.form.get('edad').enable();
       this.form.get('altura').enable();
       this.form.get('peso').enable();
+      this.form.get('observaciones').enable();
       if (!this.usuario.google) {
         this.form.get('email').enable();
       }
@@ -76,6 +78,7 @@ export class UserComponent implements OnInit {
       this.form.get('edad').disable();
       this.form.get('altura').disable();
       this.form.get('peso').disable();
+      this.form.get('observaciones').disable();
     }
   }
 
@@ -109,6 +112,7 @@ export class UserComponent implements OnInit {
     this.usuario.edad = this.form.get('edad').value;
     this.usuario.altura = this.form.get('altura').value;
     this.usuario.peso = this.form.get('peso').value;
+    this.usuario.observaciones = this.form.get('observaciones').value;
     if (!this.usuario.google) {
       this.usuario.email = this.form.get('email').value;
     }

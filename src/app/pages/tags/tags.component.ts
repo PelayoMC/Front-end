@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TagsService, UsersService, ModalTagService, SwalService } from '../../service/service.index';
 import { EtiquetaDecorator } from '../../models/decorators/tag-decorator.model';
-import Swal from 'sweetalert2';
 import { Etiqueta } from 'src/app/models/etiqueta.model';
-import { Filtros } from 'src/app/models/filtros.model';
 
 @Component({
   selector: 'app-tags',

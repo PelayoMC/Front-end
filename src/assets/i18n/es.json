@@ -493,6 +493,10 @@
             "texto": "Texto del feedback",
             "error": "El texto ha de tener más de 10 letras"
         },
+        "observaciones": {
+            "titulo": "Observaciones",
+            "enviar": "Observaciones del usuario"
+        },
         "votar": {
             "titulo": "Añadir votacion"
         },
@@ -594,9 +598,11 @@
             "peso": "Peso",
             "pesoPh": "Introducir peso",
             "pesoErr": "El peso es obligatorio",
+            "observaciones": "Observaciones",
+            "observacionesPh": "Introducir observaciones a tener en cuenta",
             "botonMod": "Modificar",
             "botonAceptar": "Aceptar",
-            "botonBorrar": "Borrar",
+            "botonCancelar": "Cancelar",
             "imagen": "Imagen de usuario",
             "previa": "Vista previa",
             "botonAct": "Actualizar imagen"
@@ -741,6 +747,7 @@
             "comentarios": "Comentarios",
             "noAsig": {
                 "titulo1": "Datos del usuario",
+                "observaciones": "Observaciones",
                 "favoritas": "Recetas favoritas",
                 "intolerancias": "Intolerancias",
                 "titulo2": "Asignar recetas",

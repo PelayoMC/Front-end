@@ -12,6 +12,7 @@ export class Usuario {
         public edad?: number,
         public altura?: number,
         public peso?: number,
+        public observaciones?: string,
         public notificaciones?: Notificacion[],
         public _id?: string
     ) {

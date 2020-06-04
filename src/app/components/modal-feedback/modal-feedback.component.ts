@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UsersService, DietService, ModalFeedbackService, SwalService } from 'src/app/service/service.index';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-feedback',

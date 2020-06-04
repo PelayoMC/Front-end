@@ -1,10 +1,9 @@
 import { Component, OnInit, } from '@angular/core';
+import { RecipesService, IngredientsService, SustValidatorService, TagsService, SwalService } from '../../../service/service.index';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Ingredient } from '../../../models/ingredient.model';
 import { IngredientRecipe } from '../../../models/recipe.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RecipesService, IngredientsService, SustValidatorService, TagsService, SwalService } from '../../../service/service.index';
-import Swal from 'sweetalert2';
 import { Etiqueta } from 'src/app/models/etiqueta.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 

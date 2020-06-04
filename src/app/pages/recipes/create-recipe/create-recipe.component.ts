@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { IngredientsService, RecipesService, VotingService, SwalService } from '../../../service/service.index';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
-import { IngredientsService, RecipesService, VotingService, SwalService } from '../../../service/service.index';
-import Swal from 'sweetalert2';
 import * as opt from './select-options';
 import { URL_SERVICIOS } from 'src/app/config/config';
 

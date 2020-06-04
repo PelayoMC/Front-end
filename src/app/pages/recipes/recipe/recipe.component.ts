@@ -4,7 +4,6 @@ import { RecipesService, IngredientsService, UsersService, VotingService, ModalV
 import { ActivatedRoute, Router } from '@angular/router';
 import { Votacion } from '../../../models/votacion.model';
 import { Recipe } from 'src/app/models/recipe.model';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-recipe',

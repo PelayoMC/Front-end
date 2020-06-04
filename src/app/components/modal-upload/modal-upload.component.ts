@@ -1,10 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import Swal from 'sweetalert2';
-import { UploadImageService } from '../../service/upload/upload-image.service';
-import { ModalUploadService } from '../../service/modals/modal-upload.service';
-import { Usuario } from '../../models/usuario.model';
-import { UsersService } from '../../service/users/users.service';
-import { SwalService } from 'src/app/service/service.index';
+import { Component, OnInit } from '@angular/core';
+import { UploadImageService, ModalUploadService, UsersService, SwalService } from 'src/app/service/service.index';
 
 @Component({
   selector: 'app-modal-upload',

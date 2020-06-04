@@ -5,7 +5,6 @@ import { Dieta } from 'src/app/models/dieta.model';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { Router } from '@angular/router';
 import * as data from '../diets.data';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tracking',

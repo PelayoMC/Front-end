@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsersService, DietService, ModalCreateDietService, SwalService } from 'src/app/service/service.index';
+import { UsersService, DietService, ModalCreateDietService, ModalObservationsService, SwalService } from 'src/app/service/service.index';
 import { Usuario } from '../../../../models/usuario.model';
 import { Recipe } from '../../../../models/recipe.model';
 import * as data from '../../diets.data';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-diet',
@@ -14,7 +13,8 @@ export class CreateDietComponent implements OnInit {
 
   constructor(public activatedRoute: ActivatedRoute, public usuarioService: UsersService,
               public dietaService: DietService, public router: Router,
-              public modalService: ModalCreateDietService, public swal: SwalService) { }
+              public modalService: ModalCreateDietService, public observaciones: ModalObservationsService,
+              public swal: SwalService) { }
 
   usuarioReceta: Usuario;
 
@@ -109,5 +109,9 @@ export class CreateDietComponent implements OnInit {
 
   abrirModal(i: number, j: number) {
     this.modalService.mostrarModal(i, j);
+  }
+
+  abrirObservaciones() {
+    this.observaciones.mostrarModal(this.usuarioReceta);
   }
 }

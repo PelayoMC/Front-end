@@ -3,7 +3,6 @@ import { ModalCreateUserService, SwalService } from '../../service/service.index
 import { UsersService } from '../../service/users/users.service';
 import { Usuario } from '../../models/usuario.model';
 import { NgForm } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 @Component({

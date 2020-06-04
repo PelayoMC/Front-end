@@ -20,15 +20,21 @@ export class SidebarComponent implements OnInit {
 
   ponerMenu() {
     if (!this.userService.usuario.value) {
+      console.log('1');
       this.menu = this.sidebarService.menuNR;
     } else if (this.userService.usuario.value && this.userService.usuario.value.rol === 'ADMIN') {
+      console.log('2');
       this.menu = this.sidebarService.menuA;
     } else {
+      console.log(this.userService.usuario.value.dieta);
       if (!this.userService.usuario.value.dieta) {
+        console.log('3');
         this.menu = this.sidebarService.menuUNo;
       } else {
+        console.log('4');
         this.menu = this.sidebarService.menuU;
       }
     }
+    console.log(this.menu);
   }
 }

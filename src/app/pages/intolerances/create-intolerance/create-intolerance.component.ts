@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
+import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { TagsService, IntolerancesService, SwalService } from '../../../service/service.index';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Intolerance } from 'src/app/models/intolerance.model';
 import { Etiqueta } from '../../../models/etiqueta.model';
-import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { TagsService, IntolerancesService, SwalService } from '../../../service/service.index';
-import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
-import Swal from 'sweetalert2';
 import { URL_SERVICIOS } from '../../../config/config';
 
 @Component({

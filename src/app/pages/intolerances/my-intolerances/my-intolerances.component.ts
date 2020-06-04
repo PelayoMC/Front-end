@@ -1,9 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { IntolerancesService, UsersService, SwalService } from 'src/app/service/service.index';
+import { UsersService, SwalService } from 'src/app/service/service.index';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Filtros } from 'src/app/models/filtros.model';
 import { Intolerance } from 'src/app/models/intolerance.model';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-my-intolerances',

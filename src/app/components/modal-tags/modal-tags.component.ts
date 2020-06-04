@@ -1,9 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ModalTagService } from '../../service/service.index';
+import { ModalTagService, TagsService } from '../../service/service.index';
 import { NgForm } from '@angular/forms';
 import { Etiqueta } from '../../models/etiqueta.model';
-import { TagsService } from '../../service/tags/tags.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-tags',

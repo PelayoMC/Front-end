@@ -80,7 +80,7 @@
                     "mensaje": "You can't access this page because you are not a valid user"
                 },
                 "noAdmin": {
-                    "titulo": "Permiso denegado",
+                    "titulo": "Access denied",
                     "mensaje": "You can't access this page because you are not an admin"
                 },
                 "actualizarUsuario": {
@@ -491,6 +491,10 @@
             "texto": "Feedback text",
             "error": "The text must have at least 10 letters"
         },
+        "observaciones": {
+            "titulo": "Observations",
+            "enviar": "User observations"
+        },
         "votar": {
             "titulo": "Add vote"
         },
@@ -592,9 +596,11 @@
             "peso": "Weight",
             "pesoPh": "Introduce weight",
             "pesoErr": "The weight is required",
+            "observaciones": "Observations",
+            "observacionesPh": "Introduce observations that have to be taken into account",
             "botonMod": "Modify",
             "botonAceptar": "Accept",
-            "botonBorrar": "Delete",
+            "botonCancelar": "Cancel",
             "imagen": "User image",
             "previa": "Preview",
             "botonAct": "Update image"
@@ -739,6 +745,7 @@
             "comentarios": "Comments",
             "noAsig": {
                 "titulo1": "User data",
+                "observaciones": "Observations",
                 "favoritas": "Favorite recipes",
                 "intolerancias": "Intolerances",
                 "titulo2": "Add recipes",

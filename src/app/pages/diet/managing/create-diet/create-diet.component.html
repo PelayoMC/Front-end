@@ -30,6 +30,7 @@
                                 <span> {{ usuarioReceta.peso }} </span>
                             </td>
                             <td class="text-nowrap small-td">
+                                <button class="btn btn-info" (click)="abrirObservaciones()">{{ 'dietas.gestion.noAsig.observaciones' | translate }}</button> &nbsp;
                                 <button class="btn btn-info" routerLinkActive [routerLink]="['/favorites/' + usuarioReceta._id]">{{ 'dietas.gestion.noAsig.favoritas' | translate }}</button> &nbsp;
                                 <button class="btn btn-info" routerLinkActive [routerLink]="['/myIntolerances/' + usuarioReceta._id]">{{ 'dietas.gestion.noAsig.intolerancias' | translate }}</button>
                             </td>
@@ -68,3 +69,4 @@
 </div>
 <button [disabled]="!dietaCompleta()" class="btn btn-info" (click)="crearDieta()">{{ 'dietas.gestion.noAsig.crear' | translate }}</button>
 <app-modal-create-diet (receta)="addReceta($event)"></app-modal-create-diet>
+<app-modal-observations></app-modal-observations>

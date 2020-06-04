@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService, SwalService } from '../service/service.index';
 import { Usuario } from '../models/usuario.model';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 
 declare function init_plugins();
 @Component({
