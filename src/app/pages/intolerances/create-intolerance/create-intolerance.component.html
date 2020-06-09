@@ -25,6 +25,9 @@
                             <br>
                             <div class="form-group">
                                 <label>{{ 'intolerancias.crear.etiquetas' | translate }}</label>
+                                <button type="button" mat-button mat-icon-button aria-label="Clear" (click)="eliminarTodasEtiquetas()">
+                                    <mat-icon>close</mat-icon>
+                                  </button>
                                 <mat-form-field style="width: 100%;">
                                     <mat-chip-list #list [class.is-invalid]="aptoNoValido()" aria-label="tag selection">
                                         <mat-chip formArrayName="noApto" *ngFor="let tag of tags; let i = index" [selectable]="true" [removable]="true" (removed)="remove(tag.nombre)">

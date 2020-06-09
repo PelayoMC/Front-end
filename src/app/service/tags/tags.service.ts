@@ -13,7 +13,7 @@ export class TagsService {
   constructor(public http: HttpClient, public swal: SwalService) { }
 
   obtenerEtiquetas() {
-    const url = URL_SERVICIOS + '/etiqueta';
+    const url = URL_SERVICIOS + '/etiqueta/all';
     return this.http.get(url).pipe(
       map( (resp: any) => {
         return resp;

@@ -17,13 +17,12 @@
     </div>
 </div>
 <app-loading-component [cargando]="cargando"></app-loading-component>
-<app-no-found-component [cargando]="cargando" [array]="etiquetas"></app-no-found-component>
-<div class="row " *ngIf="!cargando && etiquetas.length > 0">
+<div class="row " *ngIf="!cargando">
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
                 <h3 class="card-title ">{{ 'etiquetas.titulo' | translate }} (<small>{{ total }}</small>)&nbsp; <button (click)="mostrarModal()" [matTooltip]="'etiquetas.tooltipAñadir' | translate" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
-                <table class="table table-hover">
+                <table *ngIf="etiquetas.length > 0" class="table table-hover">
                     <thead>
                         <tr>
                             <th>{{ 'comun.tabla.nombre' | translate }}</th>
@@ -44,6 +43,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <app-no-found-component [cargando]="cargando" [array]="etiquetas"></app-no-found-component>
                 <button [disabled]="(from - limit) >= total || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">{{ 'comun.botones.anterior' | translate }}</button> &nbsp;
                 <button [disabled]="(from + limit) >= total || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">{{ 'comun.botones.siguiente' | translate }}</button>
             </div>

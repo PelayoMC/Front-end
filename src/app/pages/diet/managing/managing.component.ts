@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DietService, UsersService, ModalFeedbackService } from '../../../service/service.index';
 import { Dieta } from 'src/app/models/dieta.model';
 import { Router } from '@angular/router';
+import { Usuario } from '../../../models/usuario.model';
 
 @Component({
   selector: 'app-managing',
@@ -10,8 +11,9 @@ import { Router } from '@angular/router';
 export class ManagingComponent implements OnInit {
 
   constructor(public userService: UsersService, public dietService: DietService, public modalFeedback: ModalFeedbackService, public router: Router) { }
-  sinAsignar: Dieta[] = [];
-  comentarios: Dieta[] = [];
+  sinAsignar: any[] = [];
+  comentarios: any[] = [];
+  usuarios: Usuario[] = [];
   coment: Dieta;
 
   cargando = true;
@@ -31,9 +33,29 @@ export class ManagingComponent implements OnInit {
       this.dietService.obtenerComentariosDietas(this.userService.usuario.value._id, this.from, this.limit).subscribe(resp => {
         this.comentarios = resp.dietas;
         this.totalC = resp.total;
-        this.cargando = false;
+        this.userService.obtenerUsuarios(this.cargarUsuarios(this.sinAsignar, this.comentarios)).subscribe(resp => {
+          console.log(resp);
+          let x = 0;
+          while (x < this.sinAsignar.length) {
+            this.sinAsignar[x].user = resp[x].nombre;
+            x++;
+          }
+          while (x < this.comentarios.length) {
+            this.comentarios[x].user = resp[x].nombre;
+            x++;
+          }
+          this.cargando = false;
+        });
       });
     });
+  }
+
+  cargarUsuarios(...arrays: any[]) {
+    let array: string[] = [];
+    for (let ar of arrays) {
+      array = array.concat(ar.map(el => el.usuario));
+    }
+    return array;
   }
 
   cambiarDesde(valor: number) {

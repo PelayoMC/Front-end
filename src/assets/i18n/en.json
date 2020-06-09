@@ -65,7 +65,7 @@
             "errores": {
                 "sesion": {
                     "titulo": "Login error",
-                    "mensaje": "Incorrect credentials"
+                    "mensaje": "The login has not been possible"
                 },
                 "sesionGoogle": {
                     "titulo": "Login error",
@@ -704,7 +704,7 @@
         },
         "intolerancia": {
             "descripcion": "Description",
-            "etiquetas": "Tags",
+            "etiquetas": "Avoidable tags",
             "botonRe": "Return"
         },
         "crear": {
@@ -716,7 +716,7 @@
             "descripcion": "Description",
             "descripcionPh": "Intolerance description",
             "descripcionErr": "The description is mandatory",
-            "etiquetas": "Tags",
+            "etiquetas": "Avoidable tags",
             "etiquetasPh": "To add a tag use , or intro",
             "etiquetasErr": "The intolerance must have at least one tag",
             "etiquetasRepErr": "No repeated tags allowed",

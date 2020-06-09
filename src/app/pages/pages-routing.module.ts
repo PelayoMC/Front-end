@@ -76,7 +76,7 @@ const routes: Routes = [
           { path: 'intolerances', component: IntolerancesComponent, data: { titulo: 'Intolerancias' } },
           { path: 'intolerance/:id', component: IntoleranceComponent, data: { titulo: 'Intolerancia' } },
           { path: 'tags', component: TagsComponent, data: { titulo: 'Etiquetas' } },
-          { path: '', pathMatch: 'full', redirectTo: '/home'}
+          { path: '', pathMatch: 'full', redirectTo: 'home'}
         ]
     }
 ];

@@ -44,6 +44,7 @@ export class CreateIntoleranceComponent implements OnInit {
 
   cargarEtiquetas() {
     this.tagsService.obtenerEtiquetas().subscribe((resp: any) => {
+      console.log(resp);
       const ar: Etiqueta[] = [];
       for (let i = 0; i < resp.etiquetas.length; i++) {
         ar[i] = new Etiqueta(resp.etiquetas[i].nombre, resp.etiquetas[i]._id);
@@ -70,6 +71,10 @@ export class CreateIntoleranceComponent implements OnInit {
         this.modificando = true;
       }
     });
+  }
+
+  eliminarTodasEtiquetas() {
+    this.eliminarEtiquetas([]);
   }
 
   eliminarEtiquetas(array: string[]) {
@@ -116,6 +121,7 @@ export class CreateIntoleranceComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('submit');
     if (this.imgUpload == null  && !this.modificando) {
       this.swal.crearSwal('comun.alertas.errores.añadirImagen', 'error');
       return;
@@ -198,6 +204,7 @@ export class CreateIntoleranceComponent implements OnInit {
       const ar1 = str.noApto;
       const ar2 = resp.etiquetas.map(el => el.nombre);
       const ar = ar1.filter(el => !ar2.includes(el));
+      console.log(ar);
       if (ar.length > 0) {
         this.tagsService.añadirTags(ar).subscribe(resp => {
           this.addInto();
@@ -245,4 +252,3 @@ export class CreateIntoleranceComponent implements OnInit {
     });
   }
 }
- 

@@ -65,7 +65,7 @@
             "errores": {
                 "sesion": {
                     "titulo": "Error de sesión",
-                    "mensaje": "Credenciales incorrectas"
+                    "mensaje": "El inicio de sesión no ha sido posible"
                 },
                 "sesionGoogle": {
                     "titulo": "Error de sesión",
@@ -706,7 +706,7 @@
         },
         "intolerancia": {
             "descripcion": "Descripción",
-            "etiquetas": "Etiquetas",
+            "etiquetas": "Etiquetas a evitar",
             "botonRe": "Regresar"
         },
         "crear": {
@@ -718,7 +718,7 @@
             "descripcion": "Descripcion",
             "descripcionPh": "Descripcion de la intolerancia",
             "descripcionErr": "La descripción es obligatoria",
-            "etiquetas": "Etiquetas",
+            "etiquetas": "Etiquetas a evitar",
             "etiquetasPh": "Para añadir una etiqueta use , o intro",
             "etiquetasErr": "La intolerancia debe tener al menos una etiqueta",
             "etiquetasRepErr": "No se permiten etiquetas repetidas",

@@ -17,7 +17,7 @@
                             <tbody>
                                 <tr *ngFor="let int of sinAsignar; let i = index">
                                     <td (click)="mostrarDieta(int)">
-                                        <span> {{ int._id }} </span>
+                                        <span> {{ int.user }} </span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -47,7 +47,7 @@
                             <tbody>
                                 <tr *ngFor="let c of comentarios; let i = index">
                                     <td (click)="mostrarFeedBack(c)">
-                                        <span> {{ c._id }} </span>
+                                        <span> {{ c.user }} </span>
                                     </td>
                                 </tr>
                             </tbody>
