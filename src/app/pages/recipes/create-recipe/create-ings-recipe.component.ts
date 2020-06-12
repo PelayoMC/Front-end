@@ -116,7 +116,7 @@ export class CreateIngsRecipeComponent implements OnInit {
   }
 
   filtrar(input: any) {
-    this.filteredTags = this.copy.map(el => el.nombre).filter(el => el.includes(input.value));
+    this.filteredTags = this.copy.map(el => el.nombre).filter(el => el.toLowerCase().includes(input.value));
   }
 
   remove(tag: string, j: number): void {

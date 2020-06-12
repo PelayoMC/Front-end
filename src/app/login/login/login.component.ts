@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsersService } from '../service/service.index';
+import { UsersService } from '../../service/service.index';
 import { Router } from '@angular/router';
-import { Usuario } from '../models/usuario.model';
+import { Usuario } from '../../models/usuario.model';
 
 declare function init_plugins();
 // Libreria google

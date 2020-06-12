@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 import { LanguageGuard } from './service/guards/language.guard';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login/login/login.component';
 import { NoFoundComponent } from './no-found/no-found.component';
-import { RegisterComponent } from './login/register.component';
+import { RegisterComponent } from './login/register/register.component';
 
 
 const routes: Routes = [

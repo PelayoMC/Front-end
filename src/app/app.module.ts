@@ -15,8 +15,8 @@ import { PageModule } from './pages/pages.module';
 
 // Componentes
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './login/register.component';
+import { LoginComponent } from './login/login/login.component';
+import { RegisterComponent } from './login/register/register.component';
 
 // Servicios
 import { ServiceModule } from './service/service.module';

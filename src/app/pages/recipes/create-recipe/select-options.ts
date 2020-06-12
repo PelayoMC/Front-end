@@ -36,7 +36,7 @@ export const tipo = [
 
 export const tipoUnidades = [
         { nombre: 'Principal' },
-        { nombre: 'Secundario' }
+        { nombre: 'Sustituible' }
       ];
 
 export const dificultades = [

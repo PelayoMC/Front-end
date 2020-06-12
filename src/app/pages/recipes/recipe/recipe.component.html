@@ -55,7 +55,7 @@
                                         <mat-expansion-panel-header>
                                             <mat-panel-title>
                                                 <label *ngIf="ing.tipo == 'Principal'" class="label label-danger">{{ 'recetas.receta.principal' | translate }}</label>
-                                                <label *ngIf="ing.tipo == 'Secundario'" class="label label-info">{{ 'recetas.receta.secundario' | translate }}</label>
+                                                <label *ngIf="ing.tipo == 'Sustituible'" class="label label-info">{{ 'recetas.receta.secundario' | translate }}</label>
                                             </mat-panel-title>
                                             <mat-panel-description>
                                                 <b [ngClass]="color(ing)">{{ ing.nombre }}</b>

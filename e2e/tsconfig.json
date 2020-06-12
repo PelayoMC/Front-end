@@ -5,9 +5,11 @@
     "module": "commonjs",
     "target": "es5",
     "types": [
-      "jasmine",
-      "jasminewd2",
-      "node"
+      "jasmine"
     ]
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "node_modules/@types"
+  ]
 }

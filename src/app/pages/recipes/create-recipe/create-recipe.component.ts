@@ -61,7 +61,6 @@ export class CreateRecipeComponent implements OnInit {
           this.vaciarCampos(rec);
           this.modificarCampos(rec);
         });
-      } else {
       }
     });
   }
@@ -201,16 +200,13 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   comprobarRepetidos() {
-    console.log(this.form.value.ingredientes);
     const sortedArr = this.form.value.ingredientes.slice().sort();
-    console.log(sortedArr);
     const results = [];
     for (let i = 0; i < sortedArr.length - 1; i++) {
       if (sortedArr[i + 1].nombre === sortedArr[i].nombre && sortedArr[i].nombre !== '') {
         results.push(sortedArr[i]);
       }
     }
-    console.log(results);
     return results.length > 0;
   }
 
@@ -219,12 +215,11 @@ export class CreateRecipeComponent implements OnInit {
       this.swal.crearSwal('comun.alertas.errores.completarCampos', 'error');
       return;
     }
-    if (this.comprobarPrincipal()) {
-      this.swal.crearSwal('comun.alertas.errores.noIngredientePrincipal', 'error');
-      return;
-    }
+    // if (this.comprobarPrincipal()) {
+    //   this.swal.crearSwal('comun.alertas.errores.noIngredientePrincipal', 'error');
+    //   return;
+    // }
     if (this.comprobarRepetidos()) {
-      // PONER BIEN
       this.swal.crearSwal('comun.alertas.errores.noIngredientesDuplicados', 'error');
       return;
     }
@@ -259,6 +254,7 @@ export class CreateRecipeComponent implements OnInit {
   modificarReceta() {
     this.cargando = true;
     Object.assign(this.recipe, this.form.value);
+    console.log(this.recipe.ingredientes);
     this.ingredientService.obtenerIngsRecipe(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
       this.recipeService.modificarReceta(this.recipe).subscribe(resp => {

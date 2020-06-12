@@ -70,9 +70,13 @@ export class RecipeComponent implements OnInit {
   }
 
   cargarEtiquetasYSustituibles() {
+    console.log(this.receta.ingredientes.map(el => el._id));
     this.ingsService.obtenerEtiquetas(this.receta.ingredientes.map(el => el._id)).subscribe(resp => {
+      console.log(resp);
       this.etiquetas = resp;
+      console.log(this.receta.ingredientes.map(el => el.ingredienteSustituible));
       this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
+        console.log(resp);
         this.sustituibles = resp.map(el => {
           if (el != null) {
             return el.nombre;

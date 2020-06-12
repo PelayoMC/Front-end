@@ -183,6 +183,7 @@ export class IngredientsService {
     url += '?token=' + localStorage.token;
     return this.http.put(url, ingredientes).pipe(
       map( (resp: any) => {
+        console.log(resp);
         return resp.ingredientes;
       })
     );

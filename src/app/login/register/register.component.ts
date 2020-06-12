@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsersService, SwalService } from '../service/service.index';
-import { Usuario } from '../models/usuario.model';
+import { UsersService, SwalService } from '../../service/service.index';
+import { Usuario } from '../../models/usuario.model';
 import { Router } from '@angular/router';
 
 declare function init_plugins();
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['../login/login.component.css']
 })
 export class RegisterComponent implements OnInit {
 

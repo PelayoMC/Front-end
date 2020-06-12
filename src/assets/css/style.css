@@ -65,8 +65,7 @@ a.link:focus {
 }
 
 .img-profile-small {
-    width: 240px;
-    height: 220px;
+    max-height: 220px;
 }
 
 .img-users-small {
