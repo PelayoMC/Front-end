@@ -74,7 +74,7 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   filtrar(input: any) {
-    this.ingsFiltrados = this.ings.filter(el => el.includes(input.controls.nombre.value));
+    this.ingsFiltrados = this.ings.filter(el => el.toLowerCase().includes(input.controls.nombre.value));
   }
 
   resetFilter() {
@@ -116,7 +116,7 @@ export class CreateRecipeComponent implements OnInit {
       tipo: [tipo, Validators.required],
       ingredienteSustituible: [is]
     });
-    if ((unidades === 'Al gusto' || unidades === 'Sin unidades')) {
+    if ((unidades === 'Al gusto')) {
       fg.get('cantidad').disable();
     }
     return fg;

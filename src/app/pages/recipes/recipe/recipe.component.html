@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="col-7">
                                                 <span *ngIf="noUnidades(ing)">{{ ing.unidades }}</span>
-                                                <span *ngIf="!noUnidades(ing)">{{ ing.cantidad }} {{ ing.unidades }}</span>
+                                                <span *ngIf="!noUnidades(ing)">{{ ing.cantidad }} {{ checkUnidades(ing.unidades) }} </span>
                                             </div>
                                         </div>
                                         <div *ngIf="(sustituibles.length != 0) && (sustituibles[i] != null)">
@@ -81,6 +81,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!--
                                         <div *ngIf="etiquetas[i]?.length > 0">
                                             <hr>
                                             <div class="row">
@@ -96,6 +97,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        -->
                                     </mat-expansion-panel>
                                 </mat-accordion>
                                 <br>

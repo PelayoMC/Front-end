@@ -649,8 +649,10 @@
             "tituloMod": "Modificar receta",
             "nombre": "Nombre",
             "nombrePh": "Nombre de la receta",
+            "nombreErr": "El nombre es obligatorio",
             "descripcion": "Descripcion",
             "descripcionPh": "Descripcion de la receta",
+            "descripcionErr": "La descripción es obligatoria",
             "tipo": "Tipo",
             "tipoTooltip": "El tipo indica si un ingrediente es esencial para la receta o puede ser sustituido",
             "imagen": "Imagen",
@@ -668,6 +670,7 @@
             "unidades": "Unidades",
             "botonCrear": "Crear receta",
             "botonMod": "Modificar receta",
+            "botonEliminar": "Eliminar",
             "crearIng": {
                 "tituloEt": "Añadir etiquetas",
                 "añadirEt": "Añadir etiquetas al ingrediente",

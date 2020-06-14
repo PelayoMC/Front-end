@@ -13,7 +13,7 @@
                                 <div class="input-group">
                                     <input formControlName="nombre" [class.is-invalid]="nombreNoValido()" type="text" name="nombre" class="form-control" autocomplete="off" [placeholder]="'recetas.crear.nombrePh' | translate">
                                 </div>
-                                <small *ngIf="nombreNoValido()" class="form-text text-danger">El nombre es obligatorio</small>
+                                <small *ngIf="nombreNoValido()" class="form-text text-danger">{{ 'recetas.crear.nombreErr' | translate }}</small>
                             </div>
                             <br>
                             <div class="form-group">
@@ -21,7 +21,7 @@
                                 <div class="input-group">
                                     <textarea formControlName="descripcion" [class.is-invalid]="descripcionNoValida()" name="descripcion" class="form-control" rows="3" [placeholder]="'recetas.crear.descripcionPh' | translate"></textarea>
                                 </div>
-                                <small *ngIf="descripcionNoValida()" class="form-text text-danger">La descripcion es obligatoria</small>
+                                <small *ngIf="descripcionNoValida()" class="form-text text-danger">{{ 'recetas.crear.nombreErr' | translate }}</small>
                             </div>
                             <br>
                             <div class="form-group">
@@ -69,7 +69,7 @@
                                                     {{ ing }}
                                                 </mat-option>
                                             </mat-autocomplete>
-                                            <small *ngIf="ingredienteNoValido(ingrediente)" class="form-text text-danger">El nombre es obligatorio</small>
+                                            <small *ngIf="ingredienteNoValido(ingrediente)" class="form-text text-danger">{{ 'recetas.crear.nombreErr' | translate }}</small>
                                         </td>
                                         <td>
                                             <input #cantidad class="form-control" type="number" formControlName="cantidad" (click)="cantidad.select()" (load)="onChange(ingrediente, cantidad)" [placeholder]="'recetas.crear.cantidad' | translate">
@@ -86,7 +86,7 @@
                                             </select>
                                         </td>
                                         <td class="text-nowrap">
-                                            <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarIngrediente(i)">Eliminar</button>
+                                            <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarIngrediente(i)">{{ 'recetas.crear.botonEliminar' | translate }}</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -101,9 +101,9 @@
                             <table class="table table-primary">
                                 <thead>
                                     <tr>
-                                        <th>Numero</th>
-                                        <th>Información del paso</th>
-                                        <th class="text-nowrap">Acciones</th>
+                                        <th>{{ 'comun.tabla.numero' | translate }}</th>
+                                        <th>{{ 'comun.tabla.infPaso' | translate }}</th>
+                                        <th class="text-nowrap">{{ 'comun.tabla.acciones' | translate }}</th>
                                     </tr>
                                 </thead>
                                 <tbody formArrayName="pasos">
@@ -111,10 +111,10 @@
                                         <td>{{ i + 1 }}</td>
                                         <td class="long-td">
                                             <input class="form-control" type="text" [class.is-invalid]="pasoNoValido(paso)" [formControlName]="i" ngValue [placeholder]="'recetas.crear.pasosPh' | translate">
-                                            <small *ngIf="pasoNoValido(paso)" class="form-text text-danger">El nombre es obligatorio</small>
+                                            <small *ngIf="pasoNoValido(paso)" class="form-text text-danger">{{ 'recetas.crear.nombreErr' | translate }}</small>
                                         </td>
                                         <td class="text-nowrap">
-                                            <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarPaso(i)">Eliminar</button>
+                                            <button class="btn btn-danger waves-effect waves-light m-r-10" (click)="eliminarPaso(i)">{{ 'recetas.crear.botonEliminar' | translate }}</button>
                                         </td>
                                     </tr>
                                 </tbody>
