@@ -212,8 +212,8 @@ export class UsersService {
     );
   }
 
-  obtenerRecetasFavoritas(from: number, to: number) {
-    let url = URL_SERVICIOS + '/usuario/recetas/' + this.usuario.value._id + '?from=' + from + '&limit=' + to;
+  obtenerRecetasFavoritas(usuario: string, from: number, to: number) {
+    let url = URL_SERVICIOS + '/usuario/recetas/' + usuario + '?from=' + from + '&limit=' + to;
     return this.http.get(url).pipe(
       map(  (resp: any) => {
         return resp;
@@ -225,8 +225,8 @@ export class UsersService {
     );
   }
 
-  obtenerMisIntolerancias(from: number, to: number) {
-    let url = URL_SERVICIOS + '/usuario/intolerancias/' + this.usuario.value._id + '?from=' + from + '&limit=' + to;
+  obtenerMisIntolerancias(usuario: string, from: number, to: number) {
+    let url = URL_SERVICIOS + '/usuario/intolerancias/' + usuario + '?from=' + from + '&limit=' + to;
     return this.http.get(url).pipe(
       map(  (resp: any) => {
         return resp;

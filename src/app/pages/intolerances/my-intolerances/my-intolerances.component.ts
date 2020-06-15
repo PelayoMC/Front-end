@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { UsersService, SwalService } from 'src/app/service/service.index';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Intolerance } from 'src/app/models/intolerance.model';
+import { Usuario } from '../../../models/usuario.model';
 
 @Component({
   selector: 'app-my-intolerances',
@@ -12,7 +13,7 @@ export class MyIntolerancesComponent implements OnInit {
   @ViewChild('input', { static: true }) busqueda: ElementRef;
   intolerancias: Intolerance[] = [];
 
-  user: string;
+  user: Usuario;
   cargando = true;
   from = 0;
   limit = 4;
@@ -24,7 +25,7 @@ export class MyIntolerancesComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.userService.obtenerUsuario(params['id']).subscribe(resp => {
-        this.user = resp.nombre;
+        this.user = resp;
         this.cargarIntolerancias();
       });
     });
@@ -37,7 +38,7 @@ export class MyIntolerancesComponent implements OnInit {
   cargarIntolerancias() {
     this.cargando = true;
     this.intolerancias = [];
-    this.userService.obtenerMisIntolerancias(this.from, this.limit).subscribe((resp: any) => {
+    this.userService.obtenerMisIntolerancias(this.user._id, this.from, this.limit).subscribe((resp: any) => {
       this.intolerancias = resp.intolerancias;
       this.total = resp.total;
       this.cargando = false;

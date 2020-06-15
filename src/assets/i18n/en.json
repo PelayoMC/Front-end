@@ -781,7 +781,10 @@
         "seguimiento": {
             "titulo": "Recipes for: ",
             "total": "Total calories of today:",
-            "admin": "Admin message"
+            "admin": "Admin message",
+            "ver": "See recipe",
+            "comentar": "Send comment",
+            "borrar": "Delete message"
         },
         "incompletoTitulo": "The diet is not complete",
         "incompleto1": "It seems some recipes are missing from the diet",

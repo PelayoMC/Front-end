@@ -783,7 +783,10 @@
         "seguimiento": {
             "titulo": "Recetas para: ",
             "total": "Total de calorias de hoy:",
-            "admin": "Mensaje del administrador"
+            "admin": "Mensaje del administrador",
+            "ver": "Ver receta",
+            "comentar": "Enviar comentario",
+            "borrar": "Borrar mensaje"
         },
         "incompletoTitulo": "La dieta no está completa",
         "incompleto1": "Parece ser que faltan recetas en la dieta",

@@ -10,32 +10,32 @@
                         <tr>
                             <th></th>
                             <th *ngFor="let dia of data.nombresComidas">
-                                <label [class]="data.label(dia)">{{ dia }}</label>
+                                <label [class]="data.label(dia)">{{ dia | translate }}</label>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                {{ data.dias[diaActual] }} {{ obtenerFecha() }}
+                                {{ data.dias[diaActual] | translate }} {{ obtenerFecha() }}
                             </td>
                             <td *ngFor="let receta of recetas; let i = index">
                                 <img [src]='this.recetas[i].imagen | image: "receta"' class="img-rounded img-fluid pointer border border-primary" [matMenuTriggerFor]="appMenu" style="max-width:100%; max-height:100%;">
                                 <mat-menu #appMenu="matMenu">
                                     <button (click)="verReceta(i)" mat-menu-item>
                                             <mat-icon>local_dining</mat-icon>
-                                            <span>Ver receta</span>
+                                            <span>{{ 'dietas.seguimiento.ver' | translate }}</span>
                                         </button>
                                     <button (click)="enviarComentario(i)" mat-menu-item>
                                             <mat-icon>comment</mat-icon>
-                                            <span>Enviar comentario</span>
+                                            <span>{{ 'dietas.seguimiento.comentar' | translate }}</span>
                                         </button>
                                 </mat-menu>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <h2>{{ 'dietas.seguimiento.total' | translate }}<span *ngIf="recetas" class="text text-info">{{ calcularCalorias() }} kilocalorias</span></h2>
+                <h2>{{ 'dietas.seguimiento.total' | translate }}<span *ngIf="recetas" class="text text-info"> {{ calcularCalorias() }} kilocalorias</span></h2>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
             <div class="card-body " style="overflow-x:auto; ">
                 <h2>{{ 'dietas.seguimiento.admin' | translate }}</h2>
                 <p>{{ dieta.feedback }}</p>
-                <button (click)="borrarFeedback()" class="btn btn-danger">Eliminar mensaje</button>
+                <button (click)="borrarFeedback()" class="btn btn-danger">{{ 'dietas.seguimiento.borrar' | translate }}</button>
             </div>
         </div>
     </div>

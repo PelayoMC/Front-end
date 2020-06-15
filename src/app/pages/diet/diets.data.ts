@@ -3,9 +3,9 @@ export const dias = ['comun.tabla.dias.lunes', 'comun.tabla.dias.martes', 'comun
 
 export function label(nombre: string) {
         switch (nombre) {
-          case 'Desayuno': return 'label label-success';
-          case 'Comida': return 'label label-info';
-          case 'Merienda': return 'label label-warning';
-          case 'Cena': return 'label label-danger';
+          case 'comun.tabla.comidas.desayuno': return 'label label-success';
+          case 'comun.tabla.comidas.comida': return 'label label-info';
+          case 'comun.tabla.comidas.merienda': return 'label label-warning';
+          case 'comun.tabla.comidas.cena': return 'label label-danger';
         }
       }

@@ -9,13 +9,13 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th *ngFor="let dia of data.dias">{{ dia }}</th>
+                            <th *ngFor="let dia of data.dias">{{ dia | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let comida of data.nombresComidas; let i = index">
                             <td>
-                                <label [class]="data.label(comida)">{{ comida }}</label>
+                                <label [class]="data.label(comida)">{{ comida | translate }}</label>
                             </td>
                             <td *ngFor="let receta of data.dias; let j = index">
                                 <img (click)="verReceta(i, j)" [src]='this.recetas[(i * 7) + j].imagen | image: "receta"' class="img-rounded img-fluid pointer border border-primary">

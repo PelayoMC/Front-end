@@ -34,6 +34,8 @@ export class ManagingComponent implements OnInit {
         this.comentarios = resp.dietas;
         this.totalC = resp.total;
         this.userService.obtenerUsuarios(this.cargarUsuarios(this.sinAsignar, this.comentarios)).subscribe(resp => {
+          console.log(this.sinAsignar);
+          console.log(this.comentarios);
           console.log(resp);
           let x = 0;
           while (x < this.sinAsignar.length) {

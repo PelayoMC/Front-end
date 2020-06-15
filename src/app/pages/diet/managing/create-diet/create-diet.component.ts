@@ -44,12 +44,12 @@ export class CreateDietComponent implements OnInit {
   }
 
   addReceta(event: any) {
-    this.recetas[+event.i][+event.j] = event.receta;
-    // for (let i = 0; i < this.nombresComidas.length; i++) {
-    //   for (let j = 0; j < this.dias.length; j++) {
-    //     this.recetas[i][j] = event.receta;
-    //   }
-    // }
+    // this.recetas[+event.i][+event.j] = event.receta;
+    for (let i = 0; i < this.nombresComidas.length; i++) {
+      for (let j = 0; j < this.dias.length; j++) {
+        this.recetas[i][j] = event.receta;
+      }
+    }
   }
 
   borrarReceta(i: number, j: number) {
@@ -89,7 +89,8 @@ export class CreateDietComponent implements OnInit {
     this.dietaService.obtenerDietaUser(this.usuarioReceta._id).subscribe(resp => {
       resp.dieta = this.dieta;
       resp.admin = this.usuarioService.usuario.value._id;
-      this.dietaService.crearRecetasDieta(resp).subscribe(resp => {
+      console.log(resp);
+      this.dietaService.modificarDieta(resp).subscribe(resp => {
         this.usuarioReceta.dieta = resp;
         this.usuarioReceta.notificaciones.push({
           titulo: 'Dieta asignada',

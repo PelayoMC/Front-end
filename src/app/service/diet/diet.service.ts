@@ -81,7 +81,7 @@ export class DietService {
     );
   }
 
-  crearRecetasDieta(dieta: any) {
+  modificarDieta(dieta: Dieta) {
     const data = {
       dieta
     };
@@ -104,13 +104,4 @@ export class DietService {
     );
   }
 
-  modificarDieta(dieta: Dieta) {
-    let url = URL_SERVICIOS + '/dieta/' + dieta._id;
-    url += '?token=' + localStorage.token;
-    return this.http.put(url, dieta).pipe(
-      map(  (resp: any) => {
-        return resp.dieta;
-      })
-    );
-  }
 }
