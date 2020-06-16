@@ -81,6 +81,8 @@ export class RecipesService {
       intolerancias
     };
     let url = URL_SERVICIOS + '/busqueda/descubrir/' + termino + '?from=' + from + '&limit=' + limit;
+    console.log(url);
+    console.log(extra);
     return this.http.post(url, extra).pipe(
       map(  (resp: any) => {
         return resp;

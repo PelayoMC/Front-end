@@ -44,12 +44,12 @@ export class CreateDietComponent implements OnInit {
   }
 
   addReceta(event: any) {
-    // this.recetas[+event.i][+event.j] = event.receta;
-    for (let i = 0; i < this.nombresComidas.length; i++) {
-      for (let j = 0; j < this.dias.length; j++) {
-        this.recetas[i][j] = event.receta;
-      }
-    }
+    this.recetas[+event.i][+event.j] = event.receta;
+    // for (let i = 0; i < this.nombresComidas.length; i++) {
+    //   for (let j = 0; j < this.dias.length; j++) {
+    //     this.recetas[i][j] = event.receta;
+    //   }
+    // }
   }
 
   borrarReceta(i: number, j: number) {

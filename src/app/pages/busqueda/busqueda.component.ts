@@ -53,7 +53,7 @@ export class BusquedaComponent implements OnInit {
   }
 
   filtrar(input: any) {
-    this.ingsFiltrados = this.ings.filter(el => el.includes(input.value));
+    this.ingsFiltrados = this.ings.filter(el => el.toLowerCase().includes(input.value));
   }
 
   cambiarFiltros(event: any) {

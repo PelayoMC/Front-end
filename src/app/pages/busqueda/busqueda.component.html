@@ -49,9 +49,7 @@
             <div class="card-body">
                 <h3>{{ 'buscador.tituloRe' | translate }}</h3>
                 <div class="row" *ngIf="recetas.length > 0">
-                    <div>
-                        <app-busqueda-card class="col-sm-6 col-lg-4" (cargar)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-busqueda-card>
-                    </div>
+                    <app-busqueda-card class="col-sm-6 col-lg-4" (cargar)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-busqueda-card>
                 </div>
                 <app-no-found-component *ngIf="buscando" [cargando]="cargando" [array]="recetas"></app-no-found-component>
             </div>
