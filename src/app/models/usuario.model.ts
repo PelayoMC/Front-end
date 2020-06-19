@@ -9,9 +9,11 @@ export class Usuario {
         public dieta?: string,
         public recetasFavoritas?: string[],
         public misIntolerancias?: string[],
+        public sexo?: string,
         public edad?: number,
         public altura?: number,
         public peso?: number,
+        public ejercicio?: number,
         public observaciones?: string,
         public notificaciones?: Notificacion[],
         public _id?: string

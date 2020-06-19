@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DietService, UsersService, ModalFeedbackService } from '../../../service/service.index';
+import { DietService, UsersService, ModalFeedbackService, SwalService } from '../../../service/service.index';
 import { Dieta } from 'src/app/models/dieta.model';
 import { Router } from '@angular/router';
 import { Usuario } from '../../../models/usuario.model';
@@ -10,8 +10,11 @@ import { Usuario } from '../../../models/usuario.model';
 })
 export class ManagingComponent implements OnInit {
 
-  constructor(public userService: UsersService, public dietService: DietService, public modalFeedback: ModalFeedbackService, public router: Router) { }
+  constructor(public userService: UsersService, public dietService: DietService,
+              public modalFeedback: ModalFeedbackService,
+              public router: Router, public swal: SwalService) { }
   sinAsignar: any[] = [];
+  asignadas: any[] = [];
   comentarios: any[] = [];
   usuarios: Usuario[] = [];
   coment: Dieta;
@@ -20,6 +23,7 @@ export class ManagingComponent implements OnInit {
   from = 0;
   limit = 4;
   totalA: number;
+  totalAsig: number;
   totalC: number;
 
   ngOnInit() {
@@ -30,23 +34,33 @@ export class ManagingComponent implements OnInit {
     this.dietService.obtenerDietasSinAsignar(this.from, this.limit).subscribe(resp => {
       this.sinAsignar = resp.dietas;
       this.totalA = resp.total;
-      this.dietService.obtenerComentariosDietas(this.userService.usuario.value._id, this.from, this.limit).subscribe(resp => {
-        this.comentarios = resp.dietas;
-        this.totalC = resp.total;
-        this.userService.obtenerUsuarios(this.cargarUsuarios(this.sinAsignar, this.comentarios)).subscribe(resp => {
-          console.log(this.sinAsignar);
-          console.log(this.comentarios);
-          console.log(resp);
-          let x = 0;
-          while (x < this.sinAsignar.length) {
-            this.sinAsignar[x].user = resp[x].nombre;
-            x++;
-          }
-          while (x < this.comentarios.length) {
-            this.comentarios[x].user = resp[x].nombre;
-            x++;
-          }
-          this.cargando = false;
+      this.dietService.obtenerDietasAsignadas(this.userService.usuario.value._id, this.from, this.limit).subscribe(resp => {
+        this.asignadas = resp.dietas;
+        this.totalAsig = resp.total;
+        this.dietService.obtenerComentariosDietas(this.userService.usuario.value._id, this.from, this.limit).subscribe(resp => {
+          this.comentarios = resp.dietas;
+          this.totalC = resp.total;
+          this.userService.obtenerUsuarios(this.cargarUsuarios(this.sinAsignar, this.asignadas, this.comentarios)).subscribe(resp => {
+            for (const sinAsig of this.sinAsignar) {
+              const index = resp.map(el => el._id).indexOf(sinAsig.usuario);
+              if (index >= 0) {
+                sinAsig.user = resp[index];
+              }
+            }
+            for (const asig of this.asignadas) {
+              const index = resp.map(el => el._id).indexOf(asig.usuario);
+              if (index >= 0) {
+                asig.user = resp[index];
+              }
+            }
+            for (const comment of this.comentarios) {
+              const index = resp.map(el => el._id).indexOf(comment.usuario);
+              if (index >= 0) {
+                comment.user = resp[index];
+              }
+            }
+            this.cargando = false;
+          });
         });
       });
     });
@@ -54,7 +68,7 @@ export class ManagingComponent implements OnInit {
 
   cargarUsuarios(...arrays: any[]) {
     let array: string[] = [];
-    for (let ar of arrays) {
+    for (const ar of arrays) {
       array = array.concat(ar.map(el => el.usuario));
     }
     return array;
@@ -66,22 +80,35 @@ export class ManagingComponent implements OnInit {
     this.cargarDietas();
   }
 
-  mostrarDieta(dieta: Dieta) {
+  mostrarCrearDieta(dieta: Dieta) {
     this.router.navigate(['/diet/createDiet', dieta.usuario]);
+  }
+
+  mostrarDieta(dieta: Dieta) {
+    this.router.navigate(['/diet/planning', dieta._id]);
   }
 
   mostrarFeedBack(dieta: any) {
     this.dietService.obtenerRecetasDietas(dieta._id).subscribe(resp => {
-      for (let rec of dieta.dieta) {
+      for (const rec of dieta.dieta) {
         if (rec.comentario !== null) {
-          let index = resp.recetas.map(el => el._id).findIndex(el => el === rec.receta);
+          const index = resp.recetas.map(el => el._id).findIndex(el => el === rec.receta);
           rec.nombre = resp.recetas[index].nombre;
         }
       }
       this.coment = dieta;
-      console.log(this.coment);
     });
     this.modalFeedback.mostrarModal();
+  }
+
+  borrarDieta(intolerancia: any) {
+    this.swal.crearSwalBorrar('comun.alertas.borrado.dieta',
+    () => {
+      this.dietService.borrarDieta(intolerancia).subscribe(resp => {
+        this.swal.crearSwal('comun.alertas.exito.borrarDieta', 'success');
+        this.cargarDietas();
+      });
+    });
   }
 
 }

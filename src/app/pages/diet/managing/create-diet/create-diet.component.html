@@ -12,6 +12,7 @@
                             <th>{{ 'comun.tabla.edad' | translate }}</th>
                             <th>{{ 'comun.tabla.altura' | translate }}</th>
                             <th>{{ 'comun.tabla.peso' | translate }}</th>
+                            <th>{{ 'comun.tabla.kcal' | translate }}</th>
                             <th>{{ 'comun.tabla.info' | translate }}</th>
                         </tr>
                     </thead>
@@ -28,6 +29,9 @@
                             </td>
                             <td>
                                 <span> {{ usuarioReceta.peso }} </span>
+                            </td>
+                            <td>
+                                <span> {{ kcalDiarias() }} </span>
                             </td>
                             <td class="text-nowrap small-td">
                                 <button class="btn btn-info" (click)="abrirObservaciones()">{{ 'dietas.gestion.noAsig.observaciones' | translate }}</button> &nbsp;
@@ -46,7 +50,12 @@
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
                 <h3>{{ 'dietas.gestion.noAsig.titulo2' | translate }}</h3>
+                <h4 class="text text-warning" *ngIf="comprobarTabla()">{{ 'dietas.gestion.noAsig.limite' | translate }}</h4>
                 <table class="table">
+                    <colgroup>
+                        <col>
+                        <col *ngFor="let dia of dias; let i = index" [style.backgroundColor]="comprobarColumna(i)">
+                    </colgroup>
                     <thead>
                         <tr>
                             <th></th>

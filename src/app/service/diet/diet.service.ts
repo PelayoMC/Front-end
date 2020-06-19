@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsersService } from '../users/users.service';
 import { URL_SERVICIOS } from 'src/app/config/config';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Dieta } from '../../models/dieta.model';
 import { SwalService } from '../language/swal.service';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class DietService {
     return this.http.get(url).pipe(
       map(  (resp: any) => {
         return resp.dieta[0];
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.obtenerDietas', 'error');
+        return throwError(err);
       })
     );
   }
@@ -27,6 +32,10 @@ export class DietService {
     return this.http.get(url).pipe(
       map(  (resp: any) => {
         return resp.dieta[0];
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.obtenerDietas', 'error');
+        return throwError(err);
       })
     );
   }
@@ -36,6 +45,10 @@ export class DietService {
     return this.http.get(url).pipe(
       map(  (resp: any) => {
         return resp.dieta[0];
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.obtenerDietas', 'error');
+        return throwError(err);
       })
     );
   }
@@ -45,6 +58,23 @@ export class DietService {
     return this.http.get(url).pipe(
       map(  (resp: any) => {
         return resp;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.obtenerDietas', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  obtenerDietasAsignadas(id: string, from: number, to: number) {
+    let url = URL_SERVICIOS + '/dieta/asignadas/' + id  + '?from=' + from + '&limit=' + to;
+    return this.http.get(url).pipe(
+      map(  (resp: any) => {
+        return resp;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.obtenerDietas', 'error');
+        return throwError(err);
       })
     );
   }
@@ -54,6 +84,10 @@ export class DietService {
     return this.http.get(url).pipe(
       map(  (resp: any) => {
         return resp;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.obtenerDietas', 'error');
+        return throwError(err);
       })
     );
   }
@@ -63,6 +97,10 @@ export class DietService {
     return this.http.get(url).pipe(
       map(  (resp: any) => {
         return resp;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.obtenerDietas', 'error');
+        return throwError(err);
       })
     );
   }
@@ -77,6 +115,10 @@ export class DietService {
       map(  (resp: any) => {
         this.swal.crearSwal('comun.alertas.exito.dietaSolicitada', 'success');
         return resp.dieta;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.crearDieta', 'error');
+        return throwError(err);
       })
     );
   }
@@ -90,6 +132,10 @@ export class DietService {
     return this.http.put(url, data).pipe(
       map(  (resp: any) => {
         return resp.dieta;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.modificarDieta', 'error');
+        return throwError(err);
       })
     );
   }
@@ -100,6 +146,24 @@ export class DietService {
     return this.http.put(url, dieta).pipe(
       map(  (resp: any) => {
         return resp.dieta;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.modificarDieta', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  borrarDieta(dieta: Dieta) {
+    let url = URL_SERVICIOS + '/dieta/' + dieta._id;
+    url += '?token=' + localStorage.token;
+    return this.http.delete(url).pipe(
+      map(  (resp: any) => {
+        return resp.dieta;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.borrarDieta', 'error');
+        return throwError(err);
       })
     );
   }

@@ -25,6 +25,13 @@
                         <span class="text text-warning">{{ 'usuarios.usuario.necesarios' | translate }}</span>
                         <br><br>
                         <div class="form-group">
+                            <label>{{ 'usuarios.usuario.sexo' | translate }}</label>
+                            <select class="form-control" formControlName="sexo" name="sexo">
+                                <option value="H">{{ 'usuarios.usuario.sexo1' | translate }}</option>
+                                <option value="M">{{ 'usuarios.usuario.sexo2' | translate }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="edad">{{ 'usuarios.usuario.edad' | translate }}</label>
                             <div class="input-group">
                                 <input #edad formControlName="edad" type="number" name="edad" [class.is-invalid]="edadNoValido()" class="form-control" [placeholder]="'usuarios.usuario.edadPh' | translate">
@@ -44,6 +51,16 @@
                                 <input #peso formControlName="peso" type="number" name="peso" [class.is-invalid]="pesoNoValido()" step="any" class="form-control" [placeholder]="'usuarios.usuario.pesoPh' | translate">
                             </div>
                             <small *ngIf="pesoNoValido()" class="form-text text-danger">{{ 'usuarios.usuario.pesoErr' | translate }}</small>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ 'usuarios.usuario.ejercicio' | translate }}</label>
+                            <select class="form-control" formControlName="ejercicio" name="ejercicio">
+                                <option [ngValue]="1.2">{{ 'usuarios.usuario.ejercicio1' | translate }}</option>
+                                <option [ngValue]="1.375">{{ 'usuarios.usuario.ejercicio2' | translate }}</option>
+                                <option [ngValue]="1.55">{{ 'usuarios.usuario.ejercicio3' | translate }}</option>
+                                <option [ngValue]="1.72">{{ 'usuarios.usuario.ejercicio4' | translate }}</option>
+                                <option [ngValue]="1.9">{{ 'usuarios.usuario.ejercicio5' | translate }}</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="observaciones">{{ 'usuarios.usuario.observaciones' | translate }}</label>

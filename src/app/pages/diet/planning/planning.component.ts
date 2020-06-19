@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService, RecipesService, DietService } from '../../../service/service.index';
 import { Recipe } from 'src/app/models/recipe.model';
 import { URL_SERVICIOS } from 'src/app/config/config';
@@ -16,13 +16,18 @@ export class PlanningComponent implements OnInit {
   data = data;
   cargando = true;
 
-  constructor(public userService: UsersService, public recipesService: RecipesService, public dietService: DietService, public router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, public userService: UsersService, public recipesService: RecipesService, public dietService: DietService, public router: Router) { }
 
   ngOnInit() {
-    this.dietService.obtenerDietaId(this.userService.usuario.value.dieta).subscribe(resp => {
-      this.recipesService.buscarIds(resp.dieta.map(el => el.receta)).subscribe(resp => {
-        this.recetas = resp;
-        this.cargando = false;
+    this.activatedRoute.params.subscribe(params => {
+      let id;
+      params['id'] ? id = params['id'] : id = this.userService.usuario.value.dieta;
+      this.dietService.obtenerDietaId(id).subscribe(resp => {
+        console.log(resp);
+        this.recipesService.buscarIds(resp.dieta.map(el => el.receta)).subscribe(resp => {
+          this.recetas = resp;
+          this.cargando = false;
+        });
       });
     });
   }

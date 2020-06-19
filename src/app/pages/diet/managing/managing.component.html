@@ -1,23 +1,31 @@
-<mat-tab-group>
+<app-loading-component [cargando]="cargando">
+</app-loading-component>
+<mat-tab-group *ngIf="!cargando">
     <mat-tab [label]="'dietas.gestion.dietas' | translate">
-        <app-loading-component [cargando]="cargando">
-        </app-loading-component>
         <app-no-found-component [cargando]="cargando" [array]="sinAsignar"></app-no-found-component>
-        <div class="row " *ngIf="!cargando && sinAsignar.length > 0">
+        <div class="row " *ngIf="sinAsignar.length > 0">
             <div class="col-12 ">
                 <div class="card ">
                     <div class="card-body " style="overflow-x:auto; ">
-                        <h3 class="card-title ">{{ 'dietas.gestion.dietas' | translate }}</h3>
+                        <h3 class="card-title ">{{ 'dietas.gestion.dietas' | translate }} <small>({{ totalA }})</small></h3>
                         <table class="table table-hover incidencias">
                             <thead>
                                 <tr>
-                                    <th>{{ 'comun.tabla.id' | translate }}</th>
+                                    <th>{{ 'comun.tabla.nombre' | translate }}</th>
+                                    <th>{{ 'comun.tabla.correo' | translate }}</th>
+                                    <th>{{ 'comun.tabla.acciones' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let int of sinAsignar; let i = index">
-                                    <td (click)="mostrarDieta(int)">
-                                        <span> {{ int.user }} </span>
+                                    <td (click)="mostrarCrearDieta(int)">
+                                        {{ int.user?.nombre }}
+                                    </td>
+                                    <td (click)="mostrarCrearDieta(int)">
+                                        {{ int.user?.email }}
+                                    </td>
+                                    <td class="text-nowrap small-td">
+                                        <button class="btn btn-danger" (click)="borrarDieta(int)"><i class="fa fa-trash-o"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -29,25 +37,73 @@
             </div>
         </div>
     </mat-tab>
-    <mat-tab [label]="'dietas.gestion.comentarios' | translate">
-        <app-loading-component [cargando]="cargando">
-        </app-loading-component>
-        <app-no-found-component [cargando]="cargando" [array]="comentarios"></app-no-found-component>
-        <div class="row " *ngIf="!cargando && comentarios.length > 0">
+    <mat-tab [label]="'dietas.gestion.asig' | translate">
+        <app-no-found-component [cargando]="cargando" [array]="asignadas"></app-no-found-component>
+        <div class="row " *ngIf="asignadas.length > 0">
             <div class="col-12 ">
                 <div class="card ">
                     <div class="card-body " style="overflow-x:auto; ">
-                        <h3 class="card-title ">{{ 'dietas.gestion.dietas' | translate }}</h3>
+                        <h3 class="card-title ">{{ 'dietas.gestion.asig' | translate }} <small>({{ totalAsig }})</small></h3>
                         <table class="table table-hover incidencias">
                             <thead>
                                 <tr>
-                                    <th>{{ 'comun.tabla.id' | translate }}</th>
+                                    <th>{{ 'comun.tabla.nombre' | translate }}</th>
+                                    <th>{{ 'comun.tabla.correo' | translate }}</th>
+                                    <th>{{ 'comun.tabla.acciones' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let c of comentarios; let i = index">
-                                    <td (click)="mostrarFeedBack(c)">
-                                        <span> {{ c.user }} </span>
+                                <tr *ngFor="let int of asignadas; let i = index">
+                                    <td>
+                                        {{ int.user?.nombre }}
+                                    </td>
+                                    <td>
+                                        {{ int.user?.email }}
+                                    </td>
+                                    <td class="text-nowrap small-td">
+                                        <button class="btn btn-info" [matMenuTriggerFor]="appMenu">{{ 'comun.tabla.acciones' | translate }}</button>
+                                    </td>
+                                    <mat-menu #appMenu="matMenu">
+                                        <button (click)="mostrarDieta(int)" mat-menu-item>
+                                            <mat-icon>local_dining</mat-icon>
+                                            <span>{{ 'dietas.gestion.ver' | translate }}</span>
+                                        </button>
+                                        <button (click)="mostrarFeedBack(int)" mat-menu-item>
+                                            <mat-icon>comment</mat-icon>
+                                            <span>{{ 'dietas.gestion.feedback' | translate }}</span>
+                                        </button>
+                                    </mat-menu>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button [disabled]="(from - limit) >= totalA || (from - limit) < 0" (click)="cambiarDesde(-limit)" class="btn btn-secondary">{{ 'comun.botones.anterior' | translate }}</button> &nbsp;
+                        <button [disabled]="(from + limit) >= totalA || (from + limit) < 0" (click)="cambiarDesde(limit)" class="btn btn-secondary">{{ 'comun.botones.siguiente' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab [label]="'dietas.gestion.comentarios' | translate">
+        <app-no-found-component [cargando]="cargando" [array]="comentarios"></app-no-found-component>
+        <div class="row " *ngIf="comentarios.length > 0">
+            <div class="col-12 ">
+                <div class="card ">
+                    <div class="card-body " style="overflow-x:auto; ">
+                        <h3 class="card-title ">{{ 'dietas.gestion.dietas' | translate }} <small>({{ totalC }})</small></h3>
+                        <table class="table table-hover incidencias">
+                            <thead>
+                                <tr>
+                                    <th>{{ 'comun.tabla.nombre' | translate }}</th>
+                                    <th>{{ 'comun.tabla.correo' | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let c of comentarios; let i = index" (click)="mostrarFeedBack(c)">
+                                    <td>
+                                        {{ c.user?.nombre }}
+                                    </td>
+                                    <td>
+                                        {{ c.user?.email }}
                                     </td>
                                 </tr>
                             </tbody>

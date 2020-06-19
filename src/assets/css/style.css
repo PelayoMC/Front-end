@@ -59,6 +59,30 @@ a.link:focus {
     border-radius: 4px;
 }
 
+.planning-body {
+    text-align: center;
+    height: 100px;
+    width: 100%;
+}
+
+.table-planning {
+    height: 90%;
+    width: 90%;
+}
+
+.table-planning img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.img-planning {
+    min-height: 60px;
+    max-height: 80px;
+    min-width: 180px;
+    max-width: 260px;
+}
+
 .img-profile {
     width: 300px;
     height: 300px;

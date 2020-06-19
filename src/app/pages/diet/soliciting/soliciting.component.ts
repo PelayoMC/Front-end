@@ -30,7 +30,7 @@ export class SolicitingComponent implements OnInit {
 
   hayDatosUsuario() {
     const user = this.userService.usuario.value;
-    if (user.edad && user.altura && user.peso) {
+    if (user.edad && user.altura && user.peso && user.sexo && user.ejercicio) {
       return true;
     }
     return false;

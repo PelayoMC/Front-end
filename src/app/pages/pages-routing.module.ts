@@ -63,6 +63,7 @@ const routes: Routes = [
               { path: 'myIntolerances/:id', component: MyIntolerancesComponent, data: { titulo: 'Mis intolerancias' } },
               { path: 'user/:id', component: UserComponent, data: { titulo: 'Usuario' } },
               { path: 'diet/soliciting', component: SolicitingComponent, data: { titulo: 'Solicitud dieta' } },
+              { path: 'diet/planning/:id', component: PlanningComponent, data: { titulo: 'Planificación dieta' } },
               { path: 'diet/planning', component: PlanningComponent, data: { titulo: 'Planificación dieta' } },
               { path: 'diet/tracking', component: TrackingComponent, data: { titulo: 'Seguimiento dieta' } },
             ]

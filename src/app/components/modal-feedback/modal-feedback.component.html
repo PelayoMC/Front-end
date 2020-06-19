@@ -10,7 +10,7 @@
                 </div>
                 <form #form="ngForm" (ngSubmit)="enviarFeedback(form)">
                     <div class="modal-body">
-                        <table class="table table-hover">
+                        <table *ngIf="hayComentarios()" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>{{ 'comun.tabla.receta' | translate }}</th>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-info">{{ 'modales.botones.enviar' | translate }}</button>
-                        <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">{{ 'modales.botones.enviar' | translate }}</button>
+                        <button (click)="cerrarModal(form)" type="button" class="btn btn-secondary">{{ 'modales.botones.cerrar' | translate }}</button>
                     </div>
                 </form>
             </div>

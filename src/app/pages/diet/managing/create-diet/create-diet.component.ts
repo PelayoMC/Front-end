@@ -33,7 +33,7 @@ export class CreateDietComponent implements OnInit {
         }
         this.recetas = ar;
         this.usuarioReceta = resp;
-        console.log(this.usuarioReceta);
+        console.log(this.recetas);
         this.cargando = false;
       });
     });
@@ -43,8 +43,65 @@ export class CreateDietComponent implements OnInit {
     this.router.navigate(['/recipe', idx]);
   }
 
+  kcalDiarias() {
+    const us = this.usuarioReceta;
+    let TMB;
+    if (us.sexo === 'H') {
+      TMB = (10 * us.peso) + (6.25 * (us.altura * 100)) - (5 * us.edad) + 5; // Hombre
+    } else {
+      TMB = (10 * us.peso) + (6.25 * (us.altura * 100)) - (5 * us.edad) - 161; // Mujer
+    }
+    const number = TMB * us.ejercicio;
+    return this.redondear(number);
+  }
+
+  redondear(numero: number) {
+    return Math.round((numero + Number.EPSILON) * 100) / 100;
+  }
+
+  comprobarTabla() {
+    for (let j = 0; j < this.recetas[0].length; j++) {
+      let sum = 0;
+      for (let i = 0; i < this.recetas.length; i++) {
+        if (this.recetas[i][j]) {
+          sum += this.obtenerCalorias(this.recetas[i][j]);
+        }
+      }
+      if (sum > 50) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  comprobarColumna(j: number) {
+    let sum = 0;
+    for (let i = 0; i < this.recetas.length; i++) {
+      if (this.recetas[i][j]) {
+        sum += this.obtenerCalorias(this.recetas[i][j]);
+      }
+    }
+    return this.limiteCalorico(sum, j);
+  }
+
+  obtenerCalorias(receta: Recipe) {
+    if (receta.calorias.unidades === 'Caloria/s') {
+      return this.redondear(receta.calorias.cantidad / 1000);
+    } else {
+      return receta.calorias.cantidad;
+    }
+  }
+
+
+  limiteCalorico(valor: number, columna: number) {
+    let ret;
+    valor > 50 ? ret = 'yellow' : ret = 'white' ;
+    return ret;
+  }
+
   addReceta(event: any) {
     this.recetas[+event.i][+event.j] = event.receta;
+    // console.log(this.comprobarColumna(columna));
     // for (let i = 0; i < this.nombresComidas.length; i++) {
     //   for (let j = 0; j < this.dias.length; j++) {
     //     this.recetas[i][j] = event.receta;

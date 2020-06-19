@@ -19,6 +19,10 @@
                     "titulo": "¿Borrar mensaje?",
                     "mensaje": "Está a punto de borrar el mensaje del administrador"
                 },
+                "dieta": {
+                    "titulo": "¿Borrar solicitud de dieta?",
+                    "mensaje": "Está a punto de borrar la solicitud de la dieta"
+                },
                 "usuario": {
                     "titulo": "¿Borrar usuario?",
                     "mensaje": "Está a punto de borrar el usuario: "
@@ -266,6 +270,22 @@
                 "borrarVotacion": {
                     "titulo": "Error",
                     "mensaje": "Error al borrar la votación"
+                },
+                "obtenerDietas": {
+                    "titulo": "Error",
+                    "mensaje": "Error al obtener la dieta"
+                },
+                "crearDieta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al crear la dieta"
+                },
+                "modificarDieta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al modificar la dieta"
+                },
+                "borrarDieta": {
+                    "titulo": "Error",
+                    "mensaje": "Error al borrar la dieta"
                 }
             },
             "exito": {
@@ -384,6 +404,10 @@
                 "borrarVotacion": {
                     "titulo": "Votación borrada",
                     "mensaje": "La votación se ha borrado correctamente"
+                },
+                "borrarDieta": {
+                    "titulo": "Solicitud de dieta borrada",
+                    "mensaje": "La solicitud se ha borrado correctamente"
                 }
             }
         },
@@ -421,9 +445,10 @@
             "auth": "Autenticacion",
             "normal": "Normal",
             "etiquetas": "Etiquetas",
-            "edad": "Edad",
-            "altura": "Altura",
-            "peso": "Peso",
+            "edad": "Edad (años)",
+            "altura": "Altura (m)",
+            "peso": "Peso (kg)",
+            "kcal": "Kcal diarias (recomendadas)",
             "info": "Información del usuario",
             "receta": "Receta",
             "comentario": "Comentario",
@@ -588,7 +613,10 @@
             "emailPh": "Introducir email",
             "emailErr": "El email es obligatorio",
             "datos": "Datos personales",
-            "necesarios": "necesarios para la solicitud de dietas",
+            "necesarios": "Necesarios para la solicitud de dietas",
+            "sexo": "Sexo",
+            "sexo1": "Hombre",
+            "sexo2": "Mujer",
             "edad": "Edad",
             "edadPh": "Introducir edad",
             "edadErr": "La edad es obligatoria",
@@ -598,8 +626,14 @@
             "peso": "Peso",
             "pesoPh": "Introducir peso",
             "pesoErr": "El peso es obligatorio",
+            "ejercicio": "Cantidad de ejercicio semanal",
+            "ejercicio1": "Poco o nada",
+            "ejercicio2": "1-3 días",
+            "ejercicio3": "3-5 días",
+            "ejercicio4": "6-7 días",
+            "ejercicio5": "Todos los días mañana y tarde",
             "observaciones": "Observaciones",
-            "observacionesPh": "Introducir observaciones a tener en cuenta",
+            "observacionesPh": "Introducir observaciones que se deban tener en cuenta",
             "botonMod": "Modificar",
             "botonAceptar": "Aceptar",
             "botonCancelar": "Cancelar",
@@ -747,9 +781,13 @@
     "dietas": {
         "gestion": {
             "dietas": "Dietas sin asignar",
+            "asig": "Dietas asignadas",
+            "ver": "Ver dieta",
+            "feedback": "Enviar feedback",
             "comentarios": "Comentarios",
             "noAsig": {
                 "titulo1": "Datos del usuario",
+                "limite": "Se supera el límite calórico diario",
                 "observaciones": "Observaciones",
                 "favoritas": "Recetas favoritas",
                 "intolerancias": "Intolerancias",
@@ -761,7 +799,7 @@
             "titulo": "Solicitar dieta",
             "titulo2": "Dieta solicitada",
             "noInfo": "No existe información personal sobre el usuario",
-            "noInfo2": "Para poder solicitar una dieta, rellene los campos de edad, altura y peso en el perfil de usuario",
+            "noInfo2": "Para poder solicitar una dieta, rellene los campos de sexo, edad, altura, peso y ejercicio en el perfil de usuario",
             "noInfoLink": "Ir al perfil",
             "solicitar": "Antes de solicitar una dieta, asegurese de añadir ",
             "solicitar2": " y ",

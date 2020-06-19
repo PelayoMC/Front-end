@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UsersService, DietService, ModalFeedbackService, SwalService } from 'src/app/service/service.index';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-modal-feedback',
@@ -18,6 +19,10 @@ export class ModalFeedbackComponent implements OnInit {
   ngOnInit() {
   }
 
+  hayComentarios() {
+    return this.dieta ? this.dieta.dieta.filter(el => el.nombre != null).length > 0 : false;
+  }
+
   cerrarModal(form: NgForm) {
     this.limpiarModal(form);
     this.ocultarModal();
@@ -30,7 +35,6 @@ export class ModalFeedbackComponent implements OnInit {
   enviarFeedback(form: NgForm) {
     if (form.form.valid) {
       this.userService.obtenerUsuario(this.dieta.usuario).subscribe(resp => {
-        console.log(resp);
         resp.notificaciones.push({
           titulo: 'Respuesta recibida',
           mensaje: 'Se ha recibido una respuesta a los comentarios de la dieta'

@@ -25,8 +25,10 @@ export class UserComponent implements OnInit {
       nombre: new FormControl({value: this.usuario.nombre, disabled: true}, Validators.required),
       email: new FormControl({value: this.usuario.email, disabled: true}, [Validators.required, Validators.email]),
       edad: new FormControl({value: this.usuario.edad, disabled: true}, Validators.required),
+      sexo: new FormControl({value: this.usuario.sexo, disabled: true}, Validators.required),
       altura: new FormControl({value: this.usuario.altura, disabled: true}, Validators.required),
       peso: new FormControl({value: this.usuario.peso, disabled: true}, Validators.required),
+      ejercicio: new FormControl({value: this.usuario.ejercicio, disabled: true}, Validators.required),
       observaciones: new FormControl({value: this.usuario.observaciones, disabled: true}, Validators.required),
     });
     this.mostrarNotificaciones();
@@ -65,9 +67,11 @@ export class UserComponent implements OnInit {
   swapForm() {
     if (!this.form.enabled) {
       this.form.get('nombre').enable();
+      this.form.get('sexo').enable();
       this.form.get('edad').enable();
       this.form.get('altura').enable();
       this.form.get('peso').enable();
+      this.form.get('ejercicio').enable();
       this.form.get('observaciones').enable();
       if (!this.usuario.google) {
         this.form.get('email').enable();
@@ -75,9 +79,11 @@ export class UserComponent implements OnInit {
     } else {
       this.form.get('nombre').disable();
       this.form.get('email').disable();
+      this.form.get('sexo').disable();
       this.form.get('edad').disable();
       this.form.get('altura').disable();
       this.form.get('peso').disable();
+      this.form.get('ejercicio').disable();
       this.form.get('observaciones').disable();
     }
   }
@@ -109,9 +115,11 @@ export class UserComponent implements OnInit {
     }
 
     this.usuario.nombre = this.form.get('nombre').value;
+    this.usuario.sexo = this.form.get('sexo').value;
     this.usuario.edad = this.form.get('edad').value;
     this.usuario.altura = this.form.get('altura').value;
     this.usuario.peso = this.form.get('peso').value;
+    this.usuario.ejercicio = this.form.get('ejercicio').value;
     this.usuario.observaciones = this.form.get('observaciones').value;
     if (!this.usuario.google) {
       this.usuario.email = this.form.get('email').value;
