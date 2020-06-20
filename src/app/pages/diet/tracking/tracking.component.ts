@@ -61,7 +61,11 @@ export class TrackingComponent implements OnInit {
         calculo += rec.calorias.cantidad;
       }
     }
-    return calculo;
+    return this.redondear(calculo);
+  }
+
+  redondear(numero: number) {
+    return Math.round((numero + Number.EPSILON) * 100) / 100;
   }
 
   enviarComentario(i: number) {

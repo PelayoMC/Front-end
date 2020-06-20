@@ -53,7 +53,11 @@ export class PlanningComponent implements OnInit {
         calculo += this.recetas[i].calorias.cantidad;
       }
     }
-    return calculo;
+    return this.redondear(calculo);
+  }
+
+  redondear(numero: number) {
+    return Math.round((numero + Number.EPSILON) * 100) / 100;
   }
 
 }
