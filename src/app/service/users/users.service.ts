@@ -129,6 +129,20 @@ export class UsersService {
     this.token = token;
   }
 
+  resetPassword(email: string) {
+    const em = { email };
+    const url = URL_SERVICIOS + '/login/emailReset';
+    return this.http.post(url, em).pipe(
+      map( (resp: any) => {
+        return resp.usuario;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.crearUsuario', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
   crearUsuario(usuario: Usuario) {
     const url = URL_SERVICIOS + '/usuario';
     return this.http.post(url, usuario).pipe(

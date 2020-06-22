@@ -16,7 +16,7 @@ export class ModalObservationsComponent implements OnInit {
     this.modalService.user.subscribe(resp => {
       if (resp) {
         this.usuario = resp;
-        console.log(this.usuario)
+        console.log(this.usuario);
       }
     });
   }

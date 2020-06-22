@@ -48,35 +48,35 @@ const routes: Routes = [
                 canActivate: [AdminGuard],
                 children: [
                   // ADMIN
-                  { path: 'addRecipe', component: CreateRecipeComponent, data: { titulo: 'Añadir receta' } },
-                  { path: 'modRecipe', component: CreateRecipeComponent, data: { titulo: 'Modificar receta' } },
-                  { path: 'addIngsRecipe/:id', component: CreateIngsRecipeComponent, data: { titulo: 'Añadir sustituibles' } },
-                  { path: 'addIntolerance', component: CreateIntoleranceComponent, data: { titulo: 'Añadir intolerancia' } },
-                  { path: 'modIntolerance', component: CreateIntoleranceComponent, data: { titulo: 'Modificar intolerancia' } },
-                  { path: 'users', component: UsersComponent, data: { titulo: 'Usuarios' } },
+                  { path: 'addRecipe', component: CreateRecipeComponent, data: { titulo: 'titulos.paginas.addReceta' } },
+                  { path: 'modRecipe', component: CreateRecipeComponent, data: { titulo: 'titulos.paginas.modReceta' } },
+                  { path: 'addIngsRecipe/:id', component: CreateIngsRecipeComponent, data: { titulo: 'titulos.paginas.addSust' } },
+                  { path: 'addIntolerance', component: CreateIntoleranceComponent, data: { titulo: 'titulos.paginas.addInt' } },
+                  { path: 'modIntolerance', component: CreateIntoleranceComponent, data: { titulo: 'titulos.paginas.modInt' } },
+                  { path: 'users', component: UsersComponent, data: { titulo: 'titulos.paginas.usuarios' } },
                   { path: 'diet/managing', component: ManagingComponent, data: { titulo: 'Gestión dieta' } },
                   { path: 'diet/createDiet/:id', component: CreateDietComponent, data: { titulo: 'Crear dieta' } }
                 ]
               },
               // REGISTRADO
-              { path: 'favorites/:id', component: FavoritesComponent, data: { titulo: 'Recetas favoritas' } },
-              { path: 'myIntolerances/:id', component: MyIntolerancesComponent, data: { titulo: 'Mis intolerancias' } },
-              { path: 'user/:id', component: UserComponent, data: { titulo: 'Usuario' } },
-              { path: 'diet/soliciting', component: SolicitingComponent, data: { titulo: 'Solicitud dieta' } },
-              { path: 'diet/planning/:id', component: PlanningComponent, data: { titulo: 'Planificación dieta' } },
-              { path: 'diet/planning', component: PlanningComponent, data: { titulo: 'Planificación dieta' } },
-              { path: 'diet/tracking', component: TrackingComponent, data: { titulo: 'Seguimiento dieta' } },
+              { path: 'favorites/:id', component: FavoritesComponent, data: { titulo: 'titulos.paginas.favoritas' } },
+              { path: 'myIntolerances/:id', component: MyIntolerancesComponent, data: { titulo: 'titulos.paginas.misIntolerancias' } },
+              { path: 'user/:id', component: UserComponent, data: { titulo: 'titulos.paginas.usuario' } },
+              { path: 'diet/soliciting', component: SolicitingComponent, data: { titulo: 'titulos.paginas.solicitar' } },
+              { path: 'diet/planning/:id', component: PlanningComponent, data: { titulo: 'titulos.paginas.planificar' } },
+              { path: 'diet/planning', component: PlanningComponent, data: { titulo: 'titulos.paginas.planificar' } },
+              { path: 'diet/tracking', component: TrackingComponent, data: { titulo: 'titulos.paginas.seguimiento' } },
             ]
           },
           // PUBLIC
-          { path: 'home', component: MainComponent, data: { titulo: 'Inicio' } },
-          { path: 'search', component: BusquedaComponent, data: { titulo: 'Busqueda' } },
-          { path: 'recipes', component: RecipesComponent, data: { titulo: 'Recetas' } },
-          { path: 'recipe/:id', component: RecipeComponent, data: { titulo: 'Receta' } },
-          { path: 'ingredients', component: IngredientsComponent, data: { titulo: 'Ingredientes' } },
-          { path: 'intolerances', component: IntolerancesComponent, data: { titulo: 'Intolerancias' } },
-          { path: 'intolerance/:id', component: IntoleranceComponent, data: { titulo: 'Intolerancia' } },
-          { path: 'tags', component: TagsComponent, data: { titulo: 'Etiquetas' } },
+          { path: 'home', component: MainComponent, data: { titulo: 'titulos.paginas.inicio' } },
+          { path: 'search', component: BusquedaComponent, data: { titulo: 'titulos.paginas.busqueda' } },
+          { path: 'recipes', component: RecipesComponent, data: { titulo: 'titulos.paginas.recetas' } },
+          { path: 'recipe/:id', component: RecipeComponent, data: { titulo: 'titulos.paginas.receta' } },
+          { path: 'ingredients', component: IngredientsComponent, data: { titulo: 'titulos.paginas.ingredientes' } },
+          { path: 'intolerances', component: IntolerancesComponent, data: { titulo: 'titulos.paginas.intolerancias' } },
+          { path: 'intolerance/:id', component: IntoleranceComponent, data: { titulo: 'titulos.paginas.intolerancia' } },
+          { path: 'tags', component: TagsComponent, data: { titulo: 'titulos.paginas.etiquetas' } },
           { path: '', pathMatch: 'full', redirectTo: 'home'}
         ]
     }

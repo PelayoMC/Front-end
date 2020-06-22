@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsersService, SwalService } from '../../service/service.index';
+import { UsersService, SwalService, ModalTermsConditionsService} from '../../service/service.index';
 import { Usuario } from '../../models/usuario.model';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   forma: FormGroup;
 
 
-  constructor(public userService: UsersService, public router: Router, public swal: SwalService) { }
+  constructor(public userService: UsersService, public router: Router, public swal: SwalService, public condiciones: ModalTermsConditionsService) { }
 
   ngOnInit() {
     init_plugins();
@@ -48,5 +48,9 @@ export class RegisterComponent implements OnInit {
       this.swal.crearSwal('comun.alertas.exito.crearUsuarioRegister', 'success');
       this.router.navigate(['/login']);
     });
+  }
+
+  mostrarCondiciones() {
+    this.condiciones.mostrarModal();
   }
 }

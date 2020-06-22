@@ -17,6 +17,8 @@ import { PageModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/register/register.component';
+import { ResetPassComponent } from './login/reset-pass/reset-pass.component';
+import { ModalTermsConditionsComponent } from './components/modal-terms-conditions/modal-terms-conditions.component';
 
 // Servicios
 import { ServiceModule } from './service/service.module';
@@ -25,7 +27,9 @@ import { ServiceModule } from './service/service.module';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ResetPassComponent,
+    ModalTermsConditionsComponent,
   ],
   imports: [
     APP_ROUTING,

@@ -124,7 +124,7 @@ a.link:focus {
 .carousel-caption {
     background-color: white;
     border-radius: 35px 35px 35px 35px;
-    border: 8px solid #56c0d8;
+    border: 3px solid #56c0d8;
 }
 
 .carousel-indicators li {

@@ -1,4 +1,34 @@
 {
+    "titulos": {
+        "login": "Iniciar sesión",
+        "register": "Registro",
+        "reset": "Resetear contraseña",
+        "noFind": "No encontrado",
+        "paginas": {
+            "addReceta": "Añadir receta",
+            "modReceta": "Modificar receta",
+            "addSust": "Añadir sustituibles y etiquetas",
+            "addInt": "Añadir intolerancia",
+            "modInt": "Modificar intolerancia",
+            "usuarios": "Usuarios",
+            "usuario": "Usuario",
+            "gestionDieta": "Gestión dieta",
+            "crearDieta": "Crear dieta",
+            "favoritas": "Recetas favoritas",
+            "misIntolerancias": "Mis intolerancias",
+            "solicitar": "Solicitar dieta",
+            "planificar": "Planificación dieta",
+            "seguimiento": "Seguimiento dieta",
+            "inicio": "Inicio",
+            "busqueda": "Búsqueda",
+            "recetas": "Recetas",
+            "receta": "Receta",
+            "ingredientes": "Ingredientes",
+            "intolerancias": "Intolerancias",
+            "intolerancia": "Intolerancia",
+            "etiquetas": "Etiquetas"
+        }
+    },
     "home": {
         "titulo1": "Dietas",
         "mensaje1": "Solicita una dieta de acuerdo a tus recetas e intolerancias",
@@ -474,6 +504,9 @@
         }
     },
     "modales": {
+        "t&c": {
+            "titulo": "Términos y condiciones"
+        },
         "upload": {
             "titulo": "Cambiar imagen",
             "previa": "Vista previa"

@@ -1,4 +1,34 @@
 {
+    "titulos": {
+        "login": "Login",
+        "register": "Register",
+        "reset": "Reset password",
+        "noFind": "Not found",
+        "paginas": {
+            "addReceta": "Add recipe",
+            "modReceta": "Modify recipe",
+            "addSust": "Add repleaceables and tags",
+            "addInt": "Add intolerance",
+            "modInt": "Modify intolerance",
+            "usuarios": "Users",
+            "usuario": "User",
+            "gestionDieta": "Manage diet",
+            "crearDieta": "Create diet",
+            "favoritas": "Favorite recipes",
+            "misIntolerancias": "My intolerances",
+            "solicitar": "Request diet",
+            "planificar": "Plan diet",
+            "seguimiento": "Tracing diet",
+            "inicio": "Home",
+            "busqueda": "Search",
+            "recetas": "Recipes",
+            "receta": "Recipe",
+            "ingredientes": "Ingredients",
+            "intolerancias": "Intolerances",
+            "intolerancia": "Intolerance",
+            "etiquetas": "Tags"
+        }
+    },
     "home": {
         "titulo1": "Diets",
         "mensaje1": "Request a diet according to your favorite recipes and intolerancies",
@@ -546,7 +576,7 @@
             "gestion": "Manage diets",
             "solicitar": "Request diet",
             "planificar": "Diet planning",
-            "seguimiento": "Diet tracking"
+            "seguimiento": "Diet tracing"
         },
         "alimentos": {
             "titulo": "Food",
@@ -810,7 +840,7 @@
             "existenteTitulo": "Assigned diet",
             "existente": "There is a diet assigned already",
             "existenteLink": "Planning",
-            "existenteLink2": "Tracking"
+            "existenteLink2": "Tracing"
         },
         "planificar": {
             "titulo": "Weakly planning of the diet",

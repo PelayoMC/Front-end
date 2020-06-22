@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UsersService } from '../../service/service.index';
 import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario.model';
+import Swal from 'sweetalert2';
 
 declare function init_plugins();
 // Libreria google
@@ -62,6 +63,13 @@ export class LoginComponent implements OnInit {
       .subscribe(resp => {
         this.userService.recordar(this.recuerdame);
         this.router.navigate(['/user/' + resp]);
+      });
+  }
+
+  reset(forma: NgForm) {
+    this.userService.resetPassword(forma.value.email)
+      .subscribe(resp => {
+        Swal.fire('Mensaje enviado', 'Mensaje enviado a ' + resp, 'success');
       });
   }
 }

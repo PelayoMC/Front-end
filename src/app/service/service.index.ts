@@ -17,6 +17,7 @@ export { ModalUploadService } from './modals/modal-upload.service';
 export { ModalFeedbackService } from './modals/modal-feedback.service';
 export { ModalObservationsService } from './modals/modal-observations.service';
 export { ModalTagService } from './modals/modal-tag.service';
+export { ModalTermsConditionsService } from './modals/modal-terms-conditions.service';
 export { ModalVoteServiceService } from './modals/modal-vote-service.service';
 export { RecipesService } from './recipes/recipes.service';
 export { SidebarService } from './shared/sidebar.service';
