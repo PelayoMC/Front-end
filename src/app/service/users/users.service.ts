@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { UploadImageService } from '../upload/upload-image.service';
-import { Usuario } from '../../models/usuario.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { UploadImageService } from '../upload/upload-image.service';
+import { SwalService } from '../language/swal.service';
+import { Usuario } from '../../models/usuario.model';
 import { URL_SERVICIOS } from '../../config/config';
 import { BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { SwalService } from '../language/swal.service';
 
 
 @Injectable({
@@ -103,6 +103,21 @@ export class UsersService {
     );
   }
 
+  loginReset(user: Usuario) {
+    const url = URL_SERVICIOS + '/login/loginReset';
+    return this.http.post(url, user).pipe(map(
+      (resp: any) => {
+        this.guardarStorage(resp.id, resp.token, resp.usuario);
+        return resp.id;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.sesion', 'error');
+        this.logout('login');
+        return throwError(err);
+      })
+    );
+  }
+
   logout(redireccion) {
     redireccion = '/' + redireccion;
     this.token = '';
@@ -129,8 +144,8 @@ export class UsersService {
     this.token = token;
   }
 
-  resetPassword(email: string) {
-    const em = { email };
+  resetPassword(email: string, mensaje: any) {
+    const em = { email, mensaje };
     const url = URL_SERVICIOS + '/login/emailReset';
     return this.http.post(url, em).pipe(
       map( (resp: any) => {

@@ -8,7 +8,7 @@
                     <div class="col-md-4">
                         <img *ngIf="receta?.imagen" [src]='receta?.imagen | image: "receta"' class="img-responsive" alt="receta-imagen">
                         <br><br>
-                        <div class="row" *ngIf="usuarioService.esUser() && votado">
+                        <div class="row" *ngIf="usuarioService.esUser()">
                             <div class="col-md-12">
                                 <h4>{{ 'recetas.receta.puntuacion' | translate }} <small>  ( {{ 'recetas.receta.total' | translate }}: {{ puntuacionesTotales }} )</small></h4>
                                 <hr>
@@ -47,7 +47,7 @@
                             {{ receta?.descripcion }}
                         </p>
                         <div class="row" *ngIf="usuarioService.estaLogueado()">
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-12">
                                 <h4>{{ 'recetas.receta.ingredientes' | translate }}</h4>
                                 <hr>
                                 <mat-accordion>
@@ -102,7 +102,7 @@
                                 </mat-accordion>
                                 <br>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-12">
                                 <h4>{{ 'recetas.receta.pasos' | translate }}</h4>
                                 <hr>
                                 <ul class="list-group">

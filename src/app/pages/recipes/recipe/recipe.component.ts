@@ -62,7 +62,7 @@ export class RecipeComponent implements OnInit {
 
   cargarVotaciones(votacion: any) {
     Object.assign(this.votacion, votacion);
-    this.puntuacion = this.redondear(this.votacion.puntos / this.votacion.total);
+    this.puntuacion = this.receta.puntuacion;
     this.puntuacionesTotales = this.votacion.total;
     this.votado = this.usuarioVotado(this.votacion.usuarios);
     console.log(this.usuarioService.esUser(), this.votado);

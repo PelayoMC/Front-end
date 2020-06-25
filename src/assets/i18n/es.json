@@ -113,6 +113,10 @@
                     "titulo": "No ha iniciado sesión",
                     "mensaje": "No puede acceder a esta página porque no es un usuario válido"
                 },
+                "correoInvalido": {
+                    "titulo": "Correo invalido",
+                    "mensaje": "Escriba el correo del usuario que quiere recuperar la contraseña en la casilla correspondiente"
+                },
                 "noAdmin": {
                     "titulo": "Permiso denegado",
                     "mensaje": "No puede acceder a esta página porque no es administrador"
@@ -438,6 +442,10 @@
                 "borrarDieta": {
                     "titulo": "Solicitud de dieta borrada",
                     "mensaje": "La solicitud se ha borrado correctamente"
+                },
+                "correoEnviado": {
+                    "titulo": "Mensaje enviado",
+                    "mensaje": "Consulte su dirección de correo para resetear la contraseña"
                 }
             }
         },
@@ -450,7 +458,18 @@
             "etiquetasErr": "No puede haber etiquetas repetidas",
             "tipos": "Filtro de tipos",
             "tiposTexto": "Toca para añadir un tipo al filtro",
-            "tiposErr": "No puede haber tipos repetidos"
+            "tiposErr": "No puede haber tipos repetidos",
+            "orden": "Ordenar",
+            "ordenTipos": {
+                "nombreAsc": "Nombre (ascendiente)",
+                "nombreDesc": "Nombre (descendiente)",
+                "puntuacionAsc": "Puntuación (ascendiente)",
+                "puntuacionDesc": "Puntuación (descendiente)",
+                "tipoAsc": "Tipo (ascendiente)",
+                "tipoDesc": "Tipo (descendiente)",
+                "nivelAsc": "Dificultad (ascendiente)",
+                "nivelDesc": "Dificultad (descendiente)"
+            }
         },
         "buscando": {
             "titulo": "CARGANDO",
@@ -630,6 +649,19 @@
         "registrarse": "Registrarse",
         "pregunta": "¿Ya tienes cuenta?",
         "linkSesion": "Inicia sesión"
+    },
+    "reset": {
+        "mensaje": {
+            "titulo": "Reset de contraseña",
+            "mensaje1": "Mensaje enviado para poder resetear la contraseña\n\n",
+            "mensaje2": "Haga click en el siguiente enlace para modificar su contraseña\n",
+            "mensaje3": "Si no ha solicitado un cambio de contraseña, ignore este mensaje.\n"
+        },
+        "titulo": "Reset de contraseña para el usuario: ",
+        "contraseña": "Contraseña",
+        "confirmarContraseña": "Confirmar contraseña",
+        "contraseñasIguales": "Las contraseñas deben ser iguales",
+        "reset": "Resetear"
     },
     "buscador": {
         "buscador": "Nombre del ingrediente",

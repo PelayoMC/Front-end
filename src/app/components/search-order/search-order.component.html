@@ -1,0 +1,11 @@
+<br>
+<select class="form-control" #select (change)="seleccionar(select.value)">
+        <option value="nombre">{{ 'comun.filtros.ordenTipos.nombreAsc' | translate }}</option>
+        <option value="-nombre">{{ 'comun.filtros.ordenTipos.nombreDesc' | translate }}</option>
+        <option value="puntuacion">{{ 'comun.filtros.ordenTipos.puntuacionAsc' | translate }}</option>
+        <option value="-puntuacion">{{ 'comun.filtros.ordenTipos.puntuacionDesc' | translate }}</option>
+        <option value="tipoRe">{{ 'comun.filtros.ordenTipos.tipoAsc' | translate }}</option>
+        <option value="-tipoRe">{{ 'comun.filtros.ordenTipos.tipoDesc' | translate }}</option>
+        <option value="nivel">{{ 'comun.filtros.ordenTipos.nivelAsc' | translate }}</option>
+        <option value="-nivel">{{ 'comun.filtros.ordenTipos.nivelDesc' | translate }}</option>
+</select>

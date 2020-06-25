@@ -51,8 +51,6 @@ import { ModalTagsComponent } from '../components/modal-tags/modal-tags.componen
 import { ModalVoteComponent } from '../components/modal-vote/modal-vote.component';
 import { ModalFeedbackComponent } from '../components/modal-feedback/modal-feedback.component';
 import { ModalObservationsComponent } from '../components/modal-observations/modal-observations.component';
-import { SearchTagComponent } from '../components/search-tag/search-tag.component';
-import { SearchIntoleranceComponent } from '../components/search-intolerance/search-intolerance.component';
 import { CreateIngsRecipeComponent } from './recipes/create-recipe/create-ings-recipe.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { IntolerancesComponent } from './intolerances/intolerances.component';
@@ -60,10 +58,13 @@ import { IntoleranceComponent } from './intolerances/intolerance/intolerance.com
 import { MyIntolerancesComponent } from './intolerances/my-intolerances/my-intolerances.component';
 import { CreateIntoleranceComponent } from './intolerances/create-intolerance/create-intolerance.component';
 import { TagsComponent } from './tags/tags.component';
+import { SearchTagComponent } from '../components/search-tag/search-tag.component';
+import { SearchIntoleranceComponent } from '../components/search-intolerance/search-intolerance.component';
+import { SearchTypeComponent } from '../components/search-type/search-type.component';
+import { SearchOrderComponent } from '../components/search-order/search-order.component';
 import { ShowFiltersComponent } from '../components/show-filters/show-filters.component';
 import { LoadingComponent } from '../components/loading-component/loading.component';
 import { NoFoundComponentComponent } from '../components/no-found-component/no-found.component';
-import { SearchTypeComponent } from '../components/search-type/search-type.component';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { SearchTypeComponent } from '../components/search-type/search-type.compo
         SearchTagComponent,
         SearchIntoleranceComponent,
         SearchTypeComponent,
+        SearchOrderComponent,
         ShowFiltersComponent
       ],
       exports: [

@@ -17,7 +17,7 @@
     <section id="wrapper" class="login-register login-sidebar" style="background-image:url(assets/images/background/login-register.jpg);">
         <div class="login-box card">
             <div class="card-body">
-                <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()" class="form-horizontal form-material" id="loginform" action="index.html">
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)="cambiarPassword()" class="form-horizontal form-material" id="loginform" action="index.html">
                     <a routerLink="/home" class="text-center db">
                         <b>
                         <i class="mdi mdi-pine-tree"></i>
@@ -25,7 +25,8 @@
                         <b class="logo-title-login">
                         TFG
                     </b></a>
-                    <h3 class="box-title m-t-40 m-b-0">{{ 'register.titulo' | translate }}</h3>
+                    <h3 class="box-title m-t-40 m-b-0">{{ 'reset.titulo' | translate }} <span class="text text-primary">{{ usuario?.nombre | uppercase }}</span></h3>
+                    <br>
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input formControlName="contraseña" name="contraseña" class="form-control" type="password" required [placeholder]="'register.contraseña' | translate">
@@ -51,7 +52,7 @@
                     </div>
                     <div class="form-group text-center m-t-20 ">
                         <div class="col-xs-12 ">
-                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light " type="submit ">{{ 'register.registrarse' | translate }}</button>
+                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light " type="submit ">{{ 'reset.reset' | translate }}</button>
                         </div>
                     </div>
                 </form>

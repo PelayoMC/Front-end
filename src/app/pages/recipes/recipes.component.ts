@@ -15,6 +15,7 @@ export class RecipesComponent implements OnInit {
   recetas: Recipe[] = [];
   tipos: string[] = [];
   intolerancias: string[] = [];
+  orden = 'nombre';
   filtros: Filtros = new Filtros();
 
   from = 1;
@@ -29,6 +30,7 @@ export class RecipesComponent implements OnInit {
   }
 
   verReceta(idx: number) {
+    console.log(idx);
     this.router.navigate(['/recipe', idx]);
   }
 
@@ -42,6 +44,11 @@ export class RecipesComponent implements OnInit {
     Object.assign(this.intolerancias, event);
   }
 
+  cargarFiltroOrden(event: any) {
+    console.log(event);
+    this.orden = event;
+  }
+
   cambiarFiltros(event: any) {
     Object.assign(this.filtros, event);
     if (this.filtros.intolerancias === false) {
@@ -49,6 +56,9 @@ export class RecipesComponent implements OnInit {
     }
     if (this.filtros.tipos === false) {
       this.tipos = [];
+    }
+    if (this.filtros.orden === false) {
+      this.orden = '';
     }
   }
 
@@ -58,15 +68,16 @@ export class RecipesComponent implements OnInit {
       this.total = resp.total;
       resp = resp.recetas;
       this.recetas = resp.map(el =>
-        new Recipe(el.nombre, el.descripcion, el.tipoRe, el.imagen, el.ingredientes, el.pasos, el.nivel, el.calorias, el._id)
+        new Recipe(el.nombre, el.descripcion, el.tipoRe, el.imagen, el.ingredientes, el.pasos, el.nivel, el.puntuacion, el.calorias, el._id)
       );
+      console.log(this.recetas);
       this.cargando = false;
     });
   }
 
   buscarRecetas(termino: string, valor: number) {
     this.cargando = true;
-    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, valor, this.tam).subscribe(
+    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, this.orden, valor, this.tam).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;
         this.recetas = recetas;

@@ -16,10 +16,18 @@
         </div>
     </div>
     <div class="col" *ngIf="showTipos">
-        <label for="etsw">{{ 'comun.filtros.tipos' | translate }}</label>
-        <div #etsw class="switch">
+        <label for="tsw">{{ 'comun.filtros.tipos' | translate }}</label>
+        <div #tsw class="switch">
             <label>
                 <input type="checkbox" [checked]="tipos" (change)="tipos = !tipos; emit()"><span class="lever switch-col-green"></span>
+            </label>
+        </div>
+    </div>
+    <div class="col" *ngIf="showOrden">
+        <label for="osw">{{ 'comun.filtros.orden' | translate }}</label>
+        <div #osw class="switch">
+            <label>
+                <input type="checkbox" [checked]="orden" (change)="orden = !orden; emit()"><span class="lever switch-col-green"></span>
             </label>
         </div>
     </div>

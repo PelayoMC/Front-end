@@ -75,14 +75,13 @@ export class RecipesService {
     );
   }
 
-  descubrirRecetas(termino: string, tipos: string[], intolerancias: string[], from: number, limit: number) {
+  descubrirRecetas(termino: string, tipos: string[], intolerancias: string[], orden: string, from: number, limit: number) {
     const extra = {
       tipos,
-      intolerancias
+      intolerancias,
+      orden
     };
     let url = URL_SERVICIOS + '/busqueda/descubrir/' + termino + '?from=' + from + '&limit=' + limit;
-    console.log(url);
-    console.log(extra);
     return this.http.post(url, extra).pipe(
       map(  (resp: any) => {
         return resp;
@@ -90,10 +89,11 @@ export class RecipesService {
     );
   }
 
-  buscarRecetas(termino: string, tipos: string[], intolerancias: string[], from: number, limit: number) {
+  buscarRecetas(termino: string, tipos: string[], intolerancias: string[], orden: string, from: number, limit: number) {
     const extra = {
       tipos,
-      intolerancias
+      intolerancias,
+      orden
     };
     let url = URL_SERVICIOS + '/busqueda/receta/' + termino + '?from=' + from + '&limit=' + limit;
     return this.http.post(url, extra).pipe(
@@ -124,6 +124,19 @@ export class RecipesService {
     return this.http.put(url, receta).pipe(
       map( (resp: any) => {
         this.swal.crearSwal('comun.alertas.exito.modificarReceta', 'success');
+        return resp.receta;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.modificarReceta', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
+  puntuarReceta(receta: Recipe) {
+    const url = URL_SERVICIOS + '/receta/votes/' + receta._id;
+    return this.http.put(url, receta).pipe(
+      map( (resp: any) => {
         return resp.receta;
       }),
       catchError( err => {

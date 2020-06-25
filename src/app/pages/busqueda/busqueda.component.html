@@ -17,9 +17,10 @@
                           <mat-icon>search</mat-icon>
                         </button>
                 </mat-form-field>
-                <app-show-filters [showIntolerancias]=true [showEtiquetas]=false [showTipos]=true (filtros)=cambiarFiltros($event)></app-show-filters>
+                <app-show-filters [showIntolerancias]=true [showEtiquetas]=false [showTipos]=true [showOrden]=true (filtros)=cambiarFiltros($event)></app-show-filters>
                 <app-search-intolerance *ngIf="filtros.intolerancias" (intolerancias)="cargarFiltroIntolerancias($event)"></app-search-intolerance>
                 <app-search-type *ngIf="filtros.tipos" (types)="cargarFiltroTipos($event)"></app-search-type>
+                <app-search-order *ngIf="filtros.orden" (orden)="cargarFiltroOrden($event)"></app-search-order>
             </div>
         </div>
     </div>

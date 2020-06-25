@@ -10,6 +10,7 @@ export class Recipe {
         public ingredientes: IngredientRecipe[] = [],
         public pasos: string[] = [],
         public nivel: string = '',
+        public puntuacion?: number,
         public calorias: Calorias = null,
         public _id?: string
     ) {

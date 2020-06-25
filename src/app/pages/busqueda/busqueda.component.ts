@@ -19,6 +19,7 @@ export class BusquedaComponent implements OnInit {
   ingsFiltrados: string[] = [];
   tipos: string[] = [];
   intolerancias: string[] = [];
+  orden = 'nombre';
   filtros: Filtros = new Filtros();
 
   cargando = true;
@@ -52,6 +53,11 @@ export class BusquedaComponent implements OnInit {
     Object.assign(this.intolerancias, event);
   }
 
+  cargarFiltroOrden(event: any) {
+    console.log(event);
+    this.orden = event;
+  }
+
   filtrar(input: any) {
     this.ingsFiltrados = this.ings.filter(el => el.toLowerCase().includes(input.value));
   }
@@ -64,6 +70,9 @@ export class BusquedaComponent implements OnInit {
     if (this.filtros.tipos === false) {
       this.tipos = [];
     }
+    if (this.filtros.orden === false) {
+      this.orden = '';
+    }
   }
 
   cargarRecetas(from) {
@@ -72,7 +81,7 @@ export class BusquedaComponent implements OnInit {
       this.total = resp.total;
       resp = resp.recetas;
       this.recetas = resp.map(el =>
-        new Recipe(el.nombre, el.descripcion, el.tipoRe, el.imagen, el.ingredientes, el.pasos, el.nivel, el.calorias, el._id)
+        new Recipe(el.nombre, el.descripcion, el.tipoRe, el.imagen, el.ingredientes, el.pasos, el.nivel, el.puntuacion, el.calorias, el._id)
       );
       this.cargando = false;
       this.buscando = false;
@@ -81,7 +90,7 @@ export class BusquedaComponent implements OnInit {
 
   buscarRecetas(termino: string, valor: number) {
     this.cargando = true;
-    this.recipeService.descubrirRecetas(termino, this.tipos, this.intolerancias, valor, this.limit).subscribe(
+    this.recipeService.descubrirRecetas(termino, this.tipos, this.intolerancias, this.orden, valor, this.limit).subscribe(
       (resp: any) => {
         this.ingredientes = resp.coleccion.ingredientes;
         this.recetas = resp.coleccion.recetas;
@@ -94,10 +103,6 @@ export class BusquedaComponent implements OnInit {
   }
 
   cambiarPag(event: any) {
-    if (this.busqueda.nativeElement.value != null) {
-      this.buscarRecetas(this.busqueda.nativeElement.value, --event * this.limit);
-    } else {
-      this.cargarRecetas(--event * this.limit);
-    }
+    this.buscarRecetas(this.busqueda.nativeElement.value, --event * this.limit);
   }
 }

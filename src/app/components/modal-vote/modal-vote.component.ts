@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ModalVoteServiceService, VotingService, UsersService } from 'src/app/service/service.index';
+import { ModalVoteServiceService, VotingService, UsersService, RecipesService } from 'src/app/service/service.index';
 import { Votacion } from '../../models/votacion.model';
 import { Router } from '@angular/router';
+import { Recipe } from '../../models/recipe.model';
 
 @Component({
   selector: 'app-modal-vote',
@@ -25,7 +26,7 @@ export class ModalVoteComponent implements OnInit {
   @Output() created = new EventEmitter();
   puntuacion: number;
 
-  constructor(public modalService: ModalVoteServiceService, public voteService: VotingService, public userService: UsersService, public router: Router) { }
+  constructor(public modalService: ModalVoteServiceService, public voteService: VotingService, public userService: UsersService, public recipeService: RecipesService, public router: Router) { }
 
   ngOnInit() {
   }
@@ -39,20 +40,27 @@ export class ModalVoteComponent implements OnInit {
   }
 
   modificarVotacion() {
-    this.votacion.total += 1;
-    this.votacion.puntos = this.votacion.puntos + this.puntuacion;
-    this.votacion.usuarios.push(this.userService.usuario.value._id);
+    this.recipeService.getRecipe(this.votacion.receta).subscribe((resp: Recipe) => {
+      this.votacion.total += 1;
+      this.votacion.puntos = this.votacion.puntos + this.puntuacion;
+      this.votacion.usuarios.push(this.userService.usuario.value._id);
+      resp[0].puntuacion = this.redondear(this.votacion.puntos / this.votacion.total);
+      this.recipeService.puntuarReceta(resp[0]).subscribe(resp => {
+        this.crearVotacion();
+      });
+    });
   }
 
-
-
   crearVotacion() {
-    this.modificarVotacion();
     this.voteService.modificarVotacion(this.votacion).subscribe(resp => {
       this.puntuacion = 0;
       this.cerrarModal();
       this.router.navigate(['recipes']);
     });
+  }
+
+  redondear(numero: number) {
+    return Math.round((numero + Number.EPSILON) * 100) / 100;
   }
 
 }

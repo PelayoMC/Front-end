@@ -8,7 +8,7 @@
                                     <span aria-hidden="true">&times;</span>
                             </button>
                 </div>
-                <form #form="ngForm" (ngSubmit)="crearVotacion()">
+                <form #form="ngForm" (ngSubmit)="modificarVotacion()">
                     <div class="modal-body">
                         <ngb-rating class="puntuacion" [(rate)]="puntuacion" [max]="5" [starTemplate]="t"></ngb-rating>
                         <ng-template #t let-fill="fill" let-index="index">

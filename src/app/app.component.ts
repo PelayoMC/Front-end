@@ -20,9 +20,7 @@ export class AppComponent {
       map((event: ActivationEnd) => event.snapshot.data.titulo)
     )
     .subscribe((titulo: any) => {
-      console.log(titulo);
       this.translateService.get(titulo).subscribe(resp => {
-        console.log(resp);
         title.setTitle(resp);
       });
     });

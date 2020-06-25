@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsersService } from '../../service/service.index';
+import { UsersService, SwalService } from '../../service/service.index';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Usuario } from '../../models/usuario.model';
-import Swal from 'sweetalert2';
 
 declare function init_plugins();
 // Libreria google
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   auth2: any;
 
-  constructor(public userService: UsersService, public router: Router) { }
+  constructor(public userService: UsersService, public router: Router, public translate: TranslateService, public swal: SwalService) { }
 
   ngOnInit() {
     init_plugins();
@@ -67,9 +67,19 @@ export class LoginComponent implements OnInit {
   }
 
   reset(forma: NgForm) {
-    this.userService.resetPassword(forma.value.email)
-      .subscribe(resp => {
-        Swal.fire('Mensaje enviado', 'Mensaje enviado a ' + resp, 'success');
-      });
+    this.userService.buscarUsuarios(forma.value.email, 0).subscribe(resp => {
+      if (resp.total === 1) {
+        this.translate.get('reset.mensaje').subscribe(resp => {
+          console.log(resp);
+          this.userService.resetPassword(forma.value.email, resp)
+            .subscribe(resp => {
+              this.swal.crearSwal('comun.alertas.exito.correoEnviado', 'success');
+            });
+        });
+      } else {
+        this.swal.crearSwal('comun.alertas.errores.correoInvalido', 'error');
+        return;
+      }
+    });
   }
 }

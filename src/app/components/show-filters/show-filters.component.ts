@@ -11,10 +11,12 @@ export class ShowFiltersComponent implements OnInit {
   intolerancias = false;
   etiquetas = false;
   tipos = false;
+  orden = false;
 
   @Input() showIntolerancias: boolean;
   @Input() showEtiquetas: boolean;
   @Input() showTipos: boolean;
+  @Input() showOrden: boolean;
 
   @Output() filtros = new EventEmitter<any>();
 
@@ -25,7 +27,8 @@ export class ShowFiltersComponent implements OnInit {
     const resp = {
       intolerancias: this.intolerancias,
       etiquetas: this.etiquetas,
-      tipos: this.tipos
+      tipos: this.tipos,
+      orden: this.orden
     };
     this.filtros.emit(resp);
   }

@@ -113,6 +113,10 @@
                     "titulo": "You aren't logged",
                     "mensaje": "You can't access this page because you are not a valid user"
                 },
+                "correoInvalido": {
+                    "titulo": "Invalid email",
+                    "mensaje": "Write the e-mail of the user who wants to recover the password in the corresponding textbox"
+                },
                 "noAdmin": {
                     "titulo": "Access denied",
                     "mensaje": "You can't access this page because you are not an admin"
@@ -438,6 +442,10 @@
                 "borrarDieta": {
                     "titulo": "Diet request deleted",
                     "mensaje": "Request deleted correctly"
+                },
+                "correoEnviado": {
+                    "titulo": "Message sent",
+                    "mensaje": "Check your email address to reset your password"
                 }
             }
         },
@@ -450,7 +458,18 @@
             "etiquetasErr": "There can't be any repeated tags",
             "tipos": "Type filter",
             "tiposTexto": "Touch to add a type to the filter",
-            "tiposErr": "There can't be any repeated types"
+            "tiposErr": "There can't be any repeated types",
+            "orden": "Order",
+            "ordenTipos": {
+                "nombreAsc": "Name (increasing)",
+                "nombreDesc": "Name (descending)",
+                "puntuacionAsc": "Rating (increasing)",
+                "puntuacionDesc": "Rating (descending)",
+                "tipoAsc": "Type (increasing)",
+                "tipoDesc": "Type (descending)",
+                "nivelAsc": "Difficulty (increasing)",
+                "nivelDesc": "Difficulty (descending)"
+            }
         },
         "buscando": {
             "titulo": "LOADING",
@@ -625,6 +644,19 @@
         "registrarse": "Register",
         "pregunta": "Do you have an account?",
         "linkSesion": "Login"
+    },
+    "reset": {
+        "mensaje": {
+            "titulo": "Pasword reset",
+            "mensaje1": "Message send to reset the password\n\n",
+            "mensaje2": "Click on the next link to modify your password\n",
+            "mensaje3": "If you haven't requested a password reset, ignore this message\n"
+        },
+        "titulo": "Reset de contraseña para el usuario: ",
+        "contraseña": "Contraseña",
+        "confirmarContraseña": "Confirmar contraseña",
+        "contraseñasIguales": "Las contraseñas deben ser iguales",
+        "reset": "Resetear"
     },
     "buscador": {
         "buscador": "Ingredient name",
