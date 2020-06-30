@@ -694,6 +694,7 @@
             "ejercicio5": "All days morning/afternoon",
             "observaciones": "Observations",
             "observacionesPh": "Introduce observations that have to be taken into account",
+            "opcional": "(Optional)",
             "botonMod": "Modify",
             "botonAceptar": "Accept",
             "botonCancelar": "Cancel",

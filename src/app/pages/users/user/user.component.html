@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label for="altura">{{ 'usuarios.usuario.altura' | translate }}</label>
                             <div class="input-group">
-                                <input #altura formControlName="altura" type="number" name="altura" [class.is-invalid]="alturaNoValido()" step="any" class="form-control" [placeholder]="'usuarios.usuario.alturaPh' | translate">
+                                <input #altura formControlName="altura" type="number" name="altura" [class.is-invalid]="alturaNoValido()" step="0.01" class="form-control" [placeholder]="'usuarios.usuario.alturaPh' | translate">
                             </div>
                             <small *ngIf="alturaNoValido()" class="form-text text-danger">{{ 'usuarios.usuario.alturaErr' | translate }}</small>
                         </div>
@@ -63,7 +63,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="observaciones">{{ 'usuarios.usuario.observaciones' | translate }}</label>
+                            <label for="observaciones">{{ 'usuarios.usuario.observaciones' | translate }} <span class="text text-warning"> {{ 'usuarios.usuario.opcional' | translate }} </span></label>
                             <div class="input-group">
                                 <input #observaciones formControlName="observaciones" type="text" name="observaciones" class="form-control" [placeholder]="'usuarios.usuario.observacionesPh' | translate">
                             </div>

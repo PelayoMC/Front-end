@@ -20,7 +20,7 @@
                                 <div #inputGroup class="form-group">
                                     <label>{{ 'recetas.crear.crearIng.etiquetaTitulo' | translate }}</label>
                                     <mat-form-field style="width: 100%;">
-                                        <mat-chip-list #list [class.is-invalid]="aptoNoValido()" aria-label="tag selection">
+                                        <mat-chip-list #list [class.is-invalid]="aptoNoValido(j)" aria-label="tag selection">
                                             <mat-chip *ngFor="let i = index; let tag of tags[j]" [selectable]="true" [removable]="true" (removed)="remove(tag.nombre, j)">
                                                 {{ tag.nombre }}
                                                 <mat-icon matChipRemove>cancel</mat-icon>

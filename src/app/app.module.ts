@@ -29,7 +29,7 @@ import { ServiceModule } from './service/service.module';
     LoginComponent,
     RegisterComponent,
     ResetPassComponent,
-    ModalTermsConditionsComponent,
+    ModalTermsConditionsComponent
   ],
   imports: [
     APP_ROUTING,

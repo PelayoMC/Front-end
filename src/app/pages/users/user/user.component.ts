@@ -4,15 +4,17 @@ import {FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService, SwalService } from '../../../service/service.index';
 import { Usuario } from '../../../models/usuario.model';
 import Swal from 'sweetalert2';
+declare  var jQuery: any;
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html'
 })
 export class UserComponent implements OnInit {
+
   form: FormGroup;
   usuario: Usuario;
-  modificando: string;
+  modificando: boolean;
   imgUpload: any;
   imgTemp: string;
 
@@ -20,7 +22,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = this.userService.usuario.value;
-    this.modificando = 'false';
+    this.modificando = false;
     this.form = new FormGroup({
       nombre: new FormControl({value: this.usuario.nombre, disabled: true}, Validators.required),
       email: new FormControl({value: this.usuario.email, disabled: true}, [Validators.required, Validators.email]),
@@ -29,9 +31,16 @@ export class UserComponent implements OnInit {
       altura: new FormControl({value: this.usuario.altura, disabled: true}, Validators.required),
       peso: new FormControl({value: this.usuario.peso, disabled: true}, Validators.required),
       ejercicio: new FormControl({value: this.usuario.ejercicio, disabled: true}, Validators.required),
-      observaciones: new FormControl({value: this.usuario.observaciones, disabled: true}, Validators.required),
+      observaciones: new FormControl({value: this.usuario.observaciones, disabled: true}),
     });
     this.mostrarNotificaciones();
+    (($) => {
+      $(document).ready(() => {
+        $('input[name="edad"]').mask('00');
+        $('input[name="altura"]').mask('0.00');
+        $('input[name="peso"]').mask('00');
+      });
+    })(jQuery);
   }
 
   mostrarNotificaciones() {
@@ -128,7 +137,7 @@ export class UserComponent implements OnInit {
     this.userService.modificarUsuario(this.usuario).subscribe(resp => {
       this.swal.crearSwal('comun.alertas.exito.modificarUsuario', 'success');
       this.swapForm();
-      this.modificando = 'false';
+      this.modificando = false;
       this.usuario = resp;
       this.router.navigate(['/user', this.usuario._id]);
     });

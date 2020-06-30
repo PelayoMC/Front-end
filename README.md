@@ -14,9 +14,6 @@ Para la creación de componentes se usa el comando `ng g c component-name`.
 
 Para montar el proyecto (build) usar `ng build`. Los artefactos (artifacts) serán almacenados en el directorio `dist/`. Usar el flag `--prod` para un montaje de producción.
 
-## Ejecutar test unitaros
-
-Usar `ng test` para ejecutar los test unitarios via [Karma](https://karma-runner.github.io).
 
 ## Running end-to-end tests
 

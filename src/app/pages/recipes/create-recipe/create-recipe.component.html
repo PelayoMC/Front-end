@@ -72,7 +72,7 @@
                                             <small *ngIf="ingredienteNoValido(ingrediente)" class="form-text text-danger">{{ 'recetas.crear.nombreErr' | translate }}</small>
                                         </td>
                                         <td>
-                                            <input #cantidad class="form-control" type="number" formControlName="cantidad" (click)="cantidad.select()" (load)="onChange(ingrediente, cantidad)" [placeholder]="'recetas.crear.cantidad' | translate">
+                                            <input #cantidad class="form-control" type="number" formControlName="cantidad" (click)="cantidad.select()" (load)="onChange(ingrediente, cantidad, i)" [placeholder]="'recetas.crear.cantidad' | translate">
                                         </td>
                                         <td class="long-td">
                                             <select class="form-control" (change)="onChange(ingrediente, cantidad, i)" formControlName="unidades">

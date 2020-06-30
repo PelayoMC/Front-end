@@ -10,10 +10,10 @@
         </mat-card-header>
         <img (click)="verReceta()" mat-card-image class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image">
         <mat-card-actions align="end">
-            <button *ngIf="userService.esUser() && noFavorite()" mat-icon-button color="warn" aria-label="Añadir a favoritos" (click)="favorito(receta)">
+            <button *ngIf="userService.esUser() && noFavorite()" mat-icon-button disabled=true aria-label="Añadir a favoritos" (click)="favorito(receta)">
                 <mat-icon>favorite</mat-icon>
             </button>
-            <button *ngIf="userService.esUser() && !noFavorite()" mat-icon-button disabled=true aria-label="Es favoritos">
+            <button *ngIf="userService.esUser() && !noFavorite()" mat-icon-button color="warn" aria-label="Es favoritos">
                 <mat-icon>favorite</mat-icon>
             </button>
         </mat-card-actions>

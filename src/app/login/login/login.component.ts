@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   email: string;
   recuerdame = false;
+  cargandoEmail = false;
 
   auth2: any;
 
@@ -69,10 +70,12 @@ export class LoginComponent implements OnInit {
   reset(forma: NgForm) {
     this.userService.buscarUsuarios(forma.value.email, 0).subscribe(resp => {
       if (resp.total === 1) {
+        this.cargandoEmail = true;
         this.translate.get('reset.mensaje').subscribe(resp => {
           console.log(resp);
           this.userService.resetPassword(forma.value.email, resp)
             .subscribe(resp => {
+              this.cargandoEmail = false;
               this.swal.crearSwal('comun.alertas.exito.correoEnviado', 'success');
             });
         });
