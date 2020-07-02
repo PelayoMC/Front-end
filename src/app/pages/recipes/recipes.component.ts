@@ -37,16 +37,18 @@ export class RecipesComponent implements OnInit {
   cargarFiltroTipos(event: any) {
     this.tipos = [];
     Object.assign(this.tipos, event);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
   }
 
   cargarFiltroIntolerancias(event: any) {
     this.intolerancias = [];
     Object.assign(this.intolerancias, event);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
   }
 
   cargarFiltroOrden(event: any) {
-    console.log(event);
     this.orden = event;
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
   }
 
   cambiarFiltros(event: any) {
@@ -60,6 +62,11 @@ export class RecipesComponent implements OnInit {
     if (this.filtros.orden === false) {
       this.orden = '';
     }
+  }
+
+  recargar() {
+    this.from = 0;
+    this.cargarRecetas(this.from);
   }
 
   cargarRecetas(from) {
@@ -83,7 +90,7 @@ export class RecipesComponent implements OnInit {
         this.recetas = recetas;
         this.total = resp.total;
         this.cargando = false;
-        this.busqueda.nativeElement.select();
+        // this.busqueda.nativeElement.select();
       }
     );
   }

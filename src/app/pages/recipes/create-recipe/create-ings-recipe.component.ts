@@ -151,6 +151,8 @@ export class CreateIngsRecipeComponent implements OnInit {
       return;
     }
     this.cargando = true;
+    console.log(this.ingredients);
+    console.log(this.tags);
     this.ingsService.añadirEtiquetas(this.ingredients, this.tags).subscribe(resp => {
       this.crearReceta();
     });

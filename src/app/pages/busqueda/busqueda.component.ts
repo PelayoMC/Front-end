@@ -25,7 +25,7 @@ export class BusquedaComponent implements OnInit {
   cargando = true;
   buscando = false;
   from = 1;
-  limit = 7;
+  limit = 9;
   total: number;
 
   constructor(private recipeService: RecipesService, private ingsService: IngredientsService, private router: Router) { }
@@ -46,16 +46,18 @@ export class BusquedaComponent implements OnInit {
   cargarFiltroTipos(event: any) {
     this.tipos = [];
     Object.assign(this.tipos, event);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
   }
 
   cargarFiltroIntolerancias(event: any) {
     this.intolerancias = [];
     Object.assign(this.intolerancias, event);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
   }
 
   cargarFiltroOrden(event: any) {
-    console.log(event);
     this.orden = event;
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
   }
 
   filtrar(input: any) {
@@ -96,7 +98,6 @@ export class BusquedaComponent implements OnInit {
         this.recetas = resp.coleccion.recetas;
         this.total = resp.total;
         this.cargando = false;
-        this.busqueda.nativeElement.select();
         this.buscando = true;
       }
     );

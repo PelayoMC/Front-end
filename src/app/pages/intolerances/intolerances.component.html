@@ -9,7 +9,9 @@
                           <mat-icon>close</mat-icon>
                         </button>
                     <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarIntolerancias(input.value)">
-                          <mat-icon>search</mat-icon>
+                        <div class="icon">
+                            <mat-icon>search</mat-icon>
+                        </div>
                     </button>
                 </mat-form-field>
                 <app-show-filters [showIntolerancias]=false [showEtiquetas]=true [showTipos]=false (filtros)=cambiarFiltros($event)></app-show-filters>
@@ -38,7 +40,7 @@
                                 <span> {{ int.nombre }} </span>
                             </td>
                             <td *ngIf="userService.esUser() && noFavorite(int)" class="text-nowrap small-td">
-                                <button (click)="addIntolerancia(int)" class="btn btn-primary" [matTooltip]="'intolerancias.tooltipModificar' | translate"><i class="fa fa-heart"></i></button>
+                                <button (click)="addIntolerancia(int)" class="btn btn-primary" [matTooltip]="'intolerancias.tooltipAñadir' | translate"><i class="fa fa-plus-circle"></i></button>
                             </td>
                             <td *ngIf="userService.esAdmin()" class="text-nowrap small-td">
                                 <button (click)="actualizarIntolerancia(int)" class="btn btn-primary" [matTooltip]="'intolerancias.tooltipGuardar' | translate"><i class="fa fa-wrench"></i></button> &nbsp;

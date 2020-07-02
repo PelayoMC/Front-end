@@ -3,7 +3,7 @@
         <mat-card-header (click)="verReceta()">
             <mat-card-title>{{ receta.nombre }}</mat-card-title>
             <mat-card-subtitle>
-                <label [class]="label(receta.nivel)">{{ receta.nivel }}</label>
+                <label [class]="label(receta.tipoRe)">{{ receta.tipoRe }}</label>
             </mat-card-subtitle>
         </mat-card-header>
         <img (click)="verReceta()" mat-card-image class="card-img-top" [src]='receta.imagen | image: "receta"' alt="Card image">

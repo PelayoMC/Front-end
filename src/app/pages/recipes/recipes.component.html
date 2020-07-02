@@ -9,7 +9,9 @@
                       <mat-icon>close</mat-icon>
                     </button>
                     <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarRecetas(input.value, 0)">
-                      <mat-icon>search</mat-icon>
+                        <div class="icon">
+                            <mat-icon>search</mat-icon>
+                        </div>
                     </button>
                 </mat-form-field>
                 <app-show-filters [showIntolerancias]=true [showEtiquetas]=false [showTipos]=true [showOrden]=true (filtros)=cambiarFiltros($event)></app-show-filters>
@@ -28,7 +30,7 @@
             <div class="card-body">
                 <h3 class="card-title">{{ 'recetas.titulo' | translate }} (<small>{{ total }}</small>)</h3>
                 <div class="row">
-                    <app-recipe-card class="col-sm-6 col-lg-4" (cargar)="cargarRecetas(0)" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
+                    <app-recipe-card class="col-sm-6 col-lg-4" (cargar)="recargar()" (recetaSeleccionada)=verReceta($event) [receta]=receta *ngFor="let receta of recetas"></app-recipe-card>
                 </div>
             </div>
         </div>

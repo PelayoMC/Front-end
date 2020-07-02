@@ -34,6 +34,7 @@ import { MyIntolerancesComponent } from './intolerances/my-intolerances/my-intol
 import { SolicitingComponent } from './diet/soliciting/soliciting.component';
 
 const routes: Routes = [
+    { path: '', pathMatch: 'full', redirectTo: 'home'},
     {
         path: '',
         component: PagesComponent,
@@ -76,8 +77,7 @@ const routes: Routes = [
           { path: 'ingredients', component: IngredientsComponent, data: { titulo: 'titulos.paginas.ingredientes' } },
           { path: 'intolerances', component: IntolerancesComponent, data: { titulo: 'titulos.paginas.intolerancias' } },
           { path: 'intolerance/:id', component: IntoleranceComponent, data: { titulo: 'titulos.paginas.intolerancia' } },
-          { path: 'tags', component: TagsComponent, data: { titulo: 'titulos.paginas.etiquetas' } },
-          { path: '', pathMatch: 'full', redirectTo: 'home'}
+          { path: 'tags', component: TagsComponent, data: { titulo: 'titulos.paginas.etiquetas' } }
         ]
     }
 ];
