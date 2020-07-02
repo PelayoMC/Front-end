@@ -238,7 +238,9 @@ export class CreateRecipeComponent implements OnInit {
     this.cargando = true;
     Object.assign(this.recipe, this.form.value);
     this.ingredientService.obtenerIngsRecipe(this.recipe.ingredientes).subscribe(resp => {
+      console.log(resp);
       this.recipe.ingredientes = resp;
+      console.log(this.recipe.ingredientes);
       this.recipeService.crearReceta(this.recipe).subscribe(resp => {
         this.recipe._id = resp._id;
         this.form.value.imagen = this.imgUpload;
@@ -254,7 +256,6 @@ export class CreateRecipeComponent implements OnInit {
   modificarReceta() {
     this.cargando = true;
     Object.assign(this.recipe, this.form.value);
-    console.log(this.recipe.ingredientes);
     this.ingredientService.obtenerIngsRecipe(this.recipe.ingredientes).subscribe(resp => {
       this.recipe.ingredientes = resp;
       this.recipeService.modificarReceta(this.recipe).subscribe(resp => {

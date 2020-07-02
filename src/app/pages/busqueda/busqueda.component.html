@@ -2,6 +2,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <h1>{{ 'buscador.titulo1' | translate }}</h1>
+                <h3>{{ 'buscador.titulo2' | translate }}</h3>
                 <mat-form-field class="input-group mb-3">
                     <mat-label>{{ 'buscador.buscador' | translate }}</mat-label>
                     <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" (keyup)="filtrar(input)" [matAutocomplete]="auto">
@@ -14,7 +16,9 @@
                           <mat-icon>close</mat-icon>
                         </button>
                     <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarRecetas(input.value, 0)">
-                          <mat-icon>search</mat-icon>
+                        <div class="icon">
+                            <mat-icon>search</mat-icon>
+                        </div>
                         </button>
                 </mat-form-field>
                 <app-show-filters [showIntolerancias]=true [showEtiquetas]=false [showTipos]=true [showOrden]=true (filtros)=cambiarFiltros($event)></app-show-filters>

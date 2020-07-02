@@ -27,6 +27,15 @@ export class FavoriteCardComponent implements OnInit {
     this.recetaSeleccionada.emit(this.receta._id);
   }
 
+  label(nombre: string) {
+    switch (nombre) {
+      case 'Desayuno': return 'label label-success';
+      case 'Comida': return 'label label-info';
+      case 'Merienda': return 'label label-warning';
+      case 'Cena': return 'label label-danger';
+    }
+  }
+
   borrarReceta(receta: any) {
     this.swal.crearSwalBorrar('comun.alertas.borrado.receta',
     () => {

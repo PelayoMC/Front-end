@@ -69,10 +69,10 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="modificando">
+                    <div *ngIf="!modificando">
                         <button (click)="(modificando = !modificando); swapForm()" class="btn btn-info waves-effect waves-light">{{ 'usuarios.usuario.botonMod' | translate }}</button>
                     </div>
-                    <div *ngIf="!modificando">
+                    <div *ngIf="modificando">
                         <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">{{ 'usuarios.usuario.botonAceptar' | translate }}</button>
                         <button (click)="(modificando = !modificando); swapForm()" class="btn btn-inverse waves-effect waves-light">{{ 'usuarios.usuario.botonCancelar' | translate }}</button>
                     </div>

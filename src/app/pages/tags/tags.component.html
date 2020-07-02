@@ -9,7 +9,9 @@
                               <mat-icon>close</mat-icon>
                             </button>
                     <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarEtiquetas(input.value)">
-                              <mat-icon>search</mat-icon>
+                        <div class="icon">
+                            <mat-icon>search</mat-icon>
+                        </div>
                             </button>
                 </mat-form-field>
             </div>
@@ -21,7 +23,7 @@
     <div class="col-12 ">
         <div class="card ">
             <div class="card-body " style="overflow-x:auto; ">
-                <h3 class="card-title ">{{ 'etiquetas.titulo' | translate }} (<small>{{ total }}</small>)&nbsp; <button (click)="mostrarModal()" [matTooltip]="'etiquetas.tooltipAñadir' | translate" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
+                <h3 class="card-title ">{{ 'etiquetas.titulo' | translate }} (<small>{{ total }}</small>)&nbsp; <button *ngIf="userService.esAdmin()" (click)="mostrarModal()" [matTooltip]="'etiquetas.tooltipAñadir' | translate" type="button" class="btn btn-info btn-circle"><i class="fa fa-plus"></i> </button></h3>
                 <table *ngIf="etiquetas.length > 0" class="table table-hover">
                     <thead>
                         <tr>

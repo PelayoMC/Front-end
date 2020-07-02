@@ -65,11 +65,13 @@ export class IngredientsComponent implements OnInit {
   cargarFiltroEtiquetas(event: any) {
     this.etiquetas = [];
     Object.assign(this.etiquetas, event);
+    this.buscarIngredientes(this.busqueda.nativeElement.value);
   }
 
   cargarFiltroIntolerancias(event: any) {
     this.intolerancias = [];
     Object.assign(this.intolerancias, event);
+    this.buscarIngredientes(this.busqueda.nativeElement.value);
   }
 
   cambiarFiltros(event: any) {

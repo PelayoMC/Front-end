@@ -590,6 +590,7 @@
     },
     "sidebar": {
         "inicio": "Home",
+        "buscar": "Search",
         "dieta": {
             "titulo": "Diet",
             "gestion": "Manage diets",
@@ -660,6 +661,8 @@
     },
     "buscador": {
         "buscador": "Ingredient name",
+        "titulo1": "Find recipes",
+        "titulo2": "Enter the name of an ingredient and find the recipes that contain it",
         "tituloIng": "Found ingredients",
         "tituloRe": "Recipes that contain the ingredients found"
     },
@@ -790,6 +793,7 @@
         "titulo": "Registered ingredients",
         "buscador": "Ingredient name",
         "noPresente": "Doesn't belong to any recipes",
+        "noSustituible": "Is not replaceable in any recipe",
         "botonBorrarSin": "Delete ingredients without recipes",
         "tooltipConsejo": "It should be deleted because it's not contained in any recipe",
         "tooltipMostrar": "View recipe",
@@ -827,7 +831,7 @@
         },
         "titulo": "Registered intolerances",
         "buscador": "Intolerance name",
-        "tooltipModificar": "Modify intolerance",
+        "tooltipAñadir": "Add to my intolerances",
         "tooltipGuardar": "Save intolerance",
         "tooltipBorrar": "Delete intolerance"
     },

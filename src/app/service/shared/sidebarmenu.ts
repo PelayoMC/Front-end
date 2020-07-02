@@ -13,29 +13,11 @@ export const menuNR: any = [
               ]
             },
             {
-              titulo: 'sidebar.alimentos.ingredientes.titulo',
-              submenu : [
-                {
-                  titulo: 'sidebar.alimentos.ingredientes.lista',
-                  url: '/ingredients'
-                }
-              ]
-            },
-            {
               titulo: 'sidebar.alimentos.intolerancias.titulo',
               submenu : [
                 {
                   titulo: 'sidebar.alimentos.intolerancias.lista',
                   url: '/intolerances'
-                }
-              ]
-            },
-            {
-              titulo: 'sidebar.alimentos.etiquetas.titulo',
-              submenu : [
-                {
-                  titulo: 'sidebar.alimentos.etiquetas.lista',
-                  url: '/tags'
                 }
               ]
             }
@@ -65,29 +47,11 @@ export const menuUNo: any = [
               ]
             },
             {
-              titulo: 'sidebar.alimentos.ingredientes.titulo',
-              submenu : [
-                {
-                  titulo: 'sidebar.alimentos.ingredientes.lista',
-                  url: '/ingredients'
-                }
-              ]
-            },
-            {
               titulo: 'sidebar.alimentos.intolerancias.titulo',
               submenu : [
                 {
                   titulo: 'sidebar.alimentos.intolerancias.lista',
                   url: '/intolerances'
-                }
-              ]
-            },
-            {
-              titulo: 'sidebar.alimentos.etiquetas.titulo',
-              submenu : [
-                {
-                  titulo: 'sidebar.alimentos.etiquetas.lista',
-                  url: '/tags'
                 }
               ]
             }
@@ -118,29 +82,11 @@ export const menuU: any = [
               ]
             },
             {
-              titulo: 'sidebar.alimentos.ingredientes.titulo',
-              submenu : [
-                {
-                  titulo: 'sidebar.alimentos.ingredientes.lista',
-                  url: '/ingredients'
-                }
-              ]
-            },
-            {
               titulo: 'sidebar.alimentos.intolerancias.titulo',
               submenu : [
                 {
                   titulo: 'sidebar.alimentos.intolerancias.lista',
                   url: '/intolerances'
-                }
-              ]
-            },
-            {
-              titulo: 'sidebar.alimentos.etiquetas.titulo',
-              submenu : [
-                {
-                  titulo: 'sidebar.alimentos.etiquetas.lista',
-                  url: '/tags'
                 }
               ]
             }

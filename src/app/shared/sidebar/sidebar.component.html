@@ -6,6 +6,8 @@
             <ul id="sidebarnav" routerLinkActive="active">
                 <li> <a class="waves-effect waves-dark" [routerLink]="[ '/home' ]"><i class="mdi mdi-home"></i><span class="hide-menu">{{ 'sidebar.inicio' | translate }} </span></a>
                 </li>
+                <li> <a class="waves-effect waves-dark" [routerLink]="[ '/search' ]"><i class="mdi mdi-magnify"></i><span class="hide-menu">{{ 'sidebar.buscar' | translate }} </span></a>
+                </li>
                 <li class="nav-devider"></li>
                 <li *ngFor="let menu of menu"><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu">{{ menu.titulo | translate }}</span></a>
                     <ul aria-expanded="false" class="collapse">

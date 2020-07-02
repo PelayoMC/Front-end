@@ -42,6 +42,7 @@ export class IntolerancesComponent implements OnInit {
   cargarFiltroEtiquetas(event: any) {
     this.etiquetas = [];
     Object.assign(this.etiquetas, event);
+    this.buscarIntolerancias(this.busqueda.nativeElement.value);
   }
 
   cambiarFiltros(event: any) {

@@ -595,6 +595,7 @@
     },
     "sidebar": {
         "inicio": "Inicio",
+        "buscar": "Buscar",
         "dieta": {
             "titulo": "Dieta",
             "gestion": "Gestionar dietas",
@@ -665,6 +666,8 @@
     },
     "buscador": {
         "buscador": "Nombre del ingrediente",
+        "titulo1": "Descubre recetas",
+        "titulo2": "Introduce el nombre de un ingrediente y encuentra las recetas que lo contienen",
         "tituloIng": "Ingredientes encontrados",
         "tituloRe": "Recetas que contienen los ingredientes encontrados"
     },
@@ -795,6 +798,7 @@
         "titulo": "Ingredientes registrados",
         "buscador": "Nombre del ingrediente",
         "noPresente": "No está presente en ninguna receta",
+        "noSustituible": "No es sustituible de ninguna receta",
         "botonBorrarSin": "Borrar ingredientes sin receta",
         "tooltipConsejo": "Debería ser borrado dado que no está presente en ninguna receta",
         "tooltipMostrar": "Mostrar receta",
@@ -832,7 +836,7 @@
         },
         "titulo": "Intolerancias registradas",
         "buscador": "Nombre de la intolerancia",
-        "tooltipModificar": "Modificar intolerancia",
+        "tooltipAñadir": "Añadir a mis intolerancias",
         "tooltipGuardar": "Guardar intolerancia",
         "tooltipBorrar": "Borrar intolerancia"
     },

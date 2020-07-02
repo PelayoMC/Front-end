@@ -25,11 +25,12 @@ export class BusquedaCardComponent implements OnInit {
     this.recetaSeleccionada.emit(this.receta._id);
   }
 
-  label(nivel: string) {
-    switch (nivel) {
-      case 'Facil': return 'label label-success';
-      case 'Medio': return 'label label-warning';
-      case 'Dificil': return 'label label-danger';
+  label(nombre: string) {
+    switch (nombre) {
+      case 'Desayuno': return 'label label-success';
+      case 'Comida': return 'label label-info';
+      case 'Merienda': return 'label label-warning';
+      case 'Cena': return 'label label-danger';
     }
   }
 
