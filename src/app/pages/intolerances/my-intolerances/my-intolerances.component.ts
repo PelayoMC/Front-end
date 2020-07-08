@@ -10,7 +10,6 @@ import { Usuario } from '../../../models/usuario.model';
 })
 export class MyIntolerancesComponent implements OnInit {
 
-  @ViewChild('input', { static: true }) busqueda: ElementRef;
   intolerancias: Intolerance[] = [];
 
   user: Usuario;

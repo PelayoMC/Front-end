@@ -1,6 +1,6 @@
 export class Dieta {
         constructor(
-            public dieta?: Receta[],
+            public dieta?: RecetaComent[],
             public admin?: string,
             public usuario?: string,
             public feedback?: string,
@@ -10,7 +10,7 @@ export class Dieta {
         }
     }
 
-interface Receta {
+interface RecetaComent {
     receta: string;
     comentario: string;
 }

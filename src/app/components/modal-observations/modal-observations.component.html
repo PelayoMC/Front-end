@@ -10,9 +10,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label><strong>{{ 'modales.observaciones.enviar' | translate }}</strong></label>
                         <div class="card">
-                            <span> {{ usuario?.observaciones }} </span>
+                            <span *ngIf="usuario?.observaciones"> {{ usuario?.observaciones }} </span>
+                            <div *ngIf="!usuario?.observaciones" class="form-group row">
+                                <div class="col-12 ">
+                                    <div class="alert alert-warning text-center ">
+                                        <strong> {{ 'modales.observaciones.enviar' | translate }} </strong>
+                                        <br>
+                                        <i class="fa fa-question-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

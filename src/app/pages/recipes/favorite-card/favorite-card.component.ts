@@ -13,9 +13,8 @@ export class FavoriteCardComponent implements OnInit {
   @Output() recetaSeleccionada: EventEmitter<number>;
   @Output() cargar: EventEmitter<number>;
 
-  constructor(private router: Router, public userService: UsersService,
-              public recipesService: RecipesService, public voteService: VotingService,
-              public swal: SwalService) {
+  constructor(public userService: UsersService, public recipesService: RecipesService,
+              public voteService: VotingService, public swal: SwalService) {
     this.recetaSeleccionada = new EventEmitter();
     this.cargar = new EventEmitter();
    }

@@ -39,10 +39,6 @@ export class CreateDietComponent implements OnInit {
     });
   }
 
-  verReceta(idx: number) {
-    this.router.navigate(['/recipe', idx]);
-  }
-
   kcalDiarias() {
     const us = this.usuarioReceta;
     let TMB;
@@ -67,7 +63,7 @@ export class CreateDietComponent implements OnInit {
           sum += this.obtenerCalorias(this.recetas[i][j]);
         }
       }
-      if (sum > 50) {
+      if (sum > this.kcalDiarias()) {
         return true;
       }
     }
@@ -81,7 +77,7 @@ export class CreateDietComponent implements OnInit {
         sum += this.obtenerCalorias(this.recetas[i][j]);
       }
     }
-    return this.limiteCalorico(sum, j);
+    return this.limiteCalorico(sum);
   }
 
   obtenerCalorias(receta: Recipe) {
@@ -93,9 +89,9 @@ export class CreateDietComponent implements OnInit {
   }
 
 
-  limiteCalorico(valor: number, columna: number) {
+  limiteCalorico(valor: number) {
     let ret;
-    valor > 50 ? ret = 'yellow' : ret = 'white' ;
+    valor > this.kcalDiarias() ? ret = 'yellow' : ret = 'white' ;
     return ret;
   }
 

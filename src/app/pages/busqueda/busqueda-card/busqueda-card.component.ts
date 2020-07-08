@@ -13,7 +13,7 @@ export class BusquedaCardComponent implements OnInit {
   @Output() recetaSeleccionada: EventEmitter<number>;
   @Output() cargar: EventEmitter<number>;
 
-  constructor( private router: Router, public userService: UsersService, public recipesService: RecipesService, public voteService: VotingService) {
+  constructor(public userService: UsersService, public recipesService: RecipesService, public voteService: VotingService) {
     this.recetaSeleccionada = new EventEmitter();
     this.cargar = new EventEmitter();
    }

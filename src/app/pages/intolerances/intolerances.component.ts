@@ -21,11 +21,11 @@ export class IntolerancesComponent implements OnInit {
   total: number;
 
   constructor(public intolerancesService: IntolerancesService, public userService: UsersService,
-              public router: Router, public route: ActivatedRoute, public swal: SwalService) { }
+              public router: Router, public activatedRoute: ActivatedRoute, public swal: SwalService) { }
 
   ngOnInit() {
     this.cargando = true;
-    this.route.queryParams.subscribe(params => {
+    this.activatedRoute.queryParams.subscribe(params => {
       if (params.etiqueta) {
         this.etiquetas.push(params.etiqueta);
         this.buscarIntolerancias(this.busqueda.nativeElement.value);

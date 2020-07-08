@@ -21,7 +21,6 @@ export { ModalTermsConditionsService } from './modals/modal-terms-conditions.ser
 export { ModalVoteServiceService } from './modals/modal-vote-service.service';
 export { RecipesService } from './recipes/recipes.service';
 export { SidebarService } from './shared/sidebar.service';
-export { SharedService } from './shared/shared.service';
 export { TagsService } from './tags/tags.service';
 export { UploadImageService } from './upload/upload-image.service';
 export { UsersService } from './users/users.service';

@@ -10,7 +10,7 @@
                     <thead>
                         <tr>
                             <th>{{ 'comun.tabla.nombre' | translate }}</th>
-                            <th *ngIf="userService.esAdmin()">{{ 'comun.tabla.etiquetas' | translate }}</th>
+                            <th *ngIf="userService.esUser()">{{ 'comun.tabla.acciones' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -18,7 +18,7 @@
                             <td (click)="mostrarIntolerancia(int)">
                                 <span> {{ int.nombre }} </span>
                             </td>
-                            <td class="text-nowrap small-td">
+                            <td *ngIf="userService.esUser()" class="text-nowrap small-td">
                                 <button (click)="borrarFavIntolerancia(int)" class="btn btn-danger" [matTooltip]="'intolerancias.misIntolerancias.tooltipEliminar' | translate"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
