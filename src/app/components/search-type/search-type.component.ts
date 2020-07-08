@@ -10,7 +10,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material';
 })
 export class SearchTypeComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private recetasService: RecipesService) { }
+  constructor(private fb: FormBuilder) { }
 
   form: FormGroup;
   tipos: string[] = [];

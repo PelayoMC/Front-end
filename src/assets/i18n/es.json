@@ -572,7 +572,7 @@
         },
         "observaciones": {
             "titulo": "Observaciones",
-            "enviar": "Observaciones del usuario"
+            "enviar": "No hay observaciones"
         },
         "votar": {
             "titulo": "Añadir votacion"
@@ -630,6 +630,7 @@
         }
     },
     "login": {
+        "volver": "Volver a inicio",
         "correo": "Correo",
         "contraseña": "Contraseña",
         "recuerdame": "Recuérdame",
@@ -701,8 +702,8 @@
             "ejercicio4": "6-7 días",
             "ejercicio5": "Todos los días mañana y tarde",
             "observaciones": "Observaciones",
-            "observacionesPh": "Introducir observaciones que se deban tener en cuenta",
-            "opcional": "(Opcional)",
+            "observacionesPh": "Introducir observaciones",
+            "opcional": "Opcional - Se tendrán en cuenta para la creación de la dieta",
             "botonMod": "Modificar",
             "botonAceptar": "Aceptar",
             "botonCancelar": "Cancelar",

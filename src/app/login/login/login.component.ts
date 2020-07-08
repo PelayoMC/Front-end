@@ -80,6 +80,7 @@ export class LoginComponent implements OnInit {
             });
         });
       } else {
+        this.cargandoEmail = false;
         this.swal.crearSwal('comun.alertas.errores.correoInvalido', 'error');
         return;
       }

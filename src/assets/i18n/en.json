@@ -567,7 +567,7 @@
         },
         "observaciones": {
             "titulo": "Observations",
-            "enviar": "User observations"
+            "enviar": "There aren't any observations"
         },
         "votar": {
             "titulo": "Add vote"
@@ -625,6 +625,7 @@
         }
     },
     "login": {
+        "volver": "Return to home",
         "correo": "Email",
         "contraseña": "Password",
         "recuerdame": "Remember me",
@@ -696,8 +697,8 @@
             "ejercicio4": "6-7 days",
             "ejercicio5": "All days morning/afternoon",
             "observaciones": "Observations",
-            "observacionesPh": "Introduce observations that have to be taken into account",
-            "opcional": "(Optional)",
+            "observacionesPh": "Introduce observations",
+            "opcional": "Optional - They will be taken into account for the creation of the diet",
             "botonMod": "Modify",
             "botonAceptar": "Accept",
             "botonCancelar": "Cancel",
