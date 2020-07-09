@@ -344,7 +344,7 @@
                     "mensaje": "El usuario ha sido borrado con exito"
                 },
                 "crearUsuarioRegister": {
-                    "titulo": "Usuario creado",
+                    "titulo": "Registro correcto",
                     "mensaje": "Inicie sesión con sus credenciales"
                 },
                 "feedback": {

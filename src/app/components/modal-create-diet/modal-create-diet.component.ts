@@ -16,6 +16,7 @@ export class ModalCreateDietComponent implements OnInit {
   recetas: Recipe[] = [];
   tipos: string[] = [];
   intolerancias: string[] = [];
+  tags: string[] = [];
   orden = 'nombre';
   filtros: Filtros = new Filtros();
 
@@ -39,6 +40,12 @@ export class ModalCreateDietComponent implements OnInit {
   cargarFiltroIntolerancias(event: any) {
     this.intolerancias = [];
     Object.assign(this.intolerancias, event);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
+  }
+
+  cargarFiltroEtiquetas(event: any) {
+    this.tags = [];
+    Object.assign(this.tags, event);
     this.buscarRecetas(this.busqueda.nativeElement.value, 0);
   }
 
@@ -74,7 +81,7 @@ export class ModalCreateDietComponent implements OnInit {
 
   buscarRecetas(termino: string, valor: number) {
     this.cargando = true;
-    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, this.orden, valor, this.limit).subscribe(
+    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, this.tags, this.orden, valor, this.limit).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;
         this.recetas = recetas;

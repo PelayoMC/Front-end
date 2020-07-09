@@ -83,7 +83,7 @@ export class SearchTagComponent implements OnInit {
   }
 
   filtrar(input: any) {
-    this.filteredTags = this.copy.map(el => el.nombre).filter(el => el.includes(input.value));
+    this.filteredTags = this.copy.map(el => el.nombre).filter(el => el.toLowerCase().includes(input.value.toLowerCase()));
   }
 
   remove(tag: string, i: number): void {

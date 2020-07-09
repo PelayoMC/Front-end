@@ -66,27 +66,27 @@ export class RecipeComponent implements OnInit {
     this.puntuacionesTotales = this.votacion.total;
     this.votado = this.usuarioVotado(this.votacion.usuarios);
     console.log(this.usuarioService.esUser(), this.votado);
-    this.cargarSustituibles();
+    this.cargarEtiquetasYSustituibles();
   }
 
-  // cargarEtiquetasYSustituibles() {
-  //   console.log(this.receta.ingredientes.map(el => el._id));
-  //   this.ingsService.obtenerEtiquetas(this.receta.ingredientes.map(el => el._id)).subscribe(resp => {
-  //     console.log(resp);
-  //     this.etiquetas = resp;
-  //     console.log(this.receta.ingredientes.map(el => el.ingredienteSustituible));
-  //     this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
-  //       console.log(resp);
-  //       this.sustituibles = resp.map(el => {
-  //         if (el != null) {
-  //           return el.nombre;
-  //         } else {
-  //           return null;
-  //         }
-  //       });
-  //     });
-  //   });
-  // }
+  cargarEtiquetasYSustituibles() {
+    console.log(this.receta.ingredientes.map(el => el._id));
+    this.ingsService.obtenerEtiquetas(this.receta.ingredientes.map(el => el._id)).subscribe(resp => {
+      console.log(resp);
+      this.etiquetas = resp;
+      console.log(this.receta.ingredientes.map(el => el.ingredienteSustituible));
+      this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
+        console.log(resp);
+        this.sustituibles = resp.map(el => {
+          if (el != null) {
+            return el.nombre;
+          } else {
+            return null;
+          }
+        });
+      });
+    });
+  }
 
   cargarSustituibles() {
     this.ingsService.getSustituibles(this.receta.ingredientes.map(el => el.ingredienteSustituible)).subscribe((resp: any) => {
