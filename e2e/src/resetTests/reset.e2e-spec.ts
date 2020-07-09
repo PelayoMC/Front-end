@@ -5,24 +5,32 @@ import { protractor } from 'protractor/built/ptor';
 
 const until = protractor.ExpectedConditions;
 
-describe('Inicio de sesión', () => {
-  beforeEach(() => {
-    browser.get(URL_APP + '/login');
-  });
+describe('Reset', () => {
 
-  it('Inicio de sesión incorrecto - email', () => {
-      element(by.name('email')).sendKeys('emailfront1@email.com');
-      element(by.name('contraseña')).sendKeys('123');
-      const button = element(by.name('submit')).click();
+  it('Solicitar reset incorrecto - email', () => {
+      browser.get(URL_APP + '/login');
+      element(by.name('email')).sendKeys('ERROR');
+      const button = element(by.name('reset')).click();
 
       const el = element(by.css('.swal2-error'));
       browser.wait(until.presenceOf(el), 1500, 'Tarda demasiado en salir el error');
       expect(el.isPresent()).toBeTruthy();
   });
 
-  it('Inicio de sesión incorrecto - contraseña', () => {
-      element(by.name('email')).sendKeys('emailfront@email.com');
+  it('Solicitar reset incorrecto - email', () => {
+      browser.get(URL_APP + '/login');
+      element(by.name('email')).sendKeys('ERROR');
+      const button = element(by.name('reset')).click();
+
+      const el = element(by.css('.swal2-error'));
+      browser.wait(until.presenceOf(el), 1500, 'Tarda demasiado en salir el error');
+      expect(el.isPresent()).toBeTruthy();
+  });
+
+  it('Login incorrecto - contraseñas distintas', () => {
+      browser.get(URL_APP + '/reset');
       element(by.name('contraseña')).sendKeys('1234');
+      element(by.name('contraseña2')).sendKeys('123456');
       const button = element(by.name('submit')).click();
 
       const el = element(by.css('.swal2-error'));
@@ -30,7 +38,8 @@ describe('Inicio de sesión', () => {
       expect(el.isPresent()).toBeTruthy();
   });
 
-  it('Inicio de sesión correcto', () => {
+  it('Login correcto', () => {
+      browser.get(URL_APP + '/reset');
       element(by.name('email')).sendKeys('emailfront@email.com');
       element(by.name('contraseña')).sendKeys('123');
       const button = element(by.name('submit')).click();

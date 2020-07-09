@@ -49,6 +49,8 @@ const routes: Routes = [
                 canActivate: [AdminGuard],
                 children: [
                   // ADMIN
+                  { path: 'ingredients', component: IngredientsComponent, data: { titulo: 'titulos.paginas.ingredientes' } },
+                  { path: 'tags', component: TagsComponent, data: { titulo: 'titulos.paginas.etiquetas' } },
                   { path: 'addRecipe', component: CreateRecipeComponent, data: { titulo: 'titulos.paginas.addReceta' } },
                   { path: 'modRecipe', component: CreateRecipeComponent, data: { titulo: 'titulos.paginas.modReceta' } },
                   { path: 'addIngsRecipe/:id', component: CreateIngsRecipeComponent, data: { titulo: 'titulos.paginas.addSust' } },
@@ -74,10 +76,8 @@ const routes: Routes = [
           { path: 'search', component: BusquedaComponent, data: { titulo: 'titulos.paginas.busqueda' } },
           { path: 'recipes', component: RecipesComponent, data: { titulo: 'titulos.paginas.recetas' } },
           { path: 'recipe/:id', component: RecipeComponent, data: { titulo: 'titulos.paginas.receta' } },
-          { path: 'ingredients', component: IngredientsComponent, data: { titulo: 'titulos.paginas.ingredientes' } },
           { path: 'intolerances', component: IntolerancesComponent, data: { titulo: 'titulos.paginas.intolerancias' } },
-          { path: 'intolerance/:id', component: IntoleranceComponent, data: { titulo: 'titulos.paginas.intolerancia' } },
-          { path: 'tags', component: TagsComponent, data: { titulo: 'titulos.paginas.etiquetas' } }
+          { path: 'intolerance/:id', component: IntoleranceComponent, data: { titulo: 'titulos.paginas.intolerancia' } }
         ]
     }
 ];
