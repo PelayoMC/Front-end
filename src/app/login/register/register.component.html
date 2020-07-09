@@ -18,7 +18,7 @@
         <div class="login-box card">
             <div class="card-body">
                 <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()" class="form-horizontal form-material" id="loginform" action="index.html">
-                    <button routerLink="/home" class="btn btn-warning btn-lg btn-block">{{ 'login.volver' | translate }}</button>
+                    <a routerLink="/home" class="btn btn-warning btn-lg btn-block">{{ 'login.volver' | translate }}</a>
                     <h3 class="box-title m-t-40 m-b-0">{{ 'register.titulo' | translate }}</h3>
                     <div class="form-group m-t-20">
                         <div class="col-xs-12">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group text-center m-t-20 ">
                         <div class="col-xs-12 ">
-                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light " type="submit ">{{ 'register.registrarse' | translate }}</button>
+                            <button name="submit" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light " type="submit ">{{ 'register.registrarse' | translate }}</button>
                         </div>
                     </div>
                     <div class="form-group m-b-0 ">
