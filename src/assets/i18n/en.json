@@ -344,7 +344,7 @@
                     "mensaje": "The user has been deleted correctly"
                 },
                 "crearUsuarioRegister": {
-                    "titulo": "User created",
+                    "titulo": "Register correct",
                     "mensaje": "Login with your credentials"
                 },
                 "feedback": {

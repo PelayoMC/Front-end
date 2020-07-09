@@ -3,19 +3,19 @@
     <div class="scroll-sidebar">
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
-            <ul id="sidebarnav" routerLinkActive="active">
-                <li> <a class="waves-effect waves-dark" [routerLink]="[ '/home' ]"><i class="mdi mdi-home"></i><span class="hide-menu">{{ 'sidebar.inicio' | translate }} </span></a>
+            <ul id="sidebarnav">
+                <li> <a class="waves-effect waves-dark" href="/home"><i class="mdi mdi-home"></i><span class="hide-menu">{{ 'sidebar.inicio' | translate }} </span></a>
                 </li>
-                <li> <a class="waves-effect waves-dark" [routerLink]="[ '/search' ]"><i class="mdi mdi-magnify"></i><span class="hide-menu">{{ 'sidebar.buscar' | translate }} </span></a>
+                <li> <a class="waves-effect waves-dark" href="/search"><i class="mdi mdi-magnify"></i><span class="hide-menu">{{ 'sidebar.buscar' | translate }} </span></a>
                 </li>
                 <li class="nav-devider"></li>
                 <li *ngFor="let menu of menu"><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu">{{ menu.titulo | translate }}</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li *ngFor="let submenu of menu.submenu">
-                            <a *ngIf="submenu.url" [routerLink]="submenu.url">{{ submenu.titulo | translate  }}</a>
+                            <a *ngIf="submenu.url" [href]="submenu.url">{{ submenu.titulo | translate  }}</a>
                             <a *ngIf="!submenu.url" class="has-arrow waves-effect waves-dark" aria-expanded="false">{{ submenu.titulo | translate  }}</a>
                             <ul *ngIf="submenu.submenu" aria-expanded="false" class="collapse">
-                                <li *ngFor="let sub of submenu.submenu"><a aria-expanded="false" [routerLink]="sub.url">{{ sub.titulo | translate  }}</a></li>
+                                <li *ngFor="let sub of submenu.submenu"><a aria-expanded="false" [href]="sub.url">{{ sub.titulo | translate  }}</a></li>
                             </ul>
                         </li>
                     </ul>

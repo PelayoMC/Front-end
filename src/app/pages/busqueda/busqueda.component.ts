@@ -19,6 +19,7 @@ export class BusquedaComponent implements OnInit {
   ingsFiltrados: string[] = [];
   tipos: string[] = [];
   intolerancias: string[] = [];
+  tags: string[] = [];
   orden = 'nombre';
   filtros: Filtros = new Filtros();
 
@@ -55,19 +56,28 @@ export class BusquedaComponent implements OnInit {
     this.buscarRecetas(this.busqueda.nativeElement.value, 0);
   }
 
+  cargarFiltroEtiquetas(event: any) {
+    this.tags = [];
+    Object.assign(this.tags, event);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
+  }
+
   cargarFiltroOrden(event: any) {
     this.orden = event;
     this.buscarRecetas(this.busqueda.nativeElement.value, 0);
   }
 
   filtrar(input: any) {
-    this.ingsFiltrados = this.ings.filter(el => el.toLowerCase().includes(input.value));
+    this.ingsFiltrados = this.ings.filter(el => el.toLowerCase().includes(input.value.toLowerCase()));
   }
 
   cambiarFiltros(event: any) {
     Object.assign(this.filtros, event);
     if (this.filtros.intolerancias === false) {
       this.intolerancias = [];
+    }
+    if (this.filtros.etiquetas === false) {
+      this.tags = [];
     }
     if (this.filtros.tipos === false) {
       this.tipos = [];
@@ -92,7 +102,8 @@ export class BusquedaComponent implements OnInit {
 
   buscarRecetas(termino: string, valor: number) {
     this.cargando = true;
-    this.recipeService.descubrirRecetas(termino, this.tipos, this.intolerancias, this.orden, valor, this.limit).subscribe(
+    console.log("VAMOS");
+    this.recipeService.descubrirRecetas(termino, this.tipos, this.intolerancias, this.tags, this.orden, valor, this.limit).subscribe(
       (resp: any) => {
         this.ingredientes = resp.coleccion.ingredientes;
         this.recetas = resp.coleccion.recetas;

@@ -72,7 +72,7 @@ export class SearchTypeComponent implements OnInit {
   }
 
   filtrar(input: any) {
-    this.filteredTipos = this.copy.filter(el => el.includes(input.value));
+    this.filteredTipos = this.copy.filter(el => el.toLowerCase().includes(input.value.toLowerCase()));
   }
 
   remove(tipo: string, i: number): void {

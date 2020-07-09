@@ -75,12 +75,14 @@ export class RecipesService {
     );
   }
 
-  descubrirRecetas(termino: string, tipos: string[], intolerancias: string[], orden: string, from: number, limit: number) {
+  descubrirRecetas(termino: string, tipos: string[], intolerancias: string[], etiquetas: string[], orden: string, from: number, limit: number) {
     const extra = {
       tipos,
       intolerancias,
+      etiquetas,
       orden
     };
+    console.log(etiquetas);
     let url = URL_SERVICIOS + '/busqueda/descubrir/' + termino + '?from=' + from + '&limit=' + limit;
     return this.http.post(url, extra).pipe(
       map(  (resp: any) => {
@@ -89,10 +91,11 @@ export class RecipesService {
     );
   }
 
-  buscarRecetas(termino: string, tipos: string[], intolerancias: string[], orden: string, from: number, limit: number) {
+  buscarRecetas(termino: string, tipos: string[], intolerancias: string[], etiquetas: string[],  orden: string, from: number, limit: number) {
     const extra = {
       tipos,
       intolerancias,
+      etiquetas,
       orden
     };
     let url = URL_SERVICIOS + '/busqueda/receta/' + termino + '?from=' + from + '&limit=' + limit;

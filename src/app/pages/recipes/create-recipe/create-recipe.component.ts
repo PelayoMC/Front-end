@@ -74,7 +74,7 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   filtrar(input: any) {
-    this.ingsFiltrados = this.ings.filter(el => el.toLowerCase().includes(input.controls.nombre.value));
+    this.ingsFiltrados = this.ings.filter(el => el.toLowerCase().includes(input.controls.nombre.value.toLowerCase()));
   }
 
   resetFilter() {
@@ -163,7 +163,7 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   onChange(input: any, select: any, i: number) {
-    if (input.controls.unidades.value === 'Al gusto' || input.controls.unidades.value === 'Sin unidades') {
+    if (input.controls.unidades.value === 'Al gusto') {
       select.disabled = true;
     } else {
       select.disabled = false;

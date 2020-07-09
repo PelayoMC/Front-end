@@ -8,7 +8,20 @@
                     <div class="col-md-4">
                         <img *ngIf="receta?.imagen" [src]='receta?.imagen | image: "receta"' class="img-responsive" alt="receta-imagen">
                         <br><br>
-                        <div class="row" *ngIf="usuarioService.esUser()">
+                        <a (click)="mostrarModal()" class="btn btn-outline-warning btn-block" *ngIf="usuarioService.esUser() && !votado"> Votar</a>
+                        <a (click)="retornar()" class="btn btn-outline-info btn-block">{{ 'recetas.receta.botonRe' | translate }}</a>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>{{ 'recetas.receta.descripcion' | translate }}</h3>
+                                <hr>
+                                <p>
+                                    {{ receta?.descripcion }}
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
                             <div class="col-md-12">
                                 <h4>{{ 'recetas.receta.puntuacion' | translate }} <small>  ( {{ 'recetas.receta.total' | translate }}: {{ puntuacionesTotales }} )</small></h4>
                                 <hr>
@@ -21,6 +34,7 @@
                             </div>
                         </div>
                         <div class="row" *ngIf="usuarioService.estaLogueado()">
+
                             <div class="col-md-6">
                                 <h4>{{ 'recetas.receta.calorias' | translate }}</h4>
                                 <hr>
@@ -36,18 +50,11 @@
                                 </p>
                             </div>
                         </div>
-                        <a (click)="mostrarModal()" class="btn btn-outline-warning btn-block" *ngIf="usuarioService.esUser() && !votado"> Votar</a>
-                        <a (click)="retornar()" class="btn btn-outline-info btn-block">{{ 'recetas.receta.botonRe' | translate }}</a>
-                        <br><br>
+
                     </div>
                     <div class="col-md-8">
-                        <h3>{{ 'recetas.receta.descripcion' | translate }}</h3>
-                        <hr>
-                        <p>
-                            {{ receta?.descripcion }}
-                        </p>
                         <div class="row" *ngIf="usuarioService.estaLogueado()">
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-12 col-md-12">
                                 <h4>{{ 'recetas.receta.ingredientes' | translate }}</h4>
                                 <hr>
                                 <mat-accordion>
@@ -81,8 +88,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--
-                                        <div *ngIf="etiquetas[i]?.length > 0">
+                                        <div *ngIf="usuarioService.esAdmin() && etiquetas[i]?.length > 0">
                                             <hr>
                                             <div class="row">
                                                 <div class="col">
@@ -97,12 +103,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        -->
                                     </mat-expansion-panel>
                                 </mat-accordion>
                                 <br>
                             </div>
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-12 col-md-12">
                                 <h4>{{ 'recetas.receta.pasos' | translate }}</h4>
                                 <hr>
                                 <ul class="list-group">
