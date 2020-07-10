@@ -17,17 +17,7 @@ describe('Reset', () => {
       expect(el.isPresent()).toBeTruthy();
   });
 
-  it('Solicitar reset incorrecto - email', () => {
-      browser.get(URL_APP + '/login');
-      element(by.name('email')).sendKeys('ERROR');
-      const button = element(by.name('reset')).click();
-
-      const el = element(by.css('.swal2-error'));
-      browser.wait(until.presenceOf(el), 1500, 'Tarda demasiado en salir el error');
-      expect(el.isPresent()).toBeTruthy();
-  });
-
-  it('Login incorrecto - contraseñas distintas', () => {
+  it('Reset incorrecto - contraseñas distintas', () => {
       browser.get(URL_APP + '/reset');
       element(by.name('contraseña')).sendKeys('1234');
       element(by.name('contraseña2')).sendKeys('123456');
@@ -38,7 +28,7 @@ describe('Reset', () => {
       expect(el.isPresent()).toBeTruthy();
   });
 
-  it('Login correcto', () => {
+  it('Reset correcto', () => {
       browser.get(URL_APP + '/reset');
       element(by.name('email')).sendKeys('emailfront@email.com');
       element(by.name('contraseña')).sendKeys('123');

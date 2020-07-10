@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label for="nombre">{{ 'modales.crearUsuario.campo1' | translate }}</label>
                             <input class="form-control" type="text" ngModel #nombre="ngModel" name="nombre" [class.is-valid]="nombre.valid && nombre.touched" [class.is-invalid]="nombre.invalid && nombre.touched" autocomplete="off" [placeholder]="'modales.crearUsuario.texto1' | translate"
-                                required minlength="3">
+                                required>
                             <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">{{ 'modales.crearUsuario.error1' | translate }}</small>
                         </div>
                         <div class="form-group">
@@ -25,13 +25,13 @@
                         <div class="form-group">
                             <label for="contraseña">{{ 'modales.crearUsuario.campo3' | translate }}</label>
                             <input (keyup)="checkPass(form)" class="form-control" type="password" ngModel #password="ngModel" [class.is-valid]="password.valid && password.touched && passEqual" [class.is-invalid]="password.invalid && password.touched || !passEqual" name="password"
-                                [placeholder]="'modales.crearUsuario.texto3' | translate" required minlength="3">
+                                [placeholder]="'modales.crearUsuario.texto3' | translate" required minlength="5">
                             <small *ngIf="password.invalid && password.touched" class="form-text text-danger">{{ 'modales.crearUsuario.error3' | translate }}</small>
                         </div>
                         <div class="form-group">
                             <label for="contraseña2">{{ 'modales.crearUsuario.campo4' | translate }}</label>
                             <input (keyup)="checkPass(form)" class="form-control" type="password" ngModel #password2="ngModel" [class.is-valid]="password2.valid && password2.touched && passEqual" [class.is-invalid]="password2.invalid && password2.touched || !passEqual" name="password2"
-                                [placeholder]="'modales.crearUsuario.texto3' | translate" required minlength="3">
+                                [placeholder]="'modales.crearUsuario.texto3' | translate" required minlength="5">
                             <small *ngIf="password2.invalid && password2.touched" class="form-text text-danger">{{ 'modales.crearUsuario.error3' | translate }}</small>
                             <small *ngIf="!passEqual" class="form-text text-danger">{{ 'modales.crearUsuario.error4' | translate }}</small>
                         </div>

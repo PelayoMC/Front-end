@@ -32,12 +32,12 @@
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input formControlName="contraseña" name="contraseña" class="form-control" type="password" required [placeholder]="'register.contraseña' | translate">
+                            <input formControlName="contraseña" name="contraseña" class="form-control" type="password" required [placeholder]="'register.contraseña' | translate" minlength="5">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input formControlName="contraseña2" name="contraseña2" class="form-control" type="password" required [placeholder]="'register.confirmarContraseña' | translate">
+                            <input formControlName="contraseña2" name="contraseña2" class="form-control" type="password" required [placeholder]="'register.confirmarContraseña' | translate" minlength="5">
                         </div>
                     </div>
                     <div class="form-group" *ngIf="forma.errors?.equalPasswords && !forma.pristine">

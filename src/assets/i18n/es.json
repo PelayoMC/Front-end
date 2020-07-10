@@ -217,6 +217,10 @@
                     "titulo": "Error",
                     "mensaje": "Error al borrar el ingrediente"
                 },
+                "borrarIngredienteReceta": {
+                    "titulo": "Error",
+                    "mensaje": "No se puede borrar un ingrediente con receta"
+                },
                 "borrarIngredientes": {
                     "titulo": "Error",
                     "mensaje": "Error al borrar los ingredientes"
@@ -524,7 +528,14 @@
     },
     "modales": {
         "t&c": {
-            "titulo": "Términos y condiciones"
+            "titulo": "Términos y condiciones",
+            "texto": "Al marcar la casilla de términos y condiciones, usted acepta y accede los términos y disposiciones de este acuerdo. Asimismo, al utilizar estos servicios particulares, usted estará sujeto a toda regla o guía de uso correspondiente que se haya publicado para dichos servicios. Toda participación en este servicio constituirá la aceptación de este acuerdo. Si no lo acepta, le ruego no lo utilice",
+            "tituloPrivacidad": "Privacidad",
+            "privacidad": "La información del usuario será almacenada de manera remota y solo será accesible por un administrador asociado a crear su dieta. El resto de usuarios no dispondrán de la capacidad de acceder a otros perfiles que no sean el suyo",
+            "tituloPIntel": "Propiedad intelectual",
+            "pintel": "Este producto ha sido desarrollado por Pelayo Martínez Capela (UO250985) en colaboración con la Universidad de Oviedo",
+            "tituloAlmacen": "Almacenamiento de datos",
+            "almacen": "Dado que en ningún documento se guardan datos que puedan guardar relación con una persona física, no se ha implementado ningún sistema de seguridad de datos. No obstante, las contraseñas de la aplicación se guardan con un cifrado más potente que el SHA-256 (BCrypt)"
         },
         "upload": {
             "titulo": "Cambiar imagen",
