@@ -217,6 +217,10 @@
                     "titulo": "Error",
                     "mensaje": "Error deleting the ingredient"
                 },
+                "borrarIngredienteReceta": {
+                    "titulo": "Error",
+                    "mensaje": "The ingredient can't be deleted because it belongs in a recipe"
+                },
                 "borrarIngredientes": {
                     "titulo": "Error",
                     "mensaje": "Error deleting the ingredients"
@@ -523,6 +527,16 @@
         }
     },
     "modales": {
+        "t&c": {
+            "titulo": "Terms and conditions",
+            "texto": "By checking the terms and conditions box, you accept and agree to the terms and provisions of this agreement. In addition, when using these particular services, you will be subject to any applicable rules or usage guidelines that have been posted for those services. Any participation in this service will constitute acceptance of this agreement. If you do not accept this agreement, please do not use it",
+            "tituloPrivacidad": "Privacy",
+            "privacidad": "User information will be stored remotely and will only be accessible by an administrator associated with creating your diet. Other users will not have the ability to access other profiles than their own",
+            "tituloPIntel": "Intellectual Property",
+            "pintel": "This product has been developed by Pelayo Martínez Capela (UO250985) in collaboration with the University of Oviedo",
+            "tituloAlmacen": "Data storage",
+            "almacen": "Since no data that can be related to a natural person is stored in any document, no data security system has been implemented. However, the application passwords are saved with stronger encryption than the SHA-256 (BCrypt)"
+        },
         "upload": {
             "titulo": "Change image",
             "previa": "Preview"

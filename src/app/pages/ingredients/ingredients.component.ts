@@ -114,14 +114,7 @@ export class IngredientsComponent implements OnInit {
     this.swal.crearSwalBorrar('comun.alertas.borrado.ingrediente',
     () => {
       if (recetas.length > 0) {
-        this.swal.crearSwalBorrar('comun.alertas.borrado.ingrediente2',
-        () => {
-          this.ingredientesService.borrarIngrediente(ingrediente).subscribe((resp: any) => {
-            this.recetasService.borrarRecetas(recetas).subscribe(resp => {
-              this.cargar();
-            });
-          });
-        });
+        this.swal.crearSwal('comun.alertas.errores.borrarIngredienteReceta', 'error');
       } else {
         this.ingredientesService.borrarIngrediente(ingrediente).subscribe((resp: any) => {
           this.cargar();
