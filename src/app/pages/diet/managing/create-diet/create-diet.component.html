@@ -1,81 +1,89 @@
 <app-loading-component [cargando]="cargando">
 </app-loading-component>
-<div class="row " *ngIf="!cargando">
-    <div class="col-12 ">
-        <div class="card ">
-            <div class="card-body " style="overflow-x:auto; ">
-                <h3>{{ 'dietas.gestion.noAsig.titulo1' | translate }}</h3>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>{{ 'comun.tabla.nombre' | translate }}</th>
-                            <th>{{ 'comun.tabla.edad' | translate }}</th>
-                            <th>{{ 'comun.tabla.altura' | translate }}</th>
-                            <th>{{ 'comun.tabla.peso' | translate }}</th>
-                            <th>{{ 'comun.tabla.kcal' | translate }}</th>
-                            <th>{{ 'comun.tabla.info' | translate }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span> {{ usuarioReceta.nombre }} </span>
-                            </td>
-                            <td>
-                                <span> {{ usuarioReceta.edad }} </span>
-                            </td>
-                            <td>
-                                <span> {{ usuarioReceta.altura }} </span>
-                            </td>
-                            <td>
-                                <span> {{ usuarioReceta.peso }} </span>
-                            </td>
-                            <td>
-                                <span> {{ kcalDiarias() }} </span>
-                            </td>
-                            <td class="text-nowrap small-td">
-                                <button class="btn btn-info" (click)="abrirObservaciones()">{{ 'dietas.gestion.noAsig.observaciones' | translate }}</button> &nbsp;
-                                <button class="btn btn-info" routerLinkActive [routerLink]="['/favorites/' + usuarioReceta._id]">{{ 'dietas.gestion.noAsig.favoritas' | translate }}</button> &nbsp;
-                                <button class="btn btn-info" routerLinkActive [routerLink]="['/myIntolerances/' + usuarioReceta._id]">{{ 'dietas.gestion.noAsig.intolerancias' | translate }}</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<div *ngIf="!cargando">
+    <div class="row ">
+        <div class="col-12 ">
+            <div class="card ">
+                <div class="card-body " style="overflow-x:auto; ">
+                    <h3>{{ 'dietas.gestion.noAsig.titulo1' | translate }}</h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>{{ 'comun.tabla.nombre' | translate }}</th>
+                                <th>{{ 'comun.tabla.edad' | translate }}</th>
+                                <th>{{ 'comun.tabla.altura' | translate }}</th>
+                                <th>{{ 'comun.tabla.peso' | translate }}</th>
+                                <th>{{ 'comun.tabla.kcal' | translate }}</th>
+                                <th>{{ 'comun.tabla.info' | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span> {{ usuarioReceta.nombre }} </span>
+                                </td>
+                                <td>
+                                    <span> {{ usuarioReceta.edad }} </span>
+                                </td>
+                                <td>
+                                    <span> {{ usuarioReceta.altura }} </span>
+                                </td>
+                                <td>
+                                    <span> {{ usuarioReceta.peso }} </span>
+                                </td>
+                                <td>
+                                    <span> {{ kcalDiarias() }} </span>
+                                </td>
+                                <td class="text-nowrap small-td">
+                                    <button class="btn btn-info" (click)="abrirObservaciones()">{{ 'dietas.gestion.noAsig.observaciones' | translate }}</button> &nbsp;
+                                    <button class="btn btn-info" routerLinkActive [routerLink]="['/favorites/' + usuarioReceta._id]">{{ 'dietas.gestion.noAsig.favoritas' | translate }}</button> &nbsp;
+                                    <button class="btn btn-info" routerLinkActive [routerLink]="['/myIntolerances/' + usuarioReceta._id]">{{ 'dietas.gestion.noAsig.intolerancias' | translate }}</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row " *ngIf="!cargando">
-    <div class="col-12 ">
-        <div class="card ">
-            <div class="card-body " style="overflow-x:auto; ">
-                <h3>{{ 'dietas.gestion.noAsig.titulo2' | translate }}</h3>
-                <h4 class="text text-warning" *ngIf="comprobarTabla()">{{ 'dietas.gestion.noAsig.limite' | translate }}</h4>
-                <table class="table">
-                    <colgroup>
-                        <col>
-                        <col *ngFor="let dia of dias; let i = index" [style.backgroundColor]="comprobarColumna(i)">
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th *ngFor="let dia of dias">{{ dia | translate }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let fila of recetas; let i = index">
-                            <td> {{ getTitulo(i) | translate }} </td>
-                            <td *ngFor="let receta of recetas[i]; let j = index">
-                                <button *ngIf="!receta" class="btn btn-info" (click)="abrirModal(i, j)"><i class="mdi mdi-plus"></i></button>
-                                <button *ngIf="receta" class="btn btn-danger" (click)="borrarReceta(i, j)"><i class="mdi mdi-minus"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="row ">
+        <div class="col-12 ">
+            <div class="card ">
+                <div class="card-body " style="overflow-x:auto; ">
+                    <h3>{{ 'dietas.gestion.noAsig.titulo2' | translate }}</h3>
+                    <h4 class="text text-warning" *ngIf="comprobarTabla()">{{ 'dietas.gestion.noAsig.limite' | translate }}</h4>
+                    <table class="table">
+                        <colgroup>
+                            <col>
+                            <col *ngFor="let dia of dias; let i = index" [style.backgroundColor]="comprobarColumna(i)">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th *ngFor="let dia of dias">{{ dia | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let fila of recetas; let i = index">
+                                <td> {{ getTitulo(i) | translate }} </td>
+                                <td *ngFor="let receta of recetas[i]; let j = index">
+                                    <button *ngIf="!receta" class="btn btn-info" (click)="abrirModal(i, j)"><i class="mdi mdi-plus"></i></button>
+                                    <button *ngIf="receta" class="btn btn-danger" (click)="borrarReceta(i, j)"><i class="mdi mdi-minus"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> {{ 'dietas.gestion.noAsig.sum' | translate }} </td>
+                                <td *ngFor="let receta of recetas[0]; let j = index">
+                                    {{ calcularCaloriasColumna(j) }} {{ 'dietas.gestion.noAsig.kcal' | translate }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    <button [disabled]="!dietaCompleta()" class="btn btn-info" (click)="crearDieta()">{{ 'dietas.gestion.noAsig.crear' | translate }}</button>
 </div>
-<button [disabled]="!dietaCompleta()" class="btn btn-info" (click)="crearDieta()">{{ 'dietas.gestion.noAsig.crear' | translate }}</button>
 <app-modal-create-diet (receta)="addReceta($event)"></app-modal-create-diet>
 <app-modal-observations></app-modal-observations>

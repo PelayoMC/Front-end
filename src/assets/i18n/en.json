@@ -649,14 +649,19 @@
         "link": "Register"
     },
     "register": {
+        "mensaje": {
+            "titulo": "Registration in the system",
+            "mensaje1": "This message has been sent to confirm your registration\n",
+            "mensaje2": "Thank you for registering in the application “HEALTHY MEAL PLANNER ASSISTANT”\n"
+        },
         "titulo": "Register",
         "nombre": "Name",
         "correo": "Email",
         "contraseña": "Password",
         "confirmarContraseña": "Confirm password",
         "contraseñasIguales": "The passwords have to be the same",
-        "terminos": "I accept the",
-        "linkTerminos": "terms and conditions",
+        "terminos": "I accept the terms and conditions",
+        "linkTerminos": "See terms and conditions",
         "registrarse": "Register",
         "pregunta": "Do you have an account?",
         "linkSesion": "Login"
@@ -860,6 +865,11 @@
     },
     "dietas": {
         "gestion": {
+            "mensaje": {
+                "titulo": "Denial of diet",
+                "mensaje1": "This message has been sent to inform you that an administrator has denied your diet request\n",
+                "mensaje2": "Sorry for the inconvenience\n"
+            },
             "dietas": "Unassigned diets",
             "asig": "Assigned diets",
             "ver": "See diet",
@@ -867,12 +877,19 @@
             "comentarios": "Comments",
             "noAsig": {
                 "titulo1": "User data",
-                "limite": "The daily caloric limit is exceeded",
+                "limite": "You must approach the daily caloric limit",
                 "observaciones": "Observations",
                 "favoritas": "Favorite recipes",
                 "intolerancias": "Intolerances",
                 "titulo2": "Add recipes",
-                "crear": "Create diet"
+                "sum": "Caloric summation",
+                "kcal": "Kilocalories",
+                "crear": "Create diet",
+                "mensaje": {
+                    "titulo": "Diet creation",
+                    "mensaje1": "This message has been sent to inform you that an administrator has created the diet you have requested\n",
+                    "mensaje2": "Log in to the application and start enjoying your personalized diet\n"
+                }
             }
         },
         "solicitar": {

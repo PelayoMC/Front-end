@@ -44,7 +44,6 @@ export class ResetPassComponent implements OnInit {
       return;
     }
 
-    console.log(this.usuario);
     this.userService.loginReset(this.usuario).subscribe(resp => {
       this.usuario.contraseña = this.forma.value.contraseña;
       this.userService.modificarUsuario(this.usuario).subscribe(resp => {

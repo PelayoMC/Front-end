@@ -34,7 +34,7 @@
                 <li class="nav-item" routerLinkActive="active" *ngIf="!userService.estaLogueado()">
                     <a class="nav-link waves-effect waves-dark" [routerLink]="['/login']"><b> {{ 'header.sesion' | translate }} </b></a>
                 </li>
-                <li class="nav-item dropdown" *ngIf="userService.estaLogueado()">
+                <li class="nav-item dropdown" id="sesionDropdown" *ngIf="userService.estaLogueado()">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img [src]="usuario.imagen | image" alt="user" class="profile-pic" /></a>
                     <div class="dropdown-menu dropdown-menu-right animated fadeInDownBig">
                         <ul class="dropdown-user">
@@ -52,7 +52,7 @@
                             <li *ngIf="userService.esUser()"><a [routerLink]="['/favorites/' + usuario._id]"><i class="ti-receipt"></i> {{ 'header.recetas' | translate }} </a></li>
                             <li *ngIf="userService.esUser()"><a [routerLink]="['/myIntolerances/'  + usuario._id]"><i class="ti-receipt"></i> {{ 'header.intolerancias' | translate }} </a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a (click)="userService.logout('login')" class="pointer"><i class="fa fa-power-off"></i> {{ 'header.cerrar' | translate }} </a></li>
+                            <li><a id="cerrar" (click)="userService.logout('login')" class="pointer"><i class="fa fa-power-off"></i> {{ 'header.cerrar' | translate }} </a></li>
                         </ul>
                     </div>
                 </li>

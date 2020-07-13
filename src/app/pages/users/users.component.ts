@@ -104,6 +104,7 @@ export class UsersComponent implements OnInit {
       this.swal.crearSwal('comun.alertas.errores.actualizarUsuario', 'error');
       return;
     }
+    console.log(usuario);
     this.usuariosService.modificarUsuario(usuario).subscribe(resp => {
       this.swal.crearSwal('comun.alertas.exito.modificarUsuario', 'success');
       this.cargarUsuarios();

@@ -158,9 +158,13 @@ export class UsersService {
     );
   }
 
-  crearUsuario(usuario: Usuario) {
+  crearUsuario(usuario: Usuario, mensaje: any) {
     const url = URL_SERVICIOS + '/usuario';
-    return this.http.post(url, usuario).pipe(
+    const msj = {
+      usuario,
+      mensaje
+    };
+    return this.http.post(url, msj).pipe(
       map( (resp: any) => {
         return resp.usuario;
       }),

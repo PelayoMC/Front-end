@@ -3,6 +3,7 @@ import { DietService, UsersService, ModalFeedbackService, SwalService } from '..
 import { Dieta } from 'src/app/models/dieta.model';
 import { Router } from '@angular/router';
 import { Usuario } from '../../../models/usuario.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-managing',
@@ -11,7 +12,7 @@ import { Usuario } from '../../../models/usuario.model';
 export class ManagingComponent implements OnInit {
 
   constructor(public userService: UsersService, public dietService: DietService,
-              public modalFeedback: ModalFeedbackService,
+              public modalFeedback: ModalFeedbackService, public translate: TranslateService,
               public router: Router, public swal: SwalService) { }
   sinAsignar: any[] = [];
   asignadas: any[] = [];
@@ -104,9 +105,19 @@ export class ManagingComponent implements OnInit {
   borrarDieta(intolerancia: any) {
     this.swal.crearSwalBorrar('comun.alertas.borrado.dieta',
     () => {
-      this.dietService.borrarDieta(intolerancia).subscribe(resp => {
-        this.swal.crearSwal('comun.alertas.exito.borrarDieta', 'success');
-        this.cargarDietas();
+      this.cargando = true;
+      this.translate.get('dietas.gestion.mensaje').subscribe(mensaje => {
+        console.log(mensaje);
+        this.dietService.borrarDieta(intolerancia, mensaje).subscribe(resp => {
+          intolerancia.user.notificaciones.push({
+            titulo: 'Dieta denegada',
+            mensaje: 'Un administrador le ha denegado su petición de dieta'
+          });
+          this.userService.modificarUsuario(intolerancia.user).subscribe(resp => {
+            this.swal.crearSwal('comun.alertas.exito.borrarDieta', 'success');
+            this.cargarDietas();
+          });
+        });
       });
     });
   }
