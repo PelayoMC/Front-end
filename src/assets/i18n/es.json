@@ -651,14 +651,19 @@
         "link": "Registrate"
     },
     "register": {
+        "mensaje": {
+            "titulo": "Registro en el sistema",
+            "mensaje1": "Este mensaje ha sido enviado para confirmar su registro\n",
+            "mensaje2": "Gracias por registrarse en la aplicación “APLICACIÓN WEB PARA LA PLANIFICACIÓN Y EVALUACIÓN DE DIETAS”\n"
+        },
         "titulo": "Registro",
         "nombre": "Nombre",
         "correo": "Correo",
         "contraseña": "Contraseña",
         "confirmarContraseña": "Confirmar contraseña",
         "contraseñasIguales": "Las contraseñas deben ser iguales",
-        "terminos": "Acepto todos los",
-        "linkTerminos": "terminos y condiciones",
+        "terminos": "Acepto todos los terminos y condiciones",
+        "linkTerminos": "Ver terminos y condiciones",
         "registrarse": "Registrarse",
         "pregunta": "¿Ya tienes cuenta?",
         "linkSesion": "Inicia sesión"
@@ -862,6 +867,11 @@
     },
     "dietas": {
         "gestion": {
+            "mensaje": {
+                "titulo": "Denegación de dieta",
+                "mensaje1": "Este mensaje ha sido enviado para informarle de que un administrador ha denegado su solicitud de dieta\n",
+                "mensaje2": "Lamentamos las molestias\n"
+            },
             "dietas": "Dietas sin asignar",
             "asig": "Dietas asignadas",
             "ver": "Ver dieta",
@@ -869,12 +879,19 @@
             "comentarios": "Comentarios",
             "noAsig": {
                 "titulo1": "Datos del usuario",
-                "limite": "Se supera el límite calórico diario",
+                "limite": "Se debe acercar al límite calórico diario",
                 "observaciones": "Observaciones",
                 "favoritas": "Recetas favoritas",
                 "intolerancias": "Intolerancias",
                 "titulo2": "Asignar recetas",
-                "crear": "Crear dieta"
+                "sum": "Sumatorio calórico",
+                "kcal": "Kilocalorias",
+                "crear": "Crear dieta",
+                "mensaje": {
+                    "titulo": "Creación de dieta",
+                    "mensaje1": "Este mensaje ha sido enviado para informarle de que un administrador ha creado la dieta que ha solicitado\n",
+                    "mensaje2": "Inicie sesión en la aplicación y empiece a disfrutar de su dieta personalizada\n"
+                }
             }
         },
         "solicitar": {

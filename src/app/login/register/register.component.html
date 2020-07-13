@@ -48,8 +48,19 @@
                     <div class="form-group row ">
                         <div class="col-md-12 ">
                             <div class="checkbox checkbox-primary p-t-0 ">
-                                <input formControlName="condiciones" name="condiciones" id="checkbox-signup " type="checkbox">
-                                <label for="checkbox-signup ">{{ 'register.terminos' | translate }}<a (click)="mostrarCondiciones()"> {{ 'register.linkTerminos' | translate }}</a></label>
+                                <input formControlName="condiciones" name="condiciones" id="checkbox-signup" type="checkbox">
+                                <label for="checkbox-signup">{{ 'register.terminos' | translate }}</label><a class="text text-primary" (click)="mostrarCondiciones()"> {{ 'register.linkTerminos' | translate }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="cargandoEmail" class="form-group row">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning text-center">
+                                <strong>{{ 'comun.buscando.titulo' | translate }}</strong>
+                                <br>
+                                <i class="fa fa-refresh fa-spin fa-2x"></i>
+                                <br>
+                                <span>{{ 'comun.buscando.texto' | translate }}</span>
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService, SwalService, ModalTermsConditionsService} from '../../service/service.index';
 import { Usuario } from '../../models/usuario.model';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 declare function init_plugins();
 @Component({
@@ -13,9 +14,10 @@ declare function init_plugins();
 export class RegisterComponent implements OnInit {
 
   forma: FormGroup;
+  cargandoEmail = false;
 
 
-  constructor(public userService: UsersService, public router: Router, public swal: SwalService, public condiciones: ModalTermsConditionsService) { }
+  constructor(public userService: UsersService, public router: Router, public swal: SwalService, public translate: TranslateService, public condiciones: ModalTermsConditionsService) { }
 
   ngOnInit() {
     init_plugins();
@@ -44,9 +46,13 @@ export class RegisterComponent implements OnInit {
       this.forma.value.contraseña
     );
 
-    this.userService.crearUsuario(usuario).subscribe(resp => {
-      this.swal.crearSwal('comun.alertas.exito.crearUsuarioRegister', 'success');
-      this.router.navigate(['/login']);
+    this.cargandoEmail = true;
+    this.translate.get('register.mensaje').subscribe(mensaje => {
+      this.userService.crearUsuario(usuario, mensaje).subscribe(resp => {
+        this.swal.crearSwal('comun.alertas.exito.crearUsuarioRegister', 'success');
+        this.cargandoEmail = false;
+        this.router.navigate(['/login']);
+      });
     });
   }
 

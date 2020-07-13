@@ -4,6 +4,7 @@ import { UsersService } from '../../service/users/users.service';
 import { Usuario } from '../../models/usuario.model';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modal-create-user',
@@ -18,7 +19,7 @@ export class ModalCreateUserComponent implements OnInit {
   @Output() created = new EventEmitter();
 
   constructor(public modalCreateUser: ModalCreateUserService, public userService: UsersService,
-              public router: Router, public swal: SwalService) { }
+              public router: Router, public translate: TranslateService, public swal: SwalService) { }
 
   ngOnInit() {
     this.usuario = this.userService.usuario.value;
@@ -50,11 +51,13 @@ export class ModalCreateUserComponent implements OnInit {
         false,
         null
       );
-      this.userService.crearUsuario(user).subscribe((resp: any) => {
-        this.swal.crearSwal('comun.alertas.exito.crearUsuario', 'success');
-        this.ocultarModal();
-        this.created.emit();
+      this.translate.get('register.mensaje').subscribe(mensaje => {
+        this.userService.crearUsuario(user, mensaje).subscribe(resp => {
+          this.swal.crearSwal('comun.alertas.exito.crearUsuario', 'success');
+          this.cerrarModal(form);
+          this.created.emit();
       }, err => this.cerrarModal(form));
+      });
     }
   }
 

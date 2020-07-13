@@ -4,6 +4,7 @@ import { UsersService, DietService, ModalCreateDietService, ModalObservationsSer
 import { Usuario } from '../../../../models/usuario.model';
 import { Recipe } from '../../../../models/recipe.model';
 import * as data from '../../diets.data';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-diet',
@@ -12,7 +13,7 @@ import * as data from '../../diets.data';
 export class CreateDietComponent implements OnInit {
 
   constructor(public activatedRoute: ActivatedRoute, public usuarioService: UsersService,
-              public dietaService: DietService, public router: Router,
+              public dietaService: DietService, public router: Router, public translate: TranslateService,
               public modalService: ModalCreateDietService, public observaciones: ModalObservationsService,
               public swal: SwalService) { }
 
@@ -33,7 +34,6 @@ export class CreateDietComponent implements OnInit {
         }
         this.recetas = ar;
         this.usuarioReceta = resp;
-        console.log(this.recetas);
         this.cargando = false;
       });
     });
@@ -63,11 +63,21 @@ export class CreateDietComponent implements OnInit {
           sum += this.obtenerCalorias(this.recetas[i][j]);
         }
       }
-      if (sum > this.kcalDiarias()) {
+      if (((sum > this.kcalDiarias() + 50) || (sum < this.kcalDiarias() - 50)) && sum !== 0) {
         return true;
       }
     }
     return false;
+  }
+
+  calcularCaloriasColumna(j: number) {
+    let sum = 0;
+    for (let i = 0; i < this.recetas.length; i++) {
+      if (this.recetas[i][j]) {
+        sum += this.obtenerCalorias(this.recetas[i][j]);
+      }
+    }
+    return sum;
   }
 
   comprobarColumna(j: number) {
@@ -91,13 +101,12 @@ export class CreateDietComponent implements OnInit {
 
   limiteCalorico(valor: number) {
     let ret;
-    valor > this.kcalDiarias() ? ret = 'yellow' : ret = 'white' ;
+    (((valor > this.kcalDiarias() + 50) || (valor < this.kcalDiarias() - 50)) && valor !== 0) ? ret = 'yellow' : ret = 'white' ;
     return ret;
   }
 
   addReceta(event: any) {
     this.recetas[+event.i][+event.j] = event.receta;
-    // console.log(this.comprobarColumna(columna));
     // for (let i = 0; i < this.nombresComidas.length; i++) {
     //   for (let j = 0; j < this.dias.length; j++) {
     //     this.recetas[i][j] = event.receta;
@@ -139,19 +148,23 @@ export class CreateDietComponent implements OnInit {
         });
       }
     }
+    this.cargando = true;
     this.dietaService.obtenerDietaUser(this.usuarioReceta._id).subscribe(resp => {
       resp.dieta = this.dieta;
       resp.admin = this.usuarioService.usuario.value._id;
-      console.log(resp);
-      this.dietaService.modificarDieta(resp).subscribe(resp => {
-        this.usuarioReceta.dieta = resp;
-        this.usuarioReceta.notificaciones.push({
-          titulo: 'Dieta asignada',
-          mensaje: 'Un administrador le ha asignado una dieta'
-        });
-        this.usuarioService.modificarUsuario(this.usuarioReceta).subscribe(resp => {
-          this.swal.crearSwal('comun.alertas.exito.dietaCreada', 'success');
-          this.router.navigate(['diet/managing']);
+      this.translate.get('dietas.gestion.noAsig.mensaje').subscribe(mensaje => {
+        console.log(mensaje);
+        this.dietaService.asignarDieta(resp, mensaje).subscribe(resp => {
+          this.usuarioReceta.dieta = resp;
+          this.usuarioReceta.notificaciones.push({
+            titulo: 'Dieta asignada',
+            mensaje: 'Un administrador le ha asignado una dieta'
+          });
+          this.usuarioService.modificarUsuario(this.usuarioReceta).subscribe(resp => {
+            this.swal.crearSwal('comun.alertas.exito.dietaCreada', 'success');
+            this.router.navigate(['diet/managing']);
+            this.cargando = false;
+          });
         });
       });
     });

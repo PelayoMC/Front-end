@@ -93,8 +93,9 @@ export class RecipesComponent implements OnInit {
   }
 
   buscarRecetas(termino: string, valor: number) {
+    console.log
     this.cargando = true;
-    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, this.tags, this.orden, valor, this.tam).subscribe(
+    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, this.tags, this.orden, valor, this.tam + valor).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;
         this.recetas = recetas;

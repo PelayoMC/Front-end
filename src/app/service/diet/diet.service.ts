@@ -140,6 +140,24 @@ export class DietService {
     );
   }
 
+  asignarDieta(dieta: Dieta, mensaje: any) {
+    const data = {
+      dieta,
+      mensaje
+    };
+    let url = URL_SERVICIOS + '/dieta/asignar/' + dieta._id;
+    url += '?token=' + localStorage.token;
+    return this.http.put(url, data).pipe(
+      map(  (resp: any) => {
+        return resp.dieta;
+      }),
+      catchError( err => {
+        this.swal.crearSwal('comun.alertas.errores.modificarDieta', 'error');
+        return throwError(err);
+      })
+    );
+  }
+
   modificarFeedbackDieta(dieta: Dieta) {
     let url = URL_SERVICIOS + '/dieta/feedback/' + dieta._id;
     url += '?token=' + localStorage.token;
@@ -154,10 +172,14 @@ export class DietService {
     );
   }
 
-  borrarDieta(dieta: Dieta) {
-    let url = URL_SERVICIOS + '/dieta/' + dieta._id;
+  borrarDieta(dieta: Dieta, mensaje: any) {
+    const data = {
+      usuario: dieta.usuario,
+      mensaje
+    };
+    let url = URL_SERVICIOS + '/dieta/delete/' + dieta._id;
     url += '?token=' + localStorage.token;
-    return this.http.delete(url).pipe(
+    return this.http.post(url, data).pipe(
       map(  (resp: any) => {
         return resp.dieta;
       }),

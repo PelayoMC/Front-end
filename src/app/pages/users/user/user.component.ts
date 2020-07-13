@@ -118,7 +118,14 @@ export class UserComponent implements OnInit {
   }
 
   modificar() {
-    if (this.form.invalid) {
+    if (this.form.invalid && this.userService.esUser()) {
+      this.swal.crearSwal('comun.alertas.errores.completarCampos', 'error');
+      return;
+    }
+    if ((this.form.get('nombre').value.length <= 0
+      || this.form.get('email').value.length <= 0)
+      && this.userService.esAdmin())
+    {
       this.swal.crearSwal('comun.alertas.errores.completarCampos', 'error');
       return;
     }
@@ -141,5 +148,5 @@ export class UserComponent implements OnInit {
       this.usuario = resp;
       this.router.navigate(['/user', this.usuario._id]);
     });
-  }
+   }
 }

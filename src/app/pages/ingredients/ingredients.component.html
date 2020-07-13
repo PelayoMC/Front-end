@@ -46,7 +46,7 @@
                             </td>
                             <td>
                                 <div *ngIf="extra[i].recetas.length > 0" class="row">
-                                    <div *ngFor="let receta of extra[i].recetas" class="col-1">
+                                    <div *ngFor="let receta of extra[i].recetas" class="col-2">
                                         <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" [matTooltip]="receta.nombre" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                             </td>
                             <td>
                                 <div *ngIf="extra[i].sustituibles.length > 0" class="row">
-                                    <div *ngFor="let receta of extra[i].sustituibles" class="col-1">
+                                    <div *ngFor="let receta of extra[i].sustituibles" class="col-2">
                                         <button class="btn btn-info"><i class="mdi mdi-food-fork-drink" [matTooltip]="receta.nombre" (click)="mostrarReceta(receta)" style="color:#ffffff;"></i></button>
                                     </div>
                                 </div>

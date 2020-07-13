@@ -103,7 +103,7 @@ export class BusquedaComponent implements OnInit {
   buscarRecetas(termino: string, valor: number) {
     this.cargando = true;
     console.log("VAMOS");
-    this.recipeService.descubrirRecetas(termino, this.tipos, this.intolerancias, this.tags, this.orden, valor, this.limit).subscribe(
+    this.recipeService.descubrirRecetas(termino, this.tipos, this.intolerancias, this.tags, this.orden, valor, this.limit + valor).subscribe(
       (resp: any) => {
         this.ingredientes = resp.coleccion.ingredientes;
         this.recetas = resp.coleccion.recetas;
