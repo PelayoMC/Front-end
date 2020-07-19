@@ -12,11 +12,11 @@
                     <div class="card-body">
                         <mat-form-field class="input-group mb-3">
                             <mat-label>{{ 'modales.crearDieta.buscador' | translate }}</mat-label>
-                            <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0)" autocomplete="off">
+                            <input matInput #input type="text" (keyup.enter)="buscarRecetas(input.value, 0, 4)" autocomplete="off">
                             <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; cargarRecetas()">
                                       <mat-icon>close</mat-icon>
                                     </button>
-                            <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarRecetas(input.value, 0)">
+                            <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="buscarRecetas(input.value, 0, 4)">
                                       <mat-icon>search</mat-icon>
                                     </button>
                         </mat-form-field>

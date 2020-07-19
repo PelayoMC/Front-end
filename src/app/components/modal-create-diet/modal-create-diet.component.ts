@@ -22,6 +22,7 @@ export class ModalCreateDietComponent implements OnInit {
 
   from = 0;
   limit = 4;
+  to = 4;
   total: number;
   cargando = true;
 
@@ -34,24 +35,24 @@ export class ModalCreateDietComponent implements OnInit {
   cargarFiltroTipos(event: any) {
     this.tipos = [];
     Object.assign(this.tipos, event);
-    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0, 4);
   }
 
   cargarFiltroIntolerancias(event: any) {
     this.intolerancias = [];
     Object.assign(this.intolerancias, event);
-    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0, 4);
   }
 
   cargarFiltroEtiquetas(event: any) {
     this.tags = [];
     Object.assign(this.tags, event);
-    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0, 4);
   }
 
   cargarFiltroOrden(event: any) {
     this.orden = event;
-    this.buscarRecetas(this.busqueda.nativeElement.value, 0);
+    this.buscarRecetas(this.busqueda.nativeElement.value, 0, 4);
   }
 
   cambiarFiltros(event: any) {
@@ -79,9 +80,12 @@ export class ModalCreateDietComponent implements OnInit {
     });
   }
 
-  buscarRecetas(termino: string, valor: number) {
+  buscarRecetas(termino: string, valor: number, valorTo: number) {
+    console.log(valor, valorTo);
+    this.from = valor;
+    this.to = valorTo;
     this.cargando = true;
-    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, this.tags, this.orden, valor, this.limit).subscribe(
+    this.recipesService.buscarRecetas(termino, this.tipos, this.intolerancias, this.tags, this.orden, valor, valorTo).subscribe(
       (resp: any) => {
         const recetas: Recipe[] = resp.coleccion;
         this.recetas = recetas;
@@ -114,7 +118,8 @@ export class ModalCreateDietComponent implements OnInit {
   cambiarDesde(valor: number) {
     const value = this.from + valor;
     this.from = value;
-    this.cargarRecetas();
+    this.to += valor;
+    this.buscarRecetas(this.busqueda.nativeElement.value, this.from, this.to);
   }
 
 }
